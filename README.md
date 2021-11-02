@@ -22,6 +22,7 @@ With Poetry installed `poetry install`.
 - Tests: `poetry run pytest` or `poetry run pytest` or use your code editor. VSCode has built in support.
 - Tests with coverage: `pytest --cov=mbt_python tests/`
 - Preview the pre-commit hooks: `pre-commit run --all-files`
+- Run linter manually: `flake8 .`
 
 ### Tips for VSCode users
 
