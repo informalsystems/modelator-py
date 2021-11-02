@@ -24,6 +24,8 @@ With Poetry installed `poetry install`.
 - Preview the pre-commit hooks: `pre-commit run --all-files`
 - Run linter manually: `flake8 .`
 - Run formatter manually: `black .`
+- Run static type checker: `mypy .`
+- Sort imports `isort .`
 
 ### Tips for VSCode users
 

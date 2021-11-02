@@ -13,6 +13,8 @@ black = {version = "^21.10b0", allow-prereleases = true}
 pytest-cov = "^3.0.0"
 pre-commit = "^2.15.0"
 flake8 = "^4.0.1"
+mypy = "^0.910"
+isort = "^5.9.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -43,3 +45,10 @@ exclude = '''
 
 [flake8]
 extend-ignore = ["E203"]
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 79
