@@ -23,6 +23,7 @@ With Poetry installed `poetry install`.
 - Tests with coverage: `pytest --cov=mbt_python tests/`
 - Preview the pre-commit hooks: `pre-commit run --all-files`
 - Run linter manually: `flake8 .`
+- Run formatter manually: `black .`
 
 ### Tips for VSCode users
 
