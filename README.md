@@ -19,8 +19,9 @@ The Python version used is `3.10.0`.
 
 With Poetry installed `poetry install`.
 
-Tests: `poetry run pytest` or `poetry run pytest` or use your code editor. VSCode has built in support.
-Tests with coverage: `pytest --cov=mbt_python tests/`
+- Tests: `poetry run pytest` or `poetry run pytest` or use your code editor. VSCode has built in support.
+- Tests with coverage: `pytest --cov=mbt_python tests/`
+- Preview the pre-commit hooks: `pre-commit run --all-files`
 
 ### Tips for VSCode users
 
@@ -49,4 +50,4 @@ Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 
     https://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
