@@ -210,10 +210,13 @@ $RECYCLE.BIN/
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+
+# For now we ignore .vscode files, however they may be used in the future.
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+
 *.code-workspace
 
 # Local History for Visual Studio Code
