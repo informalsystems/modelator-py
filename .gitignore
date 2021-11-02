@@ -209,7 +209,7 @@ $RECYCLE.BIN/
 *.lnk
 
 ### VisualStudioCode ###
-.vscode/*
+.vscode
 
 # For now we ignore .vscode files, however they may be used in the future.
 # !.vscode/settings.json
