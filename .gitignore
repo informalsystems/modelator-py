@@ -229,3 +229,7 @@ $RECYCLE.BIN/
 
 # Support for Project snippet scope
 !.vscode/*.code-snippets
+
+# Temporary
+apalache-pkg-0.17.0-full.jar
+tla2tools.jar
