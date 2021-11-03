@@ -1,9 +1,20 @@
 import sys
 
 import fire
-from apalache import ApalachePure, ApalacheRaw
+from apalache import Apalache
+
+
+class App:
+    def __init__(self, stdin):
+        self.stdin = stdin
+        self.Apalache = Apalache(stdin)
+
+    def example(*_ignore, foo=True, bar=None, wiz):
+        print(f"{foo=}{bar=}{wiz=}")
+
 
 if __name__ == "__main__":
+
     """
     # Checks "cmd" field for the actual command, uses the rest of the json as
     # input
@@ -21,5 +32,5 @@ if __name__ == "__main__":
         # TODO: use stdin
         pass
     else:
-        cli = {"apalache": {"raw": ApalacheRaw, "pure": ApalachePure}}
-        fire.Fire(cli)
+        app = App(sys.stdin)
+        fire.Fire(app)

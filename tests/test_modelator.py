@@ -1,4 +1,4 @@
-from mbt_python import __version__
+from modelator import __version__
 
 
 def test_version():

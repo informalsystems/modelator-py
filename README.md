@@ -20,7 +20,7 @@ The Python version used is `3.10.0`.
 With Poetry installed `poetry install`.
 
 - Tests: `poetry run pytest` or `poetry run pytest` or use your code editor. VSCode has built in support.
-- Tests with coverage: `pytest --cov=mbt_python tests/`
+- Tests with coverage: `pytest --cov=modelator tests/`
 - Preview the pre-commit hooks: `pre-commit run --all-files`
 - Run linter manually: `flake8 .`
 - Run formatter manually: `black .`
