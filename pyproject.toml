@@ -46,7 +46,7 @@ exclude = '''
 '''
 
 [flake8]
-extend-ignore = ["E203"]
+extend-ignore = ["E203", "E501"]
 max-line-length = 88
 
 [tool.isort]
