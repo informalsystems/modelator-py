@@ -7,6 +7,7 @@ authors = ["Daniel Tisdall <daniel@informal.systems>"]
 [tool.poetry.dependencies]
 python = "^3.9.7"
 fire = "^0.4.0"
+recordclass = "^0.16.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

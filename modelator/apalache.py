@@ -1,9 +1,12 @@
 import json
-from collections import namedtuple
 
-fields = [
+from recordclass import asdict, recordclass
+
+# mypy: ignore-errors
+
+fields = (
     "jar",  # Location of Apalache jar (named like apalache-pkg-0.xx.0-full.jar)                                                                                                  (# noqa: E501)
-    "cmd",  # The Apalache <command> to run. (check | config | parse | test | typecheck)                                                                                          (# noqa: E501)
+    "cmd",  # The Apalache <command> to run. (check | config | parse | test | typecheck | noop)                                                                                          (# noqa: E501)
     "file",  # A file containing a TLA+ specification (.tla or .json)                                                                                                             (# noqa: E501)
     "debug",  # extensive logging in detailed.log and log.smt, default: false                                                                                                     (# noqa: E501)
     "out_dir",  # where output files will be written, default: ./_apalache-out (overrides envvar OUT_DIR)                                                                         (# noqa: E501)
@@ -31,13 +34,60 @@ fields = [
     "action",  # the name of an action to execute, similar to Next                                                                                                                (# noqa: E501)
     "assertion",  # the name of an operator that should evaluate to true after executing `action`                                                                                 (# noqa: E501)
     "infer_poly",  # allow the type checker to infer polymorphic types, default: true                                                                                             (# noqa: E501)
-]
+)
 
-RawCmd = namedtuple("RawCmd", fields)  # type: ignore
+RawCmd = recordclass("RawCmd", fields, defaults=(None,) * len(fields))  # noqa: E501
+
+
+def stringify_raw_cmd(cmd: RawCmd):
+    def stringify(value):
+        # Apalache will not accept capitals
+        if isinstance(value, bool):
+            return str(value).lower()
+        return value
+
+    cmd = RawCmd(**{k: stringify(v) for k, v in asdict(cmd).items()})
+
+    cmd_str = f"""
+java\
+ -jar {cmd.jar}\
+{f" --debug={cmd.debug}" if cmd.debug is not None else ""}\
+{f" --out-dir={cmd.out_dir}" if cmd.out_dir is not None else ""}\
+{f" --profiling={cmd.profiling}" if cmd.profiling is not None else ""}\
+{f" --smtprof={cmd.smtprof}" if cmd.smtprof is not None else ""}\
+{f" --write-intermediate={cmd.write_intermediate}" if cmd.write_intermediate is not None else ""}\
+ {cmd.cmd}\
+{f" --algo={cmd.algo}" if cmd.algo is not None else ""}\
+{f" --cinit={cmd.cinit}" if cmd.cinit is not None else ""}\
+{f" --config={cmd.config}" if cmd.config is not None else ""}\
+{f" --discard-disabled={cmd.discard_disabled}" if cmd.discard_disabled is not None else ""}\
+{f" --init={cmd.init}" if cmd.init is not None else ""}\
+{f" --inv={cmd.inv}" if cmd.inv is not None else ""}\
+{f" --length={cmd.length}" if cmd.length is not None else ""}\
+{f" --max-error={cmd.max_error}" if cmd.max_error is not None else ""}\
+{f" --next={cmd.next}" if cmd.next is not None else ""}\
+{f" --no-deadlock={cmd.no_deadlock}" if cmd.no_deadlock is not None else ""}\
+{f" --nworkers={cmd.nworkers}" if cmd.nworkers is not None else ""}\
+{f" --smt_encoding={cmd.smt_encoding}" if cmd.smt_encoding is not None else ""}\
+{f" --tuning={cmd.tuning}" if cmd.tuning is not None else ""}\
+{f" --tuning-options={cmd.tuning_options}" if cmd.tuning_options is not None else ""}\
+{f" --view={cmd.view}" if cmd.view is not None else ""}\
+{f" --enable-stats={cmd.enable_stats}" if cmd.enable_stats is not None else ""}\
+{f" --output={cmd.output}" if cmd.output is not None else ""}\
+{f" --infer-poly={cmd.infer_poly}" if cmd.infer_poly is not None else ""}\
+{f" {cmd.file}" if cmd.file is not None else ""}\
+{f" {cmd.before}" if cmd.before is not None else ""}\
+{f" {cmd.action}" if cmd.action is not None else ""}\
+{f" {cmd.assertion}" if cmd.assertion is not None else ""}\
+"""  # noqa: E501
+
+    return cmd_str
 
 
 def exec_apalache_raw_cmd(cmd: RawCmd):
     print(f"{cmd=}")
+    cmd_str = stringify_raw_cmd(cmd)
+    print(cmd_str)
 
 
 class Apalache:
@@ -46,7 +96,7 @@ class Apalache:
 
     def raw(
         self,
-        *_ignore,
+        *,
         stdin=None,  # Read command from stdin or not
         jar=None,
         cmd=None,
@@ -81,10 +131,6 @@ class Apalache:
         cmd = None
         if stdin:
             data = json.loads(self.stdin.read())
-            # Fill what's missing
-            for field in fields:
-                if field not in data.keys():
-                    data[field] = None
             cmd = RawCmd(**data)
         else:
             cmd = RawCmd(

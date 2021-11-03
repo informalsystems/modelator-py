@@ -1,3 +1,4 @@
+import json
 import sys
 
 import fire
@@ -29,8 +30,11 @@ if __name__ == "__main__":
 
     """
     if len(sys.argv) == 1:
-        # TODO: use stdin
-        pass
+        """
+        Optionally take the command structure entirely from a json at stdin
+        """
+        json.loads(sys.stdin.read())
+        # TODO: impl
     else:
         app = App(sys.stdin)
         fire.Fire(app)
