@@ -50,7 +50,6 @@ def test_stringify_raw_cmd():
     cmd.cinit = "CInit"
     cmd_str = stringify_raw_cmd(cmd)
     LOG.debug(cmd_str)
-    assert 0
 
 
 @pytest.mark.skip(
@@ -72,7 +71,6 @@ def test_raw_directly_smoke():
     result = exec_apalache_raw_cmd(cmd)
     LOG.debug(result.stdout)
     LOG.debug(result.stderr)
-    assert 0
 
 
 @pytest.mark.skip(

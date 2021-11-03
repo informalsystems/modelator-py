@@ -186,7 +186,7 @@ class Apalache:
 
         print(
             f"""Ran 'apalache raw'.
-process args: {result.args}
+shell cmd: {result.args}
 return code: {result.returncode}
 stdout: {stdout_pretty}
 stderr: {stderr_pretty}"""
