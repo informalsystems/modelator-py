@@ -87,19 +87,20 @@ def stringify_raw_cmd(cmd: RawCmd):
 
 
 def exec_apalache_raw_cmd(cmd: RawCmd):
-    print(f"{cmd=}")
-    cmd.out_dir_relative_to_cwd = os.path.expanduser(cmd.out_dir_relative_to_cwd)
-    cmd.cwd = os.path.expanduser(cmd.cwd)
-    cmd.jar = os.path.expanduser(cmd.jar)
-    if not os.path.isabs(cmd.cwd):
-        raise Exception("cwd must be absolute (after expanding user)")
-    if not os.path.isabs(cmd.jar):
-        raise Exception("apalache jar path must be absolute (after expanding user)")
+    if cmd.out_dir_relative_to_cwd is not None:
+        cmd.out_dir_relative_to_cwd = os.path.expanduser(cmd.out_dir_relative_to_cwd)
+    if cmd.cwd is not None:
+        cmd.cwd = os.path.expanduser(cmd.cwd)
+        if not os.path.isabs(cmd.cwd):
+            raise Exception("cwd must be absolute (after expanding user)")
+    if cmd.jar is not None:
+        cmd.jar = os.path.expanduser(cmd.jar)
+        if not os.path.isabs(cmd.jar):
+            raise Exception("apalache jar path must be absolute (after expanding user)")
+
     cmd_str = stringify_raw_cmd(cmd)
-    print(cmd_str)
     # Semantics a bit complex here - see https://stackoverflow.com/a/15109975/8346628
     result = subprocess.run(cmd_str, shell=True, capture_output=True, cwd=cmd.cwd)
-    print(f"{result=}")
     return result
 
 
@@ -179,4 +180,14 @@ class Apalache:
                 assertion,
                 infer_poly,
             )
-        exec_apalache_raw_cmd(cmd)
+        result = exec_apalache_raw_cmd(cmd)
+        stdout_pretty = result.stdout.decode("unicode_escape")
+        stderr_pretty = result.stderr.decode("unicode_escape")
+
+        print(
+            f"""Ran 'apalache raw'.
+process args: {result.args}
+return code: {result.returncode}
+stdout: {stdout_pretty}
+stderr: {stderr_pretty}"""
+        )
