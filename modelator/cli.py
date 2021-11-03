@@ -8,7 +8,7 @@ from apalache import Apalache
 class App:
     def __init__(self, stdin):
         self.stdin = stdin
-        self.Apalache = Apalache(stdin)
+        self.apalache = Apalache(stdin)
 
     def example(*_ignore, foo=True, bar=None, wiz):
         print(f"{foo=}{bar=}{wiz=}")

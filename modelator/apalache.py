@@ -1,15 +1,18 @@
 import json
+import os
+import subprocess
 
 from recordclass import asdict, recordclass
 
 # mypy: ignore-errors
 
 fields = (
+    "cwd",  # Current working directory for child shell process
     "jar",  # Location of Apalache jar (named like apalache-pkg-0.xx.0-full.jar)
     "cmd",  # The Apalache <command> to run. (check | config | parse | test | typecheck | noop)
     "file",  # A file containing a TLA+ specification (.tla or .json)
     "debug",  # extensive logging in detailed.log and log.smt, default: false
-    "out_dir",  # where output files will be written, default: ./_apalache-out (overrides envvar OUT_DIR)
+    "out_dir_relative_to_cwd",  # where output files will be written, default: ./_apalache-out (overrides envvar OUT_DIR)
     "profiling",  # write general profiling data to profile-rules.txt in the run directory, default: false (overrides envvar PROFILING)
     "smtprof",  # profile SMT constraints in log.smt, default: false
     "write_intermediate",  # write intermediate output files to `out-dir`, default: false (overrides envvar WRITE_INTERMEDIATE)
@@ -48,11 +51,10 @@ def stringify_raw_cmd(cmd: RawCmd):
 
     cmd = RawCmd(**{k: stringify(v) for k, v in asdict(cmd).items()})
 
-    cmd_str = f"""
-java\
+    cmd_str = f"""java\
  -jar {cmd.jar}\
 {f" --debug={cmd.debug}" if cmd.debug is not None else ""}\
-{f" --out-dir={cmd.out_dir}" if cmd.out_dir is not None else ""}\
+{f" --out-dir={cmd.out_dir_relative_to_cwd}" if cmd.out_dir_relative_to_cwd is not None else ""}\
 {f" --profiling={cmd.profiling}" if cmd.profiling is not None else ""}\
 {f" --smtprof={cmd.smtprof}" if cmd.smtprof is not None else ""}\
 {f" --write-intermediate={cmd.write_intermediate}" if cmd.write_intermediate is not None else ""}\
@@ -86,8 +88,19 @@ java\
 
 def exec_apalache_raw_cmd(cmd: RawCmd):
     print(f"{cmd=}")
+    cmd.out_dir_relative_to_cwd = os.path.expanduser(cmd.out_dir_relative_to_cwd)
+    cmd.cwd = os.path.expanduser(cmd.cwd)
+    cmd.jar = os.path.expanduser(cmd.jar)
+    if not os.path.isabs(cmd.cwd):
+        raise Exception("cwd must be absolute (after expanding user)")
+    if not os.path.isabs(cmd.jar):
+        raise Exception("apalache jar path must be absolute (after expanding user)")
     cmd_str = stringify_raw_cmd(cmd)
     print(cmd_str)
+    # Semantics a bit complex here - see https://stackoverflow.com/a/15109975/8346628
+    result = subprocess.run(cmd_str, shell=True, capture_output=True, cwd=cmd.cwd)
+    print(f"{result=}")
+    return result
 
 
 class Apalache:
@@ -97,12 +110,13 @@ class Apalache:
     def raw(
         self,
         *,
+        cwd=None,
         stdin=None,  # Read command from stdin or not
         jar=None,
         cmd=None,
         file=None,
         debug=None,
-        out_dir=None,
+        out_dir_relative_to_cwd=None,
         profiling=None,
         smtprof=None,
         write_intermediate=None,
@@ -134,11 +148,12 @@ class Apalache:
             cmd = RawCmd(**data)
         else:
             cmd = RawCmd(
+                cwd,
                 jar,
                 cmd,
                 file,
                 debug,
-                out_dir,
+                out_dir_relative_to_cwd,
                 profiling,
                 smtprof,
                 write_intermediate,
