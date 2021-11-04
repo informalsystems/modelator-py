@@ -72,9 +72,9 @@ def test_raw_directly_parse():
     assert 0
 
 
-@pytest.mark.skip(
-    reason="The 'apalache raw' command has side effects like dirtying the filesystem"
-)
+# @pytest.mark.skip(
+# reason="The 'apalache raw' command has side effects like dirtying the filesystem"
+# )
 def test_raw_directly_check():
     cmd = RawCmd()
     # apalache-mc check --max-error=2 --view=View --inv=IsThree --config=2PossibleTraces.cfg 2PossibleTracesTests.tla
@@ -87,10 +87,13 @@ def test_raw_directly_check():
     cmd.out_dir = "apalache-out"
     cmd.jar = get_apalache_path()
     cmd.cwd = get_resource_dir()
+    cmd.mem = True
+    cmd.cleanup = True
     LOG.debug(stringify_raw_cmd(cmd))
     result = exec_apalache_raw_cmd(cmd)
     LOG.debug(result.process.stdout.decode("unicode_escape"))
     LOG.debug(result.process.stderr.decode("unicode_escape"))
+    LOG.debug("\n".join(list(result.files.keys())))
 
 
 @pytest.mark.skip(

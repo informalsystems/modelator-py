@@ -16,7 +16,7 @@ def parse_apalache_output_dir_name_from_stdout_str(s):
     ix = s.find(match)
     if ix == -1:
         raise Exception(
-            "Could not parse name of Apalache output directory from stdout string"
+            f"Could not parse name of Apalache output directory from stdout string (Could not find {match} substr)"
         )
     # https://docs.python.org/3/library/stdtypes.html#str.partition
     partition = s[ix:].partition("\n")

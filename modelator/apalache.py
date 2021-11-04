@@ -1,11 +1,12 @@
 import json
 import os
+import pathlib
 import subprocess
 
 from recordclass import asdict, recordclass
 
-from .util import delete_output_directory, read_entire_output_dir_contents
 from .parse.apalache import parse_apalache_output_dir_name_from_stdout_str
+from .util import delete_dir, read_entire_dir_contents
 
 # mypy: ignore-errors
 
@@ -108,6 +109,7 @@ def exec_apalache_raw_cmd(cmd: RawCmd):
             raise Exception("apalache jar path must be absolute (after expanding user)")
 
     cmd_str = stringify_raw_cmd(cmd)
+
     # Semantics a bit complex here - see https://stackoverflow.com/a/15109975/8346628
     process_result = subprocess.run(
         cmd_str, shell=True, capture_output=True, cwd=cmd.cwd
@@ -115,14 +117,22 @@ def exec_apalache_raw_cmd(cmd: RawCmd):
 
     ret = ExecutionResult()
     ret.process = process_result
-    output_dir_name = parse_apalache_output_dir_name_from_stdout_str(
+
+    output_dir = parse_apalache_output_dir_name_from_stdout_str(
         ret.process.stdout.decode("unicode_escape")
     )
 
     if cmd.mem:
-        ret.files = read_entire_output_dir_contents(output_dir_name)
+        ret.files = read_entire_dir_contents(output_dir)
     if cmd.cleanup:
-        delete_output_directory(output_dir_name)
+        # Need to take parent as format is output_dir_name = prefix/<out-dir>/<randomized dir>/
+        if not os.path.isabs(output_dir):
+            raise Exception(
+                "Output directory parsed from Apalache stdout is not an absolute path"
+            )
+
+        output_dir = pathlib.Path(output_dir).parent.absolute()
+        delete_dir(output_dir)
 
     return ret
 
