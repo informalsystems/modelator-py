@@ -1,7 +1,7 @@
 import sys
 
 import fire
-from apalache import Apalache
+from apalache.cli import Apalache
 
 
 class App:

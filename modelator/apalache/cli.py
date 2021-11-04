@@ -1,6 +1,8 @@
 import json
+import os
+import tempfile
 
-from raw import RawCmd, exec_apalache_raw_cmd
+from .raw import ApalacheArgs, RawCmd, exec_apalache_raw_cmd
 
 
 class Apalache:
@@ -52,16 +54,12 @@ class Apalache:
                 "cleanup": data["cleanup"],
                 "cwd": data["cwd"],
                 "jar": data["jar"],
-                **data["args"],
+                "args": ApalacheArgs(**data["args"]),
             }
             cmd = RawCmd(**data)
 
         else:
-            cmd = RawCmd(
-                mem,
-                cleanup,
-                cwd,
-                jar,
+            args = ApalacheArgs(
                 cmd,
                 file,
                 debug,
@@ -91,6 +89,7 @@ class Apalache:
                 assertion,
                 infer_poly,
             )
+            cmd = RawCmd(mem, cleanup, cwd, jar, args)
         result = exec_apalache_raw_cmd(cmd)
         stdout_pretty = result.stdout.decode("unicode_escape")
         stderr_pretty = result.stderr.decode("unicode_escape")
@@ -103,17 +102,33 @@ stdout: {stdout_pretty}
 stderr: {stderr_pretty}"""
         )
 
-    def pure(self, *, debug=False):
+    def pure(self):
         assert self.stdin is not None
-        """
         data = json.loads(self.stdin.read())
-        raw = RawCmd(**data["args"])
-        data = {
-            "mem": data["mem"],
-            "cleanup": data["cleanup"],
-            "cwd": data["cwd"],
-            "jar": data["jar"],
-            **data["args"],
-        }
-        cmd = RawCmd(**data)
-        """
+
+        raw_cmd = RawCmd()
+        raw_cmd.args = ApalacheArgs(**data["args"])
+        raw_cmd.jar = data["jar"]
+        raw_cmd.mem = True
+        raw_cmd.cleanup = True
+
+        with tempfile.TemporaryDirectory(
+            prefix="mbt-python-apalache-temp-dir-"
+        ) as dirname:
+            raw_cmd.cwd = dirname
+            for filename, file_content_str in data["files"].items():
+                full_path = os.path.join(dirname, filename)
+                with open(full_path, "w") as fd:
+                    fd.write(file_content_str)
+
+                # TODO: delete this debug write and make a permanent solution
+                with open(
+                    os.path.join(
+                        os.path.expanduser("~/Documents/work/mbt-python/tempme"),
+                        filename,
+                    ),
+                    "w",
+                ) as fd:
+                    fd.write(file_content_str)
+
+            return exec_apalache_raw_cmd(raw_cmd)

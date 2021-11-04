@@ -26,6 +26,6 @@ for fn in fns:
 out = "apalache_pure_example.json"
 
 with open(out, "w") as fd:
-    fd.write(json.dumps(data))
+    fd.write(json.dumps(data, indent=4))
 
 print("Done")

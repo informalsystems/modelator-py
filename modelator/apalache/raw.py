@@ -9,11 +9,7 @@ from ..util import delete_dir, read_entire_dir_contents
 
 # mypy: ignore-errors
 
-fields = (
-    "mem",  # Read the contents of the output directory into memory
-    "cleanup",  # Delete the output directory after Apalache terminates
-    "cwd",  # Current working directory for child shell process
-    "jar",  # Location of Apalache jar (named like apalache-pkg-0.xx.0-full.jar)
+apalache_args_fields = (
     "cmd",  # The Apalache <command> to run. (check | config | parse | test | typecheck | noop)
     "file",  # A file containing a TLA+ specification (.tla or .json)
     "debug",  # extensive logging in detailed.log and log.smt, default: false
@@ -44,7 +40,19 @@ fields = (
     "infer_poly",  # allow the type checker to infer polymorphic types, default: true
 )
 
-RawCmd = recordclass("RawCmd", fields, defaults=(None,) * len(fields))
+ApalacheArgs = recordclass(
+    "ApalacheArgs", apalache_args_fields, defaults=(None,) * len(apalache_args_fields)
+)
+
+raw_cmd_fields = (
+    "mem",  # Read the contents of the output directory into memory (?)
+    "cleanup",  # Delete the output directory after Apalache terminates (?)
+    "cwd",  # Current working directory for child shell process
+    "jar",  # Location of Apalache jar (full path with suffix like apalache-pkg-0.xx.0-full.jar)
+    "args",  # Apalache args
+)
+
+RawCmd = recordclass("RawCmd", raw_cmd_fields, defaults=(None,) * len(raw_cmd_fields))
 
 ExecutionResult = recordclass(
     "ExecutionResult", ["process", "files"], defaults=(None, None)
@@ -52,44 +60,48 @@ ExecutionResult = recordclass(
 
 
 def stringify_raw_cmd(cmd: RawCmd):
+
+    jar = cmd.jar
+    args = cmd.args
+
     def stringify(value):
         # Apalache will not accept capitals
         if isinstance(value, bool):
             return str(value).lower()
         return value
 
-    cmd = RawCmd(**{k: stringify(v) for k, v in asdict(cmd).items()})
+    args = ApalacheArgs(**{k: stringify(v) for k, v in asdict(args).items()})
 
     cmd_str = f"""java\
- -jar {cmd.jar}\
-{f" --debug={cmd.debug}" if cmd.debug is not None else ""}\
-{f" --out-dir={cmd.out_dir}" if cmd.out_dir is not None else ""}\
-{f" --profiling={cmd.profiling}" if cmd.profiling is not None else ""}\
-{f" --smtprof={cmd.smtprof}" if cmd.smtprof is not None else ""}\
-{f" --write-intermediate={cmd.write_intermediate}" if cmd.write_intermediate is not None else ""}\
- {cmd.cmd}\
-{f" --algo={cmd.algo}" if cmd.algo is not None else ""}\
-{f" --cinit={cmd.cinit}" if cmd.cinit is not None else ""}\
-{f" --config={cmd.config}" if cmd.config is not None else ""}\
-{f" --discard-disabled={cmd.discard_disabled}" if cmd.discard_disabled is not None else ""}\
-{f" --init={cmd.init}" if cmd.init is not None else ""}\
-{f" --inv={cmd.inv}" if cmd.inv is not None else ""}\
-{f" --length={cmd.length}" if cmd.length is not None else ""}\
-{f" --max-error={cmd.max_error}" if cmd.max_error is not None else ""}\
-{f" --next={cmd.next}" if cmd.next is not None else ""}\
-{f" --no-deadlock={cmd.no_deadlock}" if cmd.no_deadlock is not None else ""}\
-{f" --nworkers={cmd.nworkers}" if cmd.nworkers is not None else ""}\
-{f" --smt_encoding={cmd.smt_encoding}" if cmd.smt_encoding is not None else ""}\
-{f" --tuning={cmd.tuning}" if cmd.tuning is not None else ""}\
-{f" --tuning-options={cmd.tuning_options}" if cmd.tuning_options is not None else ""}\
-{f" --view={cmd.view}" if cmd.view is not None else ""}\
-{f" --enable-stats={cmd.enable_stats}" if cmd.enable_stats is not None else ""}\
-{f" --output={cmd.output}" if cmd.output is not None else ""}\
-{f" --infer-poly={cmd.infer_poly}" if cmd.infer_poly is not None else ""}\
-{f" {cmd.file}" if cmd.file is not None else ""}\
-{f" {cmd.before}" if cmd.before is not None else ""}\
-{f" {cmd.action}" if cmd.action is not None else ""}\
-{f" {cmd.assertion}" if cmd.assertion is not None else ""}\
+ -jar {jar}\
+{f" --debug={args.debug}" if args.debug is not None else ""}\
+{f" --out-dir={args.out_dir}" if args.out_dir is not None else ""}\
+{f" --profiling={args.profiling}" if args.profiling is not None else ""}\
+{f" --smtprof={args.smtprof}" if args.smtprof is not None else ""}\
+{f" --write-intermediate={args.write_intermediate}" if args.write_intermediate is not None else ""}\
+ {args.cmd}\
+{f" --algo={args.algo}" if args.algo is not None else ""}\
+{f" --cinit={args.cinit}" if args.cinit is not None else ""}\
+{f" --config={args.config}" if args.config is not None else ""}\
+{f" --discard-disabled={args.discard_disabled}" if args.discard_disabled is not None else ""}\
+{f" --init={args.init}" if args.init is not None else ""}\
+{f" --inv={args.inv}" if args.inv is not None else ""}\
+{f" --length={args.length}" if args.length is not None else ""}\
+{f" --max-error={args.max_error}" if args.max_error is not None else ""}\
+{f" --next={args.next}" if args.next is not None else ""}\
+{f" --no-deadlock={args.no_deadlock}" if args.no_deadlock is not None else ""}\
+{f" --nworkers={args.nworkers}" if args.nworkers is not None else ""}\
+{f" --smt_encoding={args.smt_encoding}" if args.smt_encoding is not None else ""}\
+{f" --tuning={args.tuning}" if args.tuning is not None else ""}\
+{f" --tuning-options={args.tuning_options}" if args.tuning_options is not None else ""}\
+{f" --view={args.view}" if args.view is not None else ""}\
+{f" --enable-stats={args.enable_stats}" if args.enable_stats is not None else ""}\
+{f" --output={args.output}" if args.output is not None else ""}\
+{f" --infer-poly={args.infer_poly}" if args.infer_poly is not None else ""}\
+{f" {args.file}" if args.file is not None else ""}\
+{f" {args.before}" if args.before is not None else ""}\
+{f" {args.action}" if args.action is not None else ""}\
+{f" {args.assertion}" if args.assertion is not None else ""}\
 """
 
     return cmd_str
@@ -99,11 +111,11 @@ def exec_apalache_raw_cmd(cmd: RawCmd):
     """
     Execute an Apalache RawCmd
 
-    Returns an ExecutionResult with .process and .files fields, which
+    Returns an ExecutionResult with .process and .files raw_cmd_fields, which
     contain the subprocess result, and the list of filesystem files and their contents.
     """
-    if cmd.out_dir is not None:
-        cmd.out_dir = os.path.expanduser(cmd.out_dir)
+    if cmd.args.out_dir is not None:
+        cmd.args.out_dir = os.path.expanduser(cmd.args.out_dir)
     if cmd.cwd is not None:
         cmd.cwd = os.path.expanduser(cmd.cwd)
         if not os.path.isabs(cmd.cwd):
