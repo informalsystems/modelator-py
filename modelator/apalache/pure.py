@@ -1,8 +1,9 @@
 import os
 import tempfile
-from .raw import RawCmd, exec_apalache_raw_cmd
+
 from recordclass import recordclass
 
+from .raw import RawCmd, exec_apalache_raw_cmd
 
 # mypy: ignore-errors
 

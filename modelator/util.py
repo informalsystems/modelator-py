@@ -1,7 +1,6 @@
+import logging
 import os
 import shutil
-import logging
-
 
 LOG = logging.getLogger(__name__)
 

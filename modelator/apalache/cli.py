@@ -1,8 +1,7 @@
 import json
-import os
 
-from .raw import ApalacheArgs, RawCmd, exec_apalache_raw_cmd
 from .pure import PureCmd, exec_apalache_pure_cmd
+from .raw import ApalacheArgs, RawCmd, exec_apalache_raw_cmd
 
 
 class Apalache:
