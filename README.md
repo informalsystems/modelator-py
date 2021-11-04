@@ -39,9 +39,25 @@ code .
 
 Ensure that the bottom left of your VSCode window shows that you are using the correct Python environment (see contents of pyproject.toml for the correct Python version).
 
+### TLDR;
+
+In short, setting up the repo on a new workstation might look like
+
+1. Install pyenv
+2. Install poetry
+3. Clone repo
+4. `cd` repo
+5. `pyenv install x.x.x`
+6. `poetry env use python`
+7. `poetry shell`
+8. `poetry install`
+9. `code .` (for VSCode)
+
 ### Troubleshooting
 
-This project has been setup following the guidelines [here](https://mitelman.engineering/blog/python-best-practice/automating-python-best-practices-for-a-new-project/). The page contains useful context for troubleshooting.
+This project has been setup following the guidelines at [this](https://mitelman.engineering/blog/python-best-practice/automating-python-best-practices-for-a-new-project/) blog post. The page contains useful context for troubleshooting.
+
+If having difficulties with `poetry install` on linux due to a missing `_ctypes` module then consider the advice on [this](https://stackoverflow.com/a/41310760) stack overflow page, and on [this](https://github.com/pyenv/pyenv/issues/2137) issue.
 
 ## Contributing
 
