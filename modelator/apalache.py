@@ -3,8 +3,8 @@ import os
 import subprocess
 
 from recordclass import asdict, recordclass
-from util import delete_output_directory, read_entire_output_dir_contents
 
+from .util import delete_output_directory, read_entire_output_dir_contents
 from .parse.apalache import parse_apalache_output_dir_name_from_stdout_str
 
 # mypy: ignore-errors
