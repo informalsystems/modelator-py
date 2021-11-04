@@ -19,7 +19,7 @@ The Python version used is `3.10.0`.
 
 With Poetry installed `poetry install`.
 
-- Run: `poetry run python <.py file>`.
+- Run the cli program: `poetry run cli <args>`.
 - Tests: `poetry run pytest` or use your code editor. VSCode has built in support.
 - Tests with coverage: `poetry run pytest --cov=modelator tests/`
 - Tests with logging output to terminal: `poetry run pytest --log-cli-level=debug`

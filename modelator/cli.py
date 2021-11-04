@@ -1,7 +1,8 @@
 import sys
 
 import fire
-from apalache.cli import Apalache
+
+from .apalache.cli import Apalache
 
 
 class App:
@@ -13,7 +14,7 @@ class App:
         print(f"{foo=}{bar=}{wiz=}")
 
 
-if __name__ == "__main__":
+def cli():
     if len(sys.argv) == 1:
         """
         Optionally take the command structure entirely from a json at stdin
@@ -22,3 +23,7 @@ if __name__ == "__main__":
     else:
         app = App(sys.stdin)
         fire.Fire(app)
+
+
+if __name__ == "__main__":
+    cli()
