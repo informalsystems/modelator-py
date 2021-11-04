@@ -1,8 +1,8 @@
 import json
 import os
-import tempfile
 
 from .raw import ApalacheArgs, RawCmd, exec_apalache_raw_cmd
+from .pure import PureCmd, exec_apalache_pure_cmd
 
 
 class Apalache:
@@ -49,17 +49,20 @@ class Apalache:
         cmd = None
         if stdin:
             data = json.loads(self.stdin.read())
-            data = {
-                "mem": data["mem"],
-                "cleanup": data["cleanup"],
-                "cwd": data["cwd"],
-                "jar": data["jar"],
-                "args": ApalacheArgs(**data["args"]),
-            }
-            cmd = RawCmd(**data)
+            cmd = RawCmd()
+            cmd.mem = data["mem"]
+            cmd.cleanup = data["cleanup"]
+            cmd.cwd = data["cwd"]
+            cmd.jar = data["jar"]
+            cmd.args = ApalacheArgs(**data["args"])
 
         else:
-            args = ApalacheArgs(
+            cmd = RawCmd()
+            cmd.mem = mem
+            cmd.cleanup = cleanup
+            cmd.cwd = cwd
+            cmd.jar = jar
+            cmd.args = ApalacheArgs(
                 cmd,
                 file,
                 debug,
@@ -89,15 +92,16 @@ class Apalache:
                 assertion,
                 infer_poly,
             )
-            cmd = RawCmd(mem, cleanup, cwd, jar, args)
+
         result = exec_apalache_raw_cmd(cmd)
-        stdout_pretty = result.stdout.decode("unicode_escape")
-        stderr_pretty = result.stderr.decode("unicode_escape")
+        stdout_pretty = result.process.stdout.decode("unicode_escape")
+        stderr_pretty = result.process.stderr.decode("unicode_escape")
 
         print(
             f"""Ran 'apalache raw'.
-shell cmd: {result.args}
-return code: {result.returncode}
+shell cmd: {result.process.args}
+return code: {result.process.returncode}
+files: {result.files}
 stdout: {stdout_pretty}
 stderr: {stderr_pretty}"""
         )
@@ -106,29 +110,26 @@ stderr: {stderr_pretty}"""
         assert self.stdin is not None
         data = json.loads(self.stdin.read())
 
-        raw_cmd = RawCmd()
-        raw_cmd.args = ApalacheArgs(**data["args"])
-        raw_cmd.jar = data["jar"]
-        raw_cmd.mem = True
-        raw_cmd.cleanup = True
+        cmd = PureCmd()
+        cmd.jar = data["jar"]
+        cmd.args = ApalacheArgs(**data["args"])
+        cmd.files = data["files"]
 
-        with tempfile.TemporaryDirectory(
-            prefix="mbt-python-apalache-temp-dir-"
-        ) as dirname:
-            raw_cmd.cwd = dirname
-            for filename, file_content_str in data["files"].items():
-                full_path = os.path.join(dirname, filename)
-                with open(full_path, "w") as fd:
-                    fd.write(file_content_str)
+        result = exec_apalache_pure_cmd(cmd)
 
-                # TODO: delete this debug write and make a permanent solution
-                with open(
-                    os.path.join(
-                        os.path.expanduser("~/Documents/work/mbt-python/tempme"),
-                        filename,
-                    ),
-                    "w",
-                ) as fd:
-                    fd.write(file_content_str)
+        print(result["shell_cmd"])
+        print(result["return_code"])
+        print(result["stdout"])
+        print(result["stderr"])
+        print("\n".join(list(result["files"].keys())))
 
-            return exec_apalache_raw_cmd(raw_cmd)
+        # DEBUG
+        for filename, file_content_str in result["files"].items():
+
+            full_path = os.path.join(
+                "/home/danwt/Documents/work/mbt-python/tempme", filename
+            )
+            with open(full_path, "w") as fd:
+                fd.write(file_content_str)
+
+        # print(result)

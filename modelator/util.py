@@ -1,5 +1,9 @@
 import os
 import shutil
+import logging
+
+
+LOG = logging.getLogger(__name__)
 
 
 def get_filenames_in_dir(path):
@@ -22,7 +26,5 @@ def read_entire_dir_contents(path):
 def delete_dir(path):
     if not os.path.isabs(path):
         raise Exception(f"Cannot delete directory {path=} as it is not absolute")
-    assert (
-        "Documents/work/mbt-python" in str(path) and "Careful!"
-    )  # TODO: delete this line
+    LOG.debug(f"Exec shutil.rmtree({path})")
     shutil.rmtree(path)

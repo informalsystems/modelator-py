@@ -140,7 +140,8 @@ def exec_apalache_raw_cmd(cmd: RawCmd):
     )
 
     if cmd.mem:
-        ret.files = read_entire_dir_contents(output_dir)
+        files = read_entire_dir_contents(output_dir)
+        ret.files = {os.path.basename(fn): content for fn, content in files.items()}
     if cmd.cleanup:
         # Need to take parent as format is output_dir_name = prefix/<out-dir>/<randomized dir>/
         if not os.path.isabs(output_dir):
