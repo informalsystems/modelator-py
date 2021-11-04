@@ -1,12 +1,11 @@
-import json
 import os
 import pathlib
 import subprocess
 
 from recordclass import asdict, recordclass
 
-from .parse.apalache import parse_apalache_output_dir_name_from_stdout_str
-from .util import delete_dir, read_entire_dir_contents
+from ..parse.apalache import parse_apalache_output_dir_name_from_stdout_str
+from ..util import delete_dir, read_entire_dir_contents
 
 # mypy: ignore-errors
 
@@ -97,6 +96,12 @@ def stringify_raw_cmd(cmd: RawCmd):
 
 
 def exec_apalache_raw_cmd(cmd: RawCmd):
+    """
+    Execute an Apalache RawCmd
+
+    Returns an ExecutionResult with .process and .files fields, which
+    contain the subprocess result, and the list of filesystem files and their contents.
+    """
     if cmd.out_dir is not None:
         cmd.out_dir = os.path.expanduser(cmd.out_dir)
     if cmd.cwd is not None:
@@ -135,96 +140,3 @@ def exec_apalache_raw_cmd(cmd: RawCmd):
         delete_dir(output_dir)
 
     return ret
-
-
-class Apalache:
-    def __init__(self, stdin):
-        self.stdin = stdin
-
-    def raw(
-        self,
-        *,
-        mem=True,
-        cleanup=True,
-        cwd=None,
-        stdin=None,  # Read command from stdin or not
-        jar=None,
-        cmd=None,
-        file=None,
-        debug=None,
-        out_dir=None,
-        profiling=None,
-        smtprof=None,
-        write_intermediate=None,
-        algo=None,
-        cinit=None,
-        config=None,
-        discard_disabled=None,
-        init=None,
-        inv=None,
-        length=None,
-        max_error=None,
-        next=None,
-        no_deadlock=None,
-        nworkers=None,
-        smt_encoding=None,
-        tuning=None,
-        tuning_options=None,
-        view=None,
-        enable_stats=None,
-        output=None,
-        before=None,
-        action=None,
-        assertion=None,
-        infer_poly=None,
-    ):
-        cmd = None
-        if stdin:
-            data = json.loads(self.stdin.read())
-            cmd = RawCmd(**data)
-        else:
-            cmd = RawCmd(
-                mem,
-                cleanup,
-                cwd,
-                jar,
-                cmd,
-                file,
-                debug,
-                out_dir,
-                profiling,
-                smtprof,
-                write_intermediate,
-                algo,
-                cinit,
-                config,
-                discard_disabled,
-                init,
-                inv,
-                length,
-                max_error,
-                next,
-                no_deadlock,
-                nworkers,
-                smt_encoding,
-                tuning,
-                tuning_options,
-                view,
-                enable_stats,
-                output,
-                before,
-                action,
-                assertion,
-                infer_poly,
-            )
-        result = exec_apalache_raw_cmd(cmd)
-        stdout_pretty = result.stdout.decode("unicode_escape")
-        stderr_pretty = result.stderr.decode("unicode_escape")
-
-        print(
-            f"""Ran 'apalache raw'.
-shell cmd: {result.args}
-return code: {result.returncode}
-stdout: {stdout_pretty}
-stderr: {stderr_pretty}"""
-        )

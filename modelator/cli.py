@@ -1,4 +1,3 @@
-import json
 import sys
 
 import fire
@@ -15,26 +14,11 @@ class App:
 
 
 if __name__ == "__main__":
-
-    """
-    # Checks "cmd" field for the actual command, uses the rest of the json as
-    # input
-    cli < cmd.json
-
-    # Takes an Apalache jar and executes raw Apalache commands, does not move
-    # things around the filesystem or anything like that
-    cli apalache raw <apalache cli args> <--
-
-    # Reads json from stdin which specifies the raw Apalache cmd
-    cli apalache pure <--out-dir,--temp-dir,--(no)cleanup>
-
-    """
     if len(sys.argv) == 1:
         """
         Optionally take the command structure entirely from a json at stdin
         """
-        json.loads(sys.stdin.read())
-        # TODO: impl
+        raise Exception("Purely stdin input is not yet supported")
     else:
         app = App(sys.stdin)
         fire.Fire(app)

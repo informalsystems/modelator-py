@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 import sys
@@ -7,12 +8,8 @@ from pathlib import Path
 import fire
 import pytest
 
-from modelator.apalache import (
-    Apalache,
-    RawCmd,
-    exec_apalache_raw_cmd,
-    stringify_raw_cmd,
-)
+from modelator.apalache.cli import Apalache
+from modelator.apalache.raw import RawCmd, exec_apalache_raw_cmd, stringify_raw_cmd
 
 LOG = logging.getLogger(__name__)
 
@@ -34,7 +31,7 @@ def get_resource_dir():
 
 def get_apalache_path():
     project_dir = get_project_dir()
-    apalache_jar = "apalache-pkg-0.17.0-full.jar"
+    apalache_jar = "apalache-pkg-0.17.1-full.jar"
     apalache_path = os.path.join(project_dir, apalache_jar)
     return apalache_path
 
@@ -72,9 +69,9 @@ def test_raw_directly_parse():
     assert 0
 
 
-# @pytest.mark.skip(
-# reason="The 'apalache raw' command has side effects like dirtying the filesystem"
-# )
+@pytest.mark.skip(
+    reason="The 'apalache raw' command has side effects like dirtying the filesystem"
+)
 def test_raw_directly_check():
     cmd = RawCmd()
     # apalache-mc check --max-error=2 --view=View --inv=IsThree --config=2PossibleTraces.cfg 2PossibleTracesTests.tla
@@ -100,7 +97,23 @@ def test_raw_directly_check():
     reason="The 'apalache raw' command has side effects like dirtying the filesystem"
 )
 def test_raw_from_stdin_smoke():
-    data = '{"cmd":"noop"}'
+
+    stdin_json = {
+        "mem": True,
+        "cleanup": True,
+        "cwd": "~/Documents/work/mbt-python/tests/resource",
+        "jar": "~/Documents/work/mbt-python/apalache-pkg-0.17.1-full.jar",
+        "args": {
+            "cmd": "check",
+            "max_error": 2,
+            "view": "View",
+            "inv": "IsThree",
+            "config": "2PossibleTraces.cfg",
+            "file": "2PossibleTracesTests.tla",
+            "out_dir": "apalache-out",
+        },
+    }
+    data = json.dumps(stdin_json)
     stdin = unittest.mock.Mock()
     stdin.read = lambda: data
     app = Apalache(stdin)

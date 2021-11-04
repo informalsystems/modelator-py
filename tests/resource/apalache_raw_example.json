@@ -1,0 +1,15 @@
+{
+    "mem": true,
+    "cleanup": true,
+    "cwd": "~/Documents/work/mbt-python/tests/resource",
+    "jar": "~/Documents/work/mbt-python/apalache-pkg-0.17.1-full.jar",
+    "args": {
+        "cmd": "check",
+        "max_error": 2,
+        "view": "View",
+        "inv": "IsThree",
+        "config": "2PossibleTraces.cfg",
+        "file": "2PossibleTracesTests.tla",
+        "out_dir": "apalache-out"
+    }
+}

@@ -231,6 +231,5 @@ $RECYCLE.BIN/
 !.vscode/*.code-snippets
 
 # Temporary
-apalache-pkg-0.17.0-full.jar
+apalache-pkg-0.17.1-full.jar
 tla2tools.jar
-dummy.json
