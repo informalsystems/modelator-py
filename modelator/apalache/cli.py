@@ -117,13 +117,12 @@ stderr: {stderr_pretty}"""
 
         result = exec_apalache_pure_cmd(cmd)
 
+        """debug
         print(result["shell_cmd"])
         print(result["return_code"])
         print(result["stdout"])
         print(result["stderr"])
         print("\n".join(list(result["files"].keys())))
-
-        # DEBUG
         for filename, file_content_str in result["files"].items():
 
             full_path = os.path.join(
@@ -131,5 +130,6 @@ stderr: {stderr_pretty}"""
             )
             with open(full_path, "w") as fd:
                 fd.write(file_content_str)
+        """
 
-        # print(result)
+        print(result)
