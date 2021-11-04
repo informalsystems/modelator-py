@@ -45,7 +45,7 @@ def test_stringify_raw_cmd():
     cmd.profiling = True
     cmd.inv = "InvariantFoo"
     cmd.file = "spec.tla"
-    cmd.out_dir_relative_to_cwd = "apalache-out"
+    cmd.out_dir = "apalache-out"
     cmd.jar = get_apalache_path()
     cmd.cinit = "CInit"
     cmd_str = stringify_raw_cmd(cmd)
@@ -55,7 +55,27 @@ def test_stringify_raw_cmd():
 @pytest.mark.skip(
     reason="The 'apalache raw' command has side effects like dirtying the filesystem"
 )
-def test_raw_directly_smoke():
+def test_raw_directly_parse():
+    cmd = RawCmd()
+    # apalache-mc check --max-error=2 --view=View --inv=IsThree --config=2PossibleTraces.cfg 2PossibleTracesTests.tla
+    cmd.cmd = "parse"
+    cmd.file = "2PossibleTracesTests.tla"
+    cmd.out_dir = "apalache-out"
+    cmd.write_intermediate = True
+    cmd.output = "parsed.tla"
+    cmd.jar = get_apalache_path()
+    cmd.cwd = get_resource_dir()
+    LOG.debug(stringify_raw_cmd(cmd))
+    result = exec_apalache_raw_cmd(cmd)
+    LOG.debug(result.stdout.decode("unicode_escape"))
+    LOG.debug(result.stderr.decode("unicode_escape"))
+    assert 0
+
+
+@pytest.mark.skip(
+    reason="The 'apalache raw' command has side effects like dirtying the filesystem"
+)
+def test_raw_directly_check():
     cmd = RawCmd()
     # apalache-mc check --max-error=2 --view=View --inv=IsThree --config=2PossibleTraces.cfg 2PossibleTracesTests.tla
     cmd.cmd = "check"
@@ -64,22 +84,13 @@ def test_raw_directly_smoke():
     cmd.inv = "IsThree"
     cmd.config = "2PossibleTraces.cfg"
     cmd.file = "2PossibleTracesTests.tla"
-    cmd.out_dir_relative_to_cwd = "apalache-out"
+    cmd.out_dir = "apalache-out"
     cmd.jar = get_apalache_path()
     cmd.cwd = get_resource_dir()
     LOG.debug(stringify_raw_cmd(cmd))
     result = exec_apalache_raw_cmd(cmd)
-    LOG.debug(result.stdout)
-    LOG.debug(result.stderr)
-
-
-@pytest.mark.skip(
-    reason="The 'apalache raw' command has side effects like dirtying the filesystem"
-)
-def test_raw_direct_smoke():
-    data = {"cmd": "noop"}
-    cmd = RawCmd(**data)
-    exec_apalache_raw_cmd(cmd)
+    LOG.debug(result.process.stdout.decode("unicode_escape"))
+    LOG.debug(result.process.stderr.decode("unicode_escape"))
 
 
 @pytest.mark.skip(

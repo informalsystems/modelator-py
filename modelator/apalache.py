@@ -3,16 +3,21 @@ import os
 import subprocess
 
 from recordclass import asdict, recordclass
+from util import delete_output_directory, read_entire_output_dir_contents
+
+from .parse.apalache import parse_apalache_output_dir_name_from_stdout_str
 
 # mypy: ignore-errors
 
 fields = (
+    "mem",  # Read the contents of the output directory into memory
+    "cleanup",  # Delete the output directory after Apalache terminates
     "cwd",  # Current working directory for child shell process
     "jar",  # Location of Apalache jar (named like apalache-pkg-0.xx.0-full.jar)
     "cmd",  # The Apalache <command> to run. (check | config | parse | test | typecheck | noop)
     "file",  # A file containing a TLA+ specification (.tla or .json)
     "debug",  # extensive logging in detailed.log and log.smt, default: false
-    "out_dir_relative_to_cwd",  # where output files will be written, default: ./_apalache-out (overrides envvar OUT_DIR)
+    "out_dir",  # where output files will be written, default: ./_apalache-out (overrides envvar OUT_DIR) (relative to cwd)
     "profiling",  # write general profiling data to profile-rules.txt in the run directory, default: false (overrides envvar PROFILING)
     "smtprof",  # profile SMT constraints in log.smt, default: false
     "write_intermediate",  # write intermediate output files to `out-dir`, default: false (overrides envvar WRITE_INTERMEDIATE)
@@ -41,6 +46,10 @@ fields = (
 
 RawCmd = recordclass("RawCmd", fields, defaults=(None,) * len(fields))
 
+ExecutionResult = recordclass(
+    "ExecutionResult", ["process", "files"], defaults=(None, None)
+)
+
 
 def stringify_raw_cmd(cmd: RawCmd):
     def stringify(value):
@@ -54,7 +63,7 @@ def stringify_raw_cmd(cmd: RawCmd):
     cmd_str = f"""java\
  -jar {cmd.jar}\
 {f" --debug={cmd.debug}" if cmd.debug is not None else ""}\
-{f" --out-dir={cmd.out_dir_relative_to_cwd}" if cmd.out_dir_relative_to_cwd is not None else ""}\
+{f" --out-dir={cmd.out_dir}" if cmd.out_dir is not None else ""}\
 {f" --profiling={cmd.profiling}" if cmd.profiling is not None else ""}\
 {f" --smtprof={cmd.smtprof}" if cmd.smtprof is not None else ""}\
 {f" --write-intermediate={cmd.write_intermediate}" if cmd.write_intermediate is not None else ""}\
@@ -87,8 +96,8 @@ def stringify_raw_cmd(cmd: RawCmd):
 
 
 def exec_apalache_raw_cmd(cmd: RawCmd):
-    if cmd.out_dir_relative_to_cwd is not None:
-        cmd.out_dir_relative_to_cwd = os.path.expanduser(cmd.out_dir_relative_to_cwd)
+    if cmd.out_dir is not None:
+        cmd.out_dir = os.path.expanduser(cmd.out_dir)
     if cmd.cwd is not None:
         cmd.cwd = os.path.expanduser(cmd.cwd)
         if not os.path.isabs(cmd.cwd):
@@ -100,8 +109,22 @@ def exec_apalache_raw_cmd(cmd: RawCmd):
 
     cmd_str = stringify_raw_cmd(cmd)
     # Semantics a bit complex here - see https://stackoverflow.com/a/15109975/8346628
-    result = subprocess.run(cmd_str, shell=True, capture_output=True, cwd=cmd.cwd)
-    return result
+    process_result = subprocess.run(
+        cmd_str, shell=True, capture_output=True, cwd=cmd.cwd
+    )
+
+    ret = ExecutionResult()
+    ret.process = process_result
+    output_dir_name = parse_apalache_output_dir_name_from_stdout_str(
+        ret.process.stdout.decode("unicode_escape")
+    )
+
+    if cmd.mem:
+        ret.files = read_entire_output_dir_contents(output_dir_name)
+    if cmd.cleanup:
+        delete_output_directory(output_dir_name)
+
+    return ret
 
 
 class Apalache:
@@ -111,13 +134,15 @@ class Apalache:
     def raw(
         self,
         *,
+        mem=True,
+        cleanup=True,
         cwd=None,
         stdin=None,  # Read command from stdin or not
         jar=None,
         cmd=None,
         file=None,
         debug=None,
-        out_dir_relative_to_cwd=None,
+        out_dir=None,
         profiling=None,
         smtprof=None,
         write_intermediate=None,
@@ -149,12 +174,14 @@ class Apalache:
             cmd = RawCmd(**data)
         else:
             cmd = RawCmd(
+                mem,
+                cleanup,
                 cwd,
                 jar,
                 cmd,
                 file,
                 debug,
-                out_dir_relative_to_cwd,
+                out_dir,
                 profiling,
                 smtprof,
                 write_intermediate,
