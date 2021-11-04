@@ -20,6 +20,8 @@ PureCmd = recordclass(
 
 def exec_tlc_pure_cmd(cmd: PureCmd):  # type: ignore
 
+    # TODO: doesn't work yet, have to figure out best way to clear up
+
     raw_cmd = RawCmd()
     raw_cmd.args = cmd.args
     raw_cmd.jar = cmd.jar
@@ -32,16 +34,6 @@ def exec_tlc_pure_cmd(cmd: PureCmd):  # type: ignore
         for filename, file_content_str in cmd.files.items():
             full_path = os.path.join(dirname, filename)
             with open(full_path, "w") as fd:
-                fd.write(file_content_str)
-
-            # TODO: delete this debug write and make a permanent solution
-            with open(
-                os.path.join(
-                    os.path.expanduser("~/Documents/work/mbt-python/tempme"),
-                    filename,
-                ),
-                "w",
-            ) as fd:
                 fd.write(file_content_str)
 
         result = exec_tlc_raw_cmd(raw_cmd)

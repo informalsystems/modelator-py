@@ -15,7 +15,7 @@ DESCRIPTION
 	The model checker (TLC) provides the functionalities of model checking
 	or simulation of TLA+ specifications. It may be invoked from the command
 	line, or via the model checking functionality of the Toolbox.
-	
+
 	By default, TLC starts in the model checking mode using breadth-first
 	approach for the state space exploration.
 
@@ -42,7 +42,7 @@ OPTIONS
 		ignored; default behavior is to check for deadlocks
 	-debug
 		print various debugging information - not for production use
-		
+
 	-depth num
 		specifies the depth of random simulation; defaults to 100
 	-dfid num
@@ -132,4 +132,3 @@ TIPS
 	duplicate operator definitions, this is likely due to the 'monolith' specification
 	creation. Try re-running TLC adding the 'nomonolith' option to the '-generateSpecTE'
 	parameter.
-

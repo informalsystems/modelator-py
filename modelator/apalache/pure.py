@@ -34,16 +34,6 @@ def exec_apalache_pure_cmd(cmd: PureCmd):  # type: ignore
             with open(full_path, "w") as fd:
                 fd.write(file_content_str)
 
-            # TODO: delete this debug write and make a permanent solution
-            with open(
-                os.path.join(
-                    os.path.expanduser("~/Documents/work/mbt-python/tempme"),
-                    filename,
-                ),
-                "w",
-            ) as fd:
-                fd.write(file_content_str)
-
         result = exec_apalache_raw_cmd(raw_cmd)
 
     stdout_pretty = result.process.stdout.decode("unicode_escape")

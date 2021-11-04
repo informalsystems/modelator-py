@@ -3,12 +3,14 @@ import sys
 import fire
 
 from .apalache.cli import Apalache
+from .tlc.cli import Tlc
 
 
 class App:
     def __init__(self, stdin):
         self.stdin = stdin
         self.apalache = Apalache(stdin)
+        self.tlc = Tlc(stdin)
 
     def example(*_ignore, foo=True, bar=None, wiz):
         print(f"{foo=}{bar=}{wiz=}")

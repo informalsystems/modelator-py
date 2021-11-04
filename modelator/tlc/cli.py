@@ -1,7 +1,7 @@
 import json
 
 from .pure import PureCmd, exec_tlc_pure_cmd
-from .raw import TlcArgs, RawCmd, exec_tlc_raw_cmd
+from .raw import RawCmd, TlcArgs, exec_tlc_raw_cmd
 
 
 class Tlc:
@@ -58,20 +58,5 @@ stderr: {stderr_pretty}"""
         cmd.files = data["files"]
 
         result = exec_tlc_pure_cmd(cmd)
-
-        """debug
-        print(result["shell_cmd"])
-        print(result["return_code"])
-        print(result["stdout"])
-        print(result["stderr"])
-        print("\n".join(list(result["files"].keys())))
-        for filename, file_content_str in result["files"].items():
-
-            full_path = os.path.join(
-                "/home/danwt/Documents/work/mbt-python/tempme", filename
-            )
-            with open(full_path, "w") as fd:
-                fd.write(file_content_str)
-        """
 
         print(result)

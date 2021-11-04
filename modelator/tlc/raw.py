@@ -74,7 +74,7 @@ def stringify_raw_cmd(cmd: RawCmd):
     args = TlcArgs(**{k: stringify(v) for k, v in asdict(args).items()})
 
     cmd_str = f"""java\
- -jar {jar}\
+ -cp {jar}\
  tlc2.TLC\
 {f" -aril {args.aril}" if args.aril is not None else ""}\
 {f" -checkpoint {args.checkpoint}" if args.checkpoint is not None else ""}\
@@ -118,8 +118,6 @@ def exec_tlc_raw_cmd(cmd: RawCmd):
     Returns an ExecutionResult with .process and .files raw_cmd_fields, which
     contain the subprocess result, and the list of filesystem files and their contents.
     """
-    if cmd.args.out_dir is not None:
-        cmd.args.out_dir = os.path.expanduser(cmd.args.out_dir)
     if cmd.cwd is not None:
         cmd.cwd = os.path.expanduser(cmd.cwd)
         if not os.path.isabs(cmd.cwd):
@@ -146,9 +144,7 @@ def exec_tlc_raw_cmd(cmd: RawCmd):
         ret.files = {os.path.basename(fn): content for fn, content in files.items()}
     if cmd.cleanup:
         if not os.path.isabs(output_dir):
-            raise Exception(
-                "Output directory TODO: better message
-            )
+            raise Exception("Output directory TODO: better message")
 
         output_dir = pathlib.Path(output_dir).parent.absolute()
         delete_dir(output_dir)

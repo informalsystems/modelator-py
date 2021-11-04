@@ -3,7 +3,6 @@ import logging
 import os
 import sys
 import unittest.mock
-from pathlib import Path
 
 import fire
 import pytest
@@ -16,29 +15,9 @@ from modelator.apalache.raw import (
     stringify_raw_cmd,
 )
 
+from .util import get_apalache_path, get_resource_dir
+
 LOG = logging.getLogger(__name__)
-
-
-def get_tests_dir():
-    this_file_path = Path(__file__)
-    return this_file_path.parent
-
-
-def get_project_dir():
-    tests_dir = get_tests_dir()
-    return tests_dir.parent
-
-
-def get_resource_dir():
-    tests_dir = get_tests_dir()
-    return os.path.join(tests_dir, "resource")
-
-
-def get_apalache_path():
-    project_dir = get_project_dir()
-    apalache_jar = "apalache-pkg-0.17.1-full.jar"
-    apalache_path = os.path.join(project_dir, apalache_jar)
-    return apalache_path
 
 
 def test_stringify_raw_cmd():
