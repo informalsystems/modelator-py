@@ -1,12 +1,18 @@
 import json
 
-from .pure import PureCmd, exec_tlc_pure_cmd
-from .raw import RawCmd, TlcArgs, exec_tlc_raw_cmd
+from .pure import tlc_pure
+from .raw import RawCmd, TlcArgs, tlc_raw
 
 
 class Tlc:
     def __init__(self, stdin):
         self.stdin = stdin
+
+    def pure(self):
+        assert self.stdin is not None
+        data = json.loads(self.stdin.read())
+        result = tlc_pure(json_obj=data)
+        print(result)
 
     def raw(
         self,
@@ -17,46 +23,27 @@ class Tlc:
         cwd=None,
         jar=None,
     ):
-        cmd = None
+        result = None
         if stdin:
             data = json.loads(self.stdin.read())
-            cmd = RawCmd()
-            cmd.mem = data["mem"]
-            cmd.cleanup = data["cleanup"]
-            cmd.cwd = data["cwd"]
-            cmd.jar = data["jar"]
-            cmd.args = TlcArgs(**data["args"])
-
+            result = tlc_raw(json_obj=data)
         else:
-            cmd = RawCmd()
-            cmd.mem = mem
-            cmd.cleanup = cleanup
-            cmd.cwd = cwd
-            cmd.jar = jar
-            cmd.args = TlcArgs()
+            raw_cmd = RawCmd()
+            raw_cmd.mem = mem
+            raw_cmd.cleanup = cleanup
+            raw_cmd.cwd = cwd
+            raw_cmd.jar = jar
+            raw_cmd.args = TlcArgs()
+            result = tlc_raw(raw_cmd)
 
-        result = exec_tlc_raw_cmd(cmd)
         stdout_pretty = result.process.stdout.decode("unicode_escape")
         stderr_pretty = result.process.stderr.decode("unicode_escape")
 
         print(
             f"""Ran 'tlc raw'.
-shell cmd: {result.process.args}
-return code: {result.process.returncode}
-files: {result.files}
+shell cmd used: {result.process.args}
+subprocess return code: {result.process.returncode}
+apalache output files: {result.files}
 stdout: {stdout_pretty}
 stderr: {stderr_pretty}"""
         )
-
-    def pure(self):
-        assert self.stdin is not None
-        data = json.loads(self.stdin.read())
-
-        cmd = PureCmd()
-        cmd.jar = data["jar"]
-        cmd.args = TlcArgs(**data["args"])
-        cmd.files = data["files"]
-
-        result = exec_tlc_pure_cmd(cmd)
-
-        print(result)

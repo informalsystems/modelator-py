@@ -29,6 +29,11 @@ def apalache_pure(*, cmd: PureCmd = None, json_obj=None):  # type: ignore
     assert not (cmd is not None and json_obj is not None)
 
     if json_obj is not None:
+        json_obj = {
+            "files": None,
+            "jar": None,
+            "args": None,
+        } | json_obj
         cmd = PureCmd()
         cmd.jar = json_obj["jar"]
         cmd.args = ApalacheArgs(**json_obj["args"])

@@ -112,21 +112,25 @@ def test_raw_from_stdin_smoke():
 @pytest.mark.skip(
     reason="The 'apalache raw' command has side effects like dirtying the filesystem"
 )
-def test_raw_from_command_line_args_smoke():
-    args = [
-        "raw",
-        "--cmd=check",
-        "--max-error=2",
-        "--view=View",
-        "--inv=IsThree",
-        f"--config={os.path.join(get_resource_dir(),'2PossibleTraces.cfg')}",
-        f"--file={os.path.join(get_resource_dir(), '2PossibleTracesTests.tla')}",
-        f"--jar={get_apalache_path()}",
-        "--out-dir=apalache-out",
-        f"--cwd={get_resource_dir()}",
-    ]
-    app = Apalache(sys.stdin)
-    fire.Fire(app, args)
+def test_raw_directly_check():
+    # apalache-mc check --max-error=2 --view=View --inv=IsThree --config=2PossibleTraces.cfg 2PossibleTracesTests.tla
+    cmd = RawCmd()
+    cmd.jar = get_apalache_path()
+    cmd.cwd = get_resource_dir()
+    args = ApalacheArgs()
+    args.cmd = "check"
+    args.max_error = 2
+    args.view = "View"
+    args.inv = "IsThree"
+    args.config = "2PossibleTraces.cfg"
+    args.file = "2PossibleTracesTests.tla"
+    args.out_dir = "apalache-out"
+    cmd.args = args
+    LOG.debug(stringify_raw_cmd(cmd))
+    result = apalache_raw(cmd=cmd)
+    LOG.debug(result.process.stdout.decode("unicode_escape"))
+    LOG.debug(result.process.stderr.decode("unicode_escape"))
+    LOG.debug("\n".join(list(result.files.keys())))
 
 
 @pytest.mark.skip(
@@ -153,24 +157,18 @@ def test_raw_directly_parse():
 @pytest.mark.skip(
     reason="The 'apalache raw' command has side effects like dirtying the filesystem"
 )
-def test_raw_directly_check():
-    # apalache-mc check --max-error=2 --view=View --inv=IsThree --config=2PossibleTraces.cfg 2PossibleTracesTests.tla
-    cmd = RawCmd()
-    cmd.mem = True
-    cmd.cleanup = True
-    cmd.jar = get_apalache_path()
-    cmd.cwd = get_resource_dir()
-    args = ApalacheArgs()
-    args.cmd = "check"
-    args.max_error = 2
-    args.view = "View"
-    args.inv = "IsThree"
-    args.config = "2PossibleTraces.cfg"
-    args.file = "2PossibleTracesTests.tla"
-    args.out_dir = "apalache-out"
-    cmd.args = args
-    LOG.debug(stringify_raw_cmd(cmd))
-    result = apalache_raw(cmd=cmd)
-    LOG.debug(result.process.stdout.decode("unicode_escape"))
-    LOG.debug(result.process.stderr.decode("unicode_escape"))
-    LOG.debug("\n".join(list(result.files.keys())))
+def test_raw_from_command_line_args_smoke():
+    args = [
+        "raw",
+        "--cmd=check",
+        "--max-error=2",
+        "--view=View",
+        "--inv=IsThree",
+        f"--config={os.path.join(get_resource_dir(),'2PossibleTraces.cfg')}",
+        f"--file={os.path.join(get_resource_dir(), '2PossibleTracesTests.tla')}",
+        f"--jar={get_apalache_path()}",
+        "--out-dir=apalache-out",
+        f"--cwd={get_resource_dir()}",
+    ]
+    app = Apalache(sys.stdin)
+    fire.Fire(app, args)

@@ -3,7 +3,9 @@ import tempfile
 
 from recordclass import recordclass
 
-from .raw import RawCmd, exec_tlc_raw_cmd
+from modelator.tlc.args import TlcArgs
+
+from .raw import RawCmd, tlc_raw
 
 # mypy: ignore-errors
 
@@ -18,7 +20,25 @@ PureCmd = recordclass(
 )
 
 
-def exec_tlc_pure_cmd(cmd: PureCmd):  # type: ignore
+def tlc_pure(*, cmd: PureCmd = None, json_obj=None):  # type: ignore
+    """
+    Execute a Tlc command using either a PureCmd object, or build the PureCmd from json
+
+    Returns an ExecutionResult with .process and .files properties.
+    Contains the subprocess result, and the list of filesystem files (and contents).
+    """
+    assert not (cmd is not None and json_obj is not None)
+
+    if json_obj is not None:
+        json_obj = {
+            "files": None,
+            "jar": None,
+            "args": None,
+        } | json_obj
+        cmd = PureCmd()
+        cmd.jar = json_obj["jar"]
+        cmd.args = TlcArgs(**json_obj["args"])
+        cmd.files = json_obj["files"]
 
     # TODO: doesn't work yet, have to figure out best way to clear up
 
@@ -36,7 +56,7 @@ def exec_tlc_pure_cmd(cmd: PureCmd):  # type: ignore
             with open(full_path, "w") as fd:
                 fd.write(file_content_str)
 
-        result = exec_tlc_raw_cmd(raw_cmd)
+        result = tlc_raw(cmd=raw_cmd)
 
     stdout_pretty = result.process.stdout.decode("unicode_escape")
     stderr_pretty = result.process.stderr.decode("unicode_escape")
