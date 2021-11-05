@@ -1,13 +1,12 @@
 {
-    "jar": "~/Documents/work/mbt-python/apalache-pkg-0.17.1-full.jar",
+    "jar": "/home/danwt/Documents/work/mbt-python/apalache-pkg-0.17.1-full.jar",
     "args": {
         "cmd": "check",
         "max_error": 2,
         "view": "View",
         "inv": "IsThree",
         "config": "2PossibleTraces.cfg",
-        "file": "2PossibleTracesTests.tla",
-        "out_dir": "apalache-pure-example-out"
+        "file": "2PossibleTracesTests.tla"
     },
     "files": {
         "2PossibleTraces.cfg": "INIT Init\nNEXT Next\n",

@@ -3,7 +3,8 @@ import tempfile
 
 from recordclass import recordclass
 
-from .raw import RawCmd, exec_apalache_raw_cmd
+from .args import ApalacheArgs
+from .raw import RawCmd, apalache_raw
 
 # mypy: ignore-errors
 
@@ -18,7 +19,20 @@ PureCmd = recordclass(
 )
 
 
-def exec_apalache_pure_cmd(cmd: PureCmd):  # type: ignore
+def apalache_pure(*, cmd: PureCmd = None, json_obj=None):  # type: ignore
+    """
+    Execute an Apalache command using either a PureCmd object, or build the PureCmd from json
+
+    Returns an ExecutionResult with .process and .files properties.
+    Contains the subprocess result, and the list of filesystem files (and contents).
+    """
+    assert not (cmd is not None and json_obj is not None)
+
+    if json_obj is not None:
+        cmd = PureCmd()
+        cmd.jar = json_obj["jar"]
+        cmd.args = ApalacheArgs(**json_obj["args"])
+        cmd.files = json_obj["files"]
 
     raw_cmd = RawCmd()
     raw_cmd.args = cmd.args
@@ -34,7 +48,7 @@ def exec_apalache_pure_cmd(cmd: PureCmd):  # type: ignore
             with open(full_path, "w") as fd:
                 fd.write(file_content_str)
 
-        result = exec_apalache_raw_cmd(raw_cmd)
+        result = apalache_raw(cmd=raw_cmd)
 
     stdout_pretty = result.process.stdout.decode("unicode_escape")
     stderr_pretty = result.process.stderr.decode("unicode_escape")

@@ -1,11 +1,8 @@
 import logging
 
-from modelator.tlc.raw import (
-    TlcArgs,
-    RawCmd,
-    exec_tlc_raw_cmd,
-    stringify_raw_cmd,
-)
+import pytest
+
+from modelator.tlc.raw import RawCmd, TlcArgs, exec_tlc_raw_cmd, stringify_raw_cmd
 
 from .util import get_resource_dir, get_tlc_path
 
@@ -28,9 +25,9 @@ def test_stringify_raw_cmd():
     LOG.debug(cmd_str)
 
 
-# @pytest.mark.skip(
-# reason="The 'tlc raw' command has side effects like dirtying the filesystem"
-# )
+@pytest.mark.skip(
+    reason="The 'tlc raw' command has side effects like dirtying the filesystem"
+)
 def test_raw_directly():
     # java -jar tla2tools.jar tlc2.TLC -cleanup -workers 'auto' -config 2PossibleTracesTlc.cfg 2PossibleTraces.tla
     cmd = RawCmd()
