@@ -5,6 +5,7 @@ from recordclass import recordclass
 
 from modelator.tlc.args import TlcArgs
 
+from ..util import read_entire_dir_contents
 from .raw import RawCmd, tlc_raw
 
 # mypy: ignore-errors
@@ -40,15 +41,16 @@ def tlc_pure(*, cmd: PureCmd = None, json_obj=None):  # type: ignore
         cmd.args = TlcArgs(**json_obj["args"])
         cmd.files = json_obj["files"]
 
-    # TODO: doesn't work yet, have to figure out best way to clear up
-
     raw_cmd = RawCmd()
     raw_cmd.args = cmd.args
+    # Always specify tlc '-cleanup'
+    raw_cmd.args.cleanup = True
     raw_cmd.jar = cmd.jar
-    raw_cmd.mem = True
-    raw_cmd.cleanup = True
 
-    result = None
+    ret = {}
+
+    process_result = None
+
     with tempfile.TemporaryDirectory(prefix="mbt-python-tlc-temp-dir-") as dirname:
         raw_cmd.cwd = dirname
         for filename, file_content_str in cmd.files.items():
@@ -56,17 +58,21 @@ def tlc_pure(*, cmd: PureCmd = None, json_obj=None):  # type: ignore
             with open(full_path, "w") as fd:
                 fd.write(file_content_str)
 
-        result = tlc_raw(cmd=raw_cmd)
+        process_result = tlc_raw(cmd=raw_cmd)
 
-    stdout_pretty = result.process.stdout.decode("unicode_escape")
-    stderr_pretty = result.process.stderr.decode("unicode_escape")
+        all_files = read_entire_dir_contents(dirname)
+        all_files = {os.path.basename(fn): content for fn, content in all_files.items()}
+        # Throw out the files that the user gave as input
+        ret["files"] = {
+            fn: content for fn, content in all_files.items() if fn not in cmd.files
+        }
 
-    ret = {}
+    stdout_pretty = process_result.stdout.decode("unicode_escape")
+    stderr_pretty = process_result.stderr.decode("unicode_escape")
 
-    ret["shell_cmd"] = result.process.args
-    ret["return_code"] = result.process.returncode
+    ret["shell_cmd"] = process_result.args
+    ret["return_code"] = process_result.returncode
     ret["stdout"] = stdout_pretty
     ret["stderr"] = stderr_pretty
-    ret["files"] = result.files
 
     return ret

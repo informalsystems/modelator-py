@@ -23,10 +23,10 @@ class Tlc:
         cwd=None,
         jar=None,
     ):
-        result = None
+        process_result = None
         if stdin:
             data = json.loads(self.stdin.read())
-            result = tlc_raw(json_obj=data)
+            process_result = tlc_raw(json_obj=data)
         else:
             raw_cmd = RawCmd()
             raw_cmd.mem = mem
@@ -34,16 +34,15 @@ class Tlc:
             raw_cmd.cwd = cwd
             raw_cmd.jar = jar
             raw_cmd.args = TlcArgs()
-            result = tlc_raw(raw_cmd)
+            process_result = tlc_raw(raw_cmd)
 
-        stdout_pretty = result.process.stdout.decode("unicode_escape")
-        stderr_pretty = result.process.stderr.decode("unicode_escape")
+        stdout_pretty = process_result.stdout.decode("unicode_escape")
+        stderr_pretty = process_result.stderr.decode("unicode_escape")
 
         print(
             f"""Ran 'tlc raw'.
-shell cmd used: {result.process.args}
-subprocess return code: {result.process.returncode}
-apalache output files: {result.files}
+shell cmd used: {process_result.args}
+subprocess return code: {process_result.returncode}
 stdout: {stdout_pretty}
 stderr: {stderr_pretty}"""
         )

@@ -42,7 +42,7 @@ def test_pure_from_stdin_smoke():
                 "workers": "auto",
                 "config": "2PossibleTracesTlc.cfg",
                 "file": "2PossibleTraces.tla",
-                "userfile": "tlc-raw-test-userfile.txt",
+                "userfile": "tlc-pure-test-userfile.txt",
             },
             "files": {},
         }

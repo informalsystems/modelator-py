@@ -1,6 +1,7 @@
 from recordclass import recordclass
 
 # mypy: ignore-errors
+# flake8: noqa
 
 tlc_args_fields = (
     "aril",  # num adjust the seed for random simulation; defaults to 0

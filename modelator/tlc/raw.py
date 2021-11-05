@@ -1,17 +1,13 @@
 import os
-import pathlib
 import subprocess
 
 from recordclass import asdict, recordclass
 
-from ..util import delete_dir, read_entire_dir_contents
 from .args import TlcArgs
 
 # mypy: ignore-errors
 
 raw_cmd_fields = (
-    "mem",  # Read the contents of the output directory into memory (?)
-    "cleanup",  # Delete the output directory after Tlc terminates (?)
     "cwd",  # Current working directory for child shell process
     "jar",  # Location of Tlc jar (full path with suffix like tla2tools.jar)
     "args",  # Tlc args
@@ -71,11 +67,6 @@ def stringify_raw_cmd(cmd: RawCmd):
     return cmd_str
 
 
-ExecutionResult = recordclass(
-    "ExecutionResult", ["process", "files"], defaults=(None, None)
-)
-
-
 def tlc_raw(*, cmd: RawCmd = None, json_obj=None):
     """
     Execute a Tlc command using either a RawCmd object, or build the RawCmd from json
@@ -87,12 +78,12 @@ def tlc_raw(*, cmd: RawCmd = None, json_obj=None):
 
     if json_obj is not None:
         json_obj = {
-            "files": None,
+            "cwd": None,
             "jar": None,
             "args": None,
         } | json_obj
         cmd = RawCmd()
-        cmd.files = json_obj["files"]
+        cmd.cwd = json_obj["cwd"]
         cmd.jar = json_obj["jar"]
         cmd.args = TlcArgs(**json_obj["args"])
 
@@ -108,23 +99,4 @@ def tlc_raw(*, cmd: RawCmd = None, json_obj=None):
     cmd_str = stringify_raw_cmd(cmd)
 
     # Semantics a bit complex here - see https://stackoverflow.com/a/15109975/8346628
-    process_result = subprocess.run(
-        cmd_str, shell=True, capture_output=True, cwd=cmd.cwd
-    )
-
-    ret = ExecutionResult()
-    ret.process = process_result
-
-    output_dir = None  # TODO:
-
-    if cmd.mem:
-        files = read_entire_dir_contents(output_dir)
-        ret.files = {os.path.basename(fn): content for fn, content in files.items()}
-    if cmd.cleanup:
-        if not os.path.isabs(output_dir):
-            raise Exception("Output directory TODO: better message")
-
-        output_dir = pathlib.Path(output_dir).parent.absolute()
-        delete_dir(output_dir)
-
-    return ret
+    return subprocess.run(cmd_str, shell=True, capture_output=True, cwd=cmd.cwd)
