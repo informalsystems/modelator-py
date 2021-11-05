@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "mbt-python"
+name = "modelator"
 version = "0.1.0"
 description = "TODO:"
 authors = ["Daniel Tisdall <daniel@informal.systems>"]
@@ -7,6 +7,7 @@ authors = ["Daniel Tisdall <daniel@informal.systems>"]
 [tool.poetry.dependencies]
 python = "^3.9.7"
 fire = "^0.4.0"
+recordclass = "^0.16.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
@@ -17,12 +18,15 @@ flake8 = "^4.0.1"
 mypy = "^0.910"
 isort = "^5.9.3"
 
+[tool.poetry.scripts]
+cli = "modelator.cli:cli"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
-line-length = 79
+line-length = 88
 target-version = ['py38']
 include = '\.pyi?$'
 exclude = '''
@@ -45,11 +49,12 @@ exclude = '''
 '''
 
 [flake8]
-extend-ignore = ["E203"]
+extend-ignore = ["E203", "E501"]
+max-line-length = 88
 
 [tool.isort]
 multi_line_output = 3
 include_trailing_comma = true
 force_grid_wrap = 0
 use_parentheses = true
-line_length = 79
+line_length = 88

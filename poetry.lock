@@ -355,6 +355,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "recordclass"
+version = "0.16.2"
+description = "Mutable variant of collections.namedtuple -- recordclass.recordclass, which support assignments, and other memory saving variants."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "regex"
 version = "2021.11.1"
 description = "Alternative regular expression module, to replace re."
@@ -432,7 +440,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9.7"
-content-hash = "b0ef170d4debc6d3b103ec0ad6b06f9f4083e2272692bf5109adb26b0b88099d"
+content-hash = "a3fe01e0faad536e63609bd67a5d2968e9e8419cedc5e40faf165070823390ca"
 
 [metadata.files]
 atomicwrites = [
@@ -653,6 +661,17 @@ pyyaml = [
     {file = "PyYAML-6.0-cp39-cp39-win32.whl", hash = "sha256:b5b9eccad747aabaaffbc6064800670f0c297e52c12754eb1d976c57e4f74dcb"},
     {file = "PyYAML-6.0-cp39-cp39-win_amd64.whl", hash = "sha256:b3d267842bf12586ba6c734f89d1f5b871df0273157918b0ccefa29deb05c21c"},
     {file = "PyYAML-6.0.tar.gz", hash = "sha256:68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2"},
+]
+recordclass = [
+    {file = "recordclass-0.16.2-cp36-cp36m-win32.whl", hash = "sha256:49fab3bc3b542300d4ca02d98f5dd54703a7839a7511ebf4335fdae5d108326d"},
+    {file = "recordclass-0.16.2-cp36-cp36m-win_amd64.whl", hash = "sha256:4e5da5298b224ab3110fd55dc525abb04b4c33249172c4e23531ac8769754542"},
+    {file = "recordclass-0.16.2-cp37-cp37m-win32.whl", hash = "sha256:cb83fcd200b696ee9ee58ecd52e838e32ceb2932667eb0e86fb393b827ae964a"},
+    {file = "recordclass-0.16.2-cp37-cp37m-win_amd64.whl", hash = "sha256:6595356acf9c59ce4a7481b59e7e0898761663b6cc3d28661cfb4b7b876b1e18"},
+    {file = "recordclass-0.16.2-cp38-cp38-win32.whl", hash = "sha256:5772f2fded894f14d574df25e9928998d2671dc3b27b20aac9be6ac4d16898ae"},
+    {file = "recordclass-0.16.2-cp38-cp38-win_amd64.whl", hash = "sha256:031362cd7d864b6038ee6dc80201f8979126557d2418982a3c1ae35d0996c3cf"},
+    {file = "recordclass-0.16.2-cp39-cp39-win32.whl", hash = "sha256:84fe7cc2b375613f5cd1dbde3ae7d72c34c1bba48503f814d4e02512380f7e2f"},
+    {file = "recordclass-0.16.2-cp39-cp39-win_amd64.whl", hash = "sha256:efca974495c9986b3e0b92660bb3f52067b508089835a55a1526ef0b2d6187da"},
+    {file = "recordclass-0.16.2.tar.gz", hash = "sha256:49b824e858e23bf4c0571ce3ab5825a2c99d9dae387ce58fcdd65837a10c3e3a"},
 ]
 regex = [
     {file = "regex-2021.11.1-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:ce0625900e4d6d9a43f50e897f6aaa1a52e5e4931f994a1b8e9f6a4e49185e4e"},

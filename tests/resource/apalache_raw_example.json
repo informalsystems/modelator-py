@@ -1,0 +1,12 @@
+{
+    "jar": "/home/danwt/Documents/work/mbt-python/apalache-pkg-0.17.1-full.jar",
+    "cwd": "/home/danwt/Documents/work/mbt-python/tests/resource",
+    "args": {
+        "cmd": "check",
+        "max_error": 2,
+        "view": "View",
+        "inv": "IsThree",
+        "config": "2PossibleTraces.cfg",
+        "file": "2PossibleTracesTests.tla"
+    }
+}
