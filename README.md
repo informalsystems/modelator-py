@@ -60,6 +60,8 @@ This project has been setup following the guidelines at [this](https://mitelman.
 
 If having difficulties with `poetry install` on linux due to a missing `_ctypes` module then consider the advice on [this](https://stackoverflow.com/a/41310760) stack overflow page, and on [this](https://github.com/pyenv/pyenv/issues/2137) issue.
 
+If having difficulties installing poetry using `curl -sSL https://install.python-poetry.org | python3 -` on MacOS then try adding `eval "$(pyenv init --path)";` to your .bashrc or .zshrc file (given that pyenv is installed).
+
 ## Contributing
 
 Coming soon!
