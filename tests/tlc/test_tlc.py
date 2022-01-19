@@ -8,7 +8,7 @@ import pytest
 from modelator.tlc.cli import Tlc
 from modelator.tlc.raw import RawCmd, TlcArgs, stringify_raw_cmd, tlc_raw
 
-from .util import get_resource_dir, get_tlc_path
+from ..util import get_resource_dir, get_tlc_path
 
 LOG = logging.getLogger(__name__)
 

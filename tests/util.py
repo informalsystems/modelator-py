@@ -17,13 +17,6 @@ def get_resource_dir():
     return os.path.join(tests_dir, "resource")
 
 
-def get_apalache_path():
-    project_dir = get_project_dir()
-    apalache_jar = "apalache-pkg-0.17.1-full.jar"
-    apalache_path = os.path.join(project_dir, apalache_jar)
-    return apalache_path
-
-
 def get_tlc_path():
     project_dir = get_project_dir()
     tlc_jar = "tla2tools.jar"

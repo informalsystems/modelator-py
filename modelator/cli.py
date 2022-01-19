@@ -3,12 +3,14 @@ import sys
 import fire
 
 from .tlc.cli import Tlc
+from .util.cli import Util
 
 
 class App:
     def __init__(self, stdin):
         self.stdin = stdin
         self.tlc = Tlc(stdin)
+        self.util = Util(stdin)
 
     def example(*_ignore, foo=True, bar=None, wiz):
         print(f"{foo=}{bar=}{wiz=}")
