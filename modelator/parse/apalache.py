@@ -1,4 +1,4 @@
-def parse_apalache_output_dir_name_from_stdout_str(s):
+def parse_apalache_output_dir_name_from_stdout_str(s: str):
     """
     Try to parse the name of the output directory that Apalache uses
 

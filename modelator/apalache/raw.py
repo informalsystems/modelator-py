@@ -10,7 +10,6 @@ from .args import ApalacheArgs
 
 # mypy: ignore-errors
 
-
 raw_cmd_fields = (
     "mem",  # Read the contents of the output directory into memory (?)
     "cleanup",  # Delete the output directory after Apalache terminates (?)
