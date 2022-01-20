@@ -13,15 +13,14 @@ class App:
         self.util = Util(stdin)
 
     def example(*_ignore, foo=True, bar=None, wiz):
-        print(f"{foo=}{bar=}{wiz=}")
+        print(f"{foo=} {bar=} {wiz=}")
 
 
 def cli():
     if len(sys.argv) == 1:
-        """
-        Optionally take the command structure entirely from a json at stdin
-        """
-        raise Exception("Purely stdin input is not yet supported")
+        raise Exception(
+            "Solely stdin input is not yet supported (arguments must be passed)"
+        )
     else:
         app = App(sys.stdin)
         fire.Fire(app)

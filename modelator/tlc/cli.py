@@ -9,7 +9,7 @@ class Tlc:
         self.stdin = stdin
 
     def pure(self):
-        assert self.stdin is not None
+        assert self.stdin is not None, "The pure interface requires json input in stdin"
         data = json.loads(self.stdin.read())
         result = tlc_pure(json_obj=data)
         print(result)
@@ -25,12 +25,12 @@ class Tlc:
     ):
         process_result = None
         if stdin:
+            """Read instructions from json"""
             data = json.loads(self.stdin.read())
             process_result = tlc_raw(json_obj=data)
         else:
+            """Read instructions from cli flags and arguments"""
             raw_cmd = RawCmd()
-            raw_cmd.mem = mem
-            raw_cmd.cleanup = cleanup
             raw_cmd.cwd = cwd
             raw_cmd.jar = jar
             raw_cmd.args = TlcArgs()

@@ -32,16 +32,4 @@ IsThree ==
     LET Desired == x = 3
     IN ~Desired
 
-
-(*
-# Ok
-apalache-mc check --view=View --inv=IsThree 2PossibleTraces.tla
-
-# Ok
-apalache-mc check --max-error=2 --view=View --inv=IsThree --config=2PossibleTraces.cfg 2PossibleTracesTests.tla
-
-# Misleading log message
-apalache-mc check --max-error=3 --view=View --inv=IsThree 2PossibleTraces.tla
-*)
-
 ===============================================================================
