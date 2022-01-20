@@ -10,39 +10,75 @@ class Tlc:
 
     def pure(self):
         assert self.stdin is not None, "The pure interface requires json input in stdin"
-        data = json.loads(self.stdin.read())
+        content = self.stdin.read()
+        data = json.loads(content)
         result = tlc_pure(json_obj=data)
         print(result)
 
     def raw(
         self,
         *,
-        stdin=None,
-        mem=False,
-        cleanup=False,
-        cwd=None,
-        jar=None,
+        # Meta args
+        json=False,  # Read parameters from Json
+        mem=False,  # Read TLC outputs into memory
+        clean=False,  # Cleanup all evidence of execution
+        cwd=None,  # Current working directory to execute TLC
+        jar=None,  # path to tla2tools.jar
+        # TLC args
+        aril=None,
+        checkpoint=None,
+        cleanup=None,
+        config=None,
+        cont=None,
+        coverage=None,
+        deadlock=None,
+        debug=None,
+        depth=None,
+        dfid=None,
+        difftrace=None,
+        dump=None,
+        fp=None,
+        fpbits=None,
+        fpmem=None,
+        generate_spec_te=None,
+        gzip=None,
+        h=None,
+        max_set_size=None,
+        metadir=None,
+        nowarning=None,
+        recover=None,
+        seed=None,
+        simulate=None,
+        terse=None,
+        tool=None,
+        userfile=None,
+        view=None,
+        workers=None,
+        file=None,
     ):
-        process_result = None
-        if stdin:
+        """
+        Execute TLC
+        """
+        result = None
+        if json:
             """Read instructions from json"""
             data = json.loads(self.stdin.read())
-            process_result = tlc_raw(json_obj=data)
+            result = tlc_raw(json=data)
         else:
             """Read instructions from cli flags and arguments"""
             raw_cmd = RawCmd()
             raw_cmd.cwd = cwd
             raw_cmd.jar = jar
             raw_cmd.args = TlcArgs()
-            process_result = tlc_raw(raw_cmd)
+            result = tlc_raw(raw_cmd)
 
-        stdout_pretty = process_result.stdout.decode("unicode_escape")
-        stderr_pretty = process_result.stderr.decode("unicode_escape")
+        stdout_pretty = result.stdout.decode("unicode_escape")
+        stderr_pretty = result.stderr.decode("unicode_escape")
 
         print(
             f"""Ran 'tlc raw'.
-shell cmd used: {process_result.args}
-subprocess return code: {process_result.returncode}
+shell cmd used: {result.args}
+subprocess return code: {result.returncode}
 stdout: {stdout_pretty}
 stderr: {stderr_pretty}"""
         )

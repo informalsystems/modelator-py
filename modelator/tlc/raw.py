@@ -70,25 +70,31 @@ def stringify_raw_cmd(cmd: RawCmd) -> str:
     return cmd_str
 
 
-def tlc_raw(*, cmd: RawCmd = None, json_obj=None):
+def json_to_cmd(json) -> RawCmd:
+    json = {
+        "cwd": None,
+        "jar": None,
+        "args": None,
+    } | json
+    cmd = RawCmd()
+    cmd.cwd = json["cwd"]
+    cmd.jar = json["jar"]
+    cmd.args = TlcArgs(**json["args"])
+    return cmd
+
+
+def tlc_raw(*, cmd: RawCmd = None, json=None):
     """
     Execute a Tlc command using either a RawCmd object, or build the RawCmd from json
 
     Returns an ExecutionResult with .process and .files properties.
     Contains the subprocess result, and the list of filesystem files (and contents).
     """
-    assert not (cmd is not None and json_obj is not None)
+    assert cmd is not None or json is not None
+    assert not (cmd is not None and json is not None)
 
-    if json_obj is not None:
-        json_obj = {
-            "cwd": None,
-            "jar": None,
-            "args": None,
-        } | json_obj
-        cmd = RawCmd()
-        cmd.cwd = json_obj["cwd"]
-        cmd.jar = json_obj["jar"]
-        cmd.args = TlcArgs(**json_obj["args"])
+    if json is not None:
+        cmd = json_to_cmd(cmd)
 
     if cmd.cwd is not None:
         cmd.cwd = os.path.expanduser(cmd.cwd)
