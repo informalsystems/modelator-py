@@ -13,7 +13,7 @@ Framework and tools for model-based testing (Python code only. Rust code can be 
 
 ### Info
 
-The Python version used is `3.10.0`.
+The Python version used is `3.9.9`.
 
 ### Running
 
@@ -39,6 +39,8 @@ code .
 ```
 
 Ensure that the bottom left of your VSCode window shows that you are using the correct Python environment (see contents of pyproject.toml for the correct Python version).
+
+The branch [vscode-configuration-template](https://github.com/informalsystems/mbt-python/tree/vscode-configuration-template) contains a .vscode directory which can be used as a starting point for configuring your dev environment.
 
 ### TLDR;
 
