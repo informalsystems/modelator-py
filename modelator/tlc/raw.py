@@ -9,8 +9,8 @@ from .args import TlcArgs
 
 raw_cmd_fields = (
     "cwd",  # Current working directory for child shell process
-    "jar",  # Location of Tlc jar (full path with suffix like tla2tools.jar)
-    "args",  # Tlc args
+    "jar",  # Location of TLC jar (full path with suffix like tla2tools.jar)
+    "args",  # TLC args
 )
 
 RawCmd = recordclass("RawCmd", raw_cmd_fields, defaults=(None,) * len(raw_cmd_fields))
@@ -94,7 +94,7 @@ def tlc_raw(*, cmd: RawCmd = None, json=None):
     assert not (cmd is not None and json is not None)
 
     if json is not None:
-        cmd = json_to_cmd(cmd)
+        cmd = json_to_cmd(json)
 
     if cmd.cwd is not None:
         cmd.cwd = os.path.expanduser(cmd.cwd)

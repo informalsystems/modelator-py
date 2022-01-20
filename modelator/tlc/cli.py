@@ -1,4 +1,4 @@
-import json
+import json as stdjson
 
 from .pure import tlc_pure
 from .raw import RawCmd, TlcArgs, tlc_raw
@@ -10,20 +10,19 @@ class Tlc:
 
     def pure(self):
         assert self.stdin is not None, "The pure interface requires json input in stdin"
-        content = self.stdin.read()
-        data = json.loads(content)
-        result = tlc_pure(json_obj=data)
-        print(result)
+        json_dict = stdjson.loads(self.stdin.read())
+
+        result = tlc_pure(json=json_dict)
+        to_print = stdjson.dumps(result, indent=4, sort_keys=True)
+        print(to_print)
 
     def raw(
         self,
         *,
         # Meta args
-        json=False,  # Read parameters from Json
-        mem=False,  # Read TLC outputs into memory
-        clean=False,  # Cleanup all evidence of execution
+        json=False,  # Read parameters from Json?
         cwd=None,  # Current working directory to execute TLC
-        jar=None,  # path to tla2tools.jar
+        jar=None,  # Path to tla2tools.jar
         # TLC args
         aril=None,
         checkpoint=None,
@@ -62,23 +61,55 @@ class Tlc:
         result = None
         if json:
             """Read instructions from json"""
-            data = json.loads(self.stdin.read())
-            result = tlc_raw(json=data)
+            json_dict = stdjson.loads(self.stdin.read())
+            result = tlc_raw(json=json_dict)
         else:
             """Read instructions from cli flags and arguments"""
-            raw_cmd = RawCmd()
-            raw_cmd.cwd = cwd
-            raw_cmd.jar = jar
-            raw_cmd.args = TlcArgs()
-            result = tlc_raw(raw_cmd)
+            cmd = RawCmd()
+            cmd.cwd = cwd
+            cmd.jar = jar
+            cmd.args = TlcArgs(
+                aril,
+                checkpoint,
+                cleanup,
+                config,
+                cont,
+                coverage,
+                deadlock,
+                debug,
+                depth,
+                dfid,
+                difftrace,
+                dump,
+                fp,
+                fpbits,
+                fpmem,
+                generate_spec_te,
+                gzip,
+                h,
+                max_set_size,
+                metadir,
+                nowarning,
+                recover,
+                seed,
+                simulate,
+                terse,
+                tool,
+                userfile,
+                view,
+                workers,
+                file,
+            )
+            result = tlc_raw(cmd=cmd)
 
         stdout_pretty = result.stdout.decode("unicode_escape")
         stderr_pretty = result.stderr.decode("unicode_escape")
 
-        print(
-            f"""Ran 'tlc raw'.
-shell cmd used: {result.args}
-subprocess return code: {result.returncode}
-stdout: {stdout_pretty}
-stderr: {stderr_pretty}"""
-        )
+        obj_to_print = {}
+        obj_to_print["shell_cmd"] = result.args
+        obj_to_print["return_code"] = result.returncode
+        obj_to_print["stdout"] = stdout_pretty
+        obj_to_print["stderr"] = stderr_pretty
+
+        to_print = stdjson.dumps(obj_to_print, indent=4, sort_keys=True)
+        print(to_print)

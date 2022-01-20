@@ -1,5 +1,5 @@
 {
-    "jar": "/home/danwt/Documents/work/mbt-python/tla2tools.jar",
+    "jar": "/Users/danwt/Documents/model-checkers/tla2tools.jar",
     "args": {
         "cleanup": false,
         "workers": "auto",
