@@ -5,7 +5,7 @@ from recordclass import recordclass
 
 from modelator.tlc.args import TlcArgs
 
-from ..util import read_entire_dir_contents
+from ..helper import read_entire_dir_contents
 from .raw import RawCmd, tlc_raw
 
 # mypy: ignore-errors
