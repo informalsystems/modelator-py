@@ -1,0 +1,10 @@
+{
+    "jar": "/Users/danwt/Documents/model-checkers/tla2tools.jar",
+    "cwd": "/Users/danwt/Documents/work/mbt-python",
+    "args": {
+        "cleanup": false,
+        "workers": "auto",
+        "config": "HelloWorld.cfg",
+        "file": "HelloWorld.tla"
+    }
+}

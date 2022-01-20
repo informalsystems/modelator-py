@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+TLC_PATH = "/Users/danwt/Documents/model-checkers/tla2tools.jar"
+
 
 def get_tests_dir():
     this_file_path = Path(__file__)
@@ -18,7 +20,4 @@ def get_resource_dir():
 
 
 def get_tlc_path():
-    project_dir = get_project_dir()
-    tlc_jar = "tla2tools.jar"
-    tlc_path = os.path.join(project_dir, tlc_jar)
-    return tlc_path
+    return TLC_PATH
