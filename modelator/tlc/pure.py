@@ -29,6 +29,7 @@ def tlc_pure(*, cmd: PureCmd = None, json_obj=None):  # type: ignore
     Contains the subprocess result, and the list of filesystem files (and contents).
     """
     assert not (cmd is not None and json_obj is not None)
+    assert cmd is not None or json_obj is not None
 
     if json_obj is not None:
         json_obj = {

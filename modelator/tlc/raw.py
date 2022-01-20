@@ -16,7 +16,10 @@ raw_cmd_fields = (
 RawCmd = recordclass("RawCmd", raw_cmd_fields, defaults=(None,) * len(raw_cmd_fields))
 
 
-def stringify_raw_cmd(cmd: RawCmd):
+def stringify_raw_cmd(cmd: RawCmd) -> str:
+    """
+    Returns a string which can be passed to a shell to run TLC.
+    """
 
     jar = cmd.jar
     args = cmd.args
