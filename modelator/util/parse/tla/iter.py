@@ -15,7 +15,6 @@ import textwrap
 
 from .to_str import Nodes as _Nodes
 
-
 LINE_WIDTH = 80
 INDENT_WIDTH = 4
 

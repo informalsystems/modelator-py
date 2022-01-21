@@ -10,43 +10,42 @@
 import functools
 
 from . import _combinators as pco
+from . import _location, _optable
+from . import _tla_combinators as intf
+from . import tokens
 from ._combinators import (
-    return_,
-    succeed,
-    fail,
-    get,
-    use,
-    using,
-    shift_plus,
-    shift_eq,
-    or_,
-    times,
-    commit,
-    times2,
+    alt,
     apply,
-    second,
-    second_commit,
-    first,
-    bang,
-    lookahead,
-    enabled,
-    attempt,
-    optional,
-    question,
     apply_question,
+    attempt,
+    bang,
     choice,
     choice_iter,
-    alt,
+    commit,
+    enabled,
+    fail,
+    first,
+    get,
+    lookahead,
+    optional,
+    or_,
+    question,
+    return_,
+    second,
+    second_commit,
+    sep,
+    sep1,
+    shift_eq,
+    shift_plus,
     star,
     star1,
-    sep1,
-    sep,
+    succeed,
+    times,
+    times2,
+    use,
+    using,
 )
-from . import _location
-from . import _optable
-from . import _tla_combinators as intf
 from .ast import Nodes as tla_ast
-from . import tokens
 
 
 # open Ext

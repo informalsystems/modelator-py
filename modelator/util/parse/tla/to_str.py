@@ -16,7 +16,6 @@ import textwrap
 from . import _optable
 from .ast import Nodes as _Nodes
 
-
 LINE_WIDTH = 80
 INDENT_WIDTH = 4
 

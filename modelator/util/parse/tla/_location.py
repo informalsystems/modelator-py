@@ -23,17 +23,14 @@ class Pt(object):
     # let string_of_pt ?(file="<nofile>") l =
     #   string_of_locus { start = l ; stop = l ; file = file }
     def __str__(self):
-        return 'line {line}, character {col}'.format(
-            line=self.line,
-            col=self.col)
+        return "line {line}, character {col}".format(line=self.line, col=self.col)
 
     def __eq__(self, other):
         if other is None:
             return False
         return (
-            self.line == other.line and
-            self.bol == other.bol and
-            self.col == other.col)
+            self.line == other.line and self.bol == other.bol and self.col == other.col
+        )
 
     def __hash__(self):
         return hash(self.offset)
@@ -51,7 +48,7 @@ class Pt(object):
     @property
     def offset(self):
         if self.bol is None or self.col is None:
-            raise ValueError('unknown beginning of line or column')
+            raise ValueError("unknown beginning of line or column")
         return self.bol + self.col
 
 
@@ -75,24 +72,26 @@ class Locus(object):
 
     def __repr__(self):
         return (
-            '{fname}: '
-            'line {start_line}, column {start_column} to '
-            'line {stop_line}, column {stop_column}').format(
-                fname=self.file,
-                start_line=self.start.line,
-                start_column=self.start.column,
-                stop_line=self.stop.line,
-                stop_column=self.stop.column)
+            "{fname}: "
+            "line {start_line}, column {start_column} to "
+            "line {stop_line}, column {stop_column}"
+        ).format(
+            fname=self.file,
+            start_line=self.start.line,
+            start_column=self.start.column,
+            stop_line=self.stop.line,
+            stop_column=self.stop.column,
+        )
 
     def __copy__(self):
-        return Locus(
-            self.start, self.stop, self.file)
+        return Locus(self.start, self.stop, self.file)
 
     def __eq__(self, other):
         return (
-            self.start == other.start and
-            self.stop == other.stop and
-            self.file == other.file)
+            self.start == other.start
+            and self.stop == other.stop
+            and self.file == other.file
+        )
 
     def __hash__(self):
         t = (self.start, self.stop, self.file)
@@ -119,8 +118,9 @@ class Locus(object):
     #     } with _ -> unknown
     def merge(self, other):
         if self.file != other.file:
-            raise ValueError('different files: {f1}, {f2}'.format(
-                f1=self.file, f2=other.file))
+            raise ValueError(
+                "different files: {f1}, {f2}".format(f1=self.file, f2=other.file)
+            )
         if self.start.offset <= other.start.offset:
             start = self.start
         else:
@@ -138,7 +138,7 @@ class Locus(object):
 #   file  = "<unknown>" ;
 # }
 
-unknown = Locus(None, None, '<unknown>')
+unknown = Locus(None, None, "<unknown>")
 
 
 # let column = function
@@ -170,10 +170,7 @@ unknown = Locus(None, None, '<unknown>')
 #      }
 def locus_of_position(filename, lineno, bol, cnum):
     column = cnum - bol + 1  # lp.pos_cnum - lp.pos_bol + 1
-    pt = Pt(
-        line=lineno,  # lp.pos_lnum
-        bol=bol,  # lp.pos_bol,
-        col=column)
+    pt = Pt(line=lineno, bol=bol, col=column)  # lp.pos_lnum  # lp.pos_bol,
     return Locus(pt, pt, filename)  # lp.pos_fname
 
 

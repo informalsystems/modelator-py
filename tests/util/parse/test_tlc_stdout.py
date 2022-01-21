@@ -1,6 +1,8 @@
-from ...helper import get_resource_dir
-from modelator.util.parse.tlc_stdout import extract_traces
 import os
+
+from modelator.util.parse.tlc_stdout import extract_traces
+
+from ...helper import get_resource_dir
 
 
 def test_extract_traces():

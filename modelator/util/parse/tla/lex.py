@@ -16,7 +16,6 @@ import ply.lex
 from . import _location
 from . import tokens as intf
 
-
 logger = logging.getLogger(__name__)
 
 

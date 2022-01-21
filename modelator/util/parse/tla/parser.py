@@ -7,8 +7,7 @@ from . import _expr_parser as ep
 from . import _module_parser as mp
 from . import _optable
 from . import _proof_parser as pfp
-from . import _tla_combinators
-from . import lex
+from . import _tla_combinators, lex
 
 
 def parse(module_text, nodes=None):

@@ -9,43 +9,44 @@
 import functools
 import uuid
 
-from ._combinators import (
-    return_,
-    succeed,
-    fail,
-    get,
-    use,
-    using,
-    shift_plus,
-    shift_eq,
-    or_,
-    times,
-    commit,
-    times2,
-    apply,
-    second,
-    second_commit,
-    first,
-    bang,
-    lookahead,
-    enabled,
-    attempt,
-    optional,
-    question,
-    apply_question,
-    choice,
-    choice_iter,
-    alt,
-    star,
-    star1,
-    sep1,
-    sep,
-)
 from . import _expr_parser as ep
 from . import _tla_combinators as intf
-from ._tla_combinators import punct, kwd
-from .ast import Nodes as tla_ast
 from . import tokens
+from ._combinators import (
+    alt,
+    apply,
+    apply_question,
+    attempt,
+    bang,
+    choice,
+    choice_iter,
+    commit,
+    enabled,
+    fail,
+    first,
+    get,
+    lookahead,
+    optional,
+    or_,
+    question,
+    return_,
+    second,
+    second_commit,
+    sep,
+    sep1,
+    shift_eq,
+    shift_plus,
+    star,
+    star1,
+    succeed,
+    times,
+    times2,
+    use,
+    using,
+)
+from ._tla_combinators import kwd, punct
+from .ast import Nodes as tla_ast
+
 
 # open Ext
 # open Property

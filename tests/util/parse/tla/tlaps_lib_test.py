@@ -4,9 +4,7 @@ This module requires an installation of TLAPS.
 """
 import os
 
-from modelator.util.parse.tla import parser
-from modelator.util.parse.tla import to_str
-
+from modelator.util.parse.tla import parser, to_str
 
 # change this variable to a path where
 # the TLAPS library is present

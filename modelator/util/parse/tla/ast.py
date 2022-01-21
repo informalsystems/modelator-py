@@ -100,9 +100,9 @@ class Nodes(object):
 
         def __init__(self, boolean):
             self.boolean = boolean  # `bool` that
-                # indicates application to
-                # non-temporal formula, added
-                # in post-processing step in `tlapm`
+            # indicates application to
+            # non-temporal formula, added
+            # in post-processing step in `tlapm`
 
     class Diamond(object):
         """Operator `<>`."""
@@ -127,14 +127,14 @@ class Nodes(object):
         def __init__(self, op, operands):
             self.op = op  # expr
             self.operands = operands
-                # `list` of expr
+            # `list` of expr
 
     class Function(object):
         r"""Function constructor `[x \in S |-> e]`."""
 
         def __init__(self, bounds, expr):
             self.bounds = bounds  # `list` of
-                # `(str, Constant, Domain)`
+            # `(str, Constant, Domain)`
             self.expr = expr
 
     class FunctionApply(object):
@@ -143,7 +143,7 @@ class Nodes(object):
         def __init__(self, op, args):
             self.op = op  # expr
             self.args = args
-                # `list` of expr
+            # `list` of expr
 
     class ShapeExpr(object):
         """Arity `_`."""
@@ -159,7 +159,7 @@ class Nodes(object):
 
         def __init__(self, name_shapes, expr):
             self.name_shapes = name_shapes  # signature
-                # `list` of `(str, ShapeExpr | ShapeOp)`
+            # `list` of `(str, ShapeExpr | ShapeOp)`
             self.expr = expr
 
     class TemporalSub(object):
@@ -203,14 +203,12 @@ class Nodes(object):
         def __init__(self, expr, pform):
             self.expr = expr
             self.pform = pform
-                # `Syntax` | `NamedLabel`
-                # | `IndexedLabel`
-                # form of parentheses
+            # `Syntax` | `NamedLabel`
+            # | `IndexedLabel`
+            # form of parentheses
 
         def __str__(self):
-            return 'Parens({e}, {p})'.format(
-                e=str(self.expr),
-                p=str(self.pform))
+            return "Parens({e}, {p})".format(e=str(self.expr), p=str(self.pform))
 
     class Syntax(object):
         """Signifies actual parentheses in source syntax."""
@@ -218,17 +216,15 @@ class Nodes(object):
     class NamedLabel(object):
         """Represents a named label."""
 
-        def __init__(
-                self, string, name_list):
+        def __init__(self, string, name_list):
             self.string = string  # `str`
             self.name_list = name_list
-                # `list` of `str`
+            # `list` of `str`
 
     class IndexedLabel(object):
         """Represents an indexed label."""
 
-        def __init__(
-                self, string, name_int_list):
+        def __init__(self, string, name_int_list):
             self.string = string  # `str`
             self.name_int_list = name_int_list
 
@@ -245,7 +241,7 @@ class Nodes(object):
 
         def __init__(self, definitions, expr):
             self.definitions = definitions
-                # `list` of `OperatorDef`
+            # `list` of `OperatorDef`
             self.expr = expr
 
     class Forall(object):
@@ -259,10 +255,10 @@ class Nodes(object):
 
         def __init__(self, quantifier, bounds, expr):
             self.quantifier = quantifier
-                # `Forall` | `Exists`
+            # `Forall` | `Exists`
             self.bounds = bounds
-                # `list` of
-                # `(str, Constant, Domain | NoDomain)`
+            # `list` of
+            # `(str, Constant, Domain | NoDomain)`
             self.expr = expr
 
     class TemporalQuantifier(object):
@@ -270,9 +266,9 @@ class Nodes(object):
 
         def __init__(self, quantifier, variables, expr):
             self.quantifier = quantifier
-                # `Forall` | `Exists`
+            # `Forall` | `Exists`
             self.variables = variables
-                # `list` of `str`
+            # `list` of `str`
             self.expr = expr
 
     class Choose(object):
@@ -310,8 +306,8 @@ class Nodes(object):
         def __init__(self, expr, boundeds):
             self.expr = expr
             self.boundeds = boundeds
-                # `list` of
-                # `(str, Constant, Domain)`
+            # `list` of
+            # `(str, Constant, Domain)`
 
     # type of junction list
     class And(object):
@@ -333,14 +329,14 @@ class Nodes(object):
 
         def __init__(self, items):
             self.items = items
-                # `list` of `(str, expr)`
+            # `list` of `(str, expr)`
 
     class RecordSet(object):
         """Set of records `[h: V, ...]`."""
 
         def __init__(self, items):
             self.items = items
-                # `list` of `(str, expr)`
+            # `list` of `(str, expr)`
 
     class Except_dot(object):
         """Dot syntax in `EXCEPT` `!.name = `."""
@@ -360,10 +356,10 @@ class Nodes(object):
         def __init__(self, expr, exspec_list):
             self.expr = expr
             self.exspec_list = exspec_list
-                # `exspec` is a tuple
-                # `(expoint list, expr)`
-                # where `expoint` is
-                # `Except_dot` | `Except_apply`
+            # `exspec` is a tuple
+            # `(expoint list, expr)`
+            # where `expoint` is
+            # `Except_dot` | `Except_apply`
 
     class Domain(object):
         """Domain bound."""
@@ -383,7 +379,7 @@ class Nodes(object):
         def __init__(self, expr, visibility):
             self.expr = expr
             self.visibility = visibility
-                # `Visible` | `Hidden`
+            # `Visible` | `Hidden`
 
     class Unbounded(object):
         """Operator declaration without bound."""
@@ -406,8 +402,8 @@ class Nodes(object):
     class At(object):
         def __init__(self, boolean):
             self.boolean = boolean  # `True` if `@`
-                # from `EXCEPT`, `False` if `@` from
-                # proof step.
+            # from `EXCEPT`, `False` if `@` from
+            # proof step.
 
     class Arrow(object):
         """Function set `[expr -> expr]`."""
@@ -428,7 +424,7 @@ class Nodes(object):
         def __init__(self, expr, sel_list):
             self.expr = expr
             self.sel_list = sel_list
-                # `list` of selector
+            # `list` of selector
 
     class WeakFairness(object):
         """Signifies operator `WF_`."""
@@ -464,12 +460,12 @@ class Nodes(object):
         def __init__(self, string, exprs):
             self.string = string
             self.exprs = exprs
-                # `list` of expr
+            # `list` of expr
 
     class SelInst(object):
         def __init__(self, exprs):
             self.exprs = exprs
-                # `list` of expr
+            # `list` of expr
 
     class SelNum(object):
         def __init__(self, num):
@@ -492,15 +488,14 @@ class Nodes(object):
 
         def __init__(self, context, goal):
             self.context = context  # `list` of
-                # `Fact` | `Flex` | `Fresh` | `Sequent`
+            # `Fact` | `Flex` | `Fresh` | `Sequent`
             self.goal = goal
 
     class Fact(object):
-        def __init__(
-                self, expr, visibility, time):
+        def __init__(self, expr, visibility, time):
             self.expr = expr
             self.visibility = visibility
-                # `Visible` | `Hidden`
+            # `Visible` | `Hidden`
             self.time = time  # `NotSet`
 
     # operator declarations
@@ -519,16 +514,16 @@ class Nodes(object):
         `CONSTANT`, `STATE`, `ACTION`,
         `TEMPORAL`.
         """
-        def __init__(
-                self, name, shape, kind, domain):
+
+        def __init__(self, name, shape, kind, domain):
             self.name = name  # `str`
             self.shape = shape
-                # `ShapeExpr` | `ShapeOp`
+            # `ShapeExpr` | `ShapeOp`
             self.kind = kind
-                # `Constant` | `State`
-                # | `Action` | `Temporal`
+            # `Constant` | `State`
+            # | `Action` | `Temporal`
             self.domain = domain
-                # `Bounded` | `Unbounded`
+            # `Bounded` | `Unbounded`
 
     # expression levels for operator declarations
     class Constant(object):
@@ -555,12 +550,12 @@ class Nodes(object):
 
         def __init__(self, name, args, module, sub):
             self.name = name  # name of operator
-                # in `INSTANCE` definition
-                # `str` | `None`
+            # in `INSTANCE` definition
+            # `str` | `None`
             self.args = args  # arguments of
-                # operator signature in
-                # `INSTANCE` definition
-                # `list` of `str` | `None`
+            # operator signature in
+            # `INSTANCE` definition
+            # `list` of `str` | `None`
             self.module = module  # `str`
             self.sub = sub  # `list` of `(str, expr)`
 
@@ -571,21 +566,21 @@ class Nodes(object):
 
         def __init__(self, declarations):
             self.declarations = declarations
-                # `list` of `(str, ShapeExpr | ShapeOp)`
+            # `list` of `(str, ShapeExpr | ShapeOp)`
 
     class Variables(object):
         """`VARIABLE` declarations in module scope."""
 
         def __init__(self, declarations):
             self.declarations = declarations
-                # `list` of `str`
+            # `list` of `str`
 
     class Recursives(object):
         """Recursive operator definition."""
 
         def __init__(self, declarations):
             self.declarations = declarations
-                # `list` of `(str, ShapeExpr | ShapeOp)`
+            # `list` of `(str, ShapeExpr | ShapeOp)`
 
     class Local(object):
         """Keyword `LOCAL`."""
@@ -599,16 +594,14 @@ class Nodes(object):
     class Definition(object):
         """Operator definition as module unit."""
 
-        def __init__(
-                self, definition, wheredef,
-                visibility, local):
+        def __init__(self, definition, wheredef, visibility, local):
             self.definition = definition
             self.wheredef = wheredef
-                # builtin | `User`
+            # builtin | `User`
             self.visibility = visibility
-                # `Visible` | `Hidden`
+            # `Visible` | `Hidden`
             self.local = local
-                # `Local` | `Export`
+            # `Local` | `Export`
 
     class AnonymousInstance(object):
         """`INSTANCE` statement without definition."""
@@ -622,10 +615,10 @@ class Nodes(object):
 
         def __init__(self, kind, usable):
             self.kind = kind
-                # `Hide` | `Use`
+            # `Hide` | `Use`
             self.usable = usable
-                # `dict(facts=list of expr,
-                #       defs=list of Dvar)`
+            # `dict(facts=list of expr,
+            #       defs=list of Dvar)`
 
     class ModuleHide(object):
         """Module-scope `HIDE`."""
@@ -639,12 +632,10 @@ class Nodes(object):
     class Module(object):
         """`MODULE`s and submodules."""
 
-        def __init__(
-                self, name,
-                extendees, instancees, body):
+        def __init__(self, name, extendees, instancees, body):
             self.name = name  # `str`
             self.extendees = extendees
-                # `list` of `str`
+            # `list` of `str`
             self.instancees = instancees  # `list`
             self.body = body  # `list` of
             # `Definition` | `Mutate`
@@ -694,8 +685,8 @@ class Nodes(object):
             self.supp = supp
             self.only = only  # `Default` | `Only`
             self.usable = usable
-                # `dict(facts=list of expr,
-                #       defs=list of Dvar)`
+            # `dict(facts=list of expr,
+            #       defs=list of Dvar)`
             self.method = method
 
     class PreObvious(object):
@@ -710,7 +701,7 @@ class Nodes(object):
 
         def __init__(self, omission):
             self.omission = omission
-                # `Explicit` | `Implicit`
+            # `Explicit` | `Implicit`
 
     class Explicit(object):
         """Explicitly omitted proof."""
@@ -816,8 +807,8 @@ class Nodes(object):
             self.name = name  # `str` | `None`
             self.body = body  # `Sequent`
             self.proof = proof
-                # `Omitted` | `Obvious`
-                # | `Steps` | `By`
+            # `Omitted` | `Obvious`
+            # | `Steps` | `By`
 
     # Step numbers
 
@@ -852,8 +843,8 @@ class Nodes(object):
 
         def __init__(self, usable, only):
             self.usable = usable
-                # `dict(facts=list of expr,
-                #       defs=list of Dvar)`
+            # `dict(facts=list of expr,
+            #       defs=list of Dvar)`
             self.only = only  # `bool`
 
     class Steps(object):
@@ -872,8 +863,8 @@ class Nodes(object):
 
         def __init__(self, usable):
             self.usable = usable
-                # `dict(facts=list of expr,
-                #       defs=list of Dvar)`
+            # `dict(facts=list of expr,
+            #       defs=list of Dvar)`
 
     class Define(object):
         """`DEFINE` statement."""
@@ -890,8 +881,8 @@ class Nodes(object):
         def __init__(self, sequent, proof):
             self.sequent = sequent  # `Sequent`
             self.proof = proof
-                # `Omitted` | `Obvious`
-                # | `Steps` | `By`
+            # `Omitted` | `Obvious`
+            # | `Steps` | `By`
 
     class Suffices(object):
         """`SUFFICES` statement."""
@@ -899,8 +890,8 @@ class Nodes(object):
         def __init__(self, sequent, proof):
             self.sequent = sequent
             self.proof = proof
-                # `Omitted` | `Obvious`
-                # | `Steps` | `By`
+            # `Omitted` | `Obvious`
+            # | `Steps` | `By`
 
     class Pcase(object):
         """`CASE` proof statement."""
@@ -908,28 +899,28 @@ class Nodes(object):
         def __init__(self, expr, proof):
             self.expr = expr
             self.proof = proof
-                # `Omitted` | `Obvious`
-                # | `Steps` | `By`
+            # `Omitted` | `Obvious`
+            # | `Steps` | `By`
 
     class Pick(object):
         """`PICK` statement."""
 
         def __init__(self, bounds, expr, proof):
             self.bounds = bounds  # `list` of
-                # `(str, Constant,
-                #   Domain | NoDomain | Ditto)`
+            # `(str, Constant,
+            #   Domain | NoDomain | Ditto)`
             self.expr = expr
             self.proof = proof
-                # `Omitted` | `Obvious`
-                # | `Steps` | `By`
+            # `Omitted` | `Obvious`
+            # | `Steps` | `By`
 
     class Use(object):
         """`USE` statement."""
 
         def __init__(self, usable, only):
             self.usable = usable
-                # `dict(facts=list of expr,
-                #       defs=list of Dvar)`
+            # `dict(facts=list of expr,
+            #       defs=list of Dvar)`
             self.only = only  # `bool`
 
     class Have(object):
@@ -943,16 +934,16 @@ class Nodes(object):
 
         def __init__(self, bounds):
             self.bounds = bounds
-                # `list` of
-                # `(str, Constant,
-                #   Domain | NoDomain | Ditto)`
+            # `list` of
+            # `(str, Constant,
+            #   Domain | NoDomain | Ditto)`
 
     class Witness(object):
         """`WITNESS` statement."""
 
         def __init__(self, exprs):
             self.exprs = exprs
-                # `list` of expr
+            # `list` of expr
 
     class Qed(object):
         """`QED` statement."""
@@ -988,4 +979,4 @@ class Nodes(object):
             self.name = name  # as in `OperatorDef`
             self.expr = expr  # as in `OperatorDef`
             self.backend_args = backend_args
-                # `list` of `(str, Bstring | Bfloat | Bdef)`
+            # `list` of `(str, Bstring | Bfloat | Bdef)`

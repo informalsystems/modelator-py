@@ -12,16 +12,16 @@ Init ==
     /\ x = "hello"
     /\ y = 42
 
-Next == 
+Next ==
     /\ x' = IF x = "hello" THEN "world" ELSE "hello"
     /\ y' = 42-y
 
-Inv == 
+Inv ==
     ~
     (
         /\ x = "world"
         /\ y = 0
     )
-    
+
 
 ===========================================
