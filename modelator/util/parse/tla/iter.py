@@ -13,29 +13,24 @@
 import math
 import textwrap
 
-from tla.to_str import Nodes as _Nodes
+from .to_str import Nodes as _Nodes
 
 
 LINE_WIDTH = 80
 INDENT_WIDTH = 4
 
 
-def _visit_bounds(
-        bounds, *arg, visitor=None, **kw):
+def _visit_bounds(bounds, *arg, visitor=None, **kw):
     """Call the `visit` method of each bound."""
     for name, kind, dom in bounds:
-        dom.visit(
-            *arg, visitor=visitor, **kw)
+        dom.visit(*arg, visitor=visitor, **kw)
 
 
-def _visit_usable(
-        usable, *arg, visitor=None, **kw):
-    for fact in usable['facts']:
-        fact.visit(
-            *arg, visitor=visitor, **kw)
-    for defn in usable['defs']:
-        defn.visit(
-            *arg, visitor=visitor, **kw)
+def _visit_usable(usable, *arg, visitor=None, **kw):
+    for fact in usable["facts"]:
+        fact.visit(*arg, visitor=visitor, **kw)
+    for defn in usable["defs"]:
+        defn.visit(*arg, visitor=visitor, **kw)
 
 
 class Nodes(_Nodes):
@@ -161,35 +156,27 @@ class Nodes(_Nodes):
 
     class Internal(_Nodes.Internal):
         def visit(self, *arg, visitor=None, **kw):
-            self.value.visit(
-                *arg, visitor=visitor, **kw)
+            self.value.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Apply(_Nodes.Apply):
         def visit(self, *arg, visitor=None, **kw):
-            self.op.visit(
-                *arg, visitor=visitor, **kw)
+            self.op.visit(*arg, visitor=visitor, **kw)
             for arg_ in self.operands:
-                arg_.visit(
-                    *arg, visitor=visitor, **kw)
+                arg_.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Function(_Nodes.Function):
         def visit(self, *arg, visitor=None, **kw):
-            _visit_bounds(
-                self.bounds,
-                *arg, visitor=visitor, **kw)
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            _visit_bounds(self.bounds, *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class FunctionApply(_Nodes.FunctionApply):
         def visit(self, *arg, visitor=None, **kw):
-            self.op.visit(
-                *arg, visitor=visitor, **kw)
+            self.op.visit(*arg, visitor=visitor, **kw)
             for arg_ in self.args:
-                arg_.visit(
-                    *arg, visitor=visitor, **kw)
+                arg_.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class ShapeExpr(_Nodes.ShapeExpr):
@@ -203,30 +190,22 @@ class Nodes(_Nodes):
     class Lambda(_Nodes.Lambda):
         def visit(self, *arg, visitor=None, **kw):
             for name, shape in self.name_shapes:
-                shape.visit(
-                    *arg, visitor=visitor, **kw)
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+                shape.visit(*arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class TemporalSub(_Nodes.TemporalSub):
         def visit(self, *arg, visitor=None, **kw):
-            self.op.visit(
-                *arg, visitor=visitor, **kw)
-            self.action.visit(
-                *arg, visitor=visitor, **kw)
-            self.subscript.visit(
-                *arg, visitor=visitor, **kw)
+            self.op.visit(*arg, visitor=visitor, **kw)
+            self.action.visit(*arg, visitor=visitor, **kw)
+            self.subscript.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Sub(_Nodes.Sub):
         def visit(self, *arg, visitor=None, **kw):
-            self.op.visit(
-                *arg, visitor=visitor, **kw)
-            self.action.visit(
-                *arg, visitor=visitor, **kw)
-            self.subscript.visit(
-                *arg, visitor=visitor, **kw)
+            self.op.visit(*arg, visitor=visitor, **kw)
+            self.action.visit(*arg, visitor=visitor, **kw)
+            self.subscript.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class BoxOp(_Nodes.BoxOp):
@@ -239,16 +218,13 @@ class Nodes(_Nodes):
 
     class Dot(_Nodes.Dot):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Parens(_Nodes.Parens):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
-            self.pform.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
+            self.pform.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Syntax(_Nodes.Syntax):
@@ -265,21 +241,16 @@ class Nodes(_Nodes):
 
     class If(_Nodes.If):
         def visit(self, *arg, visitor=None, **kw):
-            self.test.visit(
-                *arg, visitor=visitor, **kw)
-            self.then.visit(
-                *arg, visitor=visitor, **kw)
-            self.else_.visit(
-                *arg, visitor=visitor, **kw)
+            self.test.visit(*arg, visitor=visitor, **kw)
+            self.then.visit(*arg, visitor=visitor, **kw)
+            self.else_.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Let(_Nodes.Let):
         def visit(self, *arg, visitor=None, **kw):
             for defn in self.definitions:
-                defn.visit(
-                    *arg, visitor=visitor, **kw)
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+                defn.visit(*arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Forall(_Nodes.Forall):
@@ -292,65 +263,48 @@ class Nodes(_Nodes):
 
     class RigidQuantifier(_Nodes.RigidQuantifier):
         def visit(self, *arg, visitor=None, **kw):
-            self.quantifier.visit(
-                *arg, visitor=visitor, **kw)
-            _visit_bounds(
-                self.bounds,
-                *arg, visitor=visitor, **kw)
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            self.quantifier.visit(*arg, visitor=visitor, **kw)
+            _visit_bounds(self.bounds, *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class TemporalQuantifier(_Nodes.TemporalQuantifier):
         def visit(self, *arg, visitor=None, **kw):
-            self.quantifier.visit(
-                *arg, visitor=visitor, **kw)
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            self.quantifier.visit(*arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Choose(_Nodes.Choose):
         def visit(self, *arg, visitor=None, **kw):
             if self.bound is not None:
-                self.bound.visit(
-                    *arg, visitor=visitor, **kw)
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+                self.bound.visit(*arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Case(_Nodes.Case):
         def visit(self, *arg, visitor=None, **kw):
             for guard, expr in self.arms:
-                guard.visit(
-                    *arg, visitor=visitor, **kw)
-                expr.visit(
-                    *arg, visitor=visitor, **kw)
-            self.other.visit(
-                *arg, visitor=visitor, **kw)
+                guard.visit(*arg, visitor=visitor, **kw)
+                expr.visit(*arg, visitor=visitor, **kw)
+            self.other.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class SetEnum(_Nodes.SetEnum):
         def visit(self, *arg, visitor=None, **kw):
             for expr in self.exprs:
-                expr.visit(
-                    *arg, visitor=visitor, **kw)
+                expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class SetSt(_Nodes.SetSt):
         def visit(self, *arg, visitor=None, **kw):
-            self.bound.visit(
-                *arg, visitor=visitor, **kw)
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            self.bound.visit(*arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class SetOf(_Nodes.SetOf):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
-            _visit_bounds(
-                self.boundeds,
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
+            _visit_bounds(self.boundeds, *arg, visitor=visitor, **kw)
             visitor(self)
 
     # type of junction list
@@ -364,25 +318,21 @@ class Nodes(_Nodes):
 
     class List(_Nodes.List):
         def visit(self, *arg, visitor=None, **kw):
-            self.op.visit(
-                *arg, visitor=visitor, **kw)
+            self.op.visit(*arg, visitor=visitor, **kw)
             for expr in self.exprs:
-                expr.visit(
-                    *arg, visitor=visitor, **kw)
+                expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Record(_Nodes.Record):
         def visit(self, *arg, visitor=None, **kw):
             for name, expr in self.items:
-                expr.visit(
-                    *arg, visitor=visitor, **kw)
+                expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class RecordSet(_Nodes.RecordSet):
         def visit(self, *arg, visitor=None, **kw):
             for name, expr in self.items:
-                expr.visit(
-                    *arg, visitor=visitor, **kw)
+                expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Except_dot(_Nodes.Except_dot):
@@ -391,26 +341,21 @@ class Nodes(_Nodes):
 
     class Except_apply(_Nodes.Except_apply):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Except(_Nodes.Except):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             for expoints, expr in self.exspec_list:
-                expr.visit(
-                    *arg, visitor=visitor, **kw)
+                expr.visit(*arg, visitor=visitor, **kw)
                 for expoint in expoints:
-                    expoint.visit(
-                        *arg, visitor=visitor, **kw)
+                    expoint.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Domain(_Nodes.Domain):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class NoDomain(_Nodes.NoDomain):
@@ -423,10 +368,8 @@ class Nodes(_Nodes):
 
     class Bounded(_Nodes.Bounded):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
-            self.visibility.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
+            self.visibility.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Unbounded(_Nodes.Unbounded):
@@ -451,26 +394,21 @@ class Nodes(_Nodes):
 
     class Arrow(_Nodes.Arrow):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr1.visit(
-                *arg, visitor=visitor, **kw)
-            self.expr2.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr1.visit(*arg, visitor=visitor, **kw)
+            self.expr2.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Tuple(_Nodes.Tuple):
         def visit(self, *arg, visitor=None, **kw):
             for expr in self.exprs:
-                expr.visit(
-                    *arg, visitor=visitor, **kw)
+                expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Bang(_Nodes.Bang):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             for sel in self.sel_list:
-                sel.visit(
-                    *arg, visitor=visitor, **kw)
+                sel.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class WeakFairness(_Nodes.WeakFairness):
@@ -491,19 +429,15 @@ class Nodes(_Nodes):
 
     class Fairness(_Nodes.Fairness):
         def visit(self, *arg, visitor=None, **kw):
-            self.op.visit(
-                *arg, visitor=visitor, **kw)
-            self.subscript.visit(
-                *arg, visitor=visitor, **kw)
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            self.op.visit(*arg, visitor=visitor, **kw)
+            self.subscript.visit(*arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class SelLab(_Nodes.SelLab):
         def visit(self, *arg, visitor=None, **kw):
             for expr in self.exprs:
-                expr.visit(
-                    *arg, visitor=visitor, **kw)
+                expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class SelInst(_Nodes.SelInst):
@@ -533,20 +467,15 @@ class Nodes(_Nodes):
     class Sequent(_Nodes.Sequent):
         def visit(self, *arg, visitor=None, **kw):
             for item in self.context:
-                item.visit(
-                    *arg, visitor=visitor, **kw)
-            self.goal.visit(
-                *arg, visitor=visitor, **kw)
+                item.visit(*arg, visitor=visitor, **kw)
+            self.goal.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Fact(_Nodes.Fact):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
-            self.visibility.visit(
-                *arg, visitor=visitor, **kw)
-            self.time.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
+            self.visibility.visit(*arg, visitor=visitor, **kw)
+            self.time.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     # operator declarations
@@ -557,12 +486,9 @@ class Nodes(_Nodes):
 
     class Fresh(_Nodes.Fresh):
         def visit(self, *arg, visitor=None, **kw):
-            self.shape.visit(
-                *arg, visitor=visitor, **kw)
-            self.kind.visit(
-                *arg, visitor=visitor, **kw)
-            self.domain.visit(
-                *arg, visitor=visitor, **kw)
+            self.shape.visit(*arg, visitor=visitor, **kw)
+            self.kind.visit(*arg, visitor=visitor, **kw)
+            self.domain.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Constant(_Nodes.Constant):
@@ -583,15 +509,13 @@ class Nodes(_Nodes):
 
     class OperatorDef(_Nodes.OperatorDef):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Instance(_Nodes.Instance):
         def visit(self, *arg, visitor=None, **kw):
             for name, expr in self.sub:
-                expr.visit(
-                    *arg, visitor=visitor, **kw)
+                expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     # Syntax nodes of module elements
@@ -599,8 +523,7 @@ class Nodes(_Nodes):
     class Constants(_Nodes.Constants):
         def visit(self, *arg, visitor=None, **kw):
             for name, shape in self.declarations:
-                shape.visit(
-                    *arg, visitor=visitor, **kw)
+                shape.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Variables(_Nodes.Variables):
@@ -609,7 +532,7 @@ class Nodes(_Nodes):
 
     class Recursives(_Nodes.Recursives):
         def visit(self, *arg, visitor=None, **kw):
-            raise NotImplementedError('RECURSIVE')
+            raise NotImplementedError("RECURSIVE")
 
     class Local(_Nodes.Local):
         def visit(self, *arg, visitor=None, **kw):
@@ -625,31 +548,22 @@ class Nodes(_Nodes):
 
     class Definition(_Nodes.Definition):
         def visit(self, *arg, visitor=None, **kw):
-            self.definition.visit(
-                *arg, visitor=visitor, **kw)
-            self.wheredef.visit(
-                *arg, visitor=visitor, **kw)
-            self.visibility.visit(
-                *arg, visitor=visitor, **kw)
-            self.local.visit(
-                *arg, visitor=visitor, **kw)
+            self.definition.visit(*arg, visitor=visitor, **kw)
+            self.wheredef.visit(*arg, visitor=visitor, **kw)
+            self.visibility.visit(*arg, visitor=visitor, **kw)
+            self.local.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class AnonymousInstance(_Nodes.AnonymousInstance):
         def visit(self, *arg, visitor=None, **kw):
-            self.instance.visit(
-                *arg, visitor=visitor, **kw)
-            self.local.visit(
-                *arg, visitor=visitor, **kw)
+            self.instance.visit(*arg, visitor=visitor, **kw)
+            self.local.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Mutate(_Nodes.Mutate):
         def visit(self, *arg, visitor=None, **kw):
-            self.kind.visit(
-                *arg, visitor=visitor, **kw)
-            _visit_usable(
-                self.usable,
-                *arg, visitor=visitor, **kw)
+            self.kind.visit(*arg, visitor=visitor, **kw)
+            _visit_usable(self.usable, *arg, visitor=visitor, **kw)
             visitor(self)
 
     class ModuleHide(_Nodes.Hide):
@@ -663,14 +577,12 @@ class Nodes(_Nodes):
     class Module(_Nodes.Module):
         def visit(self, *arg, visitor=None, **kw):
             for unit in self.body:
-                unit.visit(
-                    *arg, visitor=visitor, **kw)
+                unit.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Submodule(_Nodes.Submodule):
         def visit(self, *arg, visitor=None, **kw):
-            self.module.visit(
-                *arg, visitor=visitor, **kw)
+            self.module.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Suppress(_Nodes.Suppress):
@@ -751,10 +663,8 @@ class Nodes(_Nodes):
 
     class Theorem(_Nodes.Theorem):
         def visit(self, *arg, visitor=None, **kw):
-            self.body.visit(
-                *arg, visitor=visitor, **kw)
-            self.proof.visit(
-                *arg, visitor=visitor, **kw)
+            self.body.visit(*arg, visitor=visitor, **kw)
+            self.proof.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Named(_Nodes.Named):
@@ -773,108 +683,83 @@ class Nodes(_Nodes):
 
     class Omitted(_Nodes.Omitted):
         def visit(self, *arg, visitor=None, **kw):
-            self.omission.visit(
-                *arg, visitor=visitor, **kw)
+            self.omission.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class By(_Nodes.By):
         def visit(self, *arg, visitor=None, **kw):
-            _visit_usable(
-                self.usable,
-                *arg, visitor=visitor, **kw)
+            _visit_usable(self.usable, *arg, visitor=visitor, **kw)
             visitor(self)
 
     class Steps(_Nodes.Steps):
         def visit(self, *arg, visitor=None, **kw):
             for step in self.steps:
-                step.visit(
-                    *arg, visitor=visitor, **kw)
-            self.qed_step.visit(
-                *arg, visitor=visitor, **kw)
+                step.visit(*arg, visitor=visitor, **kw)
+            self.qed_step.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     # Proof steps
 
     class Hide(_Nodes.Hide):
         def visit(self, *arg, visitor=None, **kw):
-            _visit_usable(
-                self.usable,
-                *arg, visitor=visitor, **kw)
+            _visit_usable(self.usable, *arg, visitor=visitor, **kw)
             visitor(self)
 
     class Define(_Nodes.Define):
         def visit(self, *arg, visitor=None, **kw):
             for defn in self.definitions:
-                defn.visit(
-                    *arg, visitor=visitor, **kw)
+                defn.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Assert(_Nodes.Assert):
         def visit(self, *arg, visitor=None, **kw):
-            self.sequent.visit(
-                *arg, visitor=visitor, **kw)
-            self.proof.visit(
-                *arg, visitor=visitor, **kw)
+            self.sequent.visit(*arg, visitor=visitor, **kw)
+            self.proof.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Suffices(_Nodes.Suffices):
         def visit(self, *arg, visitor=None, **kw):
-            self.sequent.visit(
-                *arg, visitor=visitor, **kw)
-            self.proof.visit(
-                *arg, visitor=visitor, **kw)
+            self.sequent.visit(*arg, visitor=visitor, **kw)
+            self.proof.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Pcase(_Nodes.Pcase):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
-            self.proof.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
+            self.proof.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Pick(_Nodes.Pick):
         def visit(self, *arg, visitor=None, **kw):
-            _visit_bounds(
-                self.bounds,
-                *arg, visitor=visitor, **kw)
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
-            self.proof.visit(
-                *arg, visitor=visitor, **kw)
+            _visit_bounds(self.bounds, *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
+            self.proof.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Use(_Nodes.Use):
         def visit(self, *arg, visitor=None, **kw):
-            _visit_usable(
-                self.usable,
-                *arg, visitor=visitor, **kw)
+            _visit_usable(self.usable, *arg, visitor=visitor, **kw)
             visitor(self)
 
     class Have(_Nodes.Have):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Take(_Nodes.Take):
         def visit(self, *arg, visitor=None, **kw):
-            _visit_bounds(
-                self.bounds,
-                *arg, visitor=visitor, **kw)
+            _visit_bounds(self.bounds, *arg, visitor=visitor, **kw)
             visitor(self)
 
     class Witness(_Nodes.Witness):
         def visit(self, *arg, visitor=None, **kw):
             for expr in self.exprs:
-                expr.visit(
-                    *arg, visitor=visitor, **kw)
+                expr.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Qed(_Nodes.Qed):
         def visit(self, *arg, visitor=None, **kw):
-            self.proof.visit(
-                *arg, visitor=visitor, **kw)
+            self.proof.visit(*arg, visitor=visitor, **kw)
             visitor(self)
 
     class Dvar(_Nodes.Dvar):
@@ -895,9 +780,7 @@ class Nodes(_Nodes):
 
     class BackendPragma(_Nodes.BackendPragma):
         def visit(self, *arg, visitor=None, **kw):
-            self.expr.visit(
-                *arg, visitor=visitor, **kw)
+            self.expr.visit(*arg, visitor=visitor, **kw)
             for name, arg_ in self.backend_args:
-                arg_.visit(
-                    *arg, visitor=visitor, **kw)
+                arg_.visit(*arg, visitor=visitor, **kw)
             visitor(self)

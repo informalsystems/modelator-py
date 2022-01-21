@@ -9,7 +9,8 @@
 #
 import pprint
 
-from tla.ast import Nodes as nodes
+from .ast import Nodes as nodes
+
 # open Builtin
 
 
@@ -61,7 +62,7 @@ class Non(Assoc):
 #   | Logic | Sets | Modal
 #     (* user-definable operators *)
 #   | User
-dom = {'Logic', 'Sets', 'Modal', 'User'}
+dom = {"Logic", "Sets", "Modal", "User"}
 
 
 # type prec = int * int
@@ -194,115 +195,129 @@ def withdef(tuple_):
 # ]
 def _generate_tlaops():
     tlaops = [
-        ('Logic', [
-            ('=>', (1, 1), Infix(Non()), list(), nodes.Implies()),
-            ('<=>', (2, 2), Infix(Non()), ['\\equiv'], nodes.Equiv()),
-            ('/\\', (3, 3), Infix(Left()), ['\\land'], nodes.Conj()),
-            ('\\/', (3, 3), Infix(Left()), ['\\lor'], nodes.Disj()),
-            ('~', (4, 4), Prefix(), ['\\neg', '\\lnot'], nodes.Neg()),
-            ('=', (5, 5), Infix(Non()), list(), nodes.Eq()),
-            ('#', (5, 5), Infix(Non()), ['/='], nodes.Neq()),
-            ]),
-        ('Sets', [
-            ('SUBSET', (8, 8), Prefix(), list(), nodes.SUBSET()),
-            ('UNION', (8, 8), Prefix(), list(), nodes.UNION()),
-            ('DOMAIN', (9, 9), Prefix(), list(), nodes.DOMAIN()),
-            ('\\subseteq', (5, 5), Infix(Non()), list(), nodes.Subseteq()),
-            ('\\in', (5, 5), Infix(Non()), list(), nodes.Mem()),
-            ('\\notin', (5, 5), Infix(Non()), [], nodes.Notmem()),
-            ('\\', (8, 8), Infix(Non()), ['\\setminus'], nodes.Setminus()),
-            ('\\cap', (8, 8), Infix(Left()), ['\\intersect'], nodes.Cap()),
-            ('\\cup', (8, 8), Infix(Left()), ['\\union'], nodes.Cup()),
-            ('\\X', (10, 13), Infix(Non()), ['\\times'], None),
-            ]),
-        ('Modal', [
-            ("'", (15, 15), Postfix(), list(), nodes.Prime()),
-            ('~>', (2, 2), Infix(Non()), ['\\leadsto'], nodes.LeadsTo()),
-            ('ENABLED', (4, 15), Prefix(), list(), nodes.ENABLED()),
-            ('UNCHANGED', (4, 15), Prefix(), list(), nodes.UNCHANGED()),
-            ('\\cdot', (5, 14), Infix(Left()), list(), nodes.Cdot()),
-            ('-+->', (2, 2), Infix(Non()), list(), nodes.WhilePlus()),
-            ('[]', (4, 15), Prefix(), list(), nodes.Box(True)),
-            ('<>', (4, 15), Prefix(), list(), nodes.Diamond()),
-            ]),
-        ('User', [(name, prec, fix, als, None)
+        (
+            "Logic",
+            [
+                ("=>", (1, 1), Infix(Non()), list(), nodes.Implies()),
+                ("<=>", (2, 2), Infix(Non()), ["\\equiv"], nodes.Equiv()),
+                ("/\\", (3, 3), Infix(Left()), ["\\land"], nodes.Conj()),
+                ("\\/", (3, 3), Infix(Left()), ["\\lor"], nodes.Disj()),
+                ("~", (4, 4), Prefix(), ["\\neg", "\\lnot"], nodes.Neg()),
+                ("=", (5, 5), Infix(Non()), list(), nodes.Eq()),
+                ("#", (5, 5), Infix(Non()), ["/="], nodes.Neq()),
+            ],
+        ),
+        (
+            "Sets",
+            [
+                ("SUBSET", (8, 8), Prefix(), list(), nodes.SUBSET()),
+                ("UNION", (8, 8), Prefix(), list(), nodes.UNION()),
+                ("DOMAIN", (9, 9), Prefix(), list(), nodes.DOMAIN()),
+                ("\\subseteq", (5, 5), Infix(Non()), list(), nodes.Subseteq()),
+                ("\\in", (5, 5), Infix(Non()), list(), nodes.Mem()),
+                ("\\notin", (5, 5), Infix(Non()), [], nodes.Notmem()),
+                ("\\", (8, 8), Infix(Non()), ["\\setminus"], nodes.Setminus()),
+                ("\\cap", (8, 8), Infix(Left()), ["\\intersect"], nodes.Cap()),
+                ("\\cup", (8, 8), Infix(Left()), ["\\union"], nodes.Cup()),
+                ("\\X", (10, 13), Infix(Non()), ["\\times"], None),
+            ],
+        ),
+        (
+            "Modal",
+            [
+                ("'", (15, 15), Postfix(), list(), nodes.Prime()),
+                ("~>", (2, 2), Infix(Non()), ["\\leadsto"], nodes.LeadsTo()),
+                ("ENABLED", (4, 15), Prefix(), list(), nodes.ENABLED()),
+                ("UNCHANGED", (4, 15), Prefix(), list(), nodes.UNCHANGED()),
+                ("\\cdot", (5, 14), Infix(Left()), list(), nodes.Cdot()),
+                ("-+->", (2, 2), Infix(Non()), list(), nodes.WhilePlus()),
+                ("[]", (4, 15), Prefix(), list(), nodes.Box(True)),
+                ("<>", (4, 15), Prefix(), list(), nodes.Diamond()),
+            ],
+        ),
+        (
+            "User",
+            [
+                (name, prec, fix, als, None)
                 for name, prec, fix, als in [
-            ('^', (14, 14), Infix(Non()), list()),
-            ('/', (13, 13), Infix(Non()), list()),
-            ('*', (13, 13), Infix(Left()), list()),
-            ('-.', (12, 12), Prefix(), ['-']),
-            ('-', (11, 11), Infix(Left()), list()),
-            ('+', (10, 10), Infix(Left()), list()),
-            ('^+', (15, 15), Postfix(), list()),
-            ('^*', (15, 15), Postfix(), list()),
-            ('^#', (15, 15), Postfix(), list()),
-            ('<', (5, 5), Infix(Non()), list()),
-            ('=<', (5, 5), Infix(Non()), ['<=', '\\leq']),
-            ('>', (5, 5), Infix(Non()), list()),
-            ('>=', (5, 5), Infix(Non()), ['\\geq']),
-            ('...', (9, 9), Infix(Non()), list()),
-            ('..', (9, 9), Infix(Non()), list()),
-            ('|', (10, 11), Infix(Left()), list()),
-            ('||', (10, 11), Infix(Left()), list()),
-            ('&&', (13, 13), Infix(Left()), list()),
-            ('&', (13, 13), Infix(Left()), list()),
-            ('$$', (9, 13), Infix(Left()), list()),
-            ('$', (9, 13), Infix(Left()), list()),
-            ('??', (9, 13), Infix(Left()), list()),
-            ('%%', (10, 11), Infix(Left()), list()),
-            ('%', (10, 11), Infix(Left()), ['\\mod']),
-            ('##', (9, 13), Infix(Left()), list()),
-            ('++', (10, 10), Infix(Left()), list()),
-            ('--', (11, 11), Infix(Left()), list()),
-            ('**', (13, 13), Infix(Left()), list()),
-            ('//', (13, 13), Infix(Non()), list()),
-            ('^^', (14, 14), Infix(Non()), list()),
-            ('@@', (6, 6), Infix(Left()), list()),
-            ('!!', (9,13), Infix(Non()), list()),
-            ('|-', (5, 5), Infix(Non()), list()),
-            ('|=', (5, 5), Infix(Non()), list()),
-            ('-|', (5, 5), Infix(Non()), list()),
-            ('=|', (5, 5), Infix(Non()), list()),
-            ('<:', (7, 7), Infix(Non()), list()),
-            (':>', (7, 7), Infix(Non()), list()),
-            (':=', (5, 5), Infix(Non()), list()),
-            ('::=', (5, 5), Infix(Non()), list()),
-            ('(+)', (10, 10), Infix(Left()), ['\\oplus']),
-            ('(-)', (11, 11), Infix(Left()), ['\\ominus']),
-            ('(.)', (13, 13), Infix(Left()), ['\\odot']),
-            ('(/)', (13, 13), Infix(Non()), ['\\oslash']),
-            ('(\\X)', (13, 13), Infix(Left()), ['\\otimes']),
-            ('\\uplus', (9, 13), Infix(Left()), list()),
-            ('\\sqcap', (9, 13), Infix(Left()), list()),
-            ('\\sqcup', (9, 13), Infix(Left()), list()),
-            ('\\div', (13, 13), Infix(Non()), list()),
-            ('\\wr', (9, 14), Infix(Non()), list()),
-            ('\\star', (13, 13), Infix(Left()), list()),
-            ('\\o', (13, 13), Infix(Left()), ['\\circ']),
-            ('\\bigcirc', (13, 13), Infix(Left()), list()),
-            ('\\bullet', (13, 13), Infix(Left()), list()),
-            ('\\prec', (5, 5), Infix(Non()), list()),
-            ('\\succ', (5, 5), Infix(Non()), list()),
-            ('\\preceq', (5, 5), Infix(Non()), list()),
-            ('\\succeq', (5, 5), Infix(Non()), list()),
-            ('\\sim', (5, 5), Infix(Non()), list()),
-            ('\\simeq', (5, 5), Infix(Non()), list()),
-            ('\\ll', (5, 5), Infix(Non()), list()),
-            ('\\gg', (5, 5), Infix(Non()), list()),
-            ('\\asymp', (5, 5), Infix(Non()), list()),
-            ('\\subset', (5, 5), Infix(Non()), list()),
-            ('\\supset', (5, 5), Infix(Non()), list()),
-            ('\\supseteq', (5, 5), Infix(Non()), list()),
-            ('\\approx', (5, 5), Infix(Non()), list()),
-            ('\\cong', (5, 5), Infix(Non()), list()),
-            ('\\sqsubset', (5, 5), Infix(Non()), list()),
-            ('\\sqsubseteq', (5, 5), Infix(Non()), list()),
-            ('\\sqsupset', (5, 5), Infix(Non()), list()),
-            ('\\sqsupseteq', (5, 5), Infix(Non()), list()),
-            ('\\doteq', (5, 5), Infix(Non()), list()),
-            ('\\propto', (5, 5), Infix(Non()), list()),
-            ]])
-        ]
+                    ("^", (14, 14), Infix(Non()), list()),
+                    ("/", (13, 13), Infix(Non()), list()),
+                    ("*", (13, 13), Infix(Left()), list()),
+                    ("-.", (12, 12), Prefix(), ["-"]),
+                    ("-", (11, 11), Infix(Left()), list()),
+                    ("+", (10, 10), Infix(Left()), list()),
+                    ("^+", (15, 15), Postfix(), list()),
+                    ("^*", (15, 15), Postfix(), list()),
+                    ("^#", (15, 15), Postfix(), list()),
+                    ("<", (5, 5), Infix(Non()), list()),
+                    ("=<", (5, 5), Infix(Non()), ["<=", "\\leq"]),
+                    (">", (5, 5), Infix(Non()), list()),
+                    (">=", (5, 5), Infix(Non()), ["\\geq"]),
+                    ("...", (9, 9), Infix(Non()), list()),
+                    ("..", (9, 9), Infix(Non()), list()),
+                    ("|", (10, 11), Infix(Left()), list()),
+                    ("||", (10, 11), Infix(Left()), list()),
+                    ("&&", (13, 13), Infix(Left()), list()),
+                    ("&", (13, 13), Infix(Left()), list()),
+                    ("$$", (9, 13), Infix(Left()), list()),
+                    ("$", (9, 13), Infix(Left()), list()),
+                    ("??", (9, 13), Infix(Left()), list()),
+                    ("%%", (10, 11), Infix(Left()), list()),
+                    ("%", (10, 11), Infix(Left()), ["\\mod"]),
+                    ("##", (9, 13), Infix(Left()), list()),
+                    ("++", (10, 10), Infix(Left()), list()),
+                    ("--", (11, 11), Infix(Left()), list()),
+                    ("**", (13, 13), Infix(Left()), list()),
+                    ("//", (13, 13), Infix(Non()), list()),
+                    ("^^", (14, 14), Infix(Non()), list()),
+                    ("@@", (6, 6), Infix(Left()), list()),
+                    ("!!", (9, 13), Infix(Non()), list()),
+                    ("|-", (5, 5), Infix(Non()), list()),
+                    ("|=", (5, 5), Infix(Non()), list()),
+                    ("-|", (5, 5), Infix(Non()), list()),
+                    ("=|", (5, 5), Infix(Non()), list()),
+                    ("<:", (7, 7), Infix(Non()), list()),
+                    (":>", (7, 7), Infix(Non()), list()),
+                    (":=", (5, 5), Infix(Non()), list()),
+                    ("::=", (5, 5), Infix(Non()), list()),
+                    ("(+)", (10, 10), Infix(Left()), ["\\oplus"]),
+                    ("(-)", (11, 11), Infix(Left()), ["\\ominus"]),
+                    ("(.)", (13, 13), Infix(Left()), ["\\odot"]),
+                    ("(/)", (13, 13), Infix(Non()), ["\\oslash"]),
+                    ("(\\X)", (13, 13), Infix(Left()), ["\\otimes"]),
+                    ("\\uplus", (9, 13), Infix(Left()), list()),
+                    ("\\sqcap", (9, 13), Infix(Left()), list()),
+                    ("\\sqcup", (9, 13), Infix(Left()), list()),
+                    ("\\div", (13, 13), Infix(Non()), list()),
+                    ("\\wr", (9, 14), Infix(Non()), list()),
+                    ("\\star", (13, 13), Infix(Left()), list()),
+                    ("\\o", (13, 13), Infix(Left()), ["\\circ"]),
+                    ("\\bigcirc", (13, 13), Infix(Left()), list()),
+                    ("\\bullet", (13, 13), Infix(Left()), list()),
+                    ("\\prec", (5, 5), Infix(Non()), list()),
+                    ("\\succ", (5, 5), Infix(Non()), list()),
+                    ("\\preceq", (5, 5), Infix(Non()), list()),
+                    ("\\succeq", (5, 5), Infix(Non()), list()),
+                    ("\\sim", (5, 5), Infix(Non()), list()),
+                    ("\\simeq", (5, 5), Infix(Non()), list()),
+                    ("\\ll", (5, 5), Infix(Non()), list()),
+                    ("\\gg", (5, 5), Infix(Non()), list()),
+                    ("\\asymp", (5, 5), Infix(Non()), list()),
+                    ("\\subset", (5, 5), Infix(Non()), list()),
+                    ("\\supset", (5, 5), Infix(Non()), list()),
+                    ("\\supseteq", (5, 5), Infix(Non()), list()),
+                    ("\\approx", (5, 5), Infix(Non()), list()),
+                    ("\\cong", (5, 5), Infix(Non()), list()),
+                    ("\\sqsubset", (5, 5), Infix(Non()), list()),
+                    ("\\sqsubseteq", (5, 5), Infix(Non()), list()),
+                    ("\\sqsupset", (5, 5), Infix(Non()), list()),
+                    ("\\sqsupseteq", (5, 5), Infix(Non()), list()),
+                    ("\\doteq", (5, 5), Infix(Non()), list()),
+                    ("\\propto", (5, 5), Infix(Non()), list()),
+                ]
+            ],
+        ),
+    ]
     return tlaops
 
 
@@ -322,15 +337,13 @@ class TLAOP(object):
         self.defn = defn
 
     def __repr__(self):
-        return (
-            'TLAOP({name}, {prec}, '
-            '{fixity}, {dom}, {defn})'
-            ).format(
-                name=self.name,
-                prec=self.prec,
-                fixity=self.fix,
-                dom=self.dom,
-                defn=self.defn)
+        return ("TLAOP({name}, {prec}, " "{fixity}, {dom}, {defn})").format(
+            name=self.name,
+            prec=self.prec,
+            fixity=self.fix,
+            dom=self.dom,
+            defn=self.defn,
+        )
 
 
 # let optable =
@@ -360,6 +373,8 @@ def _generate_optable():
             for s in alternatives:
                 optable[s] = op
     return optable
+
+
 optable = _generate_optable()
 # pprint.pprint(optable)
 

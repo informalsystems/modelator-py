@@ -2,13 +2,13 @@
 # Copyright 2020 by California Institute of Technology
 # All rights reserved. Licensed under 3-clause BSD.
 #
-import tla._combinators as pco
-import tla._expr_parser as ep
-import tla._module_parser as mp
-from tla import _optable
-import tla._proof_parser as pfp
-from tla import _tla_combinators
-from tla import lex
+from . import _combinators as pco
+from . import _expr_parser as ep
+from . import _module_parser as mp
+from . import _optable
+from . import _proof_parser as pfp
+from . import _tla_combinators
+from . import lex
 
 
 def parse(module_text, nodes=None):

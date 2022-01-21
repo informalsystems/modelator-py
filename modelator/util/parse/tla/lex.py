@@ -13,144 +13,139 @@ import re
 
 import ply.lex
 
-from tla import _location
-from tla import tokens as intf
+from . import _location
+from . import tokens as intf
 
 
 logger = logging.getLogger(__name__)
 
 
 RESERVED = {
-    'ACTION',
-    'ASSUME',
-    'ASSUMPTION',
-    'AXIOM',
-    'BOOLEAN',  # operator
-    'BY',
-    'CASE',
-    'CHOOSE',
-    'CONSTANT',
-    'CONSTANTS',
-    'COROLLARY',
-    'DEF',
-    'DEFINE',
-    'DEFS',
+    "ACTION",
+    "ASSUME",
+    "ASSUMPTION",
+    "AXIOM",
+    "BOOLEAN",  # operator
+    "BY",
+    "CASE",
+    "CHOOSE",
+    "CONSTANT",
+    "CONSTANTS",
+    "COROLLARY",
+    "DEF",
+    "DEFINE",
+    "DEFS",
     # 'DOMAIN',  # prefix operator
-    'ELSE',
+    "ELSE",
     # 'ENABLED',  # prefix operator
-    'EXCEPT',
-    'EXTENDS',
-    'FALSE',  # operator
-    'HAVE',
-    'HIDE',
-    'IF',
-    'IN',
-    'INSTANCE',
-    'LAMBDA',
-    'LEMMA',
-    'LET',
-    'LOCAL',
-    'MODULE',
-    'NEW',
-    'OBVIOUS',
-    'OMITTED',
-    'ONLY',
-    'OTHER',
-    'PICK',
-    'PROOF',
-    'PROPOSITION',
-    'PROVE',
-    'QED',
-    'RECURSIVE',
+    "EXCEPT",
+    "EXTENDS",
+    "FALSE",  # operator
+    "HAVE",
+    "HIDE",
+    "IF",
+    "IN",
+    "INSTANCE",
+    "LAMBDA",
+    "LEMMA",
+    "LET",
+    "LOCAL",
+    "MODULE",
+    "NEW",
+    "OBVIOUS",
+    "OMITTED",
+    "ONLY",
+    "OTHER",
+    "PICK",
+    "PROOF",
+    "PROPOSITION",
+    "PROVE",
+    "QED",
+    "RECURSIVE",
     # 'SF_',  # separate lexer rule
-    'STATE',
-    'STRING',  # operator
+    "STATE",
+    "STRING",  # operator
     # 'SUBSET',  # prefix operator
-    'SUFFICES',
-    'TAKE',
-    'TEMPORAL',
-    'THEN',
-    'THEOREM',
-    'TRUE',  # operator
+    "SUFFICES",
+    "TAKE",
+    "TEMPORAL",
+    "THEN",
+    "THEOREM",
+    "TRUE",  # operator
     # 'UNCHANGED',  # prefix operator
     # 'UNION',  # prefix operator
-    'USE',
-    'VARIABLE',
-    'VARIABLES',
+    "USE",
+    "VARIABLE",
+    "VARIABLES",
     # 'WF_',  # separate lexer rule
-    'WITH',
-    'WITNESS'}
+    "WITH",
+    "WITNESS",
+}
 PREFIX_OPERATORS = {
-    'DOMAIN',
-    'ENABLED',
-    'SUBSET',
-    'UNCHANGED',
-    'UNION',
-    }
-letter   = '[a-zA-Z]'
-numeral  = '[0-9]'
+    "DOMAIN",
+    "ENABLED",
+    "SUBSET",
+    "UNCHANGED",
+    "UNION",
+}
+letter = "[a-zA-Z]"
+numeral = "[0-9]"
 # namechar = letter | numeral | _
-namechar = '[a-zA-Z0-9_]'.format(
-    letter=letter, numeral=numeral)
-name = '({namechar})*{letter}({namechar})*'.format(
-    namechar=namechar, letter=letter)
+namechar = "[a-zA-Z0-9_]".format(letter=letter, numeral=numeral)
+name = "({namechar})*{letter}({namechar})*".format(namechar=namechar, letter=letter)
 
 
 class Lexer(object):
-    '''Lexer for the TLA+ specification language.'''
+    """Lexer for the TLA+ specification language."""
 
     states = (
-        ('multilinecomment', 'exclusive'),
-        ('string', 'exclusive'),
+        ("multilinecomment", "exclusive"),
+        ("string", "exclusive"),
     )
 
     reserved = {k: k for k in RESERVED}
     delimiters = [
-        'DASH_LINE',
-        'EQ_LINE',
-        'PUNCTUATION',
-        'PUNCTUATION_DOT',
-        'STEP_NUMBER',
-        'STEP_NUMBER_PLUS',
-        'STEP_NUMBER_STAR']
+        "DASH_LINE",
+        "EQ_LINE",
+        "PUNCTUATION",
+        "PUNCTUATION_DOT",
+        "STEP_NUMBER",
+        "STEP_NUMBER_PLUS",
+        "STEP_NUMBER_STAR",
+    ]
     # remember to check precedence
     operators = [
-        'ALWAYS',
-        'FAIRNESS',
-        'INFIX_OPERATOR',
-        'INFIX_OPERATOR_LEADSTO',
-        'NAME',
-        'PAREN_OPERATOR',
-        'PREFIX_OPERATOR',
-        'POSTFIX_OPERATOR']
+        "ALWAYS",
+        "FAIRNESS",
+        "INFIX_OPERATOR",
+        "INFIX_OPERATOR_LEADSTO",
+        "NAME",
+        "PAREN_OPERATOR",
+        "PREFIX_OPERATOR",
+        "POSTFIX_OPERATOR",
+    ]
     misc = [
-        'BINARY_INTEGER',
-        'COMMENT',
-        'FLOAT',
-        'HEXADECIMAL_INTEGER',
-        'IDENTIFIER',
-        'INTEGER',
-        'LINECOMMENT',
-        'OCTAL_INTEGER',
-        'PRAGMAS',
-        'RESERVED',
-        ]
+        "BINARY_INTEGER",
+        "COMMENT",
+        "FLOAT",
+        "HEXADECIMAL_INTEGER",
+        "IDENTIFIER",
+        "INTEGER",
+        "LINECOMMENT",
+        "OCTAL_INTEGER",
+        "PRAGMAS",
+        "RESERVED",
+    ]
 
-    whitesp  = ' '
-    tab = '\t'
-    newline  = r'\r|\n|\r\n'
+    whitesp = " "
+    tab = "\t"
+    newline = r"\r|\n|\r\n"
 
     def __init__(self, debug=False):
-        self.tokens = (
-            self.delimiters + self.operators +
-            self.misc + list(self.reserved))
+        self.tokens = self.delimiters + self.operators + self.misc + list(self.reserved)
         self.build(debug=debug)
 
-    def build(
-            self,
-            debug=False,
-            debuglog=None,
-            **kwargs):
+    def build(self, debug=False, debuglog=None, **kwargs):
         """Create a lexer.
 
         @param kwargs: Same arguments as C{ply.lex.lex}:
@@ -160,11 +155,7 @@ class Lexer(object):
         """
         if debug and debuglog is None:
             debuglog = logger
-        self.lexer = ply.lex.lex(
-            module=self,
-            debug=debug,
-            debuglog=debuglog,
-            **kwargs)
+        self.lexer = ply.lex.lex(module=self, debug=debug, debuglog=debuglog, **kwargs)
 
     # State "token" of the `tlapm` lexer
 
@@ -172,14 +163,14 @@ class Lexer(object):
     #   | ("(*{"|"}*)" as prag)
     #       { [ PUNCT prag ] }
     def t_PRAGMAS(self, t):
-        r'\(\*\{|\}\*\)'
+        r"\(\*\{|\}\*\)"
         return t
 
     # (* comments *)
     #   | "\\*"
     #       { linecom lexbuf }
     def t_LINECOMMENT(self, t):
-        r'\\\*.*'
+        r"\\\*.*"
         return None
 
     #   | "(*"
@@ -188,89 +179,88 @@ class Lexer(object):
     #     r'\(\*(.|\n)*?\*\)'
     #     t.lineno += t.value.count('\n')
     def t_COMMENT(self, t):
-        r'\(\*'
+        r"\(\*"
         t.lexer.comment_level = 1
-        t.lexer.begin('multilinecomment')
+        t.lexer.begin("multilinecomment")
 
     def t_multilinecomment_left_paren(self, t):
-        r'\(\*'
+        r"\(\*"
         t.lexer.comment_level += 1
 
     def t_multilinecomment_right_paren(self, t):
-        r'\*\)'
+        r"\*\)"
         t.lexer.comment_level -= 1
         # if matching the outer left parenthesis,
         # then return to INITIAL-state lexing
         if t.lexer.comment_level == 0:
-            t.lexer.begin('INITIAL')
+            t.lexer.begin("INITIAL")
 
     def t_multilinecomment_newline(self, t):
-        r'\n'
+        r"\n"
         t.lexer.lineno += 1
 
     def t_multilinecomment_other(self, t):
-        r'[^\n(\*]+'
+        r"[^\n(\*]+"
         return None
 
     def t_multilinecomment_lparen(self, t):
-        r'\('
+        r"\("
         return None
 
     def t_multilinecomment_star(self, t):
-        r'\*'
+        r"\*"
         return None
 
     def t_multilinecomment_error(self, t):
-        raise ValueError(
-            'Illegal character "{s}"'.format(
-                s=t.value[0]))
+        raise ValueError('Illegal character "{s}"'.format(s=t.value[0]))
 
-    t_multilinecomment_ignore = ''
+    t_multilinecomment_ignore = ""
 
     # (* exceptions *)
     # | ("[]" as op)
     #   { [ OP op ] }
     def t_ALWAYS(self, t):
-        r'\[\]'
+        r"\[\]"
         return t
 
     # | ("(+)"|"(-)"|"(/)"|"(\\X)"|"(.)" as op)
     #   { [ OP op ] }
     def t_PAREN_OPERATOR(self, t):
-        r'\(\+\)|\(-\)|\(/\)|\(\\X\)|\(\.\)'
+        r"\(\+\)|\(-\)|\(/\)|\(\\X\)|\(\.\)"
         return t
 
     # (* strict punctuation *)
     # | "----" '-'*
     #   { [ PUNCT "----" ] }
     def t_DASH_LINE(self, t):
-        r'----(-)*'
+        r"----(-)*"
         return t
 
     # | "====" '='*
     #   { [ PUNCT "====" ] }
     def t_EQ_LINE(self, t):
-        r'====(=)*'
+        r"====(=)*"
         return t
 
     # | "<*>" ('.'* as dots)
     #   { [ ST ( `Star, "", String.length dots) ] }
     def t_STEP_NUMBER_STAR(self, t):
-        r'<\*>(\.)*'
+        r"<\*>(\.)*"
         return t
 
     # | "<+>" ('.'* as dots)
     #   { [ ST ( `Plus, "", String.length dots) ] }
     def t_STEP_NUMBER_PLUS(self, t):
-        r'<\+>(\.)*'
+        r"<\+>(\.)*"
         return t
 
     # | '<' (numeral+ as num) '>' (namechar* as lab)
     #       ('.'* as dots)
     #   { [ ST (`Num (int_of_string num),
     #       lab, String.length dots) ] }
-    step_number = r'<{numeral}+>{namechar}*\.*'.format(
-        numeral=numeral, namechar=namechar)
+    step_number = r"<{numeral}+>{namechar}*\.*".format(
+        numeral=numeral, namechar=namechar
+    )
 
     @ply.lex.TOKEN(step_number)
     def t_STEP_NUMBER(self, t):
@@ -284,11 +274,12 @@ class Lexer(object):
     punctuation = (
         # '.' has been moved below to the method
         # `PUNCTUATION_DOT`
-        r',|\(|\)|\[|\]_|\]|\{|\}|<<|>>_|>>|==|!'
-        r'|\@|::|:|;|->|<-|\|->|\\AA|\\A|\\EE|\\E')
-        # See also '_' in NAME
-        # TODO: change \\A \\A \\E \\EE to prefix operators
-        # in the grammar ?
+        r",|\(|\)|\[|\]_|\]|\{|\}|<<|>>_|>>|==|!"
+        r"|\@|::|:|;|->|<-|\|->|\\AA|\\A|\\EE|\\E"
+    )
+    # See also '_' in NAME
+    # TODO: change \\A \\A \\E \\EE to prefix operators
+    # in the grammar ?
 
     @ply.lex.TOKEN(punctuation)
     def t_PUNCTUATION(self, t):
@@ -297,8 +288,7 @@ class Lexer(object):
     # (* numbers *)
     # | (numeral+ as ch) '.' (numeral+ as man)
     #   { [ NUM (ch, man) ] }
-    float = '{numeral}+\.{numeral}+'.format(
-        numeral=numeral)
+    float = "{numeral}+\.{numeral}+".format(numeral=numeral)
 
     @ply.lex.TOKEN(float)
     def t_FLOAT(self, t):
@@ -306,7 +296,7 @@ class Lexer(object):
 
     # | (numeral+ as i)
     #   { [ NUM (i, "") ] }
-    integer = '{numeral}+'.format(numeral=numeral)
+    integer = "{numeral}+".format(numeral=numeral)
 
     @ply.lex.TOKEN(integer)
     def t_INTEGER(self, t):
@@ -316,21 +306,21 @@ class Lexer(object):
     #   { Bytes.set (Bytes.of_string b) 0 '0' ;
     #     [ NUM (string_of_int (int_of_string b), "") ] }
     def t_BINARY_INTEGER(self, t):
-        r'(\\b|\\B)[0-1]+'
+        r"(\\b|\\B)[0-1]+"
         return t
 
     # | ("\\o" ['0'-'7']+ as o)
     #   { Bytes.set (Bytes.of_string o) 0 '0' ;
     #     [ NUM (string_of_int (int_of_string o), "") ] }
     def t_OCTAL_INTEGER(self, t):
-        r'(\\o|\\O)[0-7]+'
+        r"(\\o|\\O)[0-7]+"
         return t
 
     # | ("\\h" (numeral | ['a'-'f' 'A'-'F'])+ as h)
     #   { Bytes.set (Bytes.of_string h) 0 '0' ;
     #     Bytes.set (Bytes.of_string h) 1 'x' ;
     #     [ NUM (string_of_int (int_of_string h), "") ] }
-    hexadecimal = '(\\h,\\H)({numeral}|[a-fA-F])+'
+    hexadecimal = "(\\h,\\H)({numeral}|[a-fA-F])+"
 
     @ply.lex.TOKEN(hexadecimal)
     def HEXADECIMAL_INTEGER(self, t):
@@ -343,14 +333,14 @@ class Lexer(object):
     def t_STRING(self, t):
         r'"'
         t.lexer.string_start = t.lexpos
-        t.lexer.begin('string')
+        t.lexer.begin("string")
 
     def t_string_escaped_quotes(self, t):
         r'\\"|\\t|\\n|\\f|\\r|\\'
 
     def t_string_newline(self, t):
-        r'\n'
-        raise ValueError('Newline within string.')
+        r"\n"
+        raise ValueError("Newline within string.")
 
     def t_string_other_characters(self, t):
         r'[^"\\]+'
@@ -360,24 +350,21 @@ class Lexer(object):
         start = t.lexer.string_start
         end = t.lexpos + len(t.value)
         t.value = t.lexer.lexdata[start:end]
-        t.lexer.begin('INITIAL')
-        t.type = 'STRING'
+        t.lexer.begin("INITIAL")
+        t.type = "STRING"
         t.lexpos = start
         return t
 
     def t_string_error(self, t):
-        raise ValueError(
-            'Illegal character "{s}"'.format(
-                s=t.value[0]))
+        raise ValueError('Illegal character "{s}"'.format(s=t.value[0]))
 
-    t_string_ignore = ''
+    t_string_ignore = ""
 
     # (* prefix operators *)
     #   | ("\\neg"|"\\lnot"|"~"|"-."|"<>"|"UNION"|"SUBSET"
     #     |"ENABLED"|"UNCHANGED"|"DOMAIN" as op)
     #       { [ OP op ] }
-    prefix_operator = (
-        r'\\neg|\\lnot|~|-\.|<>')
+    prefix_operator = r"\\neg|\\lnot|~|-\.|<>"
     # See also PREFIX_OPERATORS
 
     #   (* postfix operators *)
@@ -386,27 +373,28 @@ class Lexer(object):
     postfix_operator = r'\'|\^\+"|\^\*|\^\#'
 
     infix_operator = (
-        r'>=|\\geq|<=>|<=|=<|\\leq|\#|/='
-        r'|\\oplus|\\ominus|\\otimes|\\oslash'
-        r'|\\odot|\\cap|\\intersect'
-        r'|\\cup|\\union|\\equiv|\\o|\\circ|\\X|\\times'
-        r'|=>|-\+->|/\\|\\land'
-        r'|\\/|\\lor|/=|-\||::=|:=|<|=|=\||>|\\approx'
-        r'|\\asymp|\\cong|\\doteq|\\gg|\\notin'
-        r'|\\ll|\\preceq|\\prec'
-        r'|\\propto|\\sim|\\simeq'
-        r'|\\sqsubseteq|\\sqsubset|\\sqsupseteq'
-        r'|\\sqsupset|\\subseteq|\\subset'
-        r'|\\succeq|\\succ|\\supseteq|\\supset'
-        r'|\|-|\|=|\\cdot|\@\@|:>|<:|\\in|\\'
-        r'|\.\.\.|\.\.|!!|\#\#|\$\$|\$|\?\?|\\sqcap'
-        r'|\\sqcup|\\uplus|\\wr|\+\+|\+|%%|%|\|\|'
-        r'|\||--|-|&&|&|\*\*|\*|/|//|\\bigcirc|\\bullet'
-        r'|\\div|\\star|\^\^|\^')
+        r">=|\\geq|<=>|<=|=<|\\leq|\#|/="
+        r"|\\oplus|\\ominus|\\otimes|\\oslash"
+        r"|\\odot|\\cap|\\intersect"
+        r"|\\cup|\\union|\\equiv|\\o|\\circ|\\X|\\times"
+        r"|=>|-\+->|/\\|\\land"
+        r"|\\/|\\lor|/=|-\||::=|:=|<|=|=\||>|\\approx"
+        r"|\\asymp|\\cong|\\doteq|\\gg|\\notin"
+        r"|\\ll|\\preceq|\\prec"
+        r"|\\propto|\\sim|\\simeq"
+        r"|\\sqsubseteq|\\sqsubset|\\sqsupseteq"
+        r"|\\sqsupset|\\subseteq|\\subset"
+        r"|\\succeq|\\succ|\\supseteq|\\supset"
+        r"|\|-|\|=|\\cdot|\@\@|:>|<:|\\in|\\"
+        r"|\.\.\.|\.\.|!!|\#\#|\$\$|\$|\?\?|\\sqcap"
+        r"|\\sqcup|\\uplus|\\wr|\+\+|\+|%%|%|\|\|"
+        r"|\||--|-|&&|&|\*\*|\*|/|//|\\bigcirc|\\bullet"
+        r"|\\div|\\star|\^\^|\^"
+    )
 
     def t_INFIX_OPERATOR_LEADSTO(self, t):
-        r'~>'
-        t.type = 'INFIX_OPERATOR'
+        r"~>"
+        t.type = "INFIX_OPERATOR"
         return t
 
     @ply.lex.TOKEN(prefix_operator)
@@ -423,44 +411,42 @@ class Lexer(object):
 
     # ensure that '..' appears before '.'
     def t_PUNCTUATION_DOT(self, t):
-        r'\.'
-        t.type = 'PUNCTUATION'
+        r"\."
+        t.type = "PUNCTUATION"
         return t
 
-
     def t_FAIRNESS(self, t):
-        r'SF_|WF_'
+        r"SF_|WF_"
         return t
 
     def t_NAME(self, t):
-        r'[a-zA-Z_0-9]*[a-zA-Z_][a-zA-Z_0-9]*'
+        r"[a-zA-Z_0-9]*[a-zA-Z_][a-zA-Z_0-9]*"
         if t.value in RESERVED:
-            t.type = 'RESERVED'
+            t.type = "RESERVED"
         elif t.value in PREFIX_OPERATORS:
-            t.type = 'PREFIX_OPERATOR'
-        elif t.value == '_':
-            t.type = 'PUNCTUATION'
+            t.type = "PREFIX_OPERATOR"
+        elif t.value == "_":
+            t.type = "PUNCTUATION"
         else:
-            t.type = 'IDENTIFIER'
+            t.type = "IDENTIFIER"
         return t
 
     # t_ignore is reserved by lex to provide
     # much more efficient internal handling by lex
     #
     # A string containing ignored characters (spaces)
-    t_ignore = r' '  # whitesp
+    t_ignore = r" "  # whitesp
 
     def t_NEWLINE(self, t):
-        r'\n+'
-        t.lexer.lineno += t.value.count('\n')
+        r"\n+"
+        t.lexer.lineno += t.value.count("\n")
 
     def t_tab(self, t):
-        r'\t'
-        raise ValueError('TAB characters are unsupported.')
+        r"\t"
+        raise ValueError("TAB characters are unsupported.")
 
     def t_error(self, t):
-        logger.error(
-            'Illegal character "{s}"'.format(s=t.value[0]))
+        logger.error('Illegal character "{s}"'.format(s=t.value[0]))
         t.lexer.skip(1)
 
 
@@ -480,7 +466,7 @@ def _lex(data):
 
 
 def _omit_preamble(data):
-    regex = r'----(-)*\s*MODULE'
+    regex = r"----(-)*\s*MODULE"
     match = re.search(regex, data)
     n = match.start()
     return data[n:]
@@ -491,88 +477,86 @@ def _omit_preamble(data):
 def _map_to_token_(token):
     type_ = token.type
     # delimiters
-    if type_ == 'DASH_LINE':
-        return intf.PUNCT('----')
-    elif type_ == 'EQ_LINE':
-        return intf.PUNCT('====')
-    elif type_ == 'PUNCTUATION':
+    if type_ == "DASH_LINE":
+        return intf.PUNCT("----")
+    elif type_ == "EQ_LINE":
+        return intf.PUNCT("====")
+    elif type_ == "PUNCTUATION":
         return intf.PUNCT(token.value)
-    elif type_ == 'STEP_NUMBER':
-        step_level = re.findall('<([0-9]+)>', token.value)[0]
-        match = re.search(r'(\.)+', token.value)
+    elif type_ == "STEP_NUMBER":
+        step_level = re.findall("<([0-9]+)>", token.value)[0]
+        match = re.search(r"(\.)+", token.value)
         if match is None:
             n = 0
         else:
             n = len(match.group())
             assert n >= 1, match.group()
-        step_name_regex = '<[0-9]+>([a-zA-Z0-9_]*)'
+        step_name_regex = "<[0-9]+>([a-zA-Z0-9_]*)"
         step_name = re.findall(step_name_regex, token.value)[0]
         return intf.ST(intf.StepNum(step_level), step_name, n)
-    elif type_ == 'STEP_NUMBER_PLUS':
-        assert token.value[:3] == '<+>', token.value
+    elif type_ == "STEP_NUMBER_PLUS":
+        assert token.value[:3] == "<+>", token.value
         n = len(token.value[3:])
         return intf.ST(intf.StepPlus(), None, n)
-    elif type_ == 'STEP_NUMBER_STAR':
-        assert token.value[:3] == '<*>', token.value
+    elif type_ == "STEP_NUMBER_STAR":
+        assert token.value[:3] == "<*>", token.value
         n = len(token.value[3:])
         return intf.ST(intf.StepStar(), None, n)
     # operators
-    elif type_ == 'ALWAYS':
+    elif type_ == "ALWAYS":
         return intf.OP(token.value)
-    elif type_ == 'FAIRNESS':
+    elif type_ == "FAIRNESS":
         # TODO: change grammar to OP here ?
         return intf.PUNCT(token.value)
-    elif type_ == 'INFIX_OPERATOR':
+    elif type_ == "INFIX_OPERATOR":
         return intf.OP(token.value)
-    elif type_ == 'NAME':
+    elif type_ == "NAME":
         raise ValueError(
-            'expected IDENTIFIER or RESERVED '
-            'or PREFIX_OPERATOR or PUNCTUATION')
-    elif type_ == 'PAREN_OPERATOR':
+            "expected IDENTIFIER or RESERVED " "or PREFIX_OPERATOR or PUNCTUATION"
+        )
+    elif type_ == "PAREN_OPERATOR":
         return intf.OP(token.value)
-    elif type_ == 'PREFIX_OPERATOR':
+    elif type_ == "PREFIX_OPERATOR":
         return intf.OP(token.value)
-    elif type_ == 'POSTFIX_OPERATOR':
+    elif type_ == "POSTFIX_OPERATOR":
         return intf.OP(token.value)
     # misc
-    elif type_ == 'BINARY_INTEGER':
+    elif type_ == "BINARY_INTEGER":
         # TODO: test
-        assert token.value[:2] == '\\b', token.value
+        assert token.value[:2] == "\\b", token.value
         return intf.NUM(token.value[2:], None)
-    elif type_ == 'COMMENT':
-        raise ValueError('unexpected COMMENT')
-    elif type_ == 'FLOAT':
-        a, b = token.value.split('.')
+    elif type_ == "COMMENT":
+        raise ValueError("unexpected COMMENT")
+    elif type_ == "FLOAT":
+        a, b = token.value.split(".")
         return intf.NUM(a, b)
-    elif type_ == 'HEXADECIMAL_INTEGER':
+    elif type_ == "HEXADECIMAL_INTEGER":
         # TODO: test
-        assert token.value[:2] == '\\h', token.value
+        assert token.value[:2] == "\\h", token.value
         value = int(token.value[2:], 16)
         return intf.NUM(str(value), None)
-    elif type_ == 'IDENTIFIER':
+    elif type_ == "IDENTIFIER":
         return intf.ID(token.value)
-    elif type_ == 'INTEGER':
+    elif type_ == "INTEGER":
         return intf.NUM(token.value, None)
-    elif type_ == 'LINECOMMENT':
-        raise ValueError('unexpected LINECOMMENT')
-    elif type_ == 'OCTAL_INTEGER':
+    elif type_ == "LINECOMMENT":
+        raise ValueError("unexpected LINECOMMENT")
+    elif type_ == "OCTAL_INTEGER":
         # TODO: test
-        assert token.value[:2] == '\\o', token.value
+        assert token.value[:2] == "\\o", token.value
         value = int(token.value[2:], 8)
         return intf.NUM(str(value), None)
-    elif type_ == 'PRAGMAS':
+    elif type_ == "PRAGMAS":
         return intf.PUNCT(token.value)
-    elif type_ == 'RESERVED':
+    elif type_ == "RESERVED":
         return intf.KWD(token.value)
-    elif type_ == 'STRING':
+    elif type_ == "STRING":
         return intf.STR(token.value)
     else:
         raise ValueError(type_)
 
 
-def _map_to_token(
-        data, token,
-        module_name='dummy_file'):
+def _map_to_token(data, token, module_name="dummy_file"):
     # `data` is needed to find the beginning of line
     token_ = _map_to_token_(token)
     # print(token.__dict__)
@@ -582,27 +566,29 @@ def _map_to_token(
     bol = find_beginning_of_line(data, token)
     start_column_offset = token.lexpos
     start_loc = _location.locus_of_position(
-        module_name, line_number, bol, start_column_offset)
-    assert '\n' not in token.value, (token.type, token.value)
+        module_name, line_number, bol, start_column_offset
+    )
+    assert "\n" not in token.value, (token.type, token.value)
     stop_column_offset = token.lexpos + len(token.value)
     stop_loc = _location.locus_of_position(
-        module_name, line_number, bol, stop_column_offset)
-    assert data[start_column_offset:
-        stop_column_offset] == token.value, (
+        module_name, line_number, bol, stop_column_offset
+    )
+    assert data[start_column_offset:stop_column_offset] == token.value, (
         data[start_column_offset:stop_column_offset],
-        token.value)
+        token.value,
+    )
     loc = start_loc.merge(stop_loc)
     assert len(token.value) == loc.stop.column - loc.start.column
     return intf.Token(token_, None, loc)
 
 
 def find_beginning_of_line(input, token):
-    line_start = input.rfind('\n', 0, token.lexpos) + 1
+    line_start = input.rfind("\n", 0, token.lexpos) + 1
     return line_start
 
 
 def find_column(input, token):
-    line_start = input.rfind('\n', 0, token.lexpos) + 1
+    line_start = input.rfind("\n", 0, token.lexpos) + 1
     return (token.lexpos - line_start) + 1
 
 
@@ -610,10 +596,10 @@ def _print_lextoken_info(token):
     """Print all the information stored in `token`.
 
     @type token: `ply.lex.LexToken`."""
-    print('type: ', token.type)
-    print('value: ', token.value)
-    print('line number: ', token.lineno)
-    print('offset: ', token.lexpos)
+    print("type: ", token.type)
+    print("value: ", token.value)
+    print("line number: ", token.lineno)
+    print("offset: ", token.lexpos)
 
 
 def _join_with_newlines(tokens):
@@ -622,8 +608,7 @@ def _join_with_newlines(tokens):
     for token in tokens:
         token_line = token.loc.start.line
         diff = token_line - current_line
-        assert diff >= 0, (
-            token_line, current_line)
+        assert diff >= 0, (token_line, current_line)
         # commented due to multi-line comments
         # assert diff <= 1, (
         #     current_line, token_line)
@@ -631,17 +616,16 @@ def _join_with_newlines(tokens):
             # update current line
             # current_line += 1
             current_line += diff
-            assert current_line == token_line, (
-                current_line, token_line)
+            assert current_line == token_line, (current_line, token_line)
             # output newlines
-            newlines = '\n' * diff
+            newlines = "\n" * diff
             strings.append(newlines)
         strings.append(str(token.form))
-        strings.append(' ')
-    return ''.join(strings)
+        strings.append(" ")
+    return "".join(strings)
 
 
-MODULE_FOO = '''
+MODULE_FOO = """
 comments
 ---- MODULE Foo ----
 VARIABLE x
@@ -676,7 +660,7 @@ PROOF
 <1> QED
     BY <1>2, <1>3
 ====================
-'''
+"""
 
 
 def tokenize(data, omit_preamble=True):
@@ -684,16 +668,13 @@ def tokenize(data, omit_preamble=True):
     if omit_preamble:
         data = _omit_preamble(data)
     lextokens = _lex(data)
-    if (len(lextokens) >= 2 and
-            lextokens[1].value == 'MODULE'):
+    if len(lextokens) >= 2 and lextokens[1].value == "MODULE":
         module_name = lextokens[2].value
     else:
-        module_name = 'unknown module'
+        module_name = "unknown module"
     tokens = [
-        _map_to_token(
-            data, token,
-            module_name=module_name)
-        for token in lextokens]
+        _map_to_token(data, token, module_name=module_name) for token in lextokens
+    ]
     return tokens
 
 
@@ -703,23 +684,18 @@ def _test_lexer():
     data = _omit_preamble(data)
     lextokens = _lex(data)
     # Token_ instances
-    tokens_ = [
-        _map_to_token_(token)
-        for token in lextokens]
+    tokens_ = [_map_to_token_(token) for token in lextokens]
     pprint.pprint(tokens_)
     for token_ in tokens_:
         print(token_)
         print(str(token_))
-    str_of_tokens_ = [
-        str(token_) for token_ in tokens_]
+    str_of_tokens_ = [str(token_) for token_ in tokens_]
     pprint.pprint(str_of_tokens_)
     # Token instances
-    tokens = [
-        _map_to_token(data, token)
-        for token in lextokens]
+    tokens = [_map_to_token(data, token) for token in lextokens]
     pprint.pprint(tokens)
     # join raw strings
-    print(''.join(str_of_tokens_))
+    print("".join(str_of_tokens_))
     # join with newlines in between
     s = _join_with_newlines(tokens)
     print(s)
@@ -728,5 +704,5 @@ def _test_lexer():
         print(token.loc)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     _test_lexer()

@@ -9,20 +9,44 @@
 import functools
 import uuid
 
-from tla._combinators import (
-    return_, succeed, fail, get, use, using,
-    shift_plus, shift_eq, or_, times,
-    commit, times2, apply, second, second_commit,
-    first, bang,
-    lookahead, enabled, attempt, optional,
-    question, apply_question,
-    choice, choice_iter, alt,
-    star, star1, sep1, sep)
-import tla._expr_parser as ep
-from tla import _tla_combinators as intf
-from tla._tla_combinators import punct, kwd
-from tla.ast import Nodes as tla_ast
-from tla import tokens
+from ._combinators import (
+    return_,
+    succeed,
+    fail,
+    get,
+    use,
+    using,
+    shift_plus,
+    shift_eq,
+    or_,
+    times,
+    commit,
+    times2,
+    apply,
+    second,
+    second_commit,
+    first,
+    bang,
+    lookahead,
+    enabled,
+    attempt,
+    optional,
+    question,
+    apply_question,
+    choice,
+    choice_iter,
+    alt,
+    star,
+    star1,
+    sep1,
+    sep,
+)
+from . import _expr_parser as ep
+from . import _tla_combinators as intf
+from ._tla_combinators import punct, kwd
+from .ast import Nodes as tla_ast
+from . import tokens
+
 # open Ext
 # open Property
 # open Expr.T
@@ -48,7 +72,7 @@ def enlarge_loc(x, y):
 #         | _ -> Named (n, l, false)
 def set_level(n, preno):
     label = preno.label
-    if label == '':
+    if label == "":
         return tla_ast.Unnamed(n, uuid.uuid4())
     else:
         return tla_ast.Named(n, label, False)
@@ -78,7 +102,7 @@ def annotate(supp, meth, x):
 #   | PreBy       of supp * only * usable * Method.t option
 #   | PreObvious  of supp * Method.t option
 #   | PreOmitted  of omission
-    #   | PreStep     of bool * preno * prestep
+#   | PreStep     of bool * preno * prestep
 #
 # and prestep =
 #   | PreHide     of usable
@@ -113,12 +137,12 @@ class Backtrack(Exception):
 
 # let rec to_proof currlv = function
 def to_proof(currlv, arg):
-#   | [] ->
+    #   | [] ->
     if not arg:
-#       (Omitted Implicit @@ currlv, [])
+        #       (Omitted Implicit @@ currlv, [])
         omitted = tla_ast.Omitted(tla_ast.Implicit())
         return (omitted, list())
-#   | {core = PreBy (supp, onl, use, meth)} as p :: ps ->
+    #   | {core = PreBy (supp, onl, use, meth)} as p :: ps ->
     elif isinstance(arg[0], tla_ast.PreBy):
         p = arg[0]
         ps = arg[1:]
@@ -126,176 +150,174 @@ def to_proof(currlv, arg):
         only = p.only
         usable = p.usable
         meth = p.method
-#       let p = By (use, onl = Only) @@ p in
+        #       let p = By (use, onl = Only) @@ p in
         p = tla_ast.By(usable, isinstance(only, tla_ast.Only))
-#       let p = Property.assign p Props.step
-#                   (Unnamed (currlv.core, 0)) in
+        #       let p = Property.assign p Props.step
+        #                   (Unnamed (currlv.core, 0)) in
         p.step_number = tla_ast.Unnamed(currlv, 0)
-#       (annotate supp meth p, ps)
+        #       (annotate supp meth p, ps)
         annotate(supp, meth, p)
         return (p, ps)
-#   | {core = PreObvious (supp, meth)} as p :: ps ->
+    #   | {core = PreObvious (supp, meth)} as p :: ps ->
     elif isinstance(arg[0], tla_ast.PreObvious):
         p = arg[0]
         ps = arg[1:]
         supp = p.supp
         meth = p.method
-#       let p = Obvious @@ p in
+        #       let p = Obvious @@ p in
         obvious = tla_ast.Obvious()
-#       (annotate supp meth p, ps)
+        #       (annotate supp meth p, ps)
         annotate(supp, meth, obvious)
         return (obvious, ps)
-#   | {core = PreOmitted om} as p :: ps ->
+    #   | {core = PreOmitted om} as p :: ps ->
     elif isinstance(arg[0], tla_ast.PreOmitted):
         p = arg[0]
         ps = arg[1:]
         om = p.omission
-#       (Omitted om @@ p, ps)
+        #       (Omitted om @@ p, ps)
         omitted = tla_ast.Omitted(om)
         return (omitted, ps)
     else:
-#   | ps -> begin
+        #   | ps -> begin
         ps = arg
-#       try
+        #       try
         try:
-#         let (ss, qp, ps) = to_steps ~first:true currlv ps in
-            (ss, qp, ps) = to_steps(
-                first=True, currlv=currlv, ps=ps)
-#         let sloc = List.fold_left begin
-#           fun l s -> Loc.merge l (Util.get_locus s)
-#         end (try
-#               Util.get_locus qp.core
-#              with _ -> Util.get_locus
-#                           (get_qed_proof qp.core)) ss in
+            #         let (ss, qp, ps) = to_steps ~first:true currlv ps in
+            (ss, qp, ps) = to_steps(first=True, currlv=currlv, ps=ps)
+            #         let sloc = List.fold_left begin
+            #           fun l s -> Loc.merge l (Util.get_locus s)
+            #         end (try
+            #               Util.get_locus qp.core
+            #              with _ -> Util.get_locus
+            #                           (get_qed_proof qp.core)) ss in
             # TODO: locus
-#         let prf = Util.locate (Steps (ss, qp.core)) sloc in
+            #         let prf = Util.locate (Steps (ss, qp.core)) sloc in
             prf = tla_ast.Steps(ss, qp)
-#         let prf = Property.assign prf Props.step
-#                   (Property.get qp Props.step) in
+            #         let prf = Property.assign prf Props.step
+            #                   (Property.get qp Props.step) in
             prf.step_number = qp.step_number
-#         (prf, ps)
+            #         (prf, ps)
             return (prf, ps)
-#       with Backtrack ->
+        #       with Backtrack ->
         except Backtrack:
-#         (Omitted Implicit @@ currlv, ps)
+            #         (Omitted Implicit @@ currlv, ps)
             omitted = tla_ast.Omitted(tla_ast.Implicit())
             return (omitted, ps)
+
+
 #     end
 
 
 # and to_steps ?(first = false) currlv ps = match ps with
 def to_steps(first, currlv, ps):
-#   | {core = PreStep (kwd, sn, st)} as p :: ps ->
+    #   | {core = PreStep (kwd, sn, st)} as p :: ps ->
     p = ps[0]
     ps = ps[1:]
     kwd = p.boolean  # PROOF keyword
     sn = p.preno  # step number
     st = p.prestep
-#       if not first && kwd then begin
-#         Errors.set p
-#             ("PROOF keyword found in step that "
-#              "does not begin subproof");
-#         Util.eprintf ~at:p
-#             ("PROOF keyword found in step that " ^
-#              "does not begin subproof\n%!");
-#         failwith "Proof.Parser"
-#       end ;
-    assert (first or not kwd)
-#       let thislv = match sn, kwd, first with
-#         | Num (n, _), _, _ -> n
+    #       if not first && kwd then begin
+    #         Errors.set p
+    #             ("PROOF keyword found in step that "
+    #              "does not begin subproof");
+    #         Util.eprintf ~at:p
+    #             ("PROOF keyword found in step that " ^
+    #              "does not begin subproof\n%!");
+    #         failwith "Proof.Parser"
+    #       end ;
+    assert first or not kwd
+    #       let thislv = match sn, kwd, first with
+    #         | Num (n, _), _, _ -> n
     if isinstance(sn, tla_ast.StepNum):
         n = sn.level
         thislv = int(n)
-#         | Star _, true, true ->
-    elif (isinstance(sn, tla_ast.StepStar)
-            and kwd and first):
-#             (*
-#              * Util.eprintf ~at:p
-#              *   "%d: <*> -> %d (because first and PROOF)\n%!"
-#              *   currlv.core currlv.core ;
-#              *)
-#             currlv.core
+    #         | Star _, true, true ->
+    elif isinstance(sn, tla_ast.StepStar) and kwd and first:
+        #             (*
+        #              * Util.eprintf ~at:p
+        #              *   "%d: <*> -> %d (because first and PROOF)\n%!"
+        #              *   currlv.core currlv.core ;
+        #              *)
+        #             currlv.core
         thislv = currlv
-#         | Star _, false, true ->
-    elif (isinstance(sn, tla_ast.StepStar)
-            and not kwd and first):
-#             (*
-#              * Util.eprintf ~at:p
-#              *   "%d: <*> -> %d (because first and no PROOF)\n%!"
-#              *   currlv.core (currlv.core - 1) ;
-#              *)
-#             currlv.core - 1
+    #         | Star _, false, true ->
+    elif isinstance(sn, tla_ast.StepStar) and not kwd and first:
+        #             (*
+        #              * Util.eprintf ~at:p
+        #              *   "%d: <*> -> %d (because first and no PROOF)\n%!"
+        #              *   currlv.core (currlv.core - 1) ;
+        #              *)
+        #             currlv.core - 1
         thislv = currlv - 1
-#         | Star _, _, false ->
-    elif (isinstance(sn, tla_ast.StepStar)
-            and not first):
-#             assert (not kwd) ;
+    #         | Star _, _, false ->
+    elif isinstance(sn, tla_ast.StepStar) and not first:
+        #             assert (not kwd) ;
         assert not kwd
-#             (*
-#              * Util.eprintf ~at:p
-#              *   "%d: <*> -> %d (because not first)\n%!"
-#              *   currlv.core currlv.core ;
-#              *)
-#             currlv.core
+        #             (*
+        #              * Util.eprintf ~at:p
+        #              *   "%d: <*> -> %d (because not first)\n%!"
+        #              *   currlv.core currlv.core ;
+        #              *)
+        #             currlv.core
         thislv = currlv
-#         | Plus _, _, false ->
-    elif (isinstance(sn, tla_ast.StepPlus)
-            and not first):
-#             Errors.set p "<+> used but no subproof expected" ;
-#               Util.eprintf ~at:p
-#                   "<+> used but no subproof expected\n%!" ;
-#             failwith "Proof.Parser"
-        raise Exception('<+> usedd but no subproof expected')
-#         | Plus _, _, _ ->
+    #         | Plus _, _, false ->
+    elif isinstance(sn, tla_ast.StepPlus) and not first:
+        #             Errors.set p "<+> used but no subproof expected" ;
+        #               Util.eprintf ~at:p
+        #                   "<+> used but no subproof expected\n%!" ;
+        #             failwith "Proof.Parser"
+        raise Exception("<+> usedd but no subproof expected")
+    #         | Plus _, _, _ ->
     elif isinstance(sn, tla_ast.StepPlus):
-#             (*
-#              * Util.eprintf ~at:p
-#              *   "%d: <+> -> %d\n%!"
-#              *   currlv.core currlv.core ;
-#              *)
-#             currlv.core
+        #             (*
+        #              * Util.eprintf ~at:p
+        #              *   "%d: <+> -> %d\n%!"
+        #              *   currlv.core currlv.core ;
+        #              *)
+        #             currlv.core
         thislv = currlv
     else:
         raise ValueError(sn, kwd, first)
-#       in
-#       if thislv < currlv.core then
+    #       in
+    #       if thislv < currlv.core then
     if thislv < currlv:
-#           raise Backtrack ;
+        #           raise Backtrack ;
         raise Backtrack()
-#       if not first && thislv > currlv.core then
+    #       if not first && thislv > currlv.core then
     if not first and thislv > currlv:
-#           raise Backtrack ;
+        #           raise Backtrack ;
         raise Backtrack()
-#       let sn = set_level thislv sn in begin
+    #       let sn = set_level thislv sn in begin
     sn = set_level(thislv, sn)
-#         match to_step thislv (st @@ p) ps with
+    #         match to_step thislv (st @@ p) ps with
     to_stp = to_step(thislv, st, ps)
-#           | (STEP s, nps) ->
+    #           | (STEP s, nps) ->
     if isinstance(to_stp[0], STEP):
         s = to_stp[0].step
         nps = to_stp[1]
-#               let s = Property.assign s Props.step sn in
+        #               let s = Property.assign s Props.step sn in
         s.step_number = sn
-#               let thislv = Util.locate thislv
-#                       (Loc.right_of (Util.get_locus s)) in
+        #               let thislv = Util.locate thislv
+        #                       (Loc.right_of (Util.get_locus s)) in
         # TODO: locate
-#               let (ss, qp, ps) = to_steps thislv nps in
-        ss, qp, ps = to_steps(
-            first=False, currlv=thislv, ps=nps)
-#               (s :: ss, qp, ps)
+        #               let (ss, qp, ps) = to_steps thislv nps in
+        ss, qp, ps = to_steps(first=False, currlv=thislv, ps=nps)
+        #               (s :: ss, qp, ps)
         return ([s] + ss, qp, ps)
-#           | (QED qp, ps) ->
+    #           | (QED qp, ps) ->
     elif isinstance(to_stp[0], QED):
         qp = to_stp[0].proof
         ps = to_stp[1]
-#               let qp = { core =
-#                           {core = Qed qp;
-#                            props = [Props.step.Property.set sn]} ;
-#                          props = [Props.step.Property.set sn] } in
-#               ([], qp, ps)
+        #               let qp = { core =
+        #                           {core = Qed qp;
+        #                            props = [Props.step.Property.set sn]} ;
+        #                          props = [Props.step.Property.set sn] } in
+        #               ([], qp, ps)
         qed = tla_ast.Qed(qp)
         qed.step_number = sn
         return (list(), qed, ps)
+
+
 #       end
 #   | p :: _ ->
 #       let found = match p.core with
@@ -321,105 +343,104 @@ def to_steps(first, currlv, ps):
 
 # and to_step currlv st ps = match st.core with
 def to_step(currlv, st, ps):
-#   | PreQed ->
+    #   | PreQed ->
     if isinstance(st, tla_ast.PreQed):
-#       let (p, ps) = to_proof (currlv + 1 @@ st) ps in
+        #       let (p, ps) = to_proof (currlv + 1 @@ st) ps in
         p, ps = to_proof(currlv + 1, ps)
-#       (QED p, ps)
+        #       (QED p, ps)
         return (QED(p), ps)
-#   | PreHide use ->
+    #   | PreHide use ->
     elif isinstance(st, tla_ast.PreHide):
         use = st.usable
-#       (STEP (Hide use @@ st), ps)
+        #       (STEP (Hide use @@ st), ps)
         hide = tla_ast.Hide(use)
         return (STEP(hide), ps)
-#   | PreUse (supp, onl, use, meth) ->
+    #   | PreUse (supp, onl, use, meth) ->
     elif isinstance(st, tla_ast.PreUse):
         supp = st.supp
         only = st.only
         usable = st.usable
         meth = st.method
-#       let u = Use (use, onl = Only) @@ st in
-        use = tla_ast.Use(usable,
-            isinstance(only, tla_ast.Only))
-#       (STEP (annotate supp meth u), ps)
+        #       let u = Use (use, onl = Only) @@ st in
+        use = tla_ast.Use(usable, isinstance(only, tla_ast.Only))
+        #       (STEP (annotate supp meth u), ps)
         annotate(supp, meth, use)
         return (STEP(use), ps)
-#   | PreDefine dfs ->
+    #   | PreDefine dfs ->
     elif isinstance(st, tla_ast.PreDefine):
         dfs = st.definitions
-#       (STEP (Define dfs @@ st), ps)
+        #       (STEP (Define dfs @@ st), ps)
         define = tla_ast.Define(dfs)
         return (STEP(define), ps)
-#   | PreHave (supp, e, meth) ->
+    #   | PreHave (supp, e, meth) ->
     elif isinstance(st, tla_ast.PreHave):
         supp = st.supp
         e = st.expr
         meth = st.method
-#       let h = Have e @@ st in
+        #       let h = Have e @@ st in
         have = tla_ast.Have(e)
-#       (STEP (annotate supp meth h), ps)
+        #       (STEP (annotate supp meth h), ps)
         annotate(supp, meth, have)
         return (STEP(have), ps)
-#   | PreTake (supp, bs, meth) ->
+    #   | PreTake (supp, bs, meth) ->
     elif isinstance(st, tla_ast.PreTake):
         supp = st.supp
         bs = st.bounds
         meth = st.method
-#       let t = Take bs @@ st in
+        #       let t = Take bs @@ st in
         take = tla_ast.Take(bs)
-#       (STEP (annotate supp meth t), ps)
+        #       (STEP (annotate supp meth t), ps)
         annotate(supp, meth, take)
         return (STEP(take), ps)
-#   | PreWitness (supp, es, meth) ->
+    #   | PreWitness (supp, es, meth) ->
     elif isinstance(st, tla_ast.PreWitness):
         supp = st.supp
         es = st.exprs
         meth = st.method
-#       let w = Witness es @@ st in
+        #       let w = Witness es @@ st in
         witness = tla_ast.Witness(es)
-#       (STEP (annotate supp meth w), ps)
+        #       (STEP (annotate supp meth w), ps)
         annotate(supp, meth, witness)
         return (STEP(witness), ps)
-#   | PreAssert sq ->
+    #   | PreAssert sq ->
     elif isinstance(st, tla_ast.PreAssert):
         sq = st.sequent
-#       let (p, ps) = to_proof (currlv + 1 @@ st) ps in
+        #       let (p, ps) = to_proof (currlv + 1 @@ st) ps in
         p, ps = to_proof(currlv + 1, ps)
-#       let st = enlarge_loc st p in
+        #       let st = enlarge_loc st p in
         enlarge_loc(st, p)
-#       (STEP (Assert (sq, p) @@ st), ps)
+        #       (STEP (Assert (sq, p) @@ st), ps)
         assert_ = tla_ast.Assert(sq, p)
         return (STEP(assert_), ps)
-#   | PreSuffices sq ->
+    #   | PreSuffices sq ->
     elif isinstance(st, tla_ast.PreSuffices):
         sq = st.sequent
-#       let (p, ps) = to_proof (currlv + 1 @@ st) ps in
+        #       let (p, ps) = to_proof (currlv + 1 @@ st) ps in
         p, ps = to_proof(currlv + 1, ps)
-#       let st = enlarge_loc st p in
+        #       let st = enlarge_loc st p in
         enlarge_loc(st, p)
-#       (STEP (Suffices (sq, p) @@ st), ps)
+        #       (STEP (Suffices (sq, p) @@ st), ps)
         suffices = tla_ast.Suffices(sq, p)
         return (STEP(suffices), ps)
-#   | PreCase e ->
+    #   | PreCase e ->
     elif isinstance(st, tla_ast.PreCase):
         e = st.expr
-#       let (p, ps) = to_proof (currlv + 1 @@ st) ps in
+        #       let (p, ps) = to_proof (currlv + 1 @@ st) ps in
         p, ps = to_proof(currlv + 1, ps)
-#       let st = enlarge_loc st p in
+        #       let st = enlarge_loc st p in
         enlarge_loc(st, p)
-#       (STEP (Pcase (e, p) @@ st), ps)
+        #       (STEP (Pcase (e, p) @@ st), ps)
         pcase = tla_ast.Pcase(e, p)
         return (STEP(pcase), ps)
-#   | PrePick (bs, e) ->
+    #   | PrePick (bs, e) ->
     elif isinstance(st, tla_ast.PrePick):
         bs = st.bounds
         e = st.expr
-#       let (p, ps) = to_proof (currlv + 1 @@ st) ps in
+        #       let (p, ps) = to_proof (currlv + 1 @@ st) ps in
         p, ps = to_proof(currlv + 1, ps)
-#       let st = enlarge_loc st p in
+        #       let st = enlarge_loc st p in
         enlarge_loc(st, p)
-#       (STEP (Pick (bs, e, p) @@ st), ps)
+        #       (STEP (Pick (bs, e, p) @@ st), ps)
         pick = tla_ast.Pick(bs, e, p)
         return (STEP(pick), ps)
     else:
@@ -460,13 +481,15 @@ def toplevel(ps):
 
 
 def method_prs_read_method():
-    while True: yield use(ep.read_new_method())
+    while True:
+        yield use(ep.read_new_method())
 
 
 #   let read_method = optional (use Method_prs.read_method)
 def read_method():
     # TODO: method parser
-    while True: yield optional(use(method_prs_read_method()))
+    while True:
+        yield optional(use(method_prs_read_method()))
 
 
 #   let suppress = lazy begin
@@ -476,13 +499,15 @@ def read_method():
 #     ]
 #   end
 def suppress():
-    while True: yield choice([
-        intf.pragma(punct('_')
-        <<or_>> intf.ident('suppress'))
-        <<bang>> tla_ast.Suppress(),
-
-        succeed(tla_ast.Emit())
-    ])
+    while True:
+        yield choice(
+            [
+                intf.pragma(punct("_") << or_ >> intf.ident("suppress"))
+                << bang
+                >> tla_ast.Suppress(),
+                succeed(tla_ast.Emit()),
+            ]
+        )
 
 
 #   let preno =
@@ -508,12 +533,12 @@ def preno():
             elif isinstance(step_name, tokens.StepPlus):
                 return tla_ast.StepPlus(step_label)
             elif isinstance(step_name, tokens.StepNum):
-                return tla_ast.StepNum(
-                    step_name.value, step_label)
+                return tla_ast.StepNum(step_name.value, step_label)
             else:
                 raise TypeError(step_name)
         else:
             return None
+
     return intf.scan(f)
 
 
@@ -521,20 +546,18 @@ def preno():
 #     choice [ kwd "ONLY" <!> Only ;
 #              succeed Default ]
 def only():
-    while True: yield choice([
-        kwd('ONLY') <<bang>> tla_ast.Only(),
-        succeed(tla_ast.Default())
-    ])
+    while True:
+        yield choice(
+            [kwd("ONLY") << bang >> tla_ast.Only(), succeed(tla_ast.Default())]
+        )
 
 
 #   let proof_kwd =
 #     choice [ kwd "PROOF" <!> true ;
 #              succeed false ]
 def proof_kwd():
-    while True: yield choice([
-        kwd('PROOF') <<bang>> True,
-        succeed(False)
-    ])
+    while True:
+        yield choice([kwd("PROOF") << bang >> True, succeed(False)])
 
 
 #   let sequent = lazy begin
@@ -545,13 +568,13 @@ def proof_kwd():
 #     ]
 #   end
 def sequent():
-    while True: yield choice([
-        use(ep.sequent(False)),
-
-        use(ep.expr(False))
-        <<apply>> (lambda e:
-            tla_ast.Sequent(list(), e))
-    ])
+    while True:
+        yield choice(
+            [
+                use(ep.sequent(False)),
+                use(ep.expr(False)) << apply >> (lambda e: tla_ast.Sequent(list(), e)),
+            ]
+        )
 
 
 #   let rec preproof = lazy begin
@@ -583,162 +606,208 @@ def sequent():
 #   end
 def preproof():
     while True:
-        yield (proof_kwd()
-        <<shift_eq>> (lambda pk: choice([
-            use(suppress())
-            <<shift_eq>> (lambda supp:
-                choice([
-                    intf.locate(kwd('BY'))
-                    <<times2>> only()
-                    <<times2>> use(usebody())
-                    <<times>> read_method()
-                    <<apply>> (lambda args:
-                        tla_ast.PreBy(
-                            supp, args[0][0][1],
-                            args[0][1], args[1]
-                        )
-                    ),
-
-                    intf.locate(
-                        kwd('OBVIOUS')
-                        <<second>> read_method()
-                        <<apply>> (lambda meth:
-                            tla_ast.PreObvious(supp, meth))
-                    )
-                ])
-            ),
-
-            # locate (kwd "OMITTED" <!> (PreOmitted Explicit)) ;
-            intf.locate(
-                kwd('OMITTED') <<bang>> tla_ast.PreOmitted(
-                    tla_ast.Explicit())
-            ),
-
-            #  locate begin
-            #           preno <**> use prestep
-            #           <$> (fun (pn, stp) ->
-            #                   PreStep (pk, pn, stp))
-            #         end ;
-            intf.locate(
-                preno()
-                <<times2>> use(prestep())
-                <<apply>> (lambda pn_stp:
-                    tla_ast.PreStep(pk, pn_stp[0], pn_stp[1]))
+        yield (
+            proof_kwd()
+            << shift_eq
+            >> (
+                lambda pk: choice(
+                    [
+                        use(suppress())
+                        << shift_eq
+                        >> (
+                            lambda supp: choice(
+                                [
+                                    intf.locate(kwd("BY"))
+                                    << times2
+                                    >> only()
+                                    << times2
+                                    >> use(usebody())
+                                    << times
+                                    >> read_method()
+                                    << apply
+                                    >> (
+                                        lambda args: tla_ast.PreBy(
+                                            supp, args[0][0][1], args[0][1], args[1]
+                                        )
+                                    ),
+                                    intf.locate(
+                                        kwd("OBVIOUS")
+                                        << second
+                                        >> read_method()
+                                        << apply
+                                        >> (lambda meth: tla_ast.PreObvious(supp, meth))
+                                    ),
+                                ]
+                            )
+                        ),
+                        # locate (kwd "OMITTED" <!> (PreOmitted Explicit)) ;
+                        intf.locate(
+                            kwd("OMITTED")
+                            << bang
+                            >> tla_ast.PreOmitted(tla_ast.Explicit())
+                        ),
+                        #  locate begin
+                        #           preno <**> use prestep
+                        #           <$> (fun (pn, stp) ->
+                        #                   PreStep (pk, pn, stp))
+                        #         end ;
+                        intf.locate(
+                            preno()
+                            << times2
+                            >> use(prestep())
+                            << apply
+                            >> (
+                                lambda pn_stp: tla_ast.PreStep(pk, pn_stp[0], pn_stp[1])
+                            )
+                        ),
+                    ]
+                )
             )
-        ])
-        ))
+        )
 
 
 #   and prestep = lazy begin
 def prestep():
     while True:
-        yield choice([
-#     choice [
-#       kwd "QED" <!> PreQed ;
-        kwd('QED') <<bang>> tla_ast.PreQed(),
-#
-#       kwd "HIDE"
-#       >*> use usebody
-#       <$> (fun use -> PreHide use) ;
-        kwd('HIDE')
-        <<second_commit>> use(usebody())
-        <<apply>> (lambda use: tla_ast.PreHide(use)),
-#
-#       kwd "SUFFICES"
-#       >*> use sequent
-#       <$> (fun sq -> PreSuffices sq) ;
-        kwd('SUFFICES')
-        <<second_commit>> use(sequent())
-        <<apply>> (lambda sq: tla_ast.PreSuffices(sq)),
-#
-#       kwd "CASE"
-#       >*> use (expr false)
-#       <$> (fun e -> PreCase e) ;
-        kwd('CASE')
-        <<second_commit>> use(ep.expr(False))
-        <<apply>> (lambda e: tla_ast.PreCase(e)),
-#
-#       kwd "PICK"
-#       >*> use (bounds false)
-#       <**> (punct ":"
-#             >>> use (expr false))
-#       <$> (fun (bs, e) -> PrePick (bs, e)) ;
-        kwd('PICK')
-        <<second_commit>> use(ep.bounds(False))
-        <<times2>> (punct(':')
-                    <<second>> use(ep.expr(False)))
-        <<apply>> (lambda bs_e:
-            tla_ast.PrePick(bs_e[0], bs_e[1])),
-#
-#       use suppress >>= begin fun supp ->
-        use(suppress()) <<shift_eq>> (
-            lambda supp: choice([
-#         choice [
-#           kwd "USE"
-#           >*> only
-#           <*> use usebody
-#           <*> read_method
-#           <$> (fun ((onl, use), meth) ->
-#                   PreUse (supp, onl, use, meth)) ;
-            kwd('USE')
-            <<second_commit>> only()
-            <<times>> use(usebody())
-            <<times>> read_method()
-            <<apply>> (lambda args:
-                tla_ast.PreUse(
-                    supp, args[0][0], args[0][1], args[1])),
-#
-#           kwd "HAVE"
-#           >*> use (expr false)
-#           <*> read_method
-#           <$> (fun (e, meth) -> PreHave (supp, e, meth)) ;
-            kwd('HAVE')
-            <<second_commit>> use(ep.expr(False))
-            <<times>> read_method()
-            <<apply>> (lambda e_meth:
-                tla_ast.PreHave(supp, e_meth[0], e_meth[1])),
-#
-#           kwd "TAKE"
-#           >*> use (bounds false)
-#           <*> read_method
-#           <$> (fun (bs, meth) -> PreTake (supp, bs, meth)) ;
-            kwd('TAKE')
-            <<second_commit>> use(ep.bounds(False))
-            <<times>> read_method()
-            <<apply>> (lambda bs_meth:
-                tla_ast.PreTake(supp, bs_meth[0], bs_meth[1])),
-#
-#           kwd "WITNESS"
-#           >*> sep1 (punct ",") (use (expr false))
-#           <*> read_method
-#           <$> (fun (es, meth) -> PreWitness (supp, es, meth)) ;
-            kwd('WITNESS')
-            <<second_commit>> sep1(
-                punct(','),
-                use(ep.expr(False))
-                )
-            <<times>> read_method()
-            <<apply>> (lambda es_meth:
-                tla_ast.PreWitness(supp, es_meth[0], es_meth[1]))
-#         ]
-#       end ;
-            ])
-        ),
-#
-#       attempt (optional (kwd "DEFINE") >>> star1 (use (defn false)))
-#       <$> (fun dfs -> PreDefine dfs) ;
-        attempt(
-            optional(kwd('DEFINE'))
-            <<second>> star1(use(ep.defn(False)))
-        ) <<apply>> (lambda defns:
-            tla_ast.PreDefine(defns)),
-#
-#       use sequent <$> (fun sq -> PreAssert sq) ;
-        use(sequent())
-        <<apply>> (lambda sq:
-            tla_ast.PreAssert(sq))
-#     ]
-        ])
+        yield choice(
+            [
+                #     choice [
+                #       kwd "QED" <!> PreQed ;
+                kwd("QED") << bang >> tla_ast.PreQed(),
+                #
+                #       kwd "HIDE"
+                #       >*> use usebody
+                #       <$> (fun use -> PreHide use) ;
+                kwd("HIDE")
+                << second_commit
+                >> use(usebody())
+                << apply
+                >> (lambda use: tla_ast.PreHide(use)),
+                #
+                #       kwd "SUFFICES"
+                #       >*> use sequent
+                #       <$> (fun sq -> PreSuffices sq) ;
+                kwd("SUFFICES")
+                << second_commit
+                >> use(sequent())
+                << apply
+                >> (lambda sq: tla_ast.PreSuffices(sq)),
+                #
+                #       kwd "CASE"
+                #       >*> use (expr false)
+                #       <$> (fun e -> PreCase e) ;
+                kwd("CASE")
+                << second_commit
+                >> use(ep.expr(False))
+                << apply
+                >> (lambda e: tla_ast.PreCase(e)),
+                #
+                #       kwd "PICK"
+                #       >*> use (bounds false)
+                #       <**> (punct ":"
+                #             >>> use (expr false))
+                #       <$> (fun (bs, e) -> PrePick (bs, e)) ;
+                kwd("PICK")
+                << second_commit
+                >> use(ep.bounds(False))
+                << times2
+                >> (punct(":") << second >> use(ep.expr(False)))
+                << apply
+                >> (lambda bs_e: tla_ast.PrePick(bs_e[0], bs_e[1])),
+                #
+                #       use suppress >>= begin fun supp ->
+                use(suppress())
+                << shift_eq
+                >> (
+                    lambda supp: choice(
+                        [
+                            #         choice [
+                            #           kwd "USE"
+                            #           >*> only
+                            #           <*> use usebody
+                            #           <*> read_method
+                            #           <$> (fun ((onl, use), meth) ->
+                            #                   PreUse (supp, onl, use, meth)) ;
+                            kwd("USE")
+                            << second_commit
+                            >> only()
+                            << times
+                            >> use(usebody())
+                            << times
+                            >> read_method()
+                            << apply
+                            >> (
+                                lambda args: tla_ast.PreUse(
+                                    supp, args[0][0], args[0][1], args[1]
+                                )
+                            ),
+                            #
+                            #           kwd "HAVE"
+                            #           >*> use (expr false)
+                            #           <*> read_method
+                            #           <$> (fun (e, meth) -> PreHave (supp, e, meth)) ;
+                            kwd("HAVE")
+                            << second_commit
+                            >> use(ep.expr(False))
+                            << times
+                            >> read_method()
+                            << apply
+                            >> (
+                                lambda e_meth: tla_ast.PreHave(
+                                    supp, e_meth[0], e_meth[1]
+                                )
+                            ),
+                            #
+                            #           kwd "TAKE"
+                            #           >*> use (bounds false)
+                            #           <*> read_method
+                            #           <$> (fun (bs, meth) -> PreTake (supp, bs, meth)) ;
+                            kwd("TAKE")
+                            << second_commit
+                            >> use(ep.bounds(False))
+                            << times
+                            >> read_method()
+                            << apply
+                            >> (
+                                lambda bs_meth: tla_ast.PreTake(
+                                    supp, bs_meth[0], bs_meth[1]
+                                )
+                            ),
+                            #
+                            #           kwd "WITNESS"
+                            #           >*> sep1 (punct ",") (use (expr false))
+                            #           <*> read_method
+                            #           <$> (fun (es, meth) -> PreWitness (supp, es, meth)) ;
+                            kwd("WITNESS")
+                            << second_commit
+                            >> sep1(punct(","), use(ep.expr(False)))
+                            << times
+                            >> read_method()
+                            << apply
+                            >> (
+                                lambda es_meth: tla_ast.PreWitness(
+                                    supp, es_meth[0], es_meth[1]
+                                )
+                            )
+                            #         ]
+                            #       end ;
+                        ]
+                    )
+                ),
+                #
+                #       attempt (optional (kwd "DEFINE") >>> star1 (use (defn false)))
+                #       <$> (fun dfs -> PreDefine dfs) ;
+                attempt(optional(kwd("DEFINE")) << second >> star1(use(ep.defn(False))))
+                << apply
+                >> (lambda defns: tla_ast.PreDefine(defns)),
+                #
+                #       use sequent <$> (fun sq -> PreAssert sq) ;
+                use(sequent()) << apply >> (lambda sq: tla_ast.PreAssert(sq))
+                #     ]
+            ]
+        )
+
+
 #   end
 #
 #   (* In a usebody, a step name has special meaning, so we strip the
@@ -754,9 +823,11 @@ def prestep():
 #     | Bang ({core = Opaque v} as e, []) when v.[0] = '<' -> e
 #     | _ -> f
 def filter_usebody_fact(f):
-    if (isinstance(f, tla_ast.Bang) and
-            isinstance(f.expr, tla_ast.Opaque) and
-            f.expr.name.startswith('<')):
+    if (
+        isinstance(f, tla_ast.Bang)
+        and isinstance(f.expr, tla_ast.Opaque)
+        and f.expr.name.startswith("<")
+    ):
         return f.expr
     else:
         return f
@@ -764,50 +835,43 @@ def filter_usebody_fact(f):
 
 #   and usebody = lazy begin
 def usebody():
-#     let defs =
-#       (kwd "DEF" <|> kwd "DEFS")
-#       >*> sep1 (punct ",") (use definable)
+    #     let defs =
+    #       (kwd "DEF" <|> kwd "DEFS")
+    #       >*> sep1 (punct ",") (use definable)
     defns = (
-        (kwd('DEF') <<or_>> kwd('DEFS'))
-        <<second_commit>> sep1(
-            punct(','),
-            use(definable())
-            )
-        )
-#     in
-#     sep (punct ",") (use (expr false)) >>= function
-#       | [] ->
-#           defs <$> (fun ds -> { facts = [] ; defs = ds })
-#       | fs ->
-#           optional defs <$> begin function
-#             | None -> {
-#                   facts = List.map filter_usebody_fact fs ;
-#                   defs = [] }
-#             | Some ds -> {
-#                   facts = List.map filter_usebody_fact fs ;
-#                   defs = ds }
-#           end
+        (kwd("DEF") << or_ >> kwd("DEFS"))
+        << second_commit
+        >> sep1(punct(","), use(definable()))
+    )
+    #     in
+    #     sep (punct ",") (use (expr false)) >>= function
+    #       | [] ->
+    #           defs <$> (fun ds -> { facts = [] ; defs = ds })
+    #       | fs ->
+    #           optional defs <$> begin function
+    #             | None -> {
+    #                   facts = List.map filter_usebody_fact fs ;
+    #                   defs = [] }
+    #             | Some ds -> {
+    #                   facts = List.map filter_usebody_fact fs ;
+    #                   defs = ds }
+    #           end
     def apply_usebody(fs, ds):
         if ds is None:
-            return dict(
-                facts=[filter_usebody_fact(f) for f in fs],
-                defs=list())
+            return dict(facts=[filter_usebody_fact(f) for f in fs], defs=list())
         else:
-            return dict(
-                facts=[filter_usebody_fact(f) for f in fs],
-                defs=ds)
+            return dict(facts=[filter_usebody_fact(f) for f in fs], defs=ds)
+
     def shift_usebody(fs):
         if fs:
-            return (optional(defns)
-                <<apply>> functools.partial(apply_usebody, fs))
+            return optional(defns) << apply >> functools.partial(apply_usebody, fs)
         else:
-            return defns <<apply>> (lambda ds:
-                dict(facts=list(), defs=ds))
+            return defns << apply >> (lambda ds: dict(facts=list(), defs=ds))
+
     while True:
-        yield sep(
-            punct(','),
-            use(ep.expr(False))
-        ) <<shift_eq>> shift_usebody
+        yield sep(punct(","), use(ep.expr(False))) << shift_eq >> shift_usebody
+
+
 #   end
 #
 #   and definable = lazy begin
@@ -817,14 +881,13 @@ def usebody():
 #     end
 #   end
 def definable():
-    while True: yield intf.locate(
-        sep1(
-            intf.punct('!'),
-            choice([intf.anyop(), intf.anyident()])
-            ) <<apply>> (lambda ids:
-                tla_ast.Dvar('!'.join(ids))
-            )
-    )
+    while True:
+        yield intf.locate(
+            sep1(intf.punct("!"), choice([intf.anyop(), intf.anyident()]))
+            << apply
+            >> (lambda ids: tla_ast.Dvar("!".join(ids)))
+        )
+
 
 #   let rec preproofs = lazy begin
 #     choice [
@@ -845,13 +908,17 @@ def definable():
 #     ] <$> toplevel
 #   end
 def proof():
-    while True: yield choice([
-        star1(use(preproof())),
+    while True:
+        yield choice(
+            [
+                star1(use(preproof())),
+                intf.locate(succeed(tla_ast.PreOmitted(tla_ast.Implicit())))
+                << apply
+                >> (lambda pp: [pp]),
+            ]
+        ) << apply >> toplevel
 
-        intf.locate(
-            succeed(tla_ast.PreOmitted(tla_ast.Implicit())))
-        <<apply>> (lambda pp: [pp])
-    ]) <<apply>> toplevel
+
 #
 # end
 #
