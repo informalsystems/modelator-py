@@ -3,7 +3,7 @@ from modelator.util.parse.tlc_stdout import extract_traces
 import os
 
 
-def test_tlc_stdout_extract_traces():
+def test_extract_traces():
 
     fn = "TlcMultipleTraceParse.txt"
     fn = os.path.join(get_resource_dir(), fn)
