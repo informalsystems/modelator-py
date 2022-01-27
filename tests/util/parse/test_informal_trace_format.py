@@ -30,7 +30,7 @@ def test_translate_tla_state_simple():
         state = fd.read()
     assert state is not None, f"Could not load test data from {FN}"
 
-    state = """/\ one_indexed_sequential_map = <<42, 42, 42, 42, 42>>
+    state = """__STATE == /\ one_indexed_sequential_map = <<42, 42, 42, 42, 42>>
 /\ string_indexed_map = [two |-> 42, one |-> 42]
 /\ record = [foo |-> 42, bar |-> 43]
 /\ tuple = <<1, 2>>
