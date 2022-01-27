@@ -1,6 +1,3 @@
-from .tla.parser import parse_expr
-
-
 def extract_traces(stdout: str) -> list[str]:
     """
     Extract zero, one or more traces from the stdout of TLC.
@@ -56,5 +53,7 @@ def tla_trace_to_informal_trace_format_trace(trace):
         return ret
 
     trace = split_into_states(trace)
-    trace = [parse_expr(state) for state in trace]
-    return trace
+    """
+    TODO: this is incomplete and is dependent on functionality to convert
+    TLA+ expressions to Informal Trace Format
+    """
