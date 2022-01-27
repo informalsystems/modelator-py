@@ -23,6 +23,8 @@ With Poetry installed `poetry install`.
 - Tests: `poetry run pytest` or use your code editor. VSCode has built in support.
 - Tests with coverage: `poetry run pytest --cov=modelator tests/`
 - Tests with logging output to terminal: `poetry run pytest --log-cli-level=debug`
+- Specific test: `poetry run pytest tests/<dir>/<filename>.py -k 'test_<suffix>'`
+- Specific test with visible print: `poetry run pytest tests/<dir>/<filename>.py -s -k 'test_<suffix>'`
 - Preview the pre-commit hooks: `pre-commit run --all-files`
 - Run linter manually: `flake8 .`
 - Run formatter manually: `black .`
