@@ -1,0 +1,35 @@
+TLC2 Version 2.16 of Day Month 20?? (rev: 7d936f2)
+Running breadth-first search Model-Checking with fp 72 and seed -14328800372612691 with 8 workers on 8 cores with 10923MB heap and 64MB offheap memory [pid: 55105] (Mac OS X 11.4 aarch64, Homebrew 17.0.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/danwt/Documents/work/mbt-python/tests/resource/TlcLassoTraceParse.tla
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-519656545032447101/Naturals.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-519656545032447101/FiniteSets.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-519656545032447101/Sequences.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TlcLassoTraceParse
+Starting... (2022-01-27 12:40:57)
+Implied-temporal checking--satisfiability problem has 1 branches.
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2022-01-27 12:40:57.
+Progress(3) at 2022-01-27 12:40:57: 7 states generated, 5 distinct states found, 0 states left on queue.
+Checking temporal properties for the complete state space with 5 total distinct states at (2022-01-27 12:40:57)
+Error: Temporal properties were violated.
+
+Error: The following behavior constitutes a counter-example:
+
+State 1: <Initial predicate>
+x = 0
+
+State 2: <Next line 19, col 5 to line 19, col 18 of module TlcLassoTraceParse>
+x = 3
+
+State 3: <Next line 19, col 5 to line 19, col 18 of module TlcLassoTraceParse>
+x = 4
+
+Back to state 2: <Next line 19, col 5 to line 19, col 18 of module TlcLassoTraceParse>
+
+Finished checking temporal properties in 00s at 2022-01-27 12:40:57
+7 states generated, 5 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 3.
+Finished in 00s at (2022-01-27 12:40:57)

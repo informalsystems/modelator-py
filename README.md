@@ -13,7 +13,7 @@ Framework and tools for model-based testing (Python code only. Rust code can be 
 
 ### Info
 
-The Python version used is `3.10.0`.
+The Python version used is `3.9.9`.
 
 ### Running
 
@@ -23,6 +23,8 @@ With Poetry installed `poetry install`.
 - Tests: `poetry run pytest` or use your code editor. VSCode has built in support.
 - Tests with coverage: `poetry run pytest --cov=modelator tests/`
 - Tests with logging output to terminal: `poetry run pytest --log-cli-level=debug`
+- Specific test: `poetry run pytest tests/<dir>/<filename>.py -k 'test_<suffix>'`
+- Specific test with visible print: `poetry run pytest tests/<dir>/<filename>.py -s -k 'test_<suffix>'`
 - Preview the pre-commit hooks: `pre-commit run --all-files`
 - Run linter manually: `flake8 .`
 - Run formatter manually: `black .`
@@ -39,6 +41,8 @@ code .
 ```
 
 Ensure that the bottom left of your VSCode window shows that you are using the correct Python environment (see contents of pyproject.toml for the correct Python version).
+
+The branch [vscode-configuration-template](https://github.com/informalsystems/mbt-python/tree/vscode-configuration-template) contains a .vscode directory which can be used as a starting point for configuring your dev environment.
 
 ### TLDR;
 

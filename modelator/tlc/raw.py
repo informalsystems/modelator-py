@@ -9,14 +9,17 @@ from .args import TlcArgs
 
 raw_cmd_fields = (
     "cwd",  # Current working directory for child shell process
-    "jar",  # Location of Tlc jar (full path with suffix like tla2tools.jar)
-    "args",  # Tlc args
+    "jar",  # Location of TLC jar (full path with suffix like tla2tools.jar)
+    "args",  # TLC args
 )
 
 RawCmd = recordclass("RawCmd", raw_cmd_fields, defaults=(None,) * len(raw_cmd_fields))
 
 
-def stringify_raw_cmd(cmd: RawCmd):
+def stringify_raw_cmd(cmd: RawCmd) -> str:
+    """
+    Returns a string which can be passed to a shell to run TLC.
+    """
 
     jar = cmd.jar
     args = cmd.args
@@ -67,25 +70,31 @@ def stringify_raw_cmd(cmd: RawCmd):
     return cmd_str
 
 
-def tlc_raw(*, cmd: RawCmd = None, json_obj=None):
+def json_to_cmd(json) -> RawCmd:
+    json = {
+        "cwd": None,
+        "jar": None,
+        "args": None,
+    } | json
+    cmd = RawCmd()
+    cmd.cwd = json["cwd"]
+    cmd.jar = json["jar"]
+    cmd.args = TlcArgs(**json["args"])
+    return cmd
+
+
+def tlc_raw(*, cmd: RawCmd = None, json=None):
     """
     Execute a Tlc command using either a RawCmd object, or build the RawCmd from json
 
     Returns an ExecutionResult with .process and .files properties.
     Contains the subprocess result, and the list of filesystem files (and contents).
     """
-    assert not (cmd is not None and json_obj is not None)
+    assert cmd is not None or json is not None
+    assert not (cmd is not None and json is not None)
 
-    if json_obj is not None:
-        json_obj = {
-            "cwd": None,
-            "jar": None,
-            "args": None,
-        } | json_obj
-        cmd = RawCmd()
-        cmd.cwd = json_obj["cwd"]
-        cmd.jar = json_obj["jar"]
-        cmd.args = TlcArgs(**json_obj["args"])
+    if json is not None:
+        cmd = json_to_cmd(json)
 
     if cmd.cwd is not None:
         cmd.cwd = os.path.expanduser(cmd.cwd)
