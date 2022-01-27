@@ -85,6 +85,11 @@ expr_tests = [
     " LET x == 1  y == 2 IN x + y ",
     " A(y - 1)!B!C ",
     " A!Op(y - 1, B) ",
+    # TLC
+    " 1 :> 2",
+    ' "foo" :> "bar" ',
+    " f @@ g ",
+    " 1 :> 2 @@ 3 :> 4 ",
 ]
 
 expr_tests.append(
@@ -295,6 +300,16 @@ def test_parser_parse():
     for module in module_tests:
         r = parser.parse(module)
         assert r is not None
+
+
+def test_parser_parse_expr_debug():
+    """For debugging in working branch"""
+    exprs = [
+        " 1 :> 2",
+        ' "foo" :> "bar" ',
+        " f @@ g ",
+        " 1 :> 2 @@ 3 :> 4 ",
+    ]
 
 
 def test_parser_parse_expr():
