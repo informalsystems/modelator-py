@@ -302,37 +302,6 @@ def test_parser_parse():
         assert r is not None
 
 
-def test_parser_parse_expr_debug():
-    # TODO: this is my working test
-    # poetry run pytest tests/util/parse/tla/test_parser.py -s -k 'test_parser_parse_expr_debug'
-
-    expr = """foo == /\ one_indexed_sequential_map = <<42, 42, 42, 42, 42>>
-/\ string_indexed_map = [two |-> 42, one |-> 42]
-/\ record = [foo |-> 42, bar |-> 43]
-/\ tuple = <<1, 2>>
-/\ bool = FALSE
-/\ set = {1, 2, 3}
-/\ list = <<1, "two">>
-/\ json_int = 123
-/\ string_literal = "hello"
-/\ map = ( 0 :> 42 @@
-  1 :> 42 @@
-  2 :> 42 @@
-  3 :> 42 @@
-  4 :> 42 @@
-  5 :> 42 @@
-  6 :> "forty-two" @@
-  8 :> "forty-two" @@
-  13 :> "forty-two" )
-/\ zero_indexed_sequential_map = (0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42 @@ 4 :> 42 @@ 5 :> 42)"""
-
-    tree = parser.parse_expr(expr, nodes=to_str.Nodes)
-    # text = tree.to_str(width=80)
-    # print(text)
-    tree = parser.parse_expr(expr)
-    assert tree is not None
-
-
 def test_parser_parse_expr():
     """Test the function `tla.parser.parse_expr`."""
     for expr in expr_tests:
