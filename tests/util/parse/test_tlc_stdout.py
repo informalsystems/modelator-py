@@ -1,9 +1,6 @@
 import os
 
-from modelator.util.parse.tlc_stdout import (
-    extract_traces,
-    tla_trace_to_informal_trace_format_trace,
-)
+from modelator.util.parse.tlc_stdout import extract_traces
 
 from ...helper import get_resource_dir
 
@@ -18,36 +15,3 @@ def test_extract_traces():
 
     result = extract_traces(content)
     assert len(result) == 4
-
-
-def test_tla_non_lasso_trace_to_informal_trace_format_trace():
-
-    trace = """State 1: <Initial predicate>
-/\ steps = 0
-/\ x = "hello"
-/\ y = 42
-/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
-  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
-  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
-  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
-
-State 2: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
-/\ steps = 1
-/\ x = "hello"
-/\ y = 42
-/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
-  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
-  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
-  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
-
-State 3: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
-/\ steps = 2
-/\ x = "hello"
-/\ y = 42
-/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
-  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
-  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
-  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }"""
-
-    result = tla_trace_to_informal_trace_format_trace(trace)
-    # TODO: impl

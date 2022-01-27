@@ -1,4 +1,4 @@
-def extract_traces(stdout: str) -> list[str]:
+def extract_traces(stdout: str):
     """
     Extract zero, one or more traces from the stdout of TLC.
 
