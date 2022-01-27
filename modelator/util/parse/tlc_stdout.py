@@ -5,18 +5,18 @@ def extract_traces(stdout: str) -> list[str]:
     """
     Extract zero, one or more traces from the stdout of TLC.
 
-    NOTE: Does not support lasso traces
+    Note: Does not support lasso traces
     """
     ret = []
     lines = stdout.split("\n")
-    HEADER = "State 1"
+    HEADER = "Error: Invariant"
     FOOTER = "Model checking completed."
     header_cnt = 0
     header_ix = -1
     for i, line in enumerate(lines):
         if line.startswith(HEADER) or line.startswith(FOOTER):
             if 0 < header_cnt:
-                trace_lines = lines[header_ix:i]
+                trace_lines = lines[header_ix + 2 : i]
                 trace = "\n".join(trace_lines)
                 ret.append(trace)
             header_cnt += 1
@@ -50,7 +50,7 @@ def tla_trace_to_informal_trace_format_trace(trace):
                 header_ix = i
                 header_cnt += 1
         if 0 < header_cnt:
-            ret.append(lines[header_ix + 1 : i])
+            ret.append(lines[header_ix + 1 :])
 
         ret = ["\n".join(lines) for lines in ret]
         return ret
