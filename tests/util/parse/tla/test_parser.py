@@ -4,7 +4,6 @@ import pprint
 import modelator.util.parse.tla._combinators as pco
 import modelator.util.parse.tla._expr_parser as ep
 import modelator.util.parse.tla._module_parser as mp
-import modelator.util.parse.tla.iter
 import modelator.util.parse.tla.visit
 from modelator.util.parse.tla import _tla_combinators, lex, parser, to_str
 
