@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "poetry run pytest",
+            "type": "shell",
+            "command": "poetry run pytest",
+            "group": "test",
+        },
+        {
+            "label": "poetry run pytest --cov=modelator tests/",
+            "type": "shell",
+            "command": "poetry run pytest --cov=modelator tests/",
+            "group": "test",
+        },
+        {
+            "label": "poetry run pytest --log-cli-level=debug",
+            "type": "shell",
+            "command": "poetry run pytest --log-cli-level=debug",
+            "group": "test",
+        },
+        {
+            "label": "pre-commit run --all-files",
+            "type": "shell",
+            "command": "pre-commit run --all-files",
+        },
+        {
+            "label": "linter",
+            "type": "shell",
+            "command": "flake8 .",
+        },
+        {
+            "label": "formatter",
+            "type": "shell",
+            "command": "black .",
+        },
+        {
+            "label": "type checker",
+            "type": "shell",
+            "command": "mypy .",
+        },
+        {
+            "label": "sort imports",
+            "type": "shell",
+            "command": "isort .",
+        },
+    ]
+}
