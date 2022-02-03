@@ -13,8 +13,8 @@
 import math
 import textwrap
 
-from tla import _optable
-from tla.ast import Nodes as _Nodes
+from . import _optable
+from .ast import Nodes as _Nodes
 
 LINE_WIDTH = 80
 INDENT_WIDTH = 4

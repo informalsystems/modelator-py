@@ -8,7 +8,7 @@
 # <https://github.com/tlaplus/tlapm/blob/main/src/tla_parser.ml>
 #
 from . import _combinators as pco
-from tla import _optable, tokens
+from . import _optable, tokens
 
 
 # (** The [pcx] is the state carried by the parsers. The [ledge] field

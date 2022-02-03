@@ -12,7 +12,7 @@
 # <https://github.com/tlaplus/tlapm/blob/main/src/proof/p_parser.ml>
 import copy
 
-from tla.to_str import Nodes as _Nodes
+from .to_str import Nodes as _Nodes
 
 
 def _visit_bounds(visitor, bounds, *arg, **kw):

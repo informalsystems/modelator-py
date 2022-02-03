@@ -1,6 +1,6 @@
 """How to parse a TLA+ module."""
-from tla import parser
-from tla.to_str import Nodes
+from . import parser
+from .to_str import Nodes
 
 TLA_FILE_PATH = "Counter.tla"
 

@@ -11,8 +11,8 @@ import functools
 
 from . import _combinators as pco
 from . import _tla_combinators as intf
-from tla import _location, _optable, tokens
-from tla._combinators import (
+from . import _location, _optable, tokens
+from ._combinators import (
     alt,
     apply,
     apply_question,
@@ -44,7 +44,7 @@ from tla._combinators import (
     use,
     using,
 )
-from tla.ast import Nodes as tla_ast
+from .ast import Nodes as tla_ast
 
 
 # open Ext

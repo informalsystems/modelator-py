@@ -11,8 +11,8 @@ import logging
 import re
 
 import ply.lex
-from tla import _location
-from tla import tokens as intf
+from . import _location
+from . import tokens as intf
 
 logger = logging.getLogger(__name__)
 

@@ -6,7 +6,7 @@ from . import _combinators as pco
 from . import _expr_parser as ep
 from . import _module_parser as mp
 from . import _proof_parser as pfp
-from tla import _optable, _tla_combinators, lex
+from . import _optable, _tla_combinators, lex
 
 
 def parse(module_text, nodes=None):
@@ -17,8 +17,8 @@ def parse(module_text, nodes=None):
     For example:
 
     ```python
-    from tla import parser
-    from tla.to_str import Nodes
+    from . import  parser
+    from . to_str import Nodes
 
     module_text = r'''
     ---- MODULE Foo ----
@@ -46,8 +46,8 @@ def parse_expr(expr, nodes=None):
     For example:
 
     ```python
-    from tla import parser
-    from tla.to_str import Nodes
+    from . import  parser
+    from . to_str import Nodes
 
     expr = r'x = 1 /\ y = 2'
 

@@ -1,2 +1,2 @@
 """TLA+ parser and syntax tree."""
-from . import parse, parse_expr
+from .parser import parse, parse_expr

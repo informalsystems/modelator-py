@@ -10,8 +10,8 @@
 from . import _expr_parser as ep
 from . import _proof_parser as pfp
 from . import _tla_combinators as intf  # avoid shadowing by `_combinators`
-from tla import tokens
-from tla._combinators import (
+from . import tokens
+from ._combinators import (
     alt,
     apply,
     apply_question,
@@ -43,8 +43,8 @@ from tla._combinators import (
     use,
     using,
 )
-from tla._tla_combinators import kwd, locate, punct
-from tla.ast import Nodes as nodes
+from ._tla_combinators import kwd, locate, punct
+from .ast import Nodes as nodes
 
 
 #

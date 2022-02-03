@@ -10,9 +10,9 @@ import functools
 import uuid
 
 from . import _expr_parser as ep
-from tla import _tla_combinators as intf
-from tla import tokens
-from tla._combinators import (
+from . import _tla_combinators as intf
+from . import tokens
+from ._combinators import (
     alt,
     apply,
     apply_question,
@@ -44,8 +44,8 @@ from tla._combinators import (
     use,
     using,
 )
-from tla._tla_combinators import kwd, punct
-from tla.ast import Nodes as tla_ast
+from ._tla_combinators import kwd, punct
+from .ast import Nodes as tla_ast
 
 
 # open Ext

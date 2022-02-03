@@ -9,7 +9,7 @@
 #
 import pprint
 
-from tla.ast import Nodes as nodes
+from .ast import Nodes as nodes
 
 # open Builtin
 
