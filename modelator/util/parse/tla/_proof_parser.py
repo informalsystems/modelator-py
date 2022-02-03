@@ -9,7 +9,7 @@
 import functools
 import uuid
 
-import tla._expr_parser as ep
+from . import _expr_parser as ep
 from tla import _tla_combinators as intf
 from tla import tokens
 from tla._combinators import (

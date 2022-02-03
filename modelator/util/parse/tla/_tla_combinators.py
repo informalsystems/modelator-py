@@ -7,7 +7,7 @@
 #
 # <https://github.com/tlaplus/tlapm/blob/main/src/tla_parser.ml>
 #
-import tla._combinators as pco
+from . import _combinators as pco
 from tla import _optable, tokens
 
 

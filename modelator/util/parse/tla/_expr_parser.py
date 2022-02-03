@@ -9,8 +9,8 @@
 #
 import functools
 
-import tla._combinators as pco
-import tla._tla_combinators as intf
+from . import _combinators as pco
+from . import _tla_combinators as intf
 from tla import _location, _optable, tokens
 from tla._combinators import (
     alt,

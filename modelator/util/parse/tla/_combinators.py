@@ -19,7 +19,7 @@ import subprocess
 import types
 import warnings
 
-import tla.tokens as intf
+from . import tokens as intf
 from infix import shift_infix as infix
 from tla import _error, _location
 

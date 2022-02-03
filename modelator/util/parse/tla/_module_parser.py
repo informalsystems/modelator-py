@@ -7,9 +7,9 @@
 #
 # <https://github.com/tlaplus/tlapm/blob/main/src/module/m_parser.ml>
 #
-import tla._expr_parser as ep
-import tla._proof_parser as pfp
-import tla._tla_combinators as intf  # avoid shadowing by `_combinators`
+from . import _expr_parser as ep
+from . import _proof_parser as pfp
+from . import _tla_combinators as intf  # avoid shadowing by `_combinators`
 from tla import tokens
 from tla._combinators import (
     alt,

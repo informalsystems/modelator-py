@@ -1,5 +1,5 @@
 """How to use the visitor pattern when traversing the syntax tree."""
-import tla.visit
+from . import visit
 from tla import parser, to_str
 
 expr = r"x = 1 /\ y = 2"

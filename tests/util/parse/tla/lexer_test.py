@@ -1,7 +1,7 @@
 """Tests of module `tla.lex`."""
 import pprint
 
-import tla.lex as lex
+from modelator.util.parse.tla import lex
 
 MODULE_FOO = r"""
 comments
