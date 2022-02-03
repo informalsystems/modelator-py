@@ -1,11 +1,16 @@
 """Tests for the package `tla`."""
 import pprint
 
-import modelator.util.parse.tla._combinators as pco
-import modelator.util.parse.tla._expr_parser as ep
-import modelator.util.parse.tla._module_parser as mp
-import modelator.util.parse.tla.visit
-from modelator.util.parse.tla import _tla_combinators, lex, parser, to_str
+import tla._combinators as pco
+import tla._expr_parser as ep
+import tla._module_parser as mp
+from tla import _tla_combinators
+import tla.iter
+from tla import lex
+from tla import parser
+from tla import to_str
+import tla.visit
+
 
 expr_tests = [
     " FALSE ",
@@ -39,18 +44,18 @@ expr_tests = [
     " {FALSE, FALSE} ",
     " SUBSET A.r ",
     " UNION {S \\in A:  S \\cap Q # {}} ",
-    " {x \in Int:  x < 0} ",
+    " {x \\in Int:  x < 0} ",
     # functions
     " [foo |-> FALSE] ",
     " [foo |-> FALSE, bar |-> FALSE] ",
     " [FALSE -> FALSE] ",
-    " [x, y \in S, uv \in T |-> G(x, y, uv[1], uv[2])] ",
+    " [x, y \\in S, uv \\in T |-> G(x, y, uv[1], uv[2])] ",
     # " [x, y \in S, <<u, v>> \in T |-> G(x, y, u, v)] ",
     " f[x]' ",
     " f[k + 1, r] ",
-    " [(A \cup B) -> C] ",
+    " [(A \\cup B) -> C] ",
     " [a |-> u + v, b |-> w] ",
-    " [a: Int, b: A \cup B] ",
+    " [a: Int, b: A \\cup B] ",
     # EXCEPT
     " [f EXCEPT !.foo = FALSE] ",
     " [f EXCEPT ![FALSE] = FALSE] ",
@@ -61,7 +66,7 @@ expr_tests = [
     " <<TRUE>> ",
     " <<TRUE, TRUE>> ",
     " <<1, 2, 3 + 5 >> ",
-    " Int \X (1..2) \X Real ",
+    " Int \\X (1..2) \\X Real ",
     # actions
     " (TRUE + 1)' ",
     " (1 + 2)' /\\ 3 ",
@@ -70,11 +75,11 @@ expr_tests = [
     " <<TRUE>>_TRUE ",
     " [x' = x + 1]_<<x, y>> ",
     " <<x' = x + 1>>_<<x, y>> ",
-    " [M \/ N]_<<u, v>> ",
+    " [M \\/ N]_<<u, v>> ",
     " <<x' = x + 1>>_(x * y) ",
     # liveness formulas
     " WF_TRUE (TRUE) ",
-    " WF_<<x, y>>(N /\ M)",
+    " WF_<<x, y>>(N /\\ M)",
     " WF_x(N) ",
     " SF_TRUE(TRUE) ",
     # `LAMBDA`
@@ -84,91 +89,66 @@ expr_tests = [
     " LET x == 1  y == 2 IN x + y ",
     " A(y - 1)!B!C ",
     " A!Op(y - 1, B) ",
-    # TLC
-    " 1 :> 2",
-    ' "foo" :> "bar" ',
-    " f @@ g ",
-    " 1 :> 2 @@ 3 :> 4 ",
-]
+    ]
 
-expr_tests.append(
-    r"""
+expr_tests.append(r'''
 /\ \/ FALSE
    \/ FALSE
 /\ FALSE
-"""
-)
-expr_tests.append(
-    r"""
+''')
+expr_tests.append(r'''
 /\ (f = [x \in {1, 2} |-> x' + 1])
 /\ a = b
-"""
-)
-expr_tests.append(
-    r"""
+''')
+expr_tests.append(r'''
 CASE   A -> u
     [] B -> v
     [] OTHER -> w
-"""
-)
-expr_tests.append(
-    r"""
+''')
+expr_tests.append(r'''
 LET
     x == y - 1
     f[u \in Int] == u^2
 IN
     x + f[v]
-"""
-)
+''')
 
 # tests for defn parser
 defn_tests = [
     " a == 1 ",
     " a == INSTANCE M WITH x <- 1 ",
     " Foo(x, y) == x + y ",
-    " Foo(x, Bar(_)) == x + y ",
-]
-defn_tests.append(
-    """
+    " Foo(x, Bar(_)) == x + y "]
+defn_tests.append('''
 a == /\\ f = [x \\in {1, 2} |-> x]
      /\\ g = b
-"""
-)
+''')
 
 
 sequent_tests = list()
-sequent_tests.append(
-    r"""
+sequent_tests.append(r'''
 ASSUME TRUE
 PROVE TRUE
-"""
-)
-sequent_tests.append(
-    r"""
+''')
+sequent_tests.append(r'''
 ASSUME NEW x \in {1, 2}
 PROVE x \in {1, 2, 3}
-"""
-)
+''')
 
 
 module_tests = list()
-module_tests.append(
-    r"""
+module_tests.append(r'''
 ---- MODULE Foo ----
 x == 1
 ====================
-"""
-)
-module_tests.append(
-    r"""
+''')
+module_tests.append(r'''
 ---- MODULE Bar ----
 b == /\ a = 1
      /\ c = d
 ====================
-"""
-)
-module_tests.append(
-    r"""
+''')
+module_tests.append(r'''
 ---- MODULE Foo_Bar ----
 EXTENDS Foo
 
@@ -218,14 +198,14 @@ PROOF
 *)
 *)
 ========================
-"""
-)
+''')
+
 
 
 def test_expr_parser():
     """Testing of expression parser."""
     for expr in expr_tests:
-        print(" ")
+        print(' ')
         print(expr)
         r = run_expr_parser(expr)
         assert r is not None
@@ -288,8 +268,9 @@ def _run_parser(ap, text):
 def _tokenize(text):
     """Count tokens and lines when tokenizing."""
     tokens = lex.tokenize(text, omit_preamble=False)
-    print("The input has {n} tokens.".format(n=len(tokens)))
-    print("The input has {n} lines.".format(n=text.count("\n")))
+    count = text.count('\n')
+    print(f'The input has {len(tokens)} tokens.')
+    print(f'The input has {count} lines.')
     # pprint.pprint(tokens)
     return tokens
 
@@ -326,7 +307,8 @@ def _parser_parse_to_str(text):
     """Return parse tree from `tla.parser.parse`."""
     r = parser.parse(text, nodes=to_str.Nodes)
     text = r.to_str()
-    to_str._print_overwide_lines(text, to_str.LINE_WIDTH)
+    to_str._print_overwide_lines(
+        text, to_str.LINE_WIDTH)
     return r
 
 
@@ -337,5 +319,5 @@ def _parser_parse_expr_to_str(text):
     return r
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     test_expr_parser()

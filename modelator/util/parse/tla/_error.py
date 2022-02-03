@@ -5,7 +5,7 @@
 #
 # This module is based on the file:
 #
-# https://github.com/tlaplus/tlapm/blob/master/src/pars/error.ml
+# <https://github.com/tlaplus/tlapm/blob/main/src/pars/error.ml>
 #
 #
 # open Ext
@@ -22,8 +22,13 @@ def setdefault(value, default):
 #       err_exps : string list ;
 #       err_msgs : string list ;
 #       err_ints : string list }
-class Error_(object):
-    def __init__(self, err_unex=None, err_exps=None, err_msgs=None, err_ints=None):
+class Error_:
+    def __init__(
+            self,
+            err_unex=None,
+            err_exps=None,
+            err_msgs=None,
+            err_ints=None):
         self.err_unex = err_unex
         self.err_exps = setdefault(err_exps, list())
         self.err_msgs = setdefault(err_msgs, list())
@@ -31,11 +36,10 @@ class Error_(object):
 
 
 # type error = Error of error_ * Loc.locus
-class Error(object):
+class Error:
     def __init__(self, error_, locus):
         self.error_ = error_
         self.locus = locus
-
 
 # type t = error
 class T(Error):
@@ -80,18 +84,23 @@ class T(Error):
 # ;;
 def print_error(verbose, ouch, error):
     if error.error_.err_unex is None:
-        unexp = ""
+        unexp = ''
     else:
-        unexp = "Unexpected {s}\n".format(s=error.error_.err_unex)
+        unexp = f'Unexpected {error.error_.err_unex}\n'
     if not error.error_.err_exps:
-        exps = ""
+        exps = ''
     else:
-        exps = "Expecting one of \{{s}\n".format(s="\n".join(error.error_.err_exps))
+        exps = 'Expecting one of:  {s}\n'.format(
+            s='\n'.join(error.error_.err_exps))
     if verbose:
-        ints = "".join("[Internal] {i}\n".format(i=i) for i in error.error_.err_ints)
+        ints = ''.join(
+            f'[Internal] {i}\n'
+            for i in error.error_.err_ints)
     else:
-        ints = ""
-    msgs = "".join(i + "\n" for i in error.error_.err_msgs)
+        ints = ''
+    msgs = "".join(
+        i + '\n'
+        for i in error.error_.err_msgs)
     print(error.locus)
     print(unexp)
     print(exps)
@@ -122,8 +131,7 @@ def err_combine(a, b):
         err_unex=None,
         err_exps=a.error_.err_exps + b.error_.err_exps,
         err_ints=a.error_.err_ints + b.error_.err_ints,
-        err_msgs=a.error_.err_msgs + b.error_.err_msgs,
-    )
+        err_msgs=a.error_.err_msgs + b.error_.err_msgs)
     return Error(error_, b.locus)
 
 
@@ -136,8 +144,7 @@ def err_add_message(msg, error):
         err_unex=e.err_unex,
         err_exps=e.err_exps,
         err_msgs=[msg] + e.err_msgs,
-        err_ints=e.err_ints,
-    )
+        err_ints=e.err_ints)
     return Error(error_, elocus)
 
 
@@ -150,8 +157,7 @@ def err_add_internal(i, error):
         err_unex=e.err_unex,
         err_exps=e.err_exps,
         err_msgs=e.err_msgs,
-        err_ints=[i] + e.err_ints,
-    )
+        err_ints=[i] + e.err_ints)
     return Error(error_, elocus)
 
 
@@ -164,8 +170,7 @@ def err_add_expecting(x, error):
         err_unex=e.err_unex,
         err_exps=[x] + e.err_exps,
         err_msgs=e.err_msgs,
-        err_ints=e.err_ints,
-    )
+        err_ints=e.err_ints)
     return Error(error_, elocus)
 
 
@@ -175,6 +180,8 @@ def err_set_unexpected(u, error):
     e = error.error_
     elocus = error.locus
     error_ = Error_(
-        err_unex=u, err_exps=e.err_exps, err_msgs=e.err_msgs, err_ints=e.err_ints
-    )
+        err_unex=u,
+        err_exps=e.err_exps,
+        err_msgs=e.err_msgs,
+        err_ints=e.err_ints)
     return Error(error_, elocus)

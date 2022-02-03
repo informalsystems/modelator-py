@@ -5,10 +5,11 @@
 #
 # This module is based on the file:
 #
-# https://github.com/tlaplus/tlapm/blob/master/src/pars/pco.ml
+# <https://github.com/tlaplus/tlapm/blob/main/src/pars/pco.ml>
 #
-from __future__ import absolute_import, division
-
+from __future__ import absolute_import
+from __future__ import division
+import collections.abc
 import copy
 import functools
 import logging
@@ -20,8 +21,10 @@ import warnings
 
 from infix import shift_infix as infix
 
-from . import _error, _location
-from . import tokens as intf
+from tla import _error
+from tla import _location
+import tla.tokens as intf
+
 
 logger = logging.getLogger(__name__)
 
@@ -43,16 +46,16 @@ logger = logging.getLogger(__name__)
 #     (* user state *)
 #     mutable user_state : 's ;
 #   }
-class Pstate(object):
+class Pstate:
     def __init__(self, source, lastpos, user_state):
         self.source = source  # list
         self.lastpos = lastpos  # Loc.locus
         self.user_state = user_state  # 's
 
     def __repr__(self):
-        return ("Pstate({src}, {pos}, " "{user_state})").format(
-            src=self.source, pos=self.lastpos, user_state=self.user_state
-        )
+        return (
+            f'Pstate({self.source}, {self.lastpos}, '
+            f'{self.user_state})')
 
 
 #   (* kind of failure *)
@@ -63,19 +66,16 @@ class Pstate(object):
 #         (** failed with user-provided reason *)
 #     | Internal of string
 #         (** failed with internal reason *)
-class FailureKind(object):
+class FailureKind:
     pass
-
 
 class Unexpected(FailureKind):
     def __init__(self, string):
         self.string = string
 
-
 class Message(FailureKind):
     def __init__(self, string):
         self.string = string
-
 
 class Internal(FailureKind):
     def __init__(self, string):
@@ -88,13 +88,11 @@ class Internal(FailureKind):
 #         (** normal failure attempting inapplicable rule *)
 #     | Abort
 #         (** partially applied rule giving unambiguous failure *)
-class Severity(object):
+class Severity:
     pass
-
 
 class Backtrack(Severity):
     pass
-
 
 class Abort(Severity):
     pass
@@ -103,7 +101,7 @@ class Abort(Severity):
 # type 'a result =
 #     | Parsed of 'a
 #     | Failed of kind * severity * string option
-class Result(object):
+class Result:
     pass
 
 
@@ -122,28 +120,28 @@ class Failed(Result):
         self.string = string
 
     def __repr__(self):
-        return ("Failed({kind}, {v}, {s})").format(
-            kind=self.kind, v=self.severity, s=self.string
-        )
+        return (
+            f'Failed({self.kind}, '
+            f'{self.severity}, '
+            f'{self.string})')
 
 
 # type ('s, 'a) reply = {
 #     res : 'a result ;
 #     loc : Loc.locus ;
 #   }
-class Reply(object):
+class Reply:
     def __init__(self, res, loc):
         self.res = res  # 'a result  # 'a Result
         self.loc = loc  # Loc.locus
 
     def __repr__(self):
-        return ("Reply({res}, {loc})").format(res=self.res, loc=self.loc)
+        return f'Reply({self.res}, {self.loc})'
 
 
 # type ('s, 'a) prs = Prs of ('s pstate -> ('s, 'a) reply)
-class Prs(object):
+class Prs:
     """Parser: 's Pstate -> 'a Reply."""
-
     def __init__(self, value, name=None):
         self.value = value  # 's Pstate -> 'a Reply
         self.name = name
@@ -154,9 +152,11 @@ class Prs(object):
 #     else if bloc = Loc.unknown || bloc.start = bloc.stop then aloc
 #     else Loc.merge aloc bloc
 def fuse(aloc, bloc):
-    if aloc == _location.unknown or aloc.start == aloc.stop:
+    if (aloc == _location.unknown or
+            aloc.start == aloc.stop):
         return bloc
-    elif bloc == _location.unknown or bloc.start == bloc.stop:
+    elif (bloc == _location.unknown or
+            bloc.start == bloc.stop):
         return aloc
     else:
         return aloc.merge(bloc)
@@ -173,15 +173,11 @@ def exec_(ap, pst):
     if isinstance(ap, types.GeneratorType):
         ap = next(ap)
     assert not isinstance(ap, types.GeneratorType), ap
-    if isinstance(
-        ap,
-        (
+    if isinstance(ap, (
             types.FunctionType,
-            functools.partial,
-        ),
-    ):
+            functools.partial,)):
         f = ap
-    elif not hasattr(ap, "value"):
+    elif not hasattr(ap, 'value'):
         # print(ap)
         raise ValueError(ap)
     else:
@@ -238,14 +234,18 @@ def execute(ap, pst):
 #     in execute ap pst
 def run(ap, init, source):
     if not source:
-        raise Exception("No tokens in file")
+        raise Exception('No tokens in file')
     else:
         t = source[0]  # token
         loc = t.loc  # locus of token (intf.locus())
-        lastpos = _location.Locus(start=loc.stop, stop=loc.stop, filename=loc.file)
+        lastpos = _location.Locus(
+            start=loc.stop,
+            stop=loc.stop,
+            filename=loc.file)
         # lastpos = {loc with Loc.start = loc.Loc.stop}
     src = ListSlice(source, start=0)
-    pst = Pstate(source=src, lastpos=lastpos, user_state=init)
+    pst = Pstate(
+        source=src, lastpos=lastpos, user_state=init)
     r = execute(ap, pst)
     # print('parsing stopped at:')
     # print(pst.lastpos)
@@ -265,7 +265,6 @@ def run(ap, init, source):
 def return_(a, loc):
     def f(pst):
         return Reply(res=Parsed(a), loc=loc)
-
     # return Prs(f)
     return f
 
@@ -279,7 +278,6 @@ def return_(a, loc):
 def succeed(a):
     def f(pst):
         return Reply(res=Parsed(a), loc=pst.lastpos)
-
     # return Prs(f)
     return f
 
@@ -293,7 +291,6 @@ def fail(msg):
     def f(pst):
         res = Failed(Message(msg), Backtrack(), None)
         return Reply(res=res, loc=pst.lastpos)
-
     # return Prs(f)
     return f
 
@@ -307,7 +304,6 @@ def internal(msg):
     def f(pst):
         res = Failed(Internal(msg), Backtrack(), None)
         return Reply(res=res, loc=pst.lastpos)
-
     # return Prs(f)
     return f
 
@@ -326,13 +322,12 @@ def internal(msg):
 def debug(msg):
     def f(pst):
         err = _error.error(pst.lastpos)
-        s = "EOF" if not pst.source else intf.rep(pst.source[0])
-        dbg_msg = "[debug] following token is {s}".format(s=s)
+        s = 'EOF' if not pst.source else intf.rep(pst.source[0])
+        dbg_msg = f'[debug] following token is {s}'
         _error.err_add_message(dbg_msg, err)
-        err = error.err_add_message("[debug] {s}".format(s=msg), err)
+        err = error.err_add_message(f'[debug] {msg}', err)
         _error.print_error(False, None, err)
         return exec_(succeed(None), pst)
-
     return Prs(f)
 
 
@@ -368,11 +363,9 @@ def debug(msg):
 #   end
 def get():
     """Embed the user state."""
-
     def f(pst):
         return exec_(succeed(pst.user_state), pst)
         # return Reply(Parsed(pst.user_state), pst.lastpos)
-
     # return Prs(f)
     return f
 
@@ -411,7 +404,6 @@ def using(s, ap):
         # TODO: different semantics ?
         pst.user_state = oldst
         return rep
-
     return Prs(f)
 
 
@@ -424,7 +416,6 @@ def use(apf):
     def f(pst):
         # TODO: different semantics (not lazy)
         return exec_(apf, pst)
-
     # return Prs(f)
     return f
 
@@ -435,7 +426,6 @@ def use(apf):
 def thunk(apf):
     def f(pst):
         return exec_(apf(None), pst)
-
     return Prs(f)
 
 
@@ -494,7 +484,8 @@ def shift_plus(ap, bpf):
     the result and location of the reply by parser `ap`.
     """
     # bind function applied to reply's result and location
-    return functools.partial(f_shift_plus, ap, bpf)
+    return functools.partial(
+        f_shift_plus, ap, bpf)
     # return Prs(f)
 
 
@@ -520,7 +511,8 @@ def shift_eq(ap, bpf):
 def f_or_(ap, bp, pst):
     memo = save(pst)
     arep = exec_(ap, pst)
-    if isinstance(arep.res, Failed) and isinstance(arep.res.severity, Backtrack):
+    if (isinstance(arep.res, Failed) and
+            isinstance(arep.res.severity, Backtrack)):
         restore(memo, pst)
         memo_ = save(pst)
         assert memo == memo_
@@ -545,12 +537,9 @@ def or_(ap, bp):
 def times(ap, bp):
     """Apply `ap`, if it succeeds then `bp`, return tuple of results."""
     # This combinator is known also as `seq`.
-    return shift_plus(
-        ap,
-        lambda a, aloc: shift_plus(
-            bp, lambda b, bloc: return_((a, b), fuse(aloc, bloc))
-        ),
-    )
+    return shift_plus(ap, lambda a, aloc:
+        shift_plus(bp, lambda b, bloc:
+            return_((a, b), fuse(aloc, bloc))))
 
 
 # Explanations
@@ -605,7 +594,6 @@ def explain(name, ap):
             res = a_reply.res
             res = Failed(res.kind, res.severity, name)
             return Reply(res=res, loc=a_reply.loc)
-
     return Prs(f)
 
 
@@ -614,7 +602,8 @@ def explain(name, ap):
 @infix
 def apply(ap, f):
     """Apply function `f` to the value returned by parser `ap`."""
-    return shift_plus(ap, lambda a, loc: return_(f(a), loc))
+    return shift_plus(ap, lambda a, loc:
+        return_(f(a), loc))
 
 
 # def shift_plus(ap, bpf):
@@ -668,14 +657,18 @@ def bang(ap, x):
 def cons(ap, lp):
     # ap: 'a parser
     # lp: list parser
-    return apply(times(ap, lp), lambda al: [al[0]] + al[1])
+    return apply(
+        times(ap, lp),
+        lambda al: [al[0]] + al[1])
 
 
 #   let ( <@> ) alp blp =
 #     alp <*> blp <$> (fun (al, bl) -> al @ bl)
 @infix
 def concat(alp, blp):
-    return apply(times(alp, blp), lambda albl: albl[0] + albl[1])
+    return apply(
+        times(alp, blp),
+        lambda albl: albl[0] + albl[1])
 
 
 #   let withloc ap = Prs begin
@@ -696,10 +689,10 @@ def withloc(ap):
             value = (res.value, rep.loc)
             res = Parsed(value)
         elif isinstance(res, Failed):
-            res = Failed(res.kind, res.severity, res.string)
+            res = Failed(
+                res.kind, res.severity, res.string)
         rep = Reply(res=res, loc=rep.loc)
         return rep
-
     # return Prs(f)
     return f
 
@@ -738,7 +731,6 @@ def lookahead(ap):
         rep = exec_(ap, pst)
         restore(locus, pst)
         return rep
-
     # return Prs(f)
     return f
 
@@ -746,13 +738,13 @@ def lookahead(ap):
 #   let enabled ap =
 #     lookahead ap >>= fun _ -> succeed ()
 def enabled(ap):
-    return lookahead(ap) << shift_eq >> (lambda _: succeed(None))
+    return lookahead(ap) <<shift_eq>> (lambda _: succeed(None))
 
 
 #   let disabled ap =
 #     (lookahead ap >>= (fun _ -> fail "not disabled")) <|> succeed ()
 def disabled(ap):
-    neg = shift_eq(lookahead(ap), lambda _: fail("not disabled"))
+    neg = shift_eq(lookahead(ap), lambda _: fail('not disabled'))
     return or_(neg, succeed(None))
 
 
@@ -783,7 +775,8 @@ def attempt(ap):
 
 #   let optional ap = (attempt ap <$> fun n -> Some n) <|> succeed None
 def optional(ap):
-    return (attempt(ap) << apply >> (lambda n: n)) << or_ >> succeed(None)
+    return (attempt(ap) <<apply>>
+        (lambda n: n)) <<or_>> succeed(None)
 
 
 #   let (<?>) ap g =
@@ -793,11 +786,9 @@ def optional(ap):
 #     end
 @infix
 def question(ap, g):
-    f = (
-        ap
-        << shift_plus
-        >> (lambda a, loc: return_(a, loc) if g(a) else internal("<?>"))
-    )
+    f = ap <<shift_plus>> (lambda a, loc:
+        return_(a, loc) if g(a)
+            else internal('<?>'))
     return attempt(f)
 
 
@@ -813,12 +804,12 @@ def apply_question(ap, g):
     def f(a, loc):
         ga = g(a)
         if ga is None:
-            return internal("<?>")
+            return internal('<?>')
         else:
             return return_(ga, loc)
-
-    h = ap << shift_plus >> f
+    h = ap <<shift_plus>> f
     return attempt(h)
+
 
 
 # alternation
@@ -830,7 +821,7 @@ def apply_question(ap, g):
 #     | ap :: aps ->
 #         ap <|> choice aps
 def choice(alternatives):
-    assert len(alternatives) >= 1, "null alternative"
+    assert len(alternatives) >= 1, 'null alternative'
     # ap = alternatives[0]
     # if len(alternatives) == 1:
     #     return ap
@@ -842,12 +833,10 @@ def choice(alternatives):
         for ap in alternatives:
             restore(memo, pst)
             arep = exec_(ap, pst)
-            if not isinstance(arep.res, Failed) or not isinstance(
-                arep.res.severity, Backtrack
-            ):
+            if (not isinstance(arep.res, Failed) or
+                    not isinstance(arep.res.severity, Backtrack)):
                 break
         return arep
-
     return f
 
 
@@ -859,25 +848,20 @@ def f_choice_iter(alternatives, pst):
     for alt in alternatives():
         if isinstance(alt, tuple):
             start, fap = alt
-            if len(pst.source) > 0 and (
-                (
-                    not isinstance(start[0], intf.Token_)
-                    and not isinstance(pst.source[0].form, start)
-                )
-                or (
-                    isinstance(start[0], intf.Token_)
-                    and pst.source[0].form not in start
-                )
-            ):
+            if (len(pst.source) > 0 and (
+                    (not isinstance(start[0], intf.Token_) and
+                    not isinstance(pst.source[0].form, start))
+                    or
+                    (isinstance(start[0], intf.Token_) and
+                    pst.source[0].form not in start))):
                 continue
             ap = fap()
         else:
             ap = alt
         at_least_one = True
         arep = exec_(ap, pst)
-        if not isinstance(arep.res, Failed) or not isinstance(
-            arep.res.severity, Backtrack
-        ):
+        if (not isinstance(arep.res, Failed) or
+                not isinstance(arep.res.severity, Backtrack)):
             break
     if not at_least_one:
         ap = fap()
@@ -885,14 +869,13 @@ def f_choice_iter(alternatives, pst):
         # res = Failed(Unexpected(None), Backtrack(), None)
         # arep = Reply(res=res, loc=pst.lastpos)
     return arep
-
-
 # return Prs(f)
 
 
 def choice_iter(alternatives):
     """Choice with lookahead 1 before building parser."""
-    return functools.partial(f_choice_iter, alternatives)
+    return functools.partial(
+        f_choice_iter, alternatives)
 
 
 #   let rec alt = function
@@ -901,7 +884,7 @@ def choice_iter(alternatives):
 #     | ap :: aps ->
 #         attempt ap <|> alt aps
 def alt(alternatives):
-    assert len(alternatives) >= 1, "null alternative"
+    assert len(alternatives) >= 1, 'null alternative'
     ap = alternatives[0]
     if len(alternatives) == 1:
         return ap
@@ -909,7 +892,7 @@ def alt(alternatives):
         aps = alternatives[1:]
         # the precedence of  `attempt ap <|> alt aps`
         # if `(attempt ap) <|> (alt aps)
-        return attempt(ap) << or_ >> alt(aps)
+        return attempt(ap) <<or_>> alt(aps)
 
 
 # sequence parsers
@@ -926,7 +909,7 @@ def seq(seq_aps):
     else:
         ap = seq_aps[0]
         aps = seq_aps[1:]
-        return ap << cons >> seq(aps)
+        return ap <<cons>> seq(aps)
 
 
 #   let ix f =
@@ -936,8 +919,8 @@ def seq(seq_aps):
 #       run 0
 def ix(f):
     def run(n):
-        return (f(n) << cons >> run(n + 1)) << or_ >> succeed(list())
-
+        return (f(n) <<cons>> run(n + 1)
+            ) <<or_>> succeed(list())
     return run(0)
 
 
@@ -981,19 +964,16 @@ def star(ap):
         res = Parsed(list())
         rep = Reply(res=res, loc=pst.lastpos)
         results.append(rep)
-
         def reducer(arep, brep):
             a, aloc = arep.res.value, arep.loc
             b, bloc = brep.res.value, brep.loc
             ab = [a] + b
             loc = fuse(aloc, bloc)
             return Reply(res=Parsed(ab), loc=loc)
-
         while len(results) > 1:
             r = reducer(results[-2], results[-1])
             results = results[:-2] + [r]
         return results[0]
-
     return Prs(f)
 
 
@@ -1005,21 +985,21 @@ def star(ap):
 #   let star1 ap = ap <::> star ap
 def star1(ap):
     """At least one `ap` repetition."""
-    return ap << cons >> star(ap)
+    return ap <<cons>> star(ap)
 
 
 #   let sep1 sp ap =
 #     ap <::> star (sp >>> ap)
 def sep1(sp, ap):
     """List of at least one `ap`, with separator `sp`."""
-    return ap << cons >> star(sp << second >> ap)
+    return ap <<cons>> star(sp <<second>> ap)
 
 
 #   let sep sp ap =
 #     sep1 sp ap <|> succeed []
 def sep(sp, ap):
     """List of none or more `ap`, with separator `sp`."""
-    return sep1(sp, ap) << or_ >> succeed(list())
+    return sep1(sp, ap) <<or_>> succeed(list())
 
 
 #   (* token parsers *)
@@ -1040,19 +1020,14 @@ def sep(sp, ap):
 #    *)
 
 
-import warnings
+class ListSlice(collections.abc.Sequence):
 
-warnings.filterwarnings("ignore", category=DeprecationWarning)
-import collections
-
-
-class ListSlice(collections.Sequence):
     def __init__(self, alist, start):
         self.alist = alist
         self.start = start
 
     def __repr__(self):
-        return "ListSlice({a}, {s})".format(a=self.alist, s=self.start)
+        return f'ListSlice({self.alist}, {self.start})'
 
     def __len__(self):
         return len(self.alist) - self.start
@@ -1064,7 +1039,9 @@ class ListSlice(collections.Sequence):
             step = slc.step
             assert start >= 0, start
             assert step is None or step == 1
-            return ListSlice(self.alist, self.start + start)
+            return ListSlice(
+                self.alist,
+                self.start + start)
         else:
             i = slc
             if i >= 0:
@@ -1073,7 +1050,9 @@ class ListSlice(collections.Sequence):
                 return self.alist[i]
 
     def __eq__(self, other):
-        return self.alist == other.alist and self.start == other.start
+        return (
+            self.alist == other.alist and
+            self.start == other.start)
 
 
 #   let scan check = Prs begin
@@ -1101,7 +1080,7 @@ class ListSlice(collections.Sequence):
 def scan(check):
     def f(pst):
         if not pst.source:
-            res = Failed(Unexpected("EOF"), Backtrack(), None)
+            res = Failed(Unexpected('EOF'), Backtrack(), None)
             return Reply(res=res, loc=pst.lastpos)
         assert pst.source
         t = pst.source[0]
@@ -1117,7 +1096,6 @@ def scan(check):
         pst.lastpos.start = tloc.stop
         res = Parsed(a)
         return Reply(res=res, loc=tloc)
-
     # return Prs(f)
     return f
 
@@ -1129,7 +1107,6 @@ def satisfy(tf):
             return t
         else:
             return None
-
     return scan(f)
 
 
@@ -1139,13 +1116,12 @@ def any_():
     def f(pst):
         ap = satisfy(lambda _: True)
         return exec_(ap, pst)
-
     return Prs(f)
 
 
 #   let literal c = satisfy (fun t -> c = t) <!> ()
 def literal(c):
-    return satisfy(lambda t: t == c) << bang >> None
+    return satisfy(lambda t: t == c) <<bang>> None
 
 
 #   let string cs =
@@ -1186,37 +1162,29 @@ def literal(c):
 #   include Prec
 
 
+
 #   type assoc = Left | Right | Non
 #
 #   type 'a item =
 #     | Atm of 'a
 #     | Opr of prec * 'a opr
 
-
-class Assoc(object):
+class Assoc:
     pass
-
-
 class Left(Assoc):
     pass
-
-
 class Right(Assoc):
     pass
-
-
 class Non(Assoc):
     pass
 
 
-class Item(object):
+class Item:
     pass
-
 
 class Atm(Item):
     def __init__(self, value):
         self.value = value  # 'a
-
 
 class Opr(Item):
     def __init__(self, prec, opr):
@@ -1228,17 +1196,15 @@ class Opr(Item):
 #   | Prefix of (Loc.locus -> 'a -> 'a)
 #   | Postfix of (Loc.locus -> 'a -> 'a)
 #   | Infix of assoc * (Loc.locus -> 'a -> 'a -> 'a)
-class Prefix(object):
+class Prefix:
     def __init__(self, value):
         self.value = value  # location.Locus -> 'a -> 'a
 
-
-class Postfix(object):
+class Postfix:
     def __init__(self, value):
         self.value = value  # location.Locus -> 'a -> 'a
 
-
-class Infix(object):
+class Infix:
     def __init__(self, assoc, value):
         self.assoc = assoc
         self.value = value  # location.Locus -> 'a -> 'a -> 'a
@@ -1246,194 +1212,184 @@ class Infix(object):
 
 #   let resolve (item_prs : bool -> ('s, 'a item list) prs) : ('s, 'a) prs =
 def resolve(item_prs):
-    #     let rec next stack startp =
-    #       attempt (item_prs startp >>+ decide_fork stack) <|>
-    #                    use (lazy (finish stack))
+#     let rec next stack startp =
+#       attempt (item_prs startp >>+ decide_fork stack) <|>
+#                    use (lazy (finish stack))
     def next_(stack, startp):
-        return (
-            attempt(
-                item_prs(startp)
-                << shift_plus
-                >> functools.partial(decide_fork, stack)  # (items, loc)
-            )
-            << or_
-            >> use(finish(stack))
-        )
+        return attempt(
+            item_prs(startp) <<shift_plus>> functools.partial(
+                decide_fork, stack)  # (items, loc)
+            ) <<or_>> use(finish(stack))
 
-    #     and decide_fork stack items loc = match items with
-    #       | [item] -> decide stack (item, loc)
-    #       | _ -> choice (List.map
-    #                        (fun item -> decide stack (item, loc))
-    #                        items)
+#     and decide_fork stack items loc = match items with
+#       | [item] -> decide stack (item, loc)
+#       | _ -> choice (List.map
+#                        (fun item -> decide stack (item, loc))
+#                        items)
     def decide_fork(stack, items, loc):
         assert isinstance(items, list), items
         if len(items) == 1:
             return decide(stack, (items[0], loc))
         else:
-            parsers = [decide(stack, (item, loc)) for item in items]
+            parsers = [
+                decide(stack, (item, loc))
+                for item in items]
             return choice(parsers)
 
-    #     and decide stack (item, loc) = match item with
-    #       | Atm _ | Opr (_, Prefix _) -> begin
-    #           match stack with
-    #             | (Atm _, _) :: _ ->
-    #                 fail "missing operator"
-    #             | _ ->
-    #                 commit begin
-    #                   next ((item, loc) :: stack) begin
-    #                     match item with
-    #                       | Atm _ -> false    (* cannot start exp following atom *)
-    #                       | _ -> true         (* can start exp following prefix  *)
-    #                   end
-    #                 end
-    #         end
+#     and decide stack (item, loc) = match item with
+#       | Atm _ | Opr (_, Prefix _) -> begin
+#           match stack with
+#             | (Atm _, _) :: _ ->
+#                 fail "missing operator"
+#             | _ ->
+#                 commit begin
+#                   next ((item, loc) :: stack) begin
+#                     match item with
+#                       | Atm _ -> false    (* cannot start exp following atom *)
+#                       | _ -> true         (* can start exp following prefix  *)
+#                   end
+#                 end
+#         end
     def decide(stack, item_loc):
         # print('decide')
         item, loc = item_loc
         # match item with
         if isinstance(item, Atm) or (
-            isinstance(item, Opr) and isinstance(item.opr, Prefix)
-        ):
-            # | Atm _ | Opr (_, Prefix _) -> begin
+                isinstance(item, Opr) and
+                isinstance(item.opr, Prefix)):
+        # | Atm _ | Opr (_, Prefix _) -> begin
             # match stack with
-            if (len(stack) >= 1) and isinstance(stack[0][0], Atm):
-                # | (Atm _, _) :: _ ->
-                return fail("missing operator")
+            if (len(stack) >= 1) and isinstance(
+                stack[0][0], Atm):
+            # | (Atm _, _) :: _ ->
+                    return fail('missing operator')
             else:
-                # | _ ->
+            # | _ ->
                 # ((item, loc) :: stack)
                 new_stack = [(item, loc)] + stack
                 # match item with
                 if isinstance(item, Atm):
-                    # | Atm _ -> false
+                # | Atm _ -> false
                     startp = False  # cannot start exp following atom
                 else:
-                    # | _ -> true
+                # | _ -> true
                     startp = True  # can start exp following prefix
-                return commit(next_(new_stack, startp))
-        elif isinstance(item, Opr) and isinstance(item.opr, Infix):
-            #       | Opr (oprec, Infix (assoc, _)) -> begin
+                return commit(
+                    next_(new_stack, startp))
+        elif isinstance(item, Opr) and isinstance(
+                item.opr, Infix):
+#       | Opr (oprec, Infix (assoc, _)) -> begin
             oprec = item.prec
             assoc = item.opr.assoc
-            #           let rec normalize stack = match stack with
-            #             | _ :: (Opr (pprec, _), _) :: _
-            #                 when below oprec pprec ->
-            #                 normalize (reduce_one stack)
-            #             | _ :: (Opr (pprec, Infix (Left, _)), _) :: _
-            #                 when assoc = Left && not (below pprec oprec) ->
-            #                 reduce_one stack
-            #             | _ -> stack
-            #           in
+#           let rec normalize stack = match stack with
+#             | _ :: (Opr (pprec, _), _) :: _
+#                 when below oprec pprec ->
+#                 normalize (reduce_one stack)
+#             | _ :: (Opr (pprec, Infix (Left, _)), _) :: _
+#                 when assoc = Left && not (below pprec oprec) ->
+#                 reduce_one stack
+#             | _ -> stack
+#           in
             def normalize(stack):
-                if (
-                    (len(stack) >= 2)
-                    and isinstance(stack[1][0], Opr)
-                    and intf.below(oprec, stack[1][0].prec)
-                ):
+                if ((len(stack) >= 2) and
+                        isinstance(stack[1][0], Opr) and
+                        intf.below(oprec, stack[1][0].prec)):
                     return normalize(reduce_one(stack))
-                elif (
-                    (len(stack) >= 2)
-                    and isinstance(stack[1][0], Opr)
-                    and isinstance(stack[1][0].opr, Infix)
-                    and isinstance(stack[1][0].opr.assoc, Left)
-                    and isinstance(assoc, Left)
-                    and not intf.below(stack[1][0].prec, oprec)
-                ):
+                elif ((len(stack) >= 2) and
+                        isinstance(stack[1][0], Opr) and
+                        isinstance(stack[1][0].opr, Infix) and
+                        isinstance(stack[1][0].opr.assoc, Left) and
+                        isinstance(assoc, Left) and
+                        not intf.below(stack[1][0].prec, oprec)):
                     return reduce_one(stack)
                 else:
                     return stack
-
             n_stack = normalize(stack)
-            #           let stack = normalize stack in
-            #             match stack with
-            if (len(n_stack) >= 1) and isinstance(n_stack[0][0], Atm):
-                #               | (Atm _, _) :: _ ->
+#           let stack = normalize stack in
+#             match stack with
+            if ((len(n_stack) >= 1) and
+                    isinstance(n_stack[0][0], Atm)):
+#               | (Atm _, _) :: _ ->
                 new_stack = [(item, loc)] + n_stack
                 return commit(next_(new_stack, True))
-            #                   commit (next ((item, loc) :: stack) true)
-            #               | _ :: _ ->
+#                   commit (next ((item, loc) :: stack) true)
+#               | _ :: _ ->
             elif len(n_stack) >= 1:
-                return fail("missing operator")
-            #                   fail "missing operator"
+                return fail('missing operator')
+#                   fail "missing operator"
             elif not n_stack:
-                return fail("insufficient arguments")
-            #               | [] ->
-            #                   fail "insufficient arguments"
+                return fail('insufficient arguments')
+#               | [] ->
+#                   fail "insufficient arguments"
             else:
                 raise ValueError(n_stack)
-        #         end
-        #       | Opr (oprec, Postfix _) -> begin
-        elif isinstance(item, Opr) and isinstance(item.opr, Postfix):
+#         end
+#       | Opr (oprec, Postfix _) -> begin
+        elif isinstance(item, Opr) and isinstance(
+                item.opr, Postfix):
             oprec = item.prec
-            #           let rec normalize stack = match stack with
-            #             | _ :: (Opr (pprec, _), _) :: _ when below oprec pprec ->
-            #                 normalize (reduce_one stack)
-            #             | _ -> stack
-            #           in
+#           let rec normalize stack = match stack with
+#             | _ :: (Opr (pprec, _), _) :: _ when below oprec pprec ->
+#                 normalize (reduce_one stack)
+#             | _ -> stack
+#           in
             def normalize(stack):
-                if (
-                    (len(stack) >= 2)
-                    and isinstance(stack[1][0], Opr)
-                    and intf.below(oprec, stack[1][0].prec)
-                ):
+                if ((len(stack) >= 2) and
+                        isinstance(stack[1][0], Opr) and
+                        intf.below(oprec, stack[1][0].prec)):
                     return normalize(reduce_one(stack))
                 else:
                     return stack
-
-            #           let stack = normalize stack in
+#           let stack = normalize stack in
             n_stack = normalize(stack)
-            #             match stack with
-            if (len(n_stack) >= 1) and isinstance(n_stack[0][0], Atm):
-                #             | (Atm _, _) :: _ ->
+#             match stack with
+            if ((len(n_stack) >= 1) and
+                    isinstance(n_stack[0][0], Atm)):
+#             | (Atm _, _) :: _ ->
                 new_stack = [(item, loc)] + n_stack
                 arg = reduce_one(new_stack)
                 return commit(next_(arg, False))
-            #                commit (next (reduce_one ((item, loc) :: stack)) false)
+#                commit (next (reduce_one ((item, loc) :: stack)) false)
             elif len(n_stack) >= 1:
-                #             | _ :: _ ->
-                return fail("missing operator")
-            #                fail "missing operator"
+#             | _ :: _ ->
+                return fail('missing operator')
+#                fail "missing operator"
             elif not n_stack:
-                #             | [] ->
-                return fail("insufficient arguments")
-            #                   fail "insufficient arguments"
+#             | [] ->
+                return fail('insufficient arguments')
+#                   fail "insufficient arguments"
             else:
                 raise ValueError(n_stack)
-
-    #         end
-    #
-    #     and reduce_one = function
+#         end
+#
+#     and reduce_one = function
     def reduce_one(stack):
-        if (
-            (len(stack) >= 2)
-            and isinstance(stack[0][0], Opr)
-            and isinstance(stack[0][0].opr, Postfix)
-            and isinstance(stack[1][0], Atm)
-        ):
-            #       | (Opr (_, Postfix px), oloc)
-            #         :: (Atm a, aloc)
-            #         :: stack ->
-            #           (Atm (px oloc a), fuse aloc oloc)
-            #           :: stack
+        if ((len(stack) >= 2) and
+                isinstance(stack[0][0], Opr) and
+                isinstance(stack[0][0].opr, Postfix) and
+                isinstance(stack[1][0], Atm)):
+#       | (Opr (_, Postfix px), oloc)
+#         :: (Atm a, aloc)
+#         :: stack ->
+#           (Atm (px oloc a), fuse aloc oloc)
+#           :: stack
             px = stack[0][0].opr.value
             oloc = stack[0][1]
             a = stack[1][0].value
             aloc = stack[1][1]
             item = (Atm(px(oloc, a)), fuse(aloc, oloc))
             return [item] + stack[2:]
-        elif (
-            (len(stack) >= 3)
-            and isinstance(stack[0][0], Atm)
-            and isinstance(stack[1][0], Opr)
-            and isinstance(stack[1][0].opr, Infix)
-            and isinstance(stack[2][0], Atm)
-        ):
-            #       | (Atm b, bloc)
-            #         :: (Opr (_, Infix (_, ix)), oloc)
-            #         :: (Atm a, aloc)
-            #         :: stack ->
-            #           (Atm (ix oloc a b), fuse aloc (fuse oloc bloc))
-            #           :: stack
+        elif ((len(stack) >= 3) and
+                isinstance(stack[0][0], Atm) and
+                isinstance(stack[1][0], Opr) and
+                isinstance(stack[1][0].opr, Infix) and
+                isinstance(stack[2][0], Atm)):
+#       | (Atm b, bloc)
+#         :: (Opr (_, Infix (_, ix)), oloc)
+#         :: (Atm a, aloc)
+#         :: stack ->
+#           (Atm (ix oloc a b), fuse aloc (fuse oloc bloc))
+#           :: stack
             atm, bloc = stack[0]
             b = atm.value
             oloc = stack[1][1]
@@ -1442,64 +1398,52 @@ def resolve(item_prs):
             a = atm.value
             item = (Atm(ix(oloc, a, b)), fuse(aloc, fuse(oloc, bloc)))
             return [item] + stack[3:]
-        elif (
-            (len(stack) >= 2)
-            and isinstance(stack[0][0], Atm)
-            and isinstance(stack[1][0], Opr)
-            and isinstance(stack[1][0].opr, Prefix)
-        ):
-            #       | (Atm a, aloc)
-            #         :: (Opr (_, Prefix px), oloc)
-            #         :: stack ->
-            #           (Atm (px oloc a), fuse oloc aloc)
-            #           :: stack
+        elif ((len(stack) >= 2) and
+                isinstance(stack[0][0], Atm) and
+                isinstance(stack[1][0], Opr) and
+                isinstance(stack[1][0].opr, Prefix)):
+#       | (Atm a, aloc)
+#         :: (Opr (_, Prefix px), oloc)
+#         :: stack ->
+#           (Atm (px oloc a), fuse oloc aloc)
+#           :: stack
             atm, aloc = stack[0]
             a = atm.value
             opr, oloc = stack[1]
             px = opr.opr.value
             item = (Atm(px(oloc, a)), fuse(oloc, aloc))
             return [item] + stack[2:]
-        #       | _ ->
+#       | _ ->
         else:
-            raise Exception("reduce_one")
+            raise Exception('reduce_one')
+#           failwith "reduce_one"
 
-    #           failwith "reduce_one"
-
-    #     and finish stack = match stack with
-    #         | [(Atm a, loc)] -> return a loc
-    #         | [] ->
-    #             lookahead any >>= fun t ->
-    #               fail ("required expressions(s) missing before '" ^ Tok.rep t ^ "'")
-    #         | _ -> begin
-    #             try finish (reduce_one stack) with
-    #               | Failure "reduce_one" -> fail "incomplete expression"
-    #           end
+#     and finish stack = match stack with
+#         | [(Atm a, loc)] -> return a loc
+#         | [] ->
+#             lookahead any >>= fun t ->
+#               fail ("required expressions(s) missing before '" ^ Tok.rep t ^ "'")
+#         | _ -> begin
+#             try finish (reduce_one stack) with
+#               | Failure "reduce_one" -> fail "incomplete expression"
+#           end
     def finish(stack):
-        if (len(stack) == 1) and isinstance(stack[0][0], Atm):
-            # | [(Atm a, loc)] -> return a loc
+        if ((len(stack) == 1) and
+                isinstance(stack[0][0], Atm)):
+        # | [(Atm a, loc)] -> return a loc
             atm, loc = stack[0]
             a = atm.value
             return return_(a, loc)
         elif not stack:
-            # | [] ->
-            return (
-                lookahead(any_())
-                << shift_eq
-                >> (
-                    lambda t: fail(
-                        "required expression(s) missing before {r}".format(
-                            r=intf.rep(t)
-                        )
-                    )
-                )
-            )
+        # | [] ->
+            return lookahead(any_()) <<shift_eq>> (lambda t:
+                fail(f'required expression(s) missing before {intf.rep(t)}'))
         # _ ->
         else:
             try:
                 return finish(reduce_one(stack))
             except Exception as e:
-                return fail("incomplete expression" + str(e))
-
-    #
-    #     in next [] true
+                return fail('incomplete expression' + str(e))
+#
+#     in next [] true
     return next_(list(), True)

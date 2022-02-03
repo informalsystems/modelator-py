@@ -1,6 +1,6 @@
 This directory contains test scripts for the Python package `tla`.
-To run them using the package [`nose`](https://pypi.org/project/nose/):
+To run them using the package [`pytest`](https://pypi.org/project/pytest/):
 
 ```shell
-nosetests .
+pytest -v --continue-on-collection-errors .
 ```
