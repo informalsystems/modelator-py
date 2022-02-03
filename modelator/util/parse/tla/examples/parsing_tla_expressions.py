@@ -1,6 +1,6 @@
 """How to parse a TLA+ expression."""
-from . import parser
-from .to_str import Nodes
+from .. import parser
+from ..to_str import Nodes
 
 expr = r"""
     \/ /\ x = 1
