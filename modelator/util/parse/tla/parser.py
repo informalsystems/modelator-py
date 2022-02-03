@@ -5,8 +5,9 @@
 from . import _combinators as pco
 from . import _expr_parser as ep
 from . import _module_parser as mp
+from . import _optable
 from . import _proof_parser as pfp
-from . import _optable, _tla_combinators, lex
+from . import _tla_combinators, lex
 
 
 def parse(module_text, nodes=None):

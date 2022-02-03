@@ -4,9 +4,7 @@ import pprint
 from modelator.util.parse.tla import _combinators as pco
 from modelator.util.parse.tla import _expr_parser as ep
 from modelator.util.parse.tla import _module_parser as mp
-from modelator.util.parse.tla import iter
-from modelator.util.parse.tla import visit
-from modelator.util.parse.tla import _tla_combinators, lex, parser, to_str
+from modelator.util.parse.tla import _tla_combinators, iter, lex, parser, to_str, visit
 
 expr_tests = [
     " FALSE ",

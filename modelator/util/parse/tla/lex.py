@@ -11,6 +11,7 @@ import logging
 import re
 
 import ply.lex
+
 from . import _location
 from . import tokens as intf
 

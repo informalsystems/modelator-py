@@ -19,9 +19,10 @@ import subprocess
 import types
 import warnings
 
-from . import tokens as intf
 from infix import shift_infix as infix
+
 from . import _error, _location
+from . import tokens as intf
 
 logger = logging.getLogger(__name__)
 

@@ -10,8 +10,9 @@
 import functools
 
 from . import _combinators as pco
+from . import _location, _optable
 from . import _tla_combinators as intf
-from . import _location, _optable, tokens
+from . import tokens
 from ._combinators import (
     alt,
     apply,
