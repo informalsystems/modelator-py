@@ -8,8 +8,7 @@
 # <https://github.com/tlaplus/tlapm/blob/main/src/tla_parser.ml>
 #
 import tla._combinators as pco
-from tla import _optable
-from tla import tokens
+from tla import _optable, tokens
 
 
 # (** The [pcx] is the state carried by the parsers. The [ledge] field
@@ -26,7 +25,7 @@ class Pcx:
         self.clean = clean
 
     def __repr__(self):
-        return f'Pcx({self.ledge}, {self.clean})'
+        return f"Pcx({self.ledge}, {self.clean})"
 
 
 init = Pcx(-1, True)
@@ -63,7 +62,8 @@ def locate(p):
             assert type(a) not in builtins
         a.loc = loc  # Util.set_locus ... loc
         return a
-    return pco.withloc(p) <<pco.apply>> apply_location
+
+    return pco.withloc(p) << pco.apply >> apply_location
 
 
 # let scan ts =
@@ -74,12 +74,15 @@ def locate(p):
 #         else None
 #     end
 def scan(ts):
-    return pco.get() <<pco.shift_eq>> (lambda px:
-        pco.scan(
-            lambda t:
-                ts(t.form) if px.ledge <= t.loc.start.column
-                else None
-        ))
+    return (
+        pco.get()
+        << pco.shift_eq
+        >> (
+            lambda px: pco.scan(
+                lambda t: ts(t.form) if px.ledge <= t.loc.start.column else None
+            )
+        )
+    )
 
 
 # open Token
@@ -92,11 +95,11 @@ def scan(ts):
 def punct(p):
     def f(form):
         # print('punct', p)
-        if (isinstance(form, tokens.PUNCT) and
-                form.string == p):
+        if isinstance(form, tokens.PUNCT) and form.string == p:
             return p
         else:
             return None
+
     return scan(f)
 
 
@@ -109,11 +112,11 @@ def punct(p):
 def kwd(k):
     def f(form):
         # print('kwd', k)
-        if (isinstance(form, tokens.KWD) and
-                form.string == k):
+        if isinstance(form, tokens.KWD) and form.string == k:
             return k
         else:
             return None
+
     return scan(f)
 
 
@@ -139,12 +142,13 @@ def anyinfix():
         if isinstance(op.fix, _optable.Infix):
             return op.name
         return None
+
     return scan(f)
 
 
 # let infix o = anyinfix <?> (fun p -> o = p)
 def infix(op):
-    return anyinfix() <<pco.question>> (lambda p: op == p)
+    return anyinfix() << pco.question >> (lambda p: op == p)
 
 
 # let anyprefix = scan begin
@@ -166,12 +170,13 @@ def anyprefix():
         if isinstance(op.fix, _optable.Prefix):
             return op.name
         return None
+
     return scan(f)
 
 
 # let prefix o = anyprefix <?> (fun p -> o = p)
 def prefix(op):
-    return anyprefix() <<pco.question>> (lambda p: op == p)
+    return anyprefix() << pco.question >> (lambda p: op == p)
 
 
 # let anypostfix = scan begin
@@ -193,6 +198,7 @@ def anypostfix():
         if isinstance(op.fix, _optable.Postfix):
             return op.name
         return None
+
     return scan(f)
 
 
@@ -211,6 +217,7 @@ def anyop():
             return op.name
         else:
             return None
+
     return scan(f)
 
 
@@ -225,12 +232,13 @@ def anyident():
             return form.string
         else:
             return None
+
     return scan(f)
 
 
 # let ident i = anyident <?> (fun j -> i = j)
 def ident(i):
-    return anyident() <<pco.question>> (lambda j:  i == j)
+    return anyident() << pco.question >> (lambda j: i == j)
 
 
 # let anyname = scan begin
@@ -240,11 +248,11 @@ def ident(i):
 # end
 def anyname():
     def f(form):
-        if (isinstance(form, tokens.ID) or
-                isinstance(form, tokens.KWD)):
+        if isinstance(form, tokens.ID) or isinstance(form, tokens.KWD):
             return form.string
         else:
             return None
+
     return scan(f)
 
 
@@ -259,6 +267,7 @@ def number():
             return (form.string1, form.string2)
         else:
             return None
+
     return scan(f)
 
 
@@ -269,11 +278,11 @@ def number():
 # end
 def nat():
     def f(form):
-        if (isinstance(form, tokens.NUM) and
-                form.string2 is None):
+        if isinstance(form, tokens.NUM) and form.string2 is None:
             return int(form.string1)
         else:
             return None
+
     return scan(f)
 
 
@@ -288,12 +297,10 @@ def str_():
             return form.string
         else:
             return None
+
     return scan(f)
 
 
 # let pragma p = punct "(*{" >>> p <<< punct "}*)"
 def pragma(p):
-    return (
-        punct('(*{')
-        <<pco.second>> p
-        <<pco.first>> punct('}*)'))
+    return punct("(*{") << pco.second >> p << pco.first >> punct("}*)")

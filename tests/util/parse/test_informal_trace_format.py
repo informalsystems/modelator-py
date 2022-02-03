@@ -19,7 +19,7 @@ def test_tla_state_expression_to_informal_trace_format_state():
 
     # poetry run pytest tests/util/parse/test_informal_trace_format.py -s -k 'test_translate_tla_state_simple'
 
-    state = """Foo == 
+    state = """Foo ==
 /\ one_indexed_sequential_map = <<42, 42, 42, 42, 42>>
 /\ string_indexed_map = [two |-> 42, one |-> 42]
 /\ record = [foo |-> 42, bar |-> 43]

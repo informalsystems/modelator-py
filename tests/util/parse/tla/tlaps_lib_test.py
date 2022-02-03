@@ -4,19 +4,17 @@ This module requires an installation of TLAPS.
 """
 import os
 
-from tla import parser
-from tla import to_str
-
+from tla import parser, to_str
 
 # change this variable to a path where
 # the TLAPS library is present
-TLAPS_LIB_PATH = '$HOME/lib/tlaps'
+TLAPS_LIB_PATH = "$HOME/lib/tlaps"
 
 
 def parse_tlaps_modules():
     module_paths = _collect_tlaps_module_files()
     for module_path in module_paths:
-        print(f'parsing module `{module_path}`')
+        print(f"parsing module `{module_path}`")
         text = _read_file(module_path)
         _parse_and_format(text)
 
@@ -27,13 +25,13 @@ def _collect_tlaps_module_files():
     tlafiles = list()
     with os.scandir(path) as it:
         for entry in it:
-            if entry.is_file() and entry.name.endswith('.tla'):
+            if entry.is_file() and entry.name.endswith(".tla"):
                 tlafiles.append(entry)
     return [entry.path for entry in tlafiles]
 
 
 def _read_file(path):
-    with open(path, 'r') as f:
+    with open(path, "r") as f:
         text = f.read()
     return text
 
@@ -43,10 +41,9 @@ def _parse_and_format(text):
     r = parser.parse(text, nodes=to_str.Nodes)
     assert r is not None
     text = r.to_str()
-    to_str._print_overwide_lines(
-        text, to_str.LINE_WIDTH)
+    to_str._print_overwide_lines(text, to_str.LINE_WIDTH)
     return r
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parse_tlaps_modules()

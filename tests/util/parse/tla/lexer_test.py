@@ -3,8 +3,7 @@ import pprint
 
 import tla.lex as lex
 
-
-MODULE_FOO = r'''
+MODULE_FOO = r"""
 comments
 ---- MODULE Foo ----
 VARIABLE x
@@ -39,7 +38,7 @@ PROOF
 <1> QED
     BY <1>2, <1>3
 ====================
-'''
+"""
 
 
 def test_lexer():
@@ -48,23 +47,18 @@ def test_lexer():
     data = lex._omit_preamble(data)
     lextokens = lex._lex(data)
     # Token_ instances
-    tokens_ = [
-        lex._map_to_token_(token)
-        for token in lextokens]
+    tokens_ = [lex._map_to_token_(token) for token in lextokens]
     pprint.pprint(tokens_)
     for token_ in tokens_:
         print(token_)
         print(str(token_))
-    str_of_tokens_ = [
-        str(token_) for token_ in tokens_]
+    str_of_tokens_ = [str(token_) for token_ in tokens_]
     pprint.pprint(str_of_tokens_)
     # Token instances
-    tokens = [
-        lex._map_to_token(data, token)
-        for token in lextokens]
+    tokens = [lex._map_to_token(data, token) for token in lextokens]
     pprint.pprint(tokens)
     # join raw strings
-    print(''.join(str_of_tokens_))
+    print("".join(str_of_tokens_))
     # join with newlines in between
     s = lex._join_with_newlines(tokens)
     print(s)
@@ -73,5 +67,5 @@ def test_lexer():
         print(token.loc)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_lexer()
