@@ -39,12 +39,3 @@ def test_parse_state_expression():
         tree = parser.parse_expr(expr, nodes=to_str.Nodes)
         assert tree is not None
         s = tree.to_str(width=80)
-
-
-def test_parse_state_debug():
-
-    expr = "[ x |-> -1]"
-
-    tree = parser.parse_expr(expr, nodes=to_str.Nodes)
-    assert tree is not None
-    s = tree.to_str(width=80)
