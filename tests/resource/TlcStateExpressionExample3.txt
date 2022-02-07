@@ -1,0 +1,22 @@
+/\ steps = 9
+/\ blockTime = 8
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 8
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE

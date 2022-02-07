@@ -1,0 +1,6 @@
+/\ wmem = (a1 :> v1)
+/\ memQ = <<>>
+/\ ctl = (p1 :> "rdy" @@ p2 :> "rdy")
+/\ buf = (p1 :> NoVal @@ p2 :> NoVal)
+/\ cache = (p1 :> (a1 :> NoVal) @@ p2 :> (a1 :> NoVal))
+/\ memInt = <<p1, NoVal>>
