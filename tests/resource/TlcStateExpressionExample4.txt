@@ -1,0 +1,132 @@
+/\ actionTaken = "init"
+/\ lifetimeSyscalls = [v0 |-> 0, v1 |-> 0, v2 |-> 0]
+/\ pipeliningEnabled = [v0 |-> FALSE, v1 |-> FALSE, v2 |-> FALSE]
+/\ executor = "v0"
+/\ gcActions = {}
+/\ isReachable = ( <<"p0", "v0">> :> TRUE @@
+  <<"p0", "v1">> :> TRUE @@
+  <<"p0", "v2">> :> TRUE @@
+  <<"p1", "v0">> :> FALSE @@
+  <<"p1", "v1">> :> FALSE @@
+  <<"p1", "v2">> :> FALSE @@
+  <<"p2", "v0">> :> FALSE @@
+  <<"p2", "v1">> :> FALSE @@
+  <<"p2", "v2">> :> FALSE @@
+  <<"o0", "v0">> :> TRUE @@
+  <<"o0", "v1">> :> TRUE @@
+  <<"o0", "v2">> :> TRUE @@
+  <<"o1", "v0">> :> FALSE @@
+  <<"o1", "v1">> :> FALSE @@
+  <<"o1", "v2">> :> FALSE @@
+  <<"o2", "v0">> :> FALSE @@
+  <<"o2", "v1">> :> FALSE @@
+  <<"o2", "v2">> :> FALSE )
+/\ executorPermittedOperations = "anySyscall"
+/\ things = [ p0 |->
+      [ nature |-> "promise",
+        owner |-> "NullStr",
+        q |-> <<>>,
+        status |-> "unresolved",
+        decider |-> "v0",
+        subscribers |-> {"v0", "v1", "v2"},
+        refCnt |-> 3,
+        reachableCnt |-> 0,
+        recognizableCnt |-> 0,
+        trueAllocator |-> "v0" ],
+  p1 |->
+      [ nature |-> "promise",
+        owner |-> "NullStr",
+        q |-> <<>>,
+        status |-> "NullStr",
+        decider |-> "NullStr",
+        subscribers |-> {},
+        refCnt |-> 0,
+        reachableCnt |-> 0,
+        recognizableCnt |-> 0,
+        trueAllocator |-> "NullStr" ],
+  p2 |->
+      [ nature |-> "promise",
+        owner |-> "NullStr",
+        q |-> <<>>,
+        status |-> "NullStr",
+        decider |-> "NullStr",
+        subscribers |-> {},
+        refCnt |-> 0,
+        reachableCnt |-> 0,
+        recognizableCnt |-> 0,
+        trueAllocator |-> "NullStr" ],
+  o0 |->
+      [ nature |-> "object",
+        owner |-> "v0",
+        q |-> <<>>,
+        status |-> "NullStr",
+        decider |-> "NullStr",
+        subscribers |-> {},
+        refCnt |-> 0,
+        reachableCnt |-> 2,
+        recognizableCnt |-> 2,
+        trueAllocator |-> "v0" ],
+  o1 |->
+      [ nature |-> "object",
+        owner |-> "NullStr",
+        q |-> <<>>,
+        status |-> "NullStr",
+        decider |-> "NullStr",
+        subscribers |-> {},
+        refCnt |-> 0,
+        reachableCnt |-> 0,
+        recognizableCnt |-> 0,
+        trueAllocator |-> "NullStr" ],
+  o2 |->
+      [ nature |-> "object",
+        owner |-> "NullStr",
+        q |-> <<>>,
+        status |-> "NullStr",
+        decider |-> "NullStr",
+        subscribers |-> {},
+        refCnt |-> 0,
+        reachableCnt |-> 0,
+        recognizableCnt |-> 0,
+        trueAllocator |-> "NullStr" ] ]
+/\ maybeFree = {}
+/\ vatThingTrueState = ( <<"p0", "v0">> :> "truly_reachable" @@
+  <<"p0", "v1">> :> "truly_reachable" @@
+  <<"p0", "v2">> :> "truly_reachable" @@
+  <<"p1", "v0">> :> "truly_unknown" @@
+  <<"p1", "v1">> :> "truly_unknown" @@
+  <<"p1", "v2">> :> "truly_unknown" @@
+  <<"p2", "v0">> :> "truly_unknown" @@
+  <<"p2", "v1">> :> "truly_unknown" @@
+  <<"p2", "v2">> :> "truly_unknown" @@
+  <<"o0", "v0">> :> "truly_reachable" @@
+  <<"o0", "v1">> :> "truly_reachable" @@
+  <<"o0", "v2">> :> "truly_reachable" @@
+  <<"o1", "v0">> :> "truly_unknown" @@
+  <<"o1", "v1">> :> "truly_unknown" @@
+  <<"o1", "v2">> :> "truly_unknown" @@
+  <<"o2", "v0">> :> "truly_unknown" @@
+  <<"o2", "v1">> :> "truly_unknown" @@
+  <<"o2", "v2">> :> "truly_unknown" )
+/\ validGcAction = [ nature |-> "NullStr",
+  objId |-> "NullStr",
+  targetVatId |-> "NullStr",
+  groupedObjIds |-> {} ]
+/\ runQ = <<>>
+/\ clistExists = ( <<"p0", "v0">> :> TRUE @@
+  <<"p0", "v1">> :> TRUE @@
+  <<"p0", "v2">> :> TRUE @@
+  <<"p1", "v0">> :> FALSE @@
+  <<"p1", "v1">> :> FALSE @@
+  <<"p1", "v2">> :> FALSE @@
+  <<"p2", "v0">> :> FALSE @@
+  <<"p2", "v1">> :> FALSE @@
+  <<"p2", "v2">> :> FALSE @@
+  <<"o0", "v0">> :> TRUE @@
+  <<"o0", "v1">> :> TRUE @@
+  <<"o0", "v2">> :> TRUE @@
+  <<"o1", "v0">> :> FALSE @@
+  <<"o1", "v1">> :> FALSE @@
+  <<"o1", "v2">> :> FALSE @@
+  <<"o2", "v0">> :> FALSE @@
+  <<"o2", "v1">> :> FALSE @@
+  <<"o2", "v2">> :> FALSE )

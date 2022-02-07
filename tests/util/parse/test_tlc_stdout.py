@@ -29,6 +29,7 @@ def test_parse_state_expression():
         "TlcStateExpressionExample1.txt",
         "TlcStateExpressionExample2.txt",
         "TlcStateExpressionExample3.txt",
+        "TlcStateExpressionExample4.txt",
     ]
     expressions = []
     for fn in fns:
