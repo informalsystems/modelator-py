@@ -1,0 +1,6 @@
+/\ outcome_status = ""
+/\ num_execs = 0
+/\ action_taken = [grant_payload |-> [special_value |-> "", limit |-> 0, allow_list |-> {}, deny_list |-> {}, staking_type |-> ""], granter |-> "", authorization_type |-> "", action_type |-> "", grentee |-> "", exec_message |-> [message_type |-> "", amount |-> -1, validator |-> "", staking_action |-> ""]]
+/\ active_grants = << >>
+/\ num_grants = 0
+/\ expired_grants = {}
