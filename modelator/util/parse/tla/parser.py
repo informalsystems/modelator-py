@@ -2,12 +2,13 @@
 # Copyright 2020 by California Institute of Technology
 # All rights reserved. Licensed under 3-clause BSD.
 #
-from . import _combinators as pco
-from . import _expr_parser as ep
-from . import _module_parser as mp
-from . import _optable
-from . import _proof_parser as pfp
-from . import _tla_combinators, lex
+import tla._combinators as pco
+import tla._expr_parser as ep
+import tla._module_parser as mp
+from tla import _optable
+import tla._proof_parser as pfp
+from tla import _tla_combinators
+from tla import lex
 
 
 def parse(module_text, nodes=None):
@@ -18,8 +19,8 @@ def parse(module_text, nodes=None):
     For example:
 
     ```python
-    from . import  parser
-    from . to_str import Nodes
+    from tla import parser
+    from tla.to_str import Nodes
 
     module_text = r'''
     ---- MODULE Foo ----
@@ -47,8 +48,8 @@ def parse_expr(expr, nodes=None):
     For example:
 
     ```python
-    from . import  parser
-    from . to_str import Nodes
+    from tla import parser
+    from tla.to_str import Nodes
 
     expr = r'x = 1 /\ y = 2'
 
@@ -73,7 +74,8 @@ def _save(nodes):
     if nodes is None:
         return None
     assert nodes is not None
-    memo = (ep.tla_ast, mp.nodes, pfp.tla_ast, _optable.nodes)
+    memo = (ep.tla_ast, mp.nodes, pfp.tla_ast,
+        _optable.nodes)
     ep.tla_ast = nodes
     mp.nodes = nodes
     pfp.tla_ast = nodes
@@ -88,6 +90,7 @@ def _restore(memo):
     if memo is None:
         return
     assert memo is not None
-    (ep.tla_ast, mp.nodes, pfp.tla_ast, _optable.nodes) = memo
+    (ep.tla_ast, mp.nodes,
+     pfp.tla_ast, _optable.nodes) = memo
     _optable.optable = _optable._generate_optable()
     ep.fixities = ep._generate_fixities()

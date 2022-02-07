@@ -26,7 +26,7 @@ class Token_:
     """Type of tokens."""
 
     def __str__(self):
-        return f"{type(self).__name__}({self.string})"
+        return f'{type(self).__name__}({self.string})'
 
     def __eq__(self, other):
         return self.string == other.string
@@ -46,7 +46,9 @@ class ID(Token_):
         self.string = string
 
     def __eq__(self, other):
-        return isinstance(other, ID) and self.string == other.string
+        return (
+            isinstance(other, ID)
+            and self.string == other.string)
 
 
 class OP(Token_):
@@ -56,7 +58,9 @@ class OP(Token_):
         self.string = string
 
     def __eq__(self, other):
-        return isinstance(other, OP) and self.string == other.string
+        return (
+            isinstance(other, OP)
+            and self.string == other.string)
 
 
 class KWD(Token_):
@@ -66,7 +70,9 @@ class KWD(Token_):
         self.string = string
 
     def __eq__(self, other):
-        return isinstance(other, KWD) and self.string == other.string
+        return (
+            isinstance(other, KWD)
+            and self.string == other.string)
 
 
 class NUM(Token_):
@@ -80,14 +86,13 @@ class NUM(Token_):
         if self.string2 is None:
             return self.string1
         else:
-            return f"{self.string1}.{self.string2}"
+            return f'{self.string1}.{self.string2}'
 
     def __eq__(self, other):
         return (
             isinstance(other, NUM)
             and self.string1 == other.string1
-            and self.string2 == other.string2
-        )
+            and self.string2 == other.string2)
 
 
 class STR(Token_):
@@ -97,7 +102,9 @@ class STR(Token_):
         self.string = string
 
     def __eq__(self, other):
-        return isinstance(other, STR) and self.string == other.string
+        return (
+            isinstance(other, STR)
+            and self.string == other.string)
 
 
 class PUNCT(Token_):
@@ -107,25 +114,25 @@ class PUNCT(Token_):
         self.string = string
 
     def __eq__(self, other):
-        return isinstance(other, PUNCT) and self.string == other.string
+        return (
+            isinstance(other, PUNCT)
+            and self.string == other.string)
 
 
 #     | ST of [`Star | `Plus | `Num of int] * string * int
 class StepStar:
     def __str__(self):
-        return "<*>"
+        return '<*>'
 
     def __eq__(self, other):
         return isinstance(other, StepStar)
 
-
 class StepPlus:
     def __str__(self):
-        return "<+>"
+        return '<+>'
 
     def __eq__(self, other):
         return isinstance(other, StepPlus)
-
 
 class StepNum:
     def __init__(self, value):
@@ -133,10 +140,11 @@ class StepNum:
 
     def __str__(self):
         level = self.value
-        return f"<{level}>"
+        return f'<{level}>'
 
     def __eq__(self, other):
-        return isinstance(other, StepNum) and self.value == other.value
+        return (isinstance(other, StepNum)
+            and self.value == other.value)
 
 
 class ST(Token_):
@@ -149,8 +157,9 @@ class ST(Token_):
 
     def __str__(self):
         a = str(self.kind)
-        b = "" if self.string is None else self.string
-        c = "." * self.i
+        b = ('' if self.string is None
+            else self.string)
+        c = '.' * self.i
         return a + b + c
 
     def __eq__(self, other):
@@ -158,8 +167,7 @@ class ST(Token_):
             isinstance(other, ST)
             and self.kind == other.kind
             and self.string == other.string
-            and self.i == other.i
-        )
+            and self.i == other.i)
 
 
 #   and token = { form : token_ ;
@@ -174,7 +182,7 @@ class Token:
         self.loc = loc  # location.Locus
 
     def __repr__(self):
-        return f"Token({rep(self)}, {self.loc!r})"
+        return f'Token({rep(self)}, {self.loc!r})'
 
     def __eq__(self, other):
         return self.form == other.form
@@ -183,7 +191,10 @@ class Token:
 #   let bof loc = { form = BOF ; rep = "start of file" ; loc = loc }
 def bof(locus):
     """Token representing beginning of file."""
-    return Token(form=BOF(), rep="start of file", loc=locus)
+    return Token(
+        form=BOF(),
+        rep='start of file',
+        loc=locus)
 
 
 #   let rep t = match t.rep with
@@ -210,20 +221,20 @@ def rep(token):
         return token.rep
     form = token.form
     if isinstance(form, BOF):
-        return "start of file"
+        return 'start of file'
     elif isinstance(form, ID):
-        return "identifier " + form.string
+        return 'identifier ' + form.string
     elif isinstance(form, KWD):
-        return "keyword " + form.string
+        return 'keyword ' + form.string
     elif isinstance(form, OP):
-        return "operator " + form.string
+        return 'operator ' + form.string
     elif isinstance(form, PUNCT):
         return form.string
     elif isinstance(form, NUM):
         if form.string2 is None:
             return form.string1
         else:
-            return form.string1 + "." + form.string2
+            return form.string1 + '.' + form.string2
     elif isinstance(form, STR):
         assert form.string.startswith('"')
         assert form.string.endswith('"')
@@ -231,13 +242,13 @@ def rep(token):
     elif isinstance(form, ST):
         kind = form.kind
         if isinstance(kind, StepStar):
-            return "<*>" + form.string + (form.i * ".")
+            return '<*>' + form.string + (form.i * '.')
         elif isinstance(kind, StepPlus):
-            return "<+>" + form.string + (form.i * ".")
+            return '<+>' + form.string + (form.i * '.')
         elif isinstance(kind, StepNum):
-            return "<" + kind.value + ">" + form.string + (form.i * ".")
+            return '<' + kind.value + '>' + form.string + (form.i * '.')
     else:
-        raise Exception(f"Unknown case of token {form}")
+        raise Exception(f'Unknown case of token {form}')
 
 
 #   let locus t = t.loc
@@ -296,17 +307,19 @@ def conflict(prec, other_prec):
 
 def token_basic_test():
     buffer = list()
-    token_ = PUNCT("----")
+    token_ = PUNCT('----')
     buffer.append(token_)
-    token_ = KWD("MODULE")
+    token_ = KWD('MODULE')
     buffer.append(token_)
-    token_ = PUNCT("----")
+    token_ = PUNCT('----')
     buffer.append(token_)
     # representation
-    buffer_repr = "".join(rep(Token(token_, None, None)) for token_ in buffer)
-    buffer_repr_ = "----keyword MODULE----"
+    buffer_repr = ''.join(
+        rep(Token(token_, None, None))
+        for token_ in buffer)
+    buffer_repr_ = '----keyword MODULE----'
     assert buffer_repr == buffer_repr_, buffer_repr
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     token_basic_test()
