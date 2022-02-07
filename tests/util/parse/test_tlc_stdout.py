@@ -1,8 +1,7 @@
 import os
 
+from modelator.util.parse.tla import parser, to_str
 from modelator.util.parse.tlc_stdout import extract_traces
-from modelator.util.parse.tla import parser
-from modelator.util.parse.tla import to_str
 
 from ...helper import get_resource_dir
 

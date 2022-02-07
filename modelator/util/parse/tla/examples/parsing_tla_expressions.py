@@ -1,15 +1,14 @@
 """How to parse a TLA+ expression."""
-from tla import parser
-from tla.to_str import Nodes
+from . import parser
+from .to_str import Nodes
 
-
-expr = r'''
+expr = r"""
     \/ /\ x = 1
        /\ x' = 2
 
     \/ /\ x = 2
        /\ x' = 1
-'''
+"""
 
 
 def parse_expr():
@@ -25,6 +24,6 @@ def parse_expr_and_pretty_print():
     print(s)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parse_expr()
     parse_expr_and_pretty_print()
