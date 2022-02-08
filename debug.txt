@@ -5,6 +5,51 @@ plugins: cov-3.0.0
 collected 3 items / 2 deselected / 1 selected
 
 tests/util/parse/test_informal_trace_format.py 
+sequence_indexed_map
+None
+~~~~~~~~~~~~~~
+one_indexed_sequential_map
+{'#map': [[1, 42], [2, 42], [3, 42], [4, 42], [5, 42]]}
+~~~~~~~~~~~~~~
+string_indexed_map
+{'#map': [['two', 42], ['one', 42]]}
+~~~~~~~~~~~~~~
+negative_number
+-123456
+~~~~~~~~~~~~~~
+record
+{'#map': [['foo', 42], ['bar', 43]]}
+~~~~~~~~~~~~~~
+tuple
+{'#map': [[1, 1], [2, 2]]}
+~~~~~~~~~~~~~~
+bool
+False
+~~~~~~~~~~~~~~
+map_indexed_map
+None
+~~~~~~~~~~~~~~
+set
+{'#set': {1, 2, 3}}
+~~~~~~~~~~~~~~
+list
+{'#map': [[1, 1], [2, '"two"']]}
+~~~~~~~~~~~~~~
+map
+None
+~~~~~~~~~~~~~~
+json_int
+123
+~~~~~~~~~~~~~~
+string_literal
+"hello"
+~~~~~~~~~~~~~~
+zero_indexed_sequential_map
+None
+~~~~~~~~~~~~~~
+other_bool
+True
+~~~~~~~~~~~~~~
 .
 
 ======================= 1 passed, 2 deselected in 0.05s ========================

@@ -46,6 +46,10 @@ class ITFSet:
             return self.elements == other.elements
         return False
 
+    def __repr__(self):
+        obj = {"#set": self.elements}
+        return repr(obj)
+
 
 class ITFMap:
     """{ "#map": [ [ <expr>, <expr> ], ..., [ <expr>, <expr> ] ] }"""
@@ -58,6 +62,10 @@ class ITFMap:
         if isinstance(other, ITFMap):
             return self.elements == other.elements
         return False
+
+    def __repr__(self):
+        obj = {"#map": self.elements}
+        return repr(obj)
 
 
 def merge_itf_maps(f, g):
@@ -104,11 +112,11 @@ class Experiment(visit.NodeTransformer):
         # .op
         # .exprs
         self.visit(node.op, *arg, **kw)
-        elements = []
+        variable_pairs = []
         for expr in node.exprs:
             e = self.visit(expr, *arg, **kw)
-            elements.append(e)
-        return elements
+            variable_pairs.append(e)
+        return variable_pairs
 
     def visit_SetEnum(self, node, *arg, **kw):
         # .exprs
@@ -151,6 +159,7 @@ class Experiment(visit.NodeTransformer):
             e = self.visit(expr, *arg, **kw)
             pair = [i, e]
             pairs.append(pair)
+            i += 1
         return ITFMap(pairs)
 
     def visit_FALSE(self, node, *arg, **kw):
@@ -212,7 +221,11 @@ def test_debug():
     text = tree.to_str(width=80)
     # print(text)
     visitor = Experiment()
-    itf_state = visitor.visit(tree)
+    variable_pairs = visitor.visit(tree)
+    for key, value in variable_pairs:
+        print(key)
+        print(value)
+        print("~~~~~~~~~~~~~~")
 
 
 def test_python_knowledge():
@@ -230,3 +243,5 @@ def test_python_knowledge():
     b = B()
     s.add(a)
     s.add(b)
+    print(a)
+    print(b)
