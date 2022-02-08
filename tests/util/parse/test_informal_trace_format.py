@@ -1,8 +1,11 @@
 import os
+import copy
 
 from modelator.util.parse.tla import parser, visit
 from modelator.util.parse.tla.to_str import Nodes as to_str_Nodes
 from ...helper import get_resource_dir
+
+from collections import defaultdict
 
 
 def get_expr():
@@ -46,12 +49,16 @@ class Experiment(visit.NodeTransformer):
         """
         method_name = f"visit_{type(node).__name__}"
         method = getattr(self, method_name)
-        kw["methods"].add(method_name)
+        txt = None
+        try:
+            txt = node.to_str(width=80)
+        except:
+            pass
+        kw["store"][method_name].append(txt)
         return method(node, *arg, **kw)
 
     def visit_Opaque(self, node, *arg, **kw):
         name = node.name
-        kw["identifiers"].add(name)
         return self.nodes.Opaque(name)
 
     def visit_List(self, node, *arg, **kw):
@@ -129,9 +136,11 @@ def test_debug():
     tree = parser.parse_expr(s, nodes=to_str_Nodes)
     assert tree is not None
     text = tree.to_str(width=80)
-    # print(text)
-    identifiers = set()
+    print(text)
     visitor = Experiment()
-    methods = set()
-    visitor.visit(tree, identifiers=identifiers, methods=methods)
-    print(methods)
+    store = defaultdict(list)
+    visitor.visit(tree, store=store)
+    for k, v in store.items():
+        print(k)
+        for i, x in enumerate(v):
+            print(i, "~~~~~~", x)
