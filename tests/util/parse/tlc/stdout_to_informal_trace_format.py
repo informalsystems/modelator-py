@@ -45,3 +45,22 @@ def test_extract_multiple_traces_from_tlc():
 
     result = extract_traces(content)
     assert len(result) == 4
+
+
+def test_python_knowledge():
+    class A:
+        def bar(self):
+            return self.foo()
+
+        def foo(self):
+            return "a"
+
+    class B(A):
+        def foo(self):
+            return "b"
+
+    b = B()
+    assert isinstance(b, B)
+    assert isinstance(b, A)
+    assert b.foo() == "b"
+    assert b.bar() == "b"

@@ -1,6 +1,11 @@
 from modelator.util.parse.tla import visit, parser
 from modelator.util.parse.tla.to_str import Nodes
-from modelator.util.parse.informal_trace_format import ITFMap, ITFSet, merge_itf_maps
+from modelator.util.parse.informal_trace_format import (
+    ITFMap,
+    ITFSet,
+    ITFState,
+    merge_itf_maps,
+)
 
 
 class Visitor(visit.NodeTransformer):
@@ -143,5 +148,6 @@ class Visitor(visit.NodeTransformer):
 def state_to_informal_trace_format_state(state_expr_str: str):
     tree = parser.parse_expr(state_expr_str, nodes=Nodes)
     visitor = Visitor()
-    variable_pairs = visitor.visit(tree)
-    return {key: value for key, value in variable_pairs}
+    var_value_pairs = visitor.visit(tree)
+    var_value_map = {key: value for key, value in var_value_pairs}
+    return ITFState(var_value_map)
