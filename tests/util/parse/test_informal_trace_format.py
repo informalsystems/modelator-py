@@ -120,12 +120,17 @@ class Experiment(visit.NodeTransformer):
     def visit_Apply(self, node, *arg, **kw):
         builder = kw["builder"]
         op = self.visit(node.op, *arg, **kw)
+
         print(
             type(op),
             op.to_str(width=80),
             [oper.to_str(width=80) for oper in node.operands],
         )
         operands = list()
+
+        if type(op) == Nodes.Eq:
+            variable_name = node.operands[0].name
+
         for operand in node.operands:
             res = self.visit(operand, *arg, **kw)
             operands.append(res)
