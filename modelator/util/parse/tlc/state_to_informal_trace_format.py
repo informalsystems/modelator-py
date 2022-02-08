@@ -51,10 +51,10 @@ class Visitor(visit.NodeTransformer):
 
     def visit_SetEnum(self, node, *arg, **kw):
         # .exprs
-        elements = set()
+        elements = []
         for expr in node.exprs:
             e = self.visit(expr, *arg, **kw)
-            elements.add(e)
+            elements.append(e)
         return ITFSet(elements)
 
     def visit_Record(self, node, *arg, **kw):

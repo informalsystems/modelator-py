@@ -1,4 +1,5 @@
 from .state_to_informal_trace_format import state_to_informal_trace_format_state
+from modelator.util.parse.informal_trace_format import ITFTrace
 
 
 def extract_traces(stdout: str):
@@ -59,9 +60,6 @@ def tla_trace_to_informal_trace_format_trace(trace):
     states = [state_to_informal_trace_format_state(state) for state in trace]
     vars = []
     if 0 < len(states):
-        vars = list(states[0].keys())
+        vars = list(states[0].var_value_map.keys())
 
-    informal_trace_format = {}
-    informal_trace_format["vars"] = vars
-    informal_trace_format["states"] = states
-    return informal_trace_format
+    return ITFTrace(vars, states)

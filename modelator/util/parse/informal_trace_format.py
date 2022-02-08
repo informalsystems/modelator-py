@@ -59,11 +59,6 @@ class ITFState(ITFNode):
     """
 
     def __init__(self, var_value_map, meta=None):
-        if meta is None:
-            meta = {
-                "source": "https://github.com/informalsystems/modelator",
-                "bug-report": "https://github.com/informalsystems/modelator/issues",
-            }
         self.meta = meta
         self.var_value_map = var_value_map
 
@@ -77,6 +72,45 @@ class ITFState(ITFNode):
         lam = lambda e: e.to_obj() if isinstance(e, ITFNode) else e
         var_value_map = {k: lam(v) for k, v in self.var_value_map.items()}
         return {"#meta": self.meta} | var_value_map
+
+
+class ITFTrace(ITFNode):
+    """
+    {
+        "#meta": <optional object>,
+        "params": <optional array of strings>,
+        "vars":  <array of strings>,
+        "states": <array of states>,
+        "loop": <optional int>
+    }
+    """
+
+    def __init__(self, vars, states, meta=None):
+        if meta is None:
+            meta = {
+                "source": "https://github.com/informalsystems/modelator",
+                "bug-report": "https://github.com/informalsystems/modelator/issues",
+            }
+        self.meta = meta
+        self.vars = vars
+        self.states = states
+
+    def __eq__(self, other):
+        """Overrides the default implementation"""
+        if isinstance(other, ITFState):
+            return (
+                self.meta == other.meta
+                and self.vars == other.vars
+                and self.states == other.states
+            )
+        return False
+
+    def to_obj(self):
+        return {
+            "#meta": self.meta,
+            "vars": self.vars,
+            "states": [e.to_obj() for e in self.states],
+        }
 
 
 def merge_itf_maps(f, g):

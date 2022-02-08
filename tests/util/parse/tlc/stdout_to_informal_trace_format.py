@@ -1,7 +1,10 @@
 import os
 
 from modelator.util.parse.tla import parser, to_str
-from modelator.util.parse.tlc.stdout_to_informal_trace_format import extract_traces
+from modelator.util.parse.tlc.stdout_to_informal_trace_format import (
+    extract_traces,
+    tla_trace_to_informal_trace_format_trace,
+)
 
 from ....helper import get_resource_dir
 
@@ -45,6 +48,21 @@ def test_extract_multiple_traces_from_tlc():
 
     result = extract_traces(content)
     assert len(result) == 4
+
+
+def test_extract_informal_trace_format_traces_from_tlc_simple():
+
+    fn = "TlcMultipleTraceParse.txt"
+    fn = os.path.join(get_resource_dir(), fn)
+    content = None
+    with open(fn, "r") as fd:
+        content = fd.read()
+
+    tlc_tla_traces = extract_traces(content)
+    informal_trace_format_traces = [
+        tla_trace_to_informal_trace_format_trace(trace) for trace in tlc_tla_traces
+    ]
+    print(informal_trace_format_traces)
 
 
 def test_python_knowledge():
