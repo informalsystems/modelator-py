@@ -53,5 +53,4 @@ def tla_trace_to_informal_trace_format_trace(trace):
         return ret
 
     trace = split_into_states(trace)
-    trace = [parse_expr(state) for state in trace]
-    return trace
+    # TODO:
