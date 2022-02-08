@@ -7,14 +7,7 @@ from modelator.util.parse.tlc.state_to_informal_trace_format import (
 from ....helper import get_resource_dir
 
 
-def get_expr():
-    fn = "TlcStateExpressionExample0.txt"
-    path = os.path.join(get_resource_dir(), fn)
-    with open(path, "r") as fd:
-        return fd.read()
-
-
-def test_tla_state_expression_to_informal_trace_format_state():
+def test_create_ast_from_tlc_state_expressions():
 
     """
     json in the Informal Trace Format contains a state field mapping to a
@@ -27,7 +20,25 @@ def test_tla_state_expression_to_informal_trace_format_state():
 
     # poetry run pytest tests/util/parse/tlc/state_to_informal_trace_format.py -s -k 'test_tla_state_expression_to_informal_trace_format_state'
 
-    s = get_expr()
-    res = state_to_informal_trace_format_state(s)
-    assert res is not None
-    print(res)
+    fns = [
+        "TlcStateExpressionExample0.txt",
+        "TlcStateExpressionExample1.txt",
+        "TlcStateExpressionExample2.txt",
+        "TlcStateExpressionExample3.txt",
+        "TlcStateExpressionExample4.txt",
+        "TlcStateExpressionExample5.txt",
+        "TlcStateExpressionExample6.txt",
+        "TlcStateExpressionExample7.txt",
+    ]
+
+    expressions = []
+
+    for fn in fns:
+        path = os.path.join(get_resource_dir(), fn)
+        with open(path, "r") as fd:
+            content = fd.read()
+            expressions.append(content)
+
+    for s in expressions:
+        res = state_to_informal_trace_format_state(s)
+        assert res is not None

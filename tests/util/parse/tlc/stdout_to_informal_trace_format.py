@@ -1,4 +1,5 @@
 import os
+import json
 
 from modelator.util.parse.tla import parser, to_str
 from modelator.util.parse.tlc.stdout_to_informal_trace_format import (
@@ -23,6 +24,7 @@ def test_create_ast_from_tlc_state_expressions():
         "TlcStateExpressionExample4.txt",
         "TlcStateExpressionExample5.txt",
         "TlcStateExpressionExample6.txt",
+        "TlcStateExpressionExample7.txt",
     ]
 
     expressions = []
@@ -50,7 +52,7 @@ def test_extract_multiple_traces_from_tlc():
     assert len(result) == 4
 
 
-def test_extract_informal_trace_format_traces_from_tlc_simple():
+def test_extract_informal_trace_format_traces_from_tlc_simple_example():
 
     fn = "TlcMultipleTraceParse.txt"
     fn = os.path.join(get_resource_dir(), fn)
@@ -62,23 +64,23 @@ def test_extract_informal_trace_format_traces_from_tlc_simple():
     informal_trace_format_traces = [
         tla_trace_to_informal_trace_format_trace(trace) for trace in tlc_tla_traces
     ]
-    print(informal_trace_format_traces)
+    assert not (None in informal_trace_format_traces)
 
 
-def test_python_knowledge():
-    class A:
-        def bar(self):
-            return self.foo()
+def test_extract_informal_trace_format_traces_from_tlc_real_world_example():
 
-        def foo(self):
-            return "a"
+    fn = "TlcMultipleTraceParse_RealWorld0.txt"
+    fn = os.path.join(get_resource_dir(), fn)
+    content = None
+    with open(fn, "r") as fd:
+        content = fd.read()
 
-    class B(A):
-        def foo(self):
-            return "b"
-
-    b = B()
-    assert isinstance(b, B)
-    assert isinstance(b, A)
-    assert b.foo() == "b"
-    assert b.bar() == "b"
+    tlc_tla_traces = extract_traces(content)
+    informal_trace_format_traces = [
+        tla_trace_to_informal_trace_format_trace(trace) for trace in tlc_tla_traces
+    ]
+    trace_objects = [trace.to_obj() for trace in informal_trace_format_traces]
+    fn = os.path.join(get_resource_dir(), "TlcMultipleTraceParse_RealWorld0.json")
+    with open(fn, "w") as fd:
+        content = json.dumps(trace_objects)
+        fd.write(content)
