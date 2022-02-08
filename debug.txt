@@ -6,7 +6,7 @@ collected 3 items / 2 deselected / 1 selected
 
 tests/util/parse/test_informal_trace_format.py 
 sequence_indexed_map
-None
+{'#map': [[{'#map': [[1, '"one"'], [2, '"two"']]}, 42]]}
 ~~~~~~~~~~~~~~
 one_indexed_sequential_map
 {'#map': [[1, 42], [2, 42], [3, 42], [4, 42], [5, 42]]}
@@ -27,7 +27,7 @@ bool
 False
 ~~~~~~~~~~~~~~
 map_indexed_map
-None
+{'#map': [[{'#map': [['foo', 42], ['bar', 42]]}, 42]]}
 ~~~~~~~~~~~~~~
 set
 {'#set': {1, 2, 3}}
@@ -36,7 +36,7 @@ list
 {'#map': [[1, 1], [2, '"two"']]}
 ~~~~~~~~~~~~~~
 map
-None
+{'#map': [[0, 42], [1, 42], [2, 42], [3, 42], [4, 42], [5, 42], [6, '"forty-two"'], [8, '"forty-two"'], [13, '"forty-two"']]}
 ~~~~~~~~~~~~~~
 json_int
 123
@@ -45,7 +45,7 @@ string_literal
 "hello"
 ~~~~~~~~~~~~~~
 zero_indexed_sequential_map
-None
+{'#map': [[0, 42], [1, 42], [2, 42], [3, 42], [4, 42], [5, 42]]}
 ~~~~~~~~~~~~~~
 other_bool
 True

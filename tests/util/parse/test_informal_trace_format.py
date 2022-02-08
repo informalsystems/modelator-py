@@ -145,8 +145,9 @@ class Experiment(visit.NodeTransformer):
     def visit_Parens(self, node, *arg, **kw):
         # .expr
         # .pform
-        self.visit(node.expr, *arg, **kw)
+        expr = self.visit(node.expr, *arg, **kw)
         self.visit(node.pform, *arg, **kw)
+        return expr
 
     def visit_Syntax(self, node, *arg, **kw):
         pass
@@ -225,23 +226,3 @@ def test_debug():
     for key, value in variable_pairs:
         print(key)
         print(value)
-        print("~~~~~~~~~~~~~~")
-
-
-def test_python_knowledge():
-    class A:
-        def __init__(self):
-            self.stuff = [1, 2, 3]
-            pass
-
-    class B:
-        def __init__(self):
-            self.stuff = [4, 5, 6]
-
-    s = set()
-    a = A()
-    b = B()
-    s.add(a)
-    s.add(b)
-    print(a)
-    print(b)
