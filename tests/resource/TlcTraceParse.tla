@@ -4,6 +4,7 @@ EXTENDS Naturals, FiniteSets, Sequences, TLC, Reals
 
 VARIABLES
     bool,
+    other_bool,
     string_literal,
     json_int,
     list,
@@ -15,10 +16,12 @@ VARIABLES
     one_indexed_sequential_map,
     string_indexed_map,
     sequence_indexed_map,
-    map_indexed_map
+    map_indexed_map,
+    negative_number
 
 Init ==
     /\ bool = FALSE
+    /\ other_bool = TRUE
     /\ string_literal = "hello"
     /\ json_int = 123
     /\ list = <<1,"two">>
@@ -31,9 +34,11 @@ Init ==
     /\ string_indexed_map = [ x \in {"one", "two"} |-> 42 ]
     /\ sequence_indexed_map =  [ x \in {<<"one", "two">>} |-> 42 ]
     /\ map_indexed_map = [ x \in {[foo |-> 42, bar |-> 42]} |-> 42 ]
+    /\ negative_number = -123456
 
 Next ==
     /\ bool' = TRUE
+    /\ UNCHANGED other_bool
     /\ UNCHANGED string_literal
     /\ UNCHANGED json_int
     /\ UNCHANGED list
@@ -46,6 +51,7 @@ Next ==
     /\ UNCHANGED string_indexed_map
     /\ UNCHANGED sequence_indexed_map
     /\ UNCHANGED map_indexed_map
+    /\ UNCHANGED negative_number
 
 Inv == bool = FALSE
 

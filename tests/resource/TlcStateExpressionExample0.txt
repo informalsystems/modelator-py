@@ -1,9 +1,10 @@
 /\ sequence_indexed_map = (<<"one", "two">> :> 42)
 /\ one_indexed_sequential_map = <<42, 42, 42, 42, 42>>
 /\ string_indexed_map = [two |-> 42, one |-> 42]
+/\ negative_number = -123456
 /\ record = [foo |-> 42, bar |-> 43]
 /\ tuple = <<1, 2>>
-/\ bool = TRUE
+/\ bool = FALSE
 /\ map_indexed_map = ([foo |-> 42, bar |-> 42] :> 42)
 /\ set = {1, 2, 3}
 /\ list = <<1, "two">>
@@ -19,3 +20,4 @@
 /\ json_int = 123
 /\ string_literal = "hello"
 /\ zero_indexed_sequential_map = (0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42 @@ 4 :> 42 @@ 5 :> 42)
+/\ other_bool = TRUE
