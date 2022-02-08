@@ -57,67 +57,84 @@ class Experiment(visit.NodeTransformer):
         return method(node, *arg, **kw)
 
     def visit_Opaque(self, node, *arg, **kw):
-        # .name
-        pass
+        name = node.name
+        return self.nodes.Opaque(name)
 
     def visit_List(self, node, *arg, **kw):
-        # .op
-        # .exprs
-        self.visit(node.op, *arg, **kw)
+        op = self.visit(node.op, *arg, **kw)
+        assert (
+            type(node.op) == Nodes.And
+        ), "the top level of TLC output is a conjunction"
+        exprs = list()
         for expr in node.exprs:
-            self.visit(expr, *arg, **kw)
+            expr_ = self.visit(expr, *arg, **kw)
+            assert (
+                type(expr) == Nodes.Apply
+            ), "the top level of TLC output is a conjunction of Eq Apply's"
+            exprs.append(expr_)
+        return self.nodes.List(op, exprs)
 
     def visit_SetEnum(self, node, *arg, **kw):
-        # .exprs
+        exprs = list()
         for expr in node.exprs:
-            self.visit(expr, *arg, **kw)
+            expr_ = self.visit(expr, *arg, **kw)
+            exprs.append(expr_)
+        return self.nodes.SetEnum(exprs)
 
     def visit_Record(self, node, *arg, **kw):
-        # .items
+        items = list()
         for name, expr in node.items:
-            self.visit(expr, *arg, **kw)
+            name_ = copy.copy(name)
+            expr_ = self.visit(expr, *arg, **kw)
+            pair = (name_, expr_)
+            items.append(pair)
+        return self.nodes.Record(items)
 
     def visit_String(self, node, *arg, **kw):
-        # .value
-        pass
+        return self.nodes.String(node.value)
 
     def visit_Eq(self, node, *arg, **kw):
-        pass
+        return self.nodes.Eq()
 
     def visit_Parens(self, node, *arg, **kw):
-        # .expr
-        # .pform
-        self.visit(node.expr, *arg, **kw)
-        self.visit(node.pform, *arg, **kw)
+        expr = self.visit(node.expr, *arg, **kw)
+        pform = self.visit(node.pform, *arg, **kw)
+        return self.nodes.Parens(expr, pform)
 
     def visit_Syntax(self, node, *arg, **kw):
-        pass
+        return self.nodes.Syntax()
 
     def visit_Tuple(self, node, *arg, **kw):
-        # .exprs
+        exprs = list()
         for expr in node.exprs:
-            self.visit(expr, *arg, **kw)
+            expr_ = self.visit(expr, *arg, **kw)
+            exprs.append(expr_)
+        return self.nodes.Tuple(exprs)
 
     def visit_FALSE(self, node, *arg, **kw):
-        pass
+        return self.nodes.FALSE()
 
     def visit_TRUE(self, node, *arg, **kw):
-        pass
+        return self.nodes.TRUE()
 
     def visit_Apply(self, node, *arg, **kw):
-        # .op
-        # .operands
-
-        self.visit(node.op, *arg, **kw)
+        builder = kw["builder"]
+        op = self.visit(node.op, *arg, **kw)
 
         print(
-            type(node.op),
-            node.op.to_str(width=80),
+            type(op),
+            op.to_str(width=80),
             [oper.to_str(width=80) for oper in node.operands],
         )
+        operands = list()
+
+        if type(op) == Nodes.Eq:
+            variable_name = node.operands[0].name
 
         for operand in node.operands:
-            self.visit(operand, *arg, **kw)
+            res = self.visit(operand, *arg, **kw)
+            operands.append(res)
+        return self.nodes.Apply(op, operands)
 
     def visit_Number(self, node, *arg, **kw):
         return self.nodes.Number(node.integer, node.mantissa)
