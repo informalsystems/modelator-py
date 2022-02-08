@@ -5,52 +5,188 @@ plugins: cov-3.0.0
 collected 2 items / 1 deselected / 1 selected
 
 tests/util/parse/test_informal_trace_format.py 
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['sequence_indexed_map', '(<<"one", "two">> :> 42)']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['<<"one", "two">>', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['one_indexed_sequential_map', '<<42, 42, 42, 42, 42>>']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['string_indexed_map', '[two |-> 42, one |-> 42]']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['negative_number', '- 123456']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> -. ['123456']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['record', '[foo |-> 42, bar |-> 43]']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['tuple', '<<1, 2>>']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['bool', 'FALSE']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['map_indexed_map', '([foo |-> 42, bar |-> 42] :> 42)']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['[foo |-> 42, bar |-> 42]', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['set', '{1, 2, 3}']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['list', '<<1, "two">>']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['map', '(0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42 @@ 4 :> 42 @@ 5 :> 42 @@\n6 :> "forty-two" @@ 8 :> "forty-two" @@ 13 :> "forty-two")']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42 @@ 4 :> 42 @@ 5 :> 42 @@\n6 :> "forty-two" @@ 8 :> "forty-two"', '13 :> "forty-two"']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42 @@ 4 :> 42 @@ 5 :> 42 @@\n6 :> "forty-two"', '8 :> "forty-two"']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42 @@ 4 :> 42 @@ 5 :> 42', '6 :> "forty-two"']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42 @@ 4 :> 42', '5 :> 42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42', '4 :> 42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42 @@ 1 :> 42 @@ 2 :> 42', '3 :> 42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42 @@ 1 :> 42', '2 :> 42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42', '1 :> 42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['0', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['1', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['2', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['3', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['4', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['5', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['6', '"forty-two"']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['8', '"forty-two"']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['13', '"forty-two"']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['json_int', '123']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['string_literal', '"hello"']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['zero_indexed_sequential_map', '(0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42 @@ 4 :> 42 @@ 5 :> 42)']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42 @@ 4 :> 42', '5 :> 42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42', '4 :> 42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42 @@ 1 :> 42 @@ 2 :> 42', '3 :> 42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42 @@ 1 :> 42', '2 :> 42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> @@ ['0 :> 42', '1 :> 42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['0', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['1', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['2', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['3', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['4', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Opaque'> :> ['5', '42']
-<class 'modelator.util.parse.tla.to_str.Nodes.Eq'> = ['other_bool', 'TRUE']
+visit_List
+visit_And
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_Parens
+visit_Apply
+visit_Opaque
+visit_Tuple
+visit_String
+visit_String
+visit_Number
+visit_Syntax
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_Tuple
+visit_Number
+visit_Number
+visit_Number
+visit_Number
+visit_Number
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_Record
+visit_Number
+visit_Number
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_Record
+visit_Number
+visit_Number
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_Tuple
+visit_Number
+visit_Number
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_FALSE
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_Parens
+visit_Apply
+visit_Opaque
+visit_Record
+visit_Number
+visit_Number
+visit_Number
+visit_Syntax
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_SetEnum
+visit_Number
+visit_Number
+visit_Number
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_Tuple
+visit_Number
+visit_String
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_Parens
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Number
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Number
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Number
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Number
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Number
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Number
+visit_Apply
+visit_Opaque
+visit_Number
+visit_String
+visit_Apply
+visit_Opaque
+visit_Number
+visit_String
+visit_Apply
+visit_Opaque
+visit_Number
+visit_String
+visit_Syntax
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_Number
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_String
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_Parens
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Number
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Number
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Number
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Number
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Number
+visit_Apply
+visit_Opaque
+visit_Number
+visit_Number
+visit_Syntax
+visit_Apply
+visit_Eq
+visit_Opaque
+visit_TRUE
 .
 
 ======================= 1 passed, 1 deselected in 0.05s ========================

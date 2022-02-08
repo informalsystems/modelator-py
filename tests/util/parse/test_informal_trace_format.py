@@ -54,6 +54,7 @@ class Experiment(visit.NodeTransformer):
         """
         method_name = f"visit_{type(node).__name__}"
         method = getattr(self, method_name)
+        print(method_name)
         return method(node, *arg, **kw)
 
     def visit_Opaque(self, node, *arg, **kw):
@@ -110,23 +111,26 @@ class Experiment(visit.NodeTransformer):
 
         self.visit(node.op, *arg, **kw)
 
-        print(
-            type(node.op),
-            node.op.to_str(width=80),
-            [oper.to_str(width=80) for oper in node.operands],
-        )
+        # print(
+        # type(node.op),
+        # node.op.to_str(width=80),
+        # [oper.to_str(width=80) for oper in node.operands],
+        # )
 
         for operand in node.operands:
             self.visit(operand, *arg, **kw)
 
     def visit_Number(self, node, *arg, **kw):
-        return self.nodes.Number(node.integer, node.mantissa)
+        # .integer
+        # .mantissa
+        pass
 
     def visit_And(self, node, *arg, **kw):
-        return self.nodes.And()
+        pass
 
     def visit_Opaque(self, node, *arg, **kw):
-        return self.nodes.Opaque(node.name)
+        # .name
+        pass
 
 
 def test_debug():
