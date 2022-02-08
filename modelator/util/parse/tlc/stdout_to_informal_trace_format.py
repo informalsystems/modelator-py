@@ -1,3 +1,6 @@
+from .state_to_informal_trace_format import state_to_informal_trace_format_state
+
+
 def extract_traces(stdout: str):
     """
     Extract zero, one or more traces from the stdout of TLC.
@@ -53,4 +56,12 @@ def tla_trace_to_informal_trace_format_trace(trace):
         return ret
 
     trace = split_into_states(trace)
-    # TODO:
+    states = [state_to_informal_trace_format_state(state) for state in trace]
+    vars = []
+    if 0 < len(states):
+        vars = list(states[0].keys())
+
+    informal_trace_format = {}
+    informal_trace_format["vars"] = vars
+    informal_trace_format["states"] = states
+    return informal_trace_format

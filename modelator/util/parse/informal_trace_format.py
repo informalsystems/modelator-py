@@ -11,8 +11,10 @@ class ITFSet:
         return False
 
     def __repr__(self):
-        obj = {"#set": self.elements}
-        return repr(obj)
+        return repr(self.to_obj())
+
+    def to_obj(self):
+        return {"#set": self.elements}
 
 
 class ITFMap:
@@ -28,8 +30,10 @@ class ITFMap:
         return False
 
     def __repr__(self):
-        obj = {"#map": self.elements}
-        return repr(obj)
+        return repr(self.to_obj())
+
+    def to_obj(self):
+        return {"#map": self.elements}
 
 
 def merge_itf_maps(f, g):
