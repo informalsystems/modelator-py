@@ -35,6 +35,11 @@ def test_tla_state_expression_to_informal_trace_format_state():
     print(text)
 
 
+class ITFBuilder:
+    def __init__(self):
+        pass
+
+
 class Experiment(visit.NodeTransformer):
     """A visitor for experimentation."""
 
