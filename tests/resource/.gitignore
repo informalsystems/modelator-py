@@ -1,0 +1,15 @@
+*.toolbox/*.launch
+*.toolbox/*.pmap
+*.toolbox/**/*.tla
+*.toolbox/**/*.out
+*.toolbox/**/*.cfg
+*.old
+*.toolbox/*aux
+*.toolbox/*.log
+*.toolbox/*.pdf
+*.toolbox/*.tex
+*aux
+*.log
+*.pdf
+*.tex
+states/

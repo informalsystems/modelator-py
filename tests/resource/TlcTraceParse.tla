@@ -13,7 +13,9 @@ VARIABLES
     map,
     zero_indexed_sequential_map,
     one_indexed_sequential_map,
-    string_indexed_map
+    string_indexed_map,
+    sequence_indexed_map,
+    map_indexed_map
 
 Init ==
     /\ bool = FALSE
@@ -27,6 +29,8 @@ Init ==
     /\ zero_indexed_sequential_map = [ x \in 0..5 |-> 42 ]
     /\ one_indexed_sequential_map = [ x \in 1..5 |-> 42 ]
     /\ string_indexed_map = [ x \in {"one", "two"} |-> 42 ]
+    /\ sequence_indexed_map =  [ x \in {<<"one", "two">>} |-> 42 ]
+    /\ map_indexed_map = [ x \in {[foo |-> 42, bar |-> 42]} |-> 42 ]
 
 Next ==
     /\ bool' = TRUE
@@ -40,6 +44,8 @@ Next ==
     /\ UNCHANGED zero_indexed_sequential_map
     /\ UNCHANGED one_indexed_sequential_map
     /\ UNCHANGED string_indexed_map
+    /\ UNCHANGED sequence_indexed_map
+    /\ UNCHANGED map_indexed_map
 
 Inv == bool = FALSE
 

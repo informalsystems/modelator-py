@@ -1,8 +1,10 @@
+/\ sequence_indexed_map = (<<"one", "two">> :> 42)
 /\ one_indexed_sequential_map = <<42, 42, 42, 42, 42>>
 /\ string_indexed_map = [two |-> 42, one |-> 42]
 /\ record = [foo |-> 42, bar |-> 43]
 /\ tuple = <<1, 2>>
 /\ bool = TRUE
+/\ map_indexed_map = ([foo |-> 42, bar |-> 42] :> 42)
 /\ set = {1, 2, 3}
 /\ list = <<1, "two">>
 /\ map = ( 0 :> 42 @@
