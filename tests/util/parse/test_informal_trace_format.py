@@ -1,6 +1,6 @@
 import os
 
-from modelator.util.parse.tla import parser
+from modelator.util.parse.tla import parser, visit
 from modelator.util.parse.tla.to_str import Nodes as to_str_Nodes
 
 
@@ -45,9 +45,22 @@ def test_tla_state_expression_to_informal_trace_format_state():
     print(text)
 
 
+class CollectIdentifiers(visit.NodeTransformer):
+    """A visitor that collects identifiers."""
+
+    def visit_Opaque(self, node, *arg, **kw):
+        name = node.name
+        kw["identifiers"].add(name)
+        return self.nodes.Opaque(name)
+
+
 def test_integer():
     s = "x = 1"
     tree = parser.parse_expr(s, nodes=to_str_Nodes)
     assert tree is not None
     text = tree.to_str(width=80)
     print(text)
+    identifiers = set()
+    visitor = CollectIdentifiers()
+    visitor.visit(tree, identifiers=identifiers)
+    print(identifiers)
