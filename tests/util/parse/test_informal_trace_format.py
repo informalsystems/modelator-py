@@ -2,28 +2,14 @@ import os
 
 from modelator.util.parse.tla import parser, visit
 from modelator.util.parse.tla.to_str import Nodes as to_str_Nodes
+from ...helper import get_resource_dir
 
-S = """/\ sequence_indexed_map = (<<"one", "two">> :> 42)
-/\ one_indexed_sequential_map = <<42, 42, 42, 42, 42>>
-/\ string_indexed_map = [two |-> 42, one |-> 42]
-/\ record = [foo |-> 42, bar |-> 43]
-/\ tuple = <<1, 2>>
-/\ bool = TRUE
-/\ map_indexed_map = ([foo |-> 42, bar |-> 42] :> 42)
-/\ set = {1, 2, 3}
-/\ list = <<1, "two">>
-/\ map = ( 0 :> 42 @@
-  1 :> 42 @@
-  2 :> 42 @@
-  3 :> 42 @@
-  4 :> 42 @@
-  5 :> 42 @@
-  6 :> "forty-two" @@
-  8 :> "forty-two" @@
-  13 :> "forty-two" )
-/\ json_int = 123
-/\ string_literal = "hello"
-/\ zero_indexed_sequential_map = (0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42 @@ 4 :> 42 @@ 5 :> 42)"""
+
+def get_expr():
+    fn = "TlcStateExpressionExample0.txt"
+    path = os.path.join(get_resource_dir(), fn)
+    with open(path, "r") as fd:
+        return fd.read()
 
 
 def test_tla_state_expression_to_informal_trace_format_state():
@@ -39,19 +25,11 @@ def test_tla_state_expression_to_informal_trace_format_state():
 
     # poetry run pytest tests/util/parse/test_informal_trace_format.py -s -k 'test_tla_state_expression_to_informal_trace_format_state'
 
-    tree = parser.parse_expr(S, nodes=to_str_Nodes)
+    s = get_expr()
+    tree = parser.parse_expr(s, nodes=to_str_Nodes)
     assert tree is not None
     text = tree.to_str(width=80)
     print(text)
-
-
-class CollectIdentifiers(visit.NodeTransformer):
-    """A visitor that collects identifiers."""
-
-    def visit_Opaque(self, node, *arg, **kw):
-        name = node.name
-        kw["identifiers"].add(name)
-        return self.nodes.Opaque(name)
 
 
 class Experiment(visit.NodeTransformer):
@@ -76,11 +54,78 @@ class Experiment(visit.NodeTransformer):
         kw["identifiers"].add(name)
         return self.nodes.Opaque(name)
 
+    def visit_List(self, node, *arg, **kw):
+        op = self.visit(node.op, *arg, **kw)
+        exprs = list()
+        for expr in node.exprs:
+            expr_ = self.visit(expr, *arg, **kw)
+            exprs.append(expr_)
+        return self.nodes.List(op, exprs)
+
+    def visit_SetEnum(self, node, *arg, **kw):
+        exprs = list()
+        for expr in node.exprs:
+            expr_ = self.visit(expr, *arg, **kw)
+            exprs.append(expr_)
+        return self.nodes.SetEnum(exprs)
+
+    def visit_Record(self, node, *arg, **kw):
+        items = list()
+        for name, expr in node.items:
+            name_ = copy.copy(name)
+            expr_ = self.visit(expr, *arg, **kw)
+            pair = (name_, expr_)
+            items.append(pair)
+        return self.nodes.Record(items)
+
+    def visit_String(self, node, *arg, **kw):
+        return self.nodes.String(node.value)
+
+    def visit_Eq(self, node, *arg, **kw):
+        return self.nodes.Eq()
+
+    def visit_Parens(self, node, *arg, **kw):
+        expr = self.visit(node.expr, *arg, **kw)
+        pform = self.visit(node.pform, *arg, **kw)
+        return self.nodes.Parens(expr, pform)
+
+    def visit_Syntax(self, node, *arg, **kw):
+        return self.nodes.Syntax()
+
+    def visit_Tuple(self, node, *arg, **kw):
+        exprs = list()
+        for expr in node.exprs:
+            expr_ = self.visit(expr, *arg, **kw)
+            exprs.append(expr_)
+        return self.nodes.Tuple(exprs)
+
+    def visit_FALSE(self, node, *arg, **kw):
+        return self.nodes.FALSE()
+
+    def visit_TRUE(self, node, *arg, **kw):
+        return self.nodes.TRUE()
+
+    def visit_Apply(self, node, *arg, **kw):
+        op = self.visit(node.op, *arg, **kw)
+        operands = list()
+        for operand in node.operands:
+            res = self.visit(operand, *arg, **kw)
+            operands.append(res)
+        return self.nodes.Apply(op, operands)
+
+    def visit_Number(self, node, *arg, **kw):
+        return self.nodes.Number(node.integer, node.mantissa)
+
+    def visit_And(self, node, *arg, **kw):
+        return self.nodes.And()
+
+    def visit_Opaque(self, node, *arg, **kw):
+        return self.nodes.Opaque(node.name)
+
 
 def test_debug():
     print()
-    s = "Foo == x /\ y"
-    s = S
+    s = get_expr()
     tree = parser.parse_expr(s, nodes=to_str_Nodes)
     assert tree is not None
     text = tree.to_str(width=80)
