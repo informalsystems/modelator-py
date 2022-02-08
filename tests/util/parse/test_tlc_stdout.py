@@ -40,11 +40,7 @@ def test_parse_state_expression():
             content = fd.read()
             expressions.append(content)
 
-    i = 0
     for expr in expressions:
         tree = parser.parse_expr(expr, nodes=to_str.Nodes)
         assert tree is not None
         s = tree.to_str(width=80)
-        with open(f"{fns[i]}.out.txt", "w") as fd:
-            fd.write(s)
-        i += 1
