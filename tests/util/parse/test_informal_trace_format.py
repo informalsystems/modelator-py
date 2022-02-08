@@ -2,7 +2,7 @@ import os
 import copy
 
 from modelator.util.parse.tla import parser, visit
-from modelator.util.parse.tla.to_str import Nodes as to_str_Nodes
+from modelator.util.parse.tla.to_str import Nodes as Nodes
 from ...helper import get_resource_dir
 
 from collections import defaultdict
@@ -29,7 +29,7 @@ def test_tla_state_expression_to_informal_trace_format_state():
     # poetry run pytest tests/util/parse/test_informal_trace_format.py -s -k 'test_tla_state_expression_to_informal_trace_format_state'
 
     s = get_expr()
-    tree = parser.parse_expr(s, nodes=to_str_Nodes)
+    tree = parser.parse_expr(s, nodes=Nodes)
     assert tree is not None
     text = tree.to_str(width=80)
     print(text)
@@ -54,12 +54,6 @@ class Experiment(visit.NodeTransformer):
         """
         method_name = f"visit_{type(node).__name__}"
         method = getattr(self, method_name)
-        txt = None
-        try:
-            txt = node.to_str(width=80)
-        except:
-            pass
-        kw["store"][method_name].append(txt)
         return method(node, *arg, **kw)
 
     def visit_Opaque(self, node, *arg, **kw):
@@ -68,9 +62,15 @@ class Experiment(visit.NodeTransformer):
 
     def visit_List(self, node, *arg, **kw):
         op = self.visit(node.op, *arg, **kw)
+        assert (
+            type(node.op) == Nodes.And
+        ), "the top level of TLC output is a conjunction"
         exprs = list()
         for expr in node.exprs:
             expr_ = self.visit(expr, *arg, **kw)
+            assert (
+                type(expr) == Nodes.Apply
+            ), "the top level of TLC output is a conjunction of Eq Apply's"
             exprs.append(expr_)
         return self.nodes.List(op, exprs)
 
@@ -118,7 +118,13 @@ class Experiment(visit.NodeTransformer):
         return self.nodes.TRUE()
 
     def visit_Apply(self, node, *arg, **kw):
+        builder = kw["builder"]
         op = self.visit(node.op, *arg, **kw)
+        print(
+            type(op),
+            op.to_str(width=80),
+            [oper.to_str(width=80) for oper in node.operands],
+        )
         operands = list()
         for operand in node.operands:
             res = self.visit(operand, *arg, **kw)
@@ -138,14 +144,10 @@ class Experiment(visit.NodeTransformer):
 def test_debug():
     print()
     s = get_expr()
-    tree = parser.parse_expr(s, nodes=to_str_Nodes)
+    tree = parser.parse_expr(s, nodes=Nodes)
     assert tree is not None
     text = tree.to_str(width=80)
-    print(text)
+    # print(text)
     visitor = Experiment()
-    store = defaultdict(list)
-    visitor.visit(tree, store=store)
-    for k, v in store.items():
-        print(k)
-        for i, x in enumerate(v):
-            print(i, "~~~~~~", x)
+    builder = ITFBuilder()
+    visitor.visit(tree, builder=builder)
