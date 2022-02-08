@@ -4,7 +4,13 @@ from modelator.util.parse.informal_trace_format import ITFMap, ITFSet, merge_itf
 
 
 class Visitor(visit.NodeTransformer):
-    """A visitor for experimentation."""
+    """
+    Translates a state expression from the stdout of TLC to
+    a list of [<variable name>, <value>] pairs.
+
+    TLC states are given in a conjunction list. This visitor ONLY
+    work on such input.
+    """
 
     def visit(self, node, *arg, **kw):
         """Call the implementation method for `node`.
