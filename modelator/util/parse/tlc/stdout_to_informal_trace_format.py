@@ -13,27 +13,42 @@ def extract_traces(stdout: str):
     """
     ret = []
     lines = stdout.split("\n")
-    HEADER = "Error: Invariant"
-    FOOTER = "Finished in "
+
+    def is_header(line):
+        """Begins a trace and may also end a previous trace"""
+        HEADER = "Error: Invariant"
+        return line.startswith(HEADER)
+
+    def is_footer(line):
+        return (
+            ("states generated" in line)
+            and ("distinct states found" in line)
+            and ("states left on queue" in line)
+        ) or ("Model checking completed" in line)
+
     header_cnt = 0
     header_ix = -1
-    footer_seen = False
     for i, line in enumerate(lines):
-        if line.startswith(HEADER):
+        if is_header(line):
             if 0 < header_cnt:
-                trace_lines = lines[header_ix:i]
+                """
+                Traces are prefixed:
+                Error: Invariant Inv is violated.
+                Error: The behavior up to this point is:
+                State 1: <Initial predicate>
+                so we add 2 to the catchment index.
+                """
+                trace_lines = lines[header_ix + 2 : i]
                 trace = "\n".join(trace_lines)
                 ret.append(trace)
             header_cnt += 1
             header_ix = i
-        if line.startswith(FOOTER):
-            footer_seen = True
-
-    # This block makes sure to include the last trace
-    if footer_seen and 0 < header_cnt:
-        trace_lines = lines[header_ix:i]
-        trace = "\n".join(trace_lines)
-        ret.append(trace)
+        if is_footer(line):
+            if 0 < header_cnt:
+                trace_lines = lines[header_ix:i]
+                trace = "\n".join(trace_lines)
+                ret.append(trace)
+            break
 
     return ret
 
@@ -61,8 +76,6 @@ def split_into_states(trace) -> list[str]:
         ret.append(lines[header_ix + 1 :])
 
     ret = ["\n".join(lines) for lines in ret]
-    for expr in ret:
-        print(expr)
     return ret
 
 

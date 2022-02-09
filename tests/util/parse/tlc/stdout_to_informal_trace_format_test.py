@@ -10,6 +10,17 @@ from modelator.util.parse.tlc.stdout_to_informal_trace_format import (
 from ....helper import get_resource_dir
 
 
+def test_extract_no_trace_from_tlc():
+    fn = "TlcTraceAbsenceParse.txt"
+    fn = os.path.join(get_resource_dir(), fn)
+    content = None
+    with open(fn, "r") as fd:
+        content = fd.read()
+
+    tlc_traces = extract_traces(content)
+    assert len(tlc_traces) == 0
+
+
 def test_extract_trace_from_tlc():
     fn = "TlcTraceParse.txt"
     fn = os.path.join(get_resource_dir(), fn)
@@ -29,8 +40,9 @@ def test_extract_multiple_traces_from_tlc():
     with open(fn, "r") as fd:
         content = fd.read()
 
-    result = extract_traces(content)
-    assert len(result) == 4
+    traces = extract_traces(content)
+
+    assert len(traces) == 4
 
 
 def test_extract_multiple_traces_from_tlc_cutoff():
@@ -49,8 +61,8 @@ def test_extract_multiple_traces_from_tlc_cutoff():
             content = fd.read()
             contents.append(content)
 
-    results = [extract_traces(content) for content in contents]
-    assert all(len(r) == 3 for r in results)
+    traces = [extract_traces(content) for content in contents]
+    assert all(len(r) == 3 for r in traces)
 
 
 def test_create_ast_from_tlc_state_expressions():
@@ -90,10 +102,11 @@ def test_extract_informal_trace_format_trace_from_tlc_stress_example():
     with open(fn, "r") as fd:
         content = fd.read()
 
-    tlc_tla_traces = extract_traces(content)
-    assert len(tlc_tla_traces) == 1
-    tlc_tla_trace = tlc_tla_traces[0]
-    itf_trace = tlc_trace_to_informal_trace_format_trace(tlc_tla_trace)
+    tlc_traces = extract_traces(content)
+    assert len(tlc_traces) == 1
+    tlc_trace = tlc_traces[0]
+    print(tlc_trace)
+    itf_trace = tlc_trace_to_informal_trace_format_trace(tlc_trace)
     obj = itf_trace.to_obj()
     s = json.dumps(obj, indent=4)
 
@@ -122,13 +135,7 @@ def test_extract_informal_trace_format_traces_from_tlc_real_world_example():
     with open(fn, "r") as fd:
         content = fd.read()
 
-    tlc_tla_traces = extract_traces(content)
+    tlc_traces = extract_traces(content)
     itf_traces = [
-        tlc_trace_to_informal_trace_format_trace(trace) for trace in tlc_tla_traces
+        tlc_trace_to_informal_trace_format_trace(trace) for trace in tlc_traces
     ]
-
-    trace_objects = [trace.to_obj() for trace in itf_traces]
-    fn = os.path.join(get_resource_dir(), "TlcMultipleTraceParse_RealWorld0.json")
-    with open(fn, "w") as fd:
-        content = json.dumps(trace_objects, indent=4)
-        fd.write(content)
