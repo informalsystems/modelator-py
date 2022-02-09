@@ -117,3 +117,50 @@ class ITFTrace(ITFNode):
             "vars": self.vars,
             "states": [e.to_obj() for e in self.states],
         }
+
+
+class Visitor:
+    def __init__(self):
+        pass
+
+    def visit(self, node, *arg, **kw):
+        method_name = f"visit_{type(node).__name__}"
+        method = getattr(self, method_name)
+        return method(node, *arg, **kw)
+
+    def visit_ITFSet(self, node, *arg, **kw):
+        pass
+
+    def visit_ITFMap(self, node, *arg, **kw):
+        pass
+
+    def visit_ITFState(self, node, *arg, **kw):
+        pass
+
+    def visit_ITFTrace(self, node, *arg, **kw):
+        pass
+
+
+def with_sequences(trace: ITFTrace):
+    """
+    Create a copy of the trace where sequences take the place
+    of 1-indexed maps.
+
+    In TLA+ sequences are precisely functions with domain
+    1..n for some n. This function transforms maps with domain
+    1..n into ITF lists.
+    """
+    visitor = Visitor()
+    visitor.visit(trace)
+    return trace
+
+
+def with_records(trace: ITFTrace):
+    """
+    Create a copy of the trace where sequences take the place
+    of string-indexed maps.
+
+    In TLA+ records are precisely functions with domain entirely
+    of strings. This function transforms maps with domain of
+    strings into ITF records.
+    """

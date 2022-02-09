@@ -6,6 +6,8 @@ from modelator.util.tlc.stdout_to_informal_trace_format import (
     tlc_trace_to_informal_trace_format_trace,
 )
 
+from modelator.util.informal_trace_format import with_records, with_sequences
+
 from ...helper import get_resource_dir
 
 
@@ -75,7 +77,24 @@ def test_extract_informal_trace_format_trace_from_tlc_stress_example():
     assert len(tlc_traces) == 1
     tlc_trace = tlc_traces[0]
     itf_trace = tlc_trace_to_informal_trace_format_trace(tlc_trace)
+
+
+def test_extract_informal_trace_format_trace_from_tlc_stress_example_include_sequences():
+    fn = "TlcTraceParse.txt"
+    fn = os.path.join(get_resource_dir(), fn)
+    content = None
+    with open(fn, "r") as fd:
+        content = fd.read()
+
+    tlc_traces = extract_traces(content)
+    assert len(tlc_traces) == 1
+    tlc_trace = tlc_traces[0]
+    itf_trace = tlc_trace_to_informal_trace_format_trace(tlc_trace)
+    itf_trace = with_sequences(itf_trace)
     obj = itf_trace.to_obj()
+    fn = os.path.join(get_resource_dir(), "debug.json")
+    with open(fn, "w") as fd:
+        fd.write(json.dumps(obj, indent=2))
 
 
 def test_extract_informal_trace_format_traces_from_tlc_simple_example():
