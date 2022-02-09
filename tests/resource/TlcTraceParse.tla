@@ -17,6 +17,7 @@ VARIABLES
     string_indexed_map,
     sequence_indexed_map,
     map_indexed_map,
+    set_indexed_map,
     negative_number
 
 Init ==
@@ -34,6 +35,7 @@ Init ==
     /\ string_indexed_map = [ x \in {"one", "two"} |-> 42 ]
     /\ sequence_indexed_map =  [ x \in {<<"one", "two">>} |-> 42 ]
     /\ map_indexed_map = [ x \in {[foo |-> 42, bar |-> 42]} |-> 42 ]
+    /\ set_indexed_map = [ x \in {{1,2,3},{4,5,6}} |-> 42 ]
     /\ negative_number = -123456
 
 Next ==
@@ -51,6 +53,7 @@ Next ==
     /\ UNCHANGED string_indexed_map
     /\ UNCHANGED sequence_indexed_map
     /\ UNCHANGED map_indexed_map
+    /\ UNCHANGED set_indexed_map
     /\ UNCHANGED negative_number
 
 Inv == bool = FALSE

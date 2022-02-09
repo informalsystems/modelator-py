@@ -6,6 +6,7 @@
 /\ tuple = <<1, 2>>
 /\ bool = FALSE
 /\ map_indexed_map = ([foo |-> 42, bar |-> 42] :> 42)
+/\ set_indexed_map = ({1, 2, 3} :> 42 @@ {4, 5, 6} :> 42)
 /\ set = {1, 2, 3}
 /\ list = <<1, "two">>
 /\ map = ( 0 :> 42 @@

@@ -18,6 +18,8 @@ def merge_itf_maps(f, g):
     with overlapping domains so we can skip the overlap
     check.
     """
+    assert isinstance(f, ITFMap)
+    assert isinstance(g, ITFMap)
     return ITFMap(f.elements.extend(g.elements))
 
 

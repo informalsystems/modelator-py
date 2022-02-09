@@ -1,12 +1,12 @@
 TLC2 Version 2.16 of Day Month 20?? (rev: 7d936f2)
-Running breadth-first search Model-Checking with fp 20 and seed -6024907636618670748 with 8 workers on 8 cores with 10923MB heap and 64MB offheap memory [pid: 17398] (Mac OS X 11.4 aarch64, Homebrew 17.0.2 x86_64, MSBDiskFPSet, DiskStateQueue).
+Running breadth-first search Model-Checking with fp 67 and seed 5767608612270942875 with 8 workers on 8 cores with 10923MB heap and 64MB offheap memory [pid: 50075] (Mac OS X 11.4 aarch64, Homebrew 17.0.2 x86_64, MSBDiskFPSet, DiskStateQueue).
 Parsing file /Users/danwt/Documents/work/mbt-python/tests/resource/TlcTraceParse.tla
-Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-6756232309600385247/Naturals.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
-Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-6756232309600385247/FiniteSets.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
-Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-6756232309600385247/Sequences.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
-Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-6756232309600385247/TLC.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
-Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-6756232309600385247/Reals.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Reals.tla)
-Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-6756232309600385247/Integers.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-16867280054817799297/Naturals.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-16867280054817799297/FiniteSets.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-16867280054817799297/Sequences.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-16867280054817799297/TLC.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-16867280054817799297/Reals.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Reals.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-16867280054817799297/Integers.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
 Semantic processing of module Naturals
 Semantic processing of module Sequences
 Semantic processing of module FiniteSets
@@ -14,9 +14,9 @@ Semantic processing of module TLC
 Semantic processing of module Integers
 Semantic processing of module Reals
 Semantic processing of module TlcTraceParse
-Starting... (2022-02-08 15:57:34)
+Starting... (2022-02-09 08:59:37)
 Computing initial states...
-Finished computing initial states: 1 distinct state generated at 2022-02-08 15:57:34.
+Finished computing initial states: 1 distinct state generated at 2022-02-09 08:59:37.
 Error: Invariant Inv is violated.
 Error: The behavior up to this point is:
 State 1: <Initial predicate>
@@ -28,6 +28,7 @@ State 1: <Initial predicate>
 /\ tuple = <<1, 2>>
 /\ bool = FALSE
 /\ map_indexed_map = ([foo |-> 42, bar |-> 42] :> 42)
+/\ set_indexed_map = ({1, 2, 3} :> 42 @@ {4, 5, 6} :> 42)
 /\ set = {1, 2, 3}
 /\ list = <<1, "two">>
 /\ map = ( 0 :> 42 @@
@@ -44,7 +45,7 @@ State 1: <Initial predicate>
 /\ zero_indexed_sequential_map = (0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42 @@ 4 :> 42 @@ 5 :> 42)
 /\ other_bool = TRUE
 
-State 2: <Next line 40, col 5 to line 54, col 32 of module TlcTraceParse>
+State 2: <Next line 42, col 5 to line 57, col 32 of module TlcTraceParse>
 /\ sequence_indexed_map = (<<"one", "two">> :> 42)
 /\ one_indexed_sequential_map = <<42, 42, 42, 42, 42>>
 /\ string_indexed_map = [two |-> 42, one |-> 42]
@@ -53,6 +54,7 @@ State 2: <Next line 40, col 5 to line 54, col 32 of module TlcTraceParse>
 /\ tuple = <<1, 2>>
 /\ bool = TRUE
 /\ map_indexed_map = ([foo |-> 42, bar |-> 42] :> 42)
+/\ set_indexed_map = ({1, 2, 3} :> 42 @@ {4, 5, 6} :> 42)
 /\ set = {1, 2, 3}
 /\ list = <<1, "two">>
 /\ map = ( 0 :> 42 @@
@@ -71,5 +73,5 @@ State 2: <Next line 40, col 5 to line 54, col 32 of module TlcTraceParse>
 
 2 states generated, 2 distinct states found, 0 states left on queue.
 The depth of the complete state graph search is 2.
-Finished in 00s at (2022-02-08 15:57:34)
-Trace exploration spec path: ./TlcTraceParse_TTrace_1644335853.tla
+Finished in 00s at (2022-02-09 08:59:37)
+Trace exploration spec path: ./TlcTraceParse_TTrace_1644397177.tla

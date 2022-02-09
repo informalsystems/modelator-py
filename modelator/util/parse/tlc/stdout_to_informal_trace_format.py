@@ -25,7 +25,7 @@ def extract_traces(stdout: str):
     return ret
 
 
-def tla_trace_to_informal_trace_format_trace(trace):
+def tlc_trace_to_informal_trace_format_trace(trace):
     """
     Convert a tla trace from TLC stdout to the Informal Trace Format
     https://apalache.informal.systems/docs/adr/015adr-trace.html?highlight=trace%20format#adr-015-informal-trace-format-in-json
