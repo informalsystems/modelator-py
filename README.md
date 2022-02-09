@@ -2,7 +2,23 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
-Framework and tools for model-based testing (Python code only. Rust code can be found at [modelator](https://github.com/informalsystems/modelator))
+_**Lightweight utilities to assist model writing and model-based testing activities using the TLA+ ecosystem.**_
+
+## What is this project?
+
+### What can it do right now?
+
+This is a cli program providing access to utilities such as
+
+- [x] Run [TLC](https://github.com/tlaplus/tlaplus) model checker without side effects (runs in temporary directory)
+- [x] Run [TLC](https://github.com/tlaplus/tlaplus) model checker programmatically (read and return json data)
+- [x] ~Run [Apalache](https://github.com/informalsystems/apalache) model checker without side effects (runs in temporary directory)~ (needs patch)
+- [x] ~Run [Apalache](https://github.com/informalsystems/apalache) model checker programmatically (read and return json data)~ (needs patch)
+- [x] Transform the output of TLC to [Informal Trace Format](https://apalache.informal.systems/docs/adr/015adr-trace.html?highlight=trace%20format#the-itf-format) (concise and machine readable counterexample representation)
+
+### What will it do in the future?
+
+Much of the model-based testing capabilities developed at Informal are currently in the [modelator](https://github.com/informalsystems/modelator) tool and are being migrated to Python. Please expect more utilities and more tooling soon.
 
 ## Running the code in this repository
 
@@ -15,7 +31,21 @@ Framework and tools for model-based testing (Python code only. Rust code can be 
 
 The Python version used is `3.9.9`.
 
-### Running
+The project is not yet _published_ and the tools should be run from a development environment (clone the repo, install the dependencies and run the python program directly). This should not be too tricky as we are using [Poetry](https://github.com/python-poetry/poetry).
+
+### New workstation setup for developers, TLDR
+
+1. Install pyenv
+2. Install poetry
+3. Clone repo
+4. `cd` repo
+5. `pyenv install 3.9.9`
+6. `poetry env use python`
+7. `poetry shell`
+8. `poetry install`
+9. `code .` (assuming VSCode)
+
+### Useful commands
 
 With Poetry installed `poetry install`.
 
@@ -43,20 +73,6 @@ code .
 Ensure that the bottom left of your VSCode window shows that you are using the correct Python environment (see contents of pyproject.toml for the correct Python version).
 
 The branch [vscode-configuration-template](https://github.com/informalsystems/mbt-python/tree/vscode-configuration-template) contains a .vscode directory which can be used as a starting point for configuring your dev environment.
-
-### TLDR
-
-In short, setting up the repo on a new workstation might look like
-
-1. Install pyenv
-2. Install poetry
-3. Clone repo
-4. `cd` repo
-5. `pyenv install x.x.x`
-6. `poetry env use python`
-7. `poetry shell`
-8. `poetry install`
-9. `code .` (for VSCode)
 
 ### Troubleshooting
 
