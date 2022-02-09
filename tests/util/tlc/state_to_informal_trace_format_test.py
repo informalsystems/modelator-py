@@ -1,11 +1,11 @@
 import os
 
-from modelator.util.parse.tla import parser, to_str
-from modelator.util.parse.tlc.state_to_informal_trace_format import (
+from modelator.util.tla import parser, to_str
+from modelator.util.tlc.state_to_informal_trace_format import (
     state_to_informal_trace_format_state,
 )
 
-from ....helper import get_resource_dir
+from ...helper import get_resource_dir
 
 
 def test_create_ast_from_tlc_state_expressions():

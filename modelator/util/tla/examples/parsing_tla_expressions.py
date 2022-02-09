@@ -1,6 +1,6 @@
 """How to parse a TLA+ expression."""
-from modelator.util.parse.tla import parser
-from modelator.util.parse.tla.to_str import Nodes
+from modelator.util.tla import parser
+from modelator.util.tla.to_str import Nodes
 
 expr = r"""
     \/ /\ x = 1

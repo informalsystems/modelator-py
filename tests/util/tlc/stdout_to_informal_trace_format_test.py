@@ -1,12 +1,12 @@
 import json
 import os
 
-from modelator.util.parse.tlc.stdout_to_informal_trace_format import (
+from modelator.util.tlc.stdout_to_informal_trace_format import (
     extract_traces,
     tlc_trace_to_informal_trace_format_trace,
 )
 
-from ....helper import get_resource_dir
+from ...helper import get_resource_dir
 
 
 def test_extract_no_trace_from_tlc():

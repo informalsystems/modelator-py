@@ -1,6 +1,6 @@
 import typing
 
-from modelator.util.parse.informal_trace_format import ITFTrace
+from modelator.util.informal_trace_format import ITFTrace
 
 from .state_to_informal_trace_format import state_to_informal_trace_format_state
 
