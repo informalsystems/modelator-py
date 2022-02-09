@@ -1,13 +1,12 @@
 import json as stdjson
 
+from recordclass import recordclass
+
+from ..informal_trace_format import with_lists, JsonSerializer
 from .stdout_to_informal_trace_format import (
     extract_traces,
     tlc_trace_to_informal_trace_format_trace,
 )
-
-from ..informal_trace_format import with_lists
-
-from recordclass import recordclass
 
 # mypy: ignore-errors
 
@@ -43,7 +42,7 @@ def tlc_itf(*, cmd=None, json=None):  # types: ignore
     itf_traces = [
         tlc_trace_to_informal_trace_format_trace(trace) for trace in tlc_traces
     ]
-    itf_traces_objects = [e.to_obj() for e in itf_traces]
+    itf_traces_objects = [JsonSerializer().visit(e) for e in itf_traces]
     return itf_traces_objects
 
 
