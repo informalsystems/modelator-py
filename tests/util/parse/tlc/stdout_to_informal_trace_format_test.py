@@ -17,8 +17,8 @@ def test_extract_trace_from_tlc():
     with open(fn, "r") as fd:
         content = fd.read()
 
-    tlc_tla_traces = extract_traces(content)
-    assert len(tlc_tla_traces) == 1
+    tlc_traces = extract_traces(content)
+    assert len(tlc_traces) == 1
 
 
 def test_extract_multiple_traces_from_tlc():
@@ -33,7 +33,7 @@ def test_extract_multiple_traces_from_tlc():
     assert len(result) == 4
 
 
-def test_extract_multiple_traces_from_tlc_cuttoff():
+def test_extract_multiple_traces_from_tlc_cutoff():
 
     # Some number of lines from stdout have been removed.
     fns = [
@@ -50,7 +50,7 @@ def test_extract_multiple_traces_from_tlc_cuttoff():
             contents.append(content)
 
     results = [extract_traces(content) for content in contents]
-    assert all(len(result) == 3 for result in results)
+    assert all(len(r) == 3 for r in results)
 
 
 def test_create_ast_from_tlc_state_expressions():
