@@ -63,7 +63,7 @@ With Poetry installed run `poetry install`. Then
 
 ### Commands for users
 
-Please see [examples](./examples.md).
+Please see [usage](./usage.md).
 
 ### Tips for VSCode users
 
