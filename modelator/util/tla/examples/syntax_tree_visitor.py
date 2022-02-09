@@ -1,5 +1,5 @@
 """How to use the visitor pattern when traversing the syntax tree."""
-from modelator.util.parse.tla import parser, to_str, visit
+from modelator.util.tla import parser, to_str, visit
 
 expr = r"x = 1 /\ y = 2"
 

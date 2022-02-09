@@ -1,6 +1,6 @@
-from modelator.util.parse.informal_trace_format import ITFMap, ITFSet, ITFState
-from modelator.util.parse.tla import parser, visit
-from modelator.util.parse.tla.to_str import Nodes
+from modelator.util.informal_trace_format import ITFMap, ITFSet, ITFState
+from modelator.util.tla import parser, visit
+from modelator.util.tla.to_str import Nodes
 
 
 def merge_itf_maps(f, g):

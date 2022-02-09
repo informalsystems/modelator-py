@@ -1,10 +1,10 @@
 """Tests for the package `tla`."""
 import pprint
 
-import modelator.util.parse.tla._combinators as pco
-import modelator.util.parse.tla._expr_parser as ep
-import modelator.util.parse.tla._module_parser as mp
-from modelator.util.parse.tla import _tla_combinators, lex, parser, to_str
+import modelator.util.tla._combinators as pco
+import modelator.util.tla._expr_parser as ep
+import modelator.util.tla._module_parser as mp
+from modelator.util.tla import _tla_combinators, lex, parser, to_str
 
 expr_tests = [
     " FALSE ",

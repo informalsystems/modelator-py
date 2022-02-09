@@ -8,7 +8,7 @@ from .util.cli import Util
 
 class App:
     def __init__(self, stdin):
-        self.stdin = stdin
+        self._stdin = stdin
         self.tlc = Tlc(stdin)
         self.util = Util(stdin)
 
