@@ -6,11 +6,13 @@ from .raw import RawCmd, TlcArgs, tlc_raw
 
 class Tlc:
     def __init__(self, stdin):
-        self.stdin = stdin
+        self._stdin = stdin
 
     def pure(self):
-        assert self.stdin is not None, "The pure interface requires json input in stdin"
-        json_dict = stdjson.loads(self.stdin.read())
+        assert (
+            self._stdin is not None
+        ), "The pure interface requires json input in stdin"
+        json_dict = stdjson.loads(self._stdin.read())
 
         result = tlc_pure(json=json_dict)
         to_print = stdjson.dumps(result, indent=4, sort_keys=True)
@@ -61,7 +63,7 @@ class Tlc:
         result = None
         if json:
             """Read instructions from json"""
-            json_dict = stdjson.loads(self.stdin.read())
+            json_dict = stdjson.loads(self._stdin.read())
             result = tlc_raw(json=json_dict)
         else:
             """Read instructions from cli flags and arguments"""
