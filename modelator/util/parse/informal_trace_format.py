@@ -8,7 +8,7 @@ class ITFNode(object):
         return repr(self.to_obj())
 
     @abstractmethod
-    def to_obj():
+    def to_obj(self):
         pass
 
 

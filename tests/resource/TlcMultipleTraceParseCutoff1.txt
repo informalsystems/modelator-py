@@ -207,4 +207,3 @@ State 8: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse
   [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
 
 Error: Invariant In
-

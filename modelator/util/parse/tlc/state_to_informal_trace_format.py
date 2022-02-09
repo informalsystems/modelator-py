@@ -1,10 +1,6 @@
-from modelator.util.parse.tla import visit, parser
+from modelator.util.parse.informal_trace_format import ITFMap, ITFSet, ITFState
+from modelator.util.parse.tla import parser, visit
 from modelator.util.parse.tla.to_str import Nodes
-from modelator.util.parse.informal_trace_format import (
-    ITFMap,
-    ITFSet,
-    ITFState,
-)
 
 
 def merge_itf_maps(f, g):
@@ -158,10 +154,6 @@ class Visitor(visit.NodeTransformer):
 
     def visit_And(self, node, *arg, **kw):
         pass
-
-    def visit_Opaque(self, node, *arg, **kw):
-        # .name
-        return node.name
 
 
 def state_to_informal_trace_format_state(state_expr_str: str):

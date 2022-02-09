@@ -1,5 +1,5 @@
-import os
 import json
+import os
 
 from modelator.util.parse.tlc.stdout_to_informal_trace_format import (
     extract_traces,

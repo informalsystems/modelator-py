@@ -7,18 +7,6 @@ from modelator.util.parse.tlc.state_to_informal_trace_format import (
 
 from ....helper import get_resource_dir
 
-##
-from modelator.util.parse.tla import visit, parser
-from modelator.util.parse.tla.to_str import Nodes
-from modelator.util.parse.tlc.state_to_informal_trace_format import Visitor
-from modelator.util.parse.informal_trace_format import (
-    ITFMap,
-    ITFSet,
-    ITFState,
-)
-
-##
-
 
 def test_create_ast_from_tlc_state_expressions():
     """

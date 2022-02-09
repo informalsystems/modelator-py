@@ -1,5 +1,8 @@
-from .state_to_informal_trace_format import state_to_informal_trace_format_state
+import typing
+
 from modelator.util.parse.informal_trace_format import ITFTrace
+
+from .state_to_informal_trace_format import state_to_informal_trace_format_state
 
 
 def extract_traces(stdout: str):
@@ -53,7 +56,7 @@ def extract_traces(stdout: str):
     return ret
 
 
-def split_into_states(trace) -> list[str]:
+def split_into_states(trace) -> typing.List[str]:
     """
     Returns a list of states.
 

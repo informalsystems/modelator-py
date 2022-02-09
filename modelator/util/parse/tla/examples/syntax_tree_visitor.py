@@ -4,7 +4,7 @@ from modelator.util.parse.tla import parser, to_str, visit
 expr = r"x = 1 /\ y = 2"
 
 
-class CollectIdentifiers(tla.visit.NodeTransformer):
+class CollectIdentifiers(visit.NodeTransformer):
     """A visitor that collects identifiers."""
 
     def visit_Opaque(self, node, *arg, **kw):
