@@ -1,0 +1,286 @@
+TLC2 Version 2.16 of Day Month 20?? (rev: 7d936f2)
+Running breadth-first search Model-Checking with fp 84 and seed 3174664161629981490 with 8 workers on 8 cores with 10923MB heap and 64MB offheap memory [pid: 12388] (Mac OS X 11.4 aarch64, Homebrew 17.0.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/danwt/Documents/work/mbt-python/tests/resource/TlcMultipleTraceParse.tla
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-8383582653156030327/Naturals.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-8383582653156030327/FiniteSets.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-8383582653156030327/Sequences.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TlcMultipleTraceParse
+Starting... (2022-01-21 12:38:44)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2022-01-21 12:38:45.
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 2: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 1
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 3: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 2
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 4: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 3
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 5: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 4
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 6: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 5
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 2: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 1
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 3: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 2
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 4: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 3
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 5: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 4
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 6: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 5
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 7: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 6
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 2: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 1
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 3: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 2
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 4: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 3
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 5: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 4
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 6: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 5
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 7: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 6
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 8: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 7
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 2: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 1
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 3: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 2
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 4: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 3
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 5: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 4
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 6: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 5
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 7: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 6
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 8: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 7
+/\ x = "hello"
+/\ y = 42
+/\ z = { [a |-> 1, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 1, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "foo", c |-> <<1, "cat", [dog |-> 3]>>],
+  [a |-> 2, b |-> "bar", c |-> <<1, "cat", [dog |-> 3]>>] }
+
+State 9: <Next line 18, col 5 to line 21, col 50 of module TlcMultipleTraceParse>
+/\ steps = 8
+/\ x = "hello"
+

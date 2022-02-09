@@ -52,6 +52,26 @@ def test_extract_multiple_traces_from_tlc():
     assert len(result) == 4
 
 
+def test_extract_multiple_traces_from_tlc_cuttoff():
+
+    # Some number of lines from stdout have been removed.
+    fns = [
+        "TlcMultipleTraceParseCutoff0.txt",
+        "TlcMultipleTraceParseCutoff1.txt",
+    ]
+
+    contents = []
+
+    for fn in fns:
+        path = os.path.join(get_resource_dir(), fn)
+        with open(path, "r") as fd:
+            content = fd.read()
+            contents.append(content)
+
+    results = [extract_traces(content) for content in contents]
+    assert all(len(result) == 3 for result in results)
+
+
 def test_extract_informal_trace_format_traces_from_tlc_simple_example():
 
     fn = "TlcMultipleTraceParse.txt"
