@@ -1,0 +1,50 @@
+/\ outcome = [name |-> "Success"]
+/\ chains = [ cosmoshub |->
+      [ id |-> "cosmoshub",
+        ports |-> {"transfer"},
+        channel |-> << >>,
+        activeChannels |-> {},
+        bank |->
+            ( 0 :> [cosmoshub |-> 5] @@
+              1 :> [cosmoshub |-> 0] @@
+              2 :> [cosmoshub |-> 0] ),
+        supply |-> [cosmoshub |-> 5],
+        localPackets |->
+            [list |-> << >>, pending |-> {}, expired |-> {}, success |-> {}],
+        remotePackets |-> << >>,
+        ics20 |-> [portId |-> "transfer", channel |-> << >>, escrow |-> << >>],
+        nextChannelId |-> 0,
+        nextPacketId |-> 0,
+        nextAccountId |-> 3 ],
+  osmosis |->
+      [ id |-> "osmosis",
+        ports |-> {"transfer"},
+        channel |-> << >>,
+        activeChannels |-> {},
+        bank |->
+            ( 0 :> [osmosis |-> 5] @@
+              1 :> [osmosis |-> 0] @@
+              2 :> [osmosis |-> 0] ),
+        supply |-> [osmosis |-> 5],
+        localPackets |->
+            [list |-> << >>, pending |-> {}, expired |-> {}, success |-> {}],
+        remotePackets |-> << >>,
+        ics20 |-> [portId |-> "transfer", channel |-> << >>, escrow |-> << >>],
+        nextChannelId |-> 0,
+        nextPacketId |-> 0,
+        nextAccountId |-> 3 ],
+  ixo |->
+      [ id |-> "ixo",
+        ports |-> {"transfer"},
+        channel |-> << >>,
+        activeChannels |-> {},
+        bank |-> (0 :> [ixo |-> 5] @@ 1 :> [ixo |-> 0] @@ 2 :> [ixo |-> 0]),
+        supply |-> [ixo |-> 5],
+        localPackets |->
+            [list |-> << >>, pending |-> {}, expired |-> {}, success |-> {}],
+        remotePackets |-> << >>,
+        ics20 |-> [portId |-> "transfer", channel |-> << >>, escrow |-> << >>],
+        nextChannelId |-> 0,
+        nextPacketId |-> 0,
+        nextAccountId |-> 3 ] ]
+/\ action = [name |-> "Null"]

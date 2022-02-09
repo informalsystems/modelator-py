@@ -1,0 +1,6274 @@
+TLC2 Version 2.16 of Day Month 20?? (rev: 7d936f2)
+Running breadth-first search Model-Checking with fp 62 and seed -8488476020071658159 with 8 workers on 8 cores with 10923MB heap and 64MB offheap memory [pid: 41467] (Mac OS X 11.4 aarch64, Homebrew 17.0.2 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/danwt/Documents/work/cosmos-sdk-fork/x/staking/mbt/staking.tla
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-11802869207580627097/Integers.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-11802869207580627097/Naturals.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-11802869207580627097/FiniteSets.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-11802869207580627097/Sequences.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-11802869207580627097/TLC.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
+Parsing file /Users/danwt/Documents/work/cosmos-sdk-fork/x/staking/mbt/tlcFolds.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module tlcFolds
+Semantic processing of module staking
+Starting... (2022-02-08 20:50:04)
+Computing initial states...
+Computed 2 initial states...
+Computed 4 initial states...
+Computed 8 initial states...
+Computed 16 initial states...
+Computed 32 initial states...
+Computed 64 initial states...
+Finished computing initial states: 125 distinct states generated at 2022-02-08 20:50:04.
+Progress(6) at 2022-02-08 20:50:07: 742,193 states generated (742,193 s/min), 159,868 distinct states found (159,868 ds/min), 116,400 states left on queue.
+Progress(9) at 2022-02-08 20:51:07: 26,794,011 states generated (26,051,818 s/min), 4,544,112 distinct states found (4,384,244 ds/min), 2,975,611 states left on queue.
+Progress(9) at 2022-02-08 20:52:07: 48,902,078 states generated (22,108,067 s/min), 7,602,308 distinct states found (3,058,196 ds/min), 4,740,275 states left on queue.
+Progress(9) at 2022-02-08 20:53:07: 73,446,515 states generated (24,544,437 s/min), 11,359,696 distinct states found (3,757,388 ds/min), 7,061,143 states left on queue.
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 8
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 8
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 9
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 9
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 2,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 0, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 2,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 0, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 7,
+    balance |-> 5,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 7
+/\ lastValSet = {"v0"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 7,
+    balance |-> 5,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 6]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 7]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 0]
+/\ status = [v0 |-> "bonded", v1 |-> "unbonding"]
+/\ validatorQ = {"v1"}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 1)
+/\ blockHeight = 7
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 1, v1 |-> 6]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 8
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 1)
+/\ blockHeight = 8
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 1, v1 |-> 6]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 8
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 8
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 8,
+    balance |-> 5,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 8
+/\ lastValSet = {"v0"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 8,
+    balance |-> 5,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 7]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 8
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 8]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 0]
+/\ status = [v0 |-> "bonded", v1 |-> "unbonding"]
+/\ validatorQ = {"v1"}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 8,
+    balance |-> 5,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 8,
+    balance |-> 5,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 0,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 0,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 8,
+    balance |-> 1,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 0, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 8
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 8,
+    balance |-> 1,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 8
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 0, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 0,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 0,
+    creationHeight |-> 6 ],
+  [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 2,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 0, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 8,
+    balance |-> 5,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 8,
+    balance |-> 5,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 1)
+/\ blockHeight = 7
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 1, v1 |-> 1]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 8,
+    balance |-> 5,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 8,
+    balance |-> 1,
+    creationHeight |-> 7 ],
+  [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 8,
+    balance |-> 5,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 0, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 8,
+    balance |-> 0,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 1)
+/\ blockHeight = 7
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 1, v1 |-> 6]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 8,
+    balance |-> 1,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 1)
+/\ blockHeight = 7
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 0, v1 |-> 6]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 7,
+    balance |-> 5,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 0,
+    creationHeight |-> 6 ],
+  [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 7,
+    balance |-> 5,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 2,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 0, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 2,
+    creationHeight |-> 6 ],
+  [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 7,
+    balance |-> 5,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 0, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 8
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 8
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 8
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 9,
+    balance |-> 1,
+    creationHeight |-> 8 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 8
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 0, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 2,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 0, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 2,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 5 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> "v1",
+  validatorDst |-> "v0",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = { [ delegator |-> "d0",
+    validatorSrc |-> "v1",
+    validatorDst |-> "v0",
+    completionTime |-> 7,
+    creationHeight |-> 6,
+    initialBalance |-> 5,
+    sharesDst |-> 5 ] }
+/\ tokens = [d0 |-> 0, v0 |-> 5, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 7,
+    balance |-> 5,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 7,
+    balance |-> 5,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> "v0",
+  validatorDst |-> "v0",
+  amount |-> 2 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 0, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 1)
+/\ blockHeight = 7
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 1, v1 |-> 6]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 8,
+    balance |-> 0,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 1)
+/\ blockHeight = 7
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 1, v1 |-> 6]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 8,
+    balance |-> 2,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 0, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 8,
+    balance |-> 5,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v1",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v1",
+    completionTime |-> 8,
+    balance |-> 5,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> "v0",
+  validatorDst |-> "v0",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 0, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 0,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 0,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 3 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> "v1",
+  validatorDst |-> "v0",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = { [ delegator |-> "d0",
+    validatorSrc |-> "v1",
+    validatorDst |-> "v0",
+    completionTime |-> 7,
+    creationHeight |-> 6,
+    initialBalance |-> 5,
+    sharesDst |-> 2 ] }
+/\ tokens = [d0 |-> 0, v0 |-> 7, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 8,
+    balance |-> 1,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 0, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 7
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 8,
+    balance |-> 1,
+    creationHeight |-> 7 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 7
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "unbonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 2: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 3: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 4: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 3
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 5: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 4
+/\ blockTime = 4
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 4
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 6: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 5
+/\ blockTime = 5
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 5
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 7: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 6
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 0 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 1, v0 |-> 1, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 8: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 7
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = {}
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 9: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 8
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 0,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 0)
+/\ blockHeight = 6
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "v0",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = {}
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 5]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+State 10: <Next line 366, col 5 to line 378, col 57 of module staking>
+/\ steps = 9
+/\ blockTime = 6
+/\ lastValSet = {"v1"}
+/\ undelegationQ = { [ delegator |-> "d0",
+    validator |-> "v0",
+    completionTime |-> 7,
+    balance |-> 0,
+    creationHeight |-> 6 ] }
+/\ unbondingHeight = [v0 |-> 0, v1 |-> 0]
+/\ delegation = (<<"d0", "v0">> :> 1 @@ <<"d0", "v1">> :> 5)
+/\ blockHeight = 6
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> "v1",
+  validatorDst |-> "v1",
+  amount |-> 1 ]
+/\ unbondingTime = [v0 |-> 0, v1 |-> 0]
+/\ jailed = [v0 |-> FALSE, v1 |-> FALSE]
+/\ redelegationQ = { [ delegator |-> "d0",
+    validatorSrc |-> "v1",
+    validatorDst |-> "v1",
+    completionTime |-> 7,
+    creationHeight |-> 6,
+    initialBalance |-> 5,
+    sharesDst |-> 5 ] }
+/\ tokens = [d0 |-> 0, v0 |-> 2, v1 |-> 0]
+/\ status = [v0 |-> "unbonded", v1 |-> "bonded"]
+/\ validatorQ = {}
+/\ success = TRUE
+
+Error: Invariant Inv is violated.

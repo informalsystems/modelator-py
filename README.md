@@ -44,7 +44,7 @@ Ensure that the bottom left of your VSCode window shows that you are using the c
 
 The branch [vscode-configuration-template](https://github.com/informalsystems/mbt-python/tree/vscode-configuration-template) contains a .vscode directory which can be used as a starting point for configuring your dev environment.
 
-### TLDR;
+### TLDR
 
 In short, setting up the repo on a new workstation might look like
 

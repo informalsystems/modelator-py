@@ -1,0 +1,4 @@
+[flake8]
+exclude = modelator/util/parse/tla/**,tests/util/parse/tla/**
+max-line-length = 88
+extend-ignore = E203,E501,W605
