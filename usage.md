@@ -50,3 +50,7 @@ poetry run cli util tlc itf --lists=False < TlcTraceParse.txt > traces.json
 # Provide TLC's stdout data and flags inside a json object
 poetry run cli util tlc itf --json < HelloWorld_util_tlc_itf.json > traces.json
 ```
+
+### Nuance
+
+The tool should be able to handle partial TLC outputs (if you hit `ctrl+c` while it was running, for example).
