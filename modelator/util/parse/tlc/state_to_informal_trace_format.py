@@ -85,7 +85,9 @@ class Visitor(visit.NodeTransformer):
 
     def visit_String(self, node, *arg, **kw):
         # .value
-        return node.value
+
+        """.value is a string with quote characters"""
+        return node.value[1:-1]
 
     def visit_Eq(self, node, *arg, **kw):
         pass

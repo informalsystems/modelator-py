@@ -74,12 +74,13 @@ def test_extract_informal_trace_format_trace_from_tlc_stress_example():
     tlc_traces = extract_traces(content)
     assert len(tlc_traces) == 1
     tlc_trace = tlc_traces[0]
-    print(tlc_trace)
     itf_trace = tlc_trace_to_informal_trace_format_trace(tlc_trace)
     obj = itf_trace.to_obj()
     s = json.dumps(obj, indent=4)
 
     fn = os.path.join(get_resource_dir(), "TlcTraceParse.json")
+    with open(fn, "w") as fd:
+        fd.write(s)
 
 
 def test_extract_informal_trace_format_traces_from_tlc_simple_example():
