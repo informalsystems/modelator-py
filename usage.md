@@ -6,16 +6,16 @@ _This document is a work in progress and not all features are documented yet_
 
 The TLC model checker will generate counterexamples written in TLA+ and embed them in stdout, interleaved with ASCII text. This output can contain 0, 1 or more traces. Run the `poetry run cli util tlc itf` tool to extract a list of traces in the Informal Trace Format.
 
-There is more than one way to run the tool. The tool writes Json to `stdout`.
+There is more than one way to run the tool. The tool always writes output as Json to `stdout`.
 
-### Provide TLC's stdout data on stdin and flags as cli args
+### Option 1: provide TLC's stdout data on stdin and flags as cli args
 
 ```bash
 poetry run cli util tlc itf < <TLC_STDOUT_STRING> # Run without flags
 poetry run cli util tlc itf --lists=<bool> --records=<bool> < <TLC_STDOUT_STRING> # Run with flags
 ```
 
-### Provide TLC's stdout data and flags inside a json object
+### Option 2: provide TLC's stdout data and flags inside a json object
 
 ```bash
 poetry run cli util tlc itf --json < <JSON_OBJECT>
