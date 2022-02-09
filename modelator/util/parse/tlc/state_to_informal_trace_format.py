@@ -20,7 +20,9 @@ def merge_itf_maps(f, g):
     """
     assert isinstance(f, ITFMap)
     assert isinstance(g, ITFMap)
-    return ITFMap(f.elements.extend(g.elements))
+    elements = f.elements
+    elements.extend(g.elements)
+    return ITFMap(elements)
 
 
 class Visitor(visit.NodeTransformer):

@@ -45,7 +45,7 @@ def extract_traces(stdout: str):
             header_ix = i
         if is_footer(line):
             if 0 < header_cnt:
-                trace_lines = lines[header_ix:i]
+                trace_lines = lines[header_ix + 2 : i]  # see comment above
                 trace = "\n".join(trace_lines)
                 ret.append(trace)
             break
