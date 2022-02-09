@@ -170,18 +170,6 @@ class JsonSerializer(Visitor):
 
 
 class Listifier(Visitor):
-    def visit_ITFRecord(self, node, *arg, **kw):
-        elements = {k: self.visit(v) for k, v in node.elements.items()}
-        return ITFRecord(elements)
-
-    def visit_ITFList(self, node, *arg, **kw):
-        elements = [self.visit(e) for e in node.elements]
-        return ITFList(elements)
-
-    def visit_ITFSet(self, node, *arg, **kw):
-        elements = [self.visit(e) for e in node.elements]
-        return ITFSet(elements)
-
     def visit_ITFMap(self, node, *arg, **kw):
         keys = [p[0] for p in node.elements]
         # Is this map has only integer keys and they are from a domain 1..n
@@ -193,28 +181,8 @@ class Listifier(Visitor):
         elements = [[self.visit(e) for e in p] for p in node.elements]
         return ITFMap(elements)
 
-    def visit_ITFState(self, node, *arg, **kw):
-        var_value_map = {k: self.visit(v) for k, v in node.var_value_map.items()}
-        return ITFState(var_value_map)
-
-    def visit_ITFTrace(self, node, *arg, **kw):
-        states = [self.visit(e) for e in node.states]
-        return ITFTrace(node.vars, states, node.meta)
-
 
 class Recordifier(Visitor):
-    def visit_ITFRecord(self, node, *arg, **kw):
-        elements = {k: self.visit(v) for k, v in node.elements.items()}
-        return ITFRecord(elements)
-
-    def visit_ITFList(self, node, *arg, **kw):
-        elements = [self.visit(e) for e in node.elements]
-        return ITFList(elements)
-
-    def visit_ITFSet(self, node, *arg, **kw):
-        elements = [self.visit(e) for e in node.elements]
-        return ITFSet(elements)
-
     def visit_ITFMap(self, node, *arg, **kw):
         keys = [p[0] for p in node.elements]
         # Is this map has only integer keys and they are from a domain 1..n
@@ -223,14 +191,6 @@ class Recordifier(Visitor):
             return ITFRecord(elements)
         elements = [[self.visit(e) for e in p] for p in node.elements]
         return ITFMap(elements)
-
-    def visit_ITFState(self, node, *arg, **kw):
-        var_value_map = {k: self.visit(v) for k, v in node.var_value_map.items()}
-        return ITFState(var_value_map)
-
-    def visit_ITFTrace(self, node, *arg, **kw):
-        states = [self.visit(e) for e in node.states]
-        return ITFTrace(node.vars, states, node.meta)
 
 
 def with_lists(trace: ITFTrace):
