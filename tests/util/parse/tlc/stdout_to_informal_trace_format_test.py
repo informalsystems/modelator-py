@@ -95,6 +95,7 @@ def test_extract_informal_trace_format_traces_from_tlc_simple_example():
     itf_traces = [
         tlc_trace_to_informal_trace_format_trace(trace) for trace in tlc_traces
     ]
+    assert not any(e is None for e in itf_traces)
 
 
 def test_extract_informal_trace_format_traces_from_tlc_real_world_example():
@@ -109,3 +110,4 @@ def test_extract_informal_trace_format_traces_from_tlc_real_world_example():
     itf_traces = [
         tlc_trace_to_informal_trace_format_trace(trace) for trace in tlc_traces
     ]
+    assert not any(e is None for e in itf_traces)

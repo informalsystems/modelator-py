@@ -25,7 +25,9 @@ class ITFSet(ITFNode):
         return False
 
     def to_obj(self):
-        lam = lambda e: e.to_obj() if isinstance(e, ITFNode) else e
+        def lam(e):
+            return e.to_obj() if isinstance(e, ITFNode) else e
+
         elements = [lam(e) for e in self.elements]
         return {"#set": elements}
 
@@ -43,7 +45,9 @@ class ITFMap(ITFNode):
         return False
 
     def to_obj(self):
-        lam = lambda e: e.to_obj() if isinstance(e, ITFNode) else e
+        def lam(e):
+            return e.to_obj() if isinstance(e, ITFNode) else e
+
         elements = [[lam(e) for e in p] for p in self.elements]
         return {"#map": elements}
 
@@ -69,7 +73,9 @@ class ITFState(ITFNode):
         return False
 
     def to_obj(self):
-        lam = lambda e: e.to_obj() if isinstance(e, ITFNode) else e
+        def lam(e):
+            return e.to_obj() if isinstance(e, ITFNode) else e
+
         var_value_map = {k: lam(v) for k, v in self.var_value_map.items()}
         return {"#meta": self.meta} | var_value_map
 

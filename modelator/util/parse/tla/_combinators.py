@@ -848,7 +848,7 @@ def choice(alternatives):
     return f
 
 
-parsers_memo = dict()
+parsers_memo = dict()  # type: ignore
 
 
 def f_choice_iter(alternatives, pst):
