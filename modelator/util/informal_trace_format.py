@@ -119,7 +119,7 @@ class Visitor:
         return method(node, *arg, **kw)
 
     def visit_ITFRecord(self, node, *arg, **kw):
-        elements = {k: self.visit(v) for k, v in node.elements}
+        elements = {k: self.visit(v) for k, v in node.elements.items()}
         return ITFRecord(elements)
 
     def visit_ITFList(self, node, *arg, **kw):
@@ -145,7 +145,7 @@ class Visitor:
 
 class JsonSerializer(Visitor):
     def visit_ITFRecord(self, node, *arg, **kw):
-        elements = {k: self.visit(v) for k, v in node.elements}
+        elements = {k: self.visit(v) for k, v in node.elements.items()}
         return elements
 
     def visit_ITFList(self, node, *arg, **kw):
@@ -169,6 +169,70 @@ class JsonSerializer(Visitor):
         return {"#meta": node.meta, "vars": node.vars, "states": states}
 
 
+class Listifier(Visitor):
+    def visit_ITFRecord(self, node, *arg, **kw):
+        elements = {k: self.visit(v) for k, v in node.elements.items()}
+        return ITFRecord(elements)
+
+    def visit_ITFList(self, node, *arg, **kw):
+        elements = [self.visit(e) for e in node.elements]
+        return ITFList(elements)
+
+    def visit_ITFSet(self, node, *arg, **kw):
+        elements = [self.visit(e) for e in node.elements]
+        return ITFSet(elements)
+
+    def visit_ITFMap(self, node, *arg, **kw):
+        keys = [p[0] for p in node.elements]
+        # Is this map has only integer keys and they are from a domain 1..n
+        if all(type(k) == int for k in keys):
+            keys.sort()
+            if keys == list(range(1, len(keys) + 1)):
+                elements = [self.visit(p[1]) for p in node.elements]
+                return ITFList(elements)
+        elements = [[self.visit(e) for e in p] for p in node.elements]
+        return ITFMap(elements)
+
+    def visit_ITFState(self, node, *arg, **kw):
+        var_value_map = {k: self.visit(v) for k, v in node.var_value_map.items()}
+        return ITFState(var_value_map)
+
+    def visit_ITFTrace(self, node, *arg, **kw):
+        states = [self.visit(e) for e in node.states]
+        return ITFTrace(node.vars, states, node.meta)
+
+
+class Recordifier(Visitor):
+    def visit_ITFRecord(self, node, *arg, **kw):
+        elements = {k: self.visit(v) for k, v in node.elements.items()}
+        return ITFRecord(elements)
+
+    def visit_ITFList(self, node, *arg, **kw):
+        elements = [self.visit(e) for e in node.elements]
+        return ITFList(elements)
+
+    def visit_ITFSet(self, node, *arg, **kw):
+        elements = [self.visit(e) for e in node.elements]
+        return ITFSet(elements)
+
+    def visit_ITFMap(self, node, *arg, **kw):
+        keys = [p[0] for p in node.elements]
+        # Is this map has only integer keys and they are from a domain 1..n
+        if all(type(k) == str for k in keys):
+            elements = {p[0]: self.visit(p[1]) for p in node.elements}
+            return ITFRecord(elements)
+        elements = [[self.visit(e) for e in p] for p in node.elements]
+        return ITFMap(elements)
+
+    def visit_ITFState(self, node, *arg, **kw):
+        var_value_map = {k: self.visit(v) for k, v in node.var_value_map.items()}
+        return ITFState(var_value_map)
+
+    def visit_ITFTrace(self, node, *arg, **kw):
+        states = [self.visit(e) for e in node.states]
+        return ITFTrace(node.vars, states, node.meta)
+
+
 def with_lists(trace: ITFTrace):
     """
     Create a copy of the trace where lists take the place
@@ -178,9 +242,8 @@ def with_lists(trace: ITFTrace):
     1..n for some n. This function transforms maps with domain
     1..n into ITF lists.
     """
-    visitor = Visitor()
-    visitor.visit(trace)
-    return trace
+    visitor = Listifier()
+    return visitor.visit(trace)
 
 
 def with_records(trace: ITFTrace):
@@ -192,3 +255,5 @@ def with_records(trace: ITFTrace):
     of strings. This function transforms maps with domain of
     strings into ITF records.
     """
+    visitor = Recordifier()
+    return visitor.visit(trace)
