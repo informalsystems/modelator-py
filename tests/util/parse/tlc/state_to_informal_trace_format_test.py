@@ -86,37 +86,3 @@ def test_tla_state_expression_to_informal_trace_format_state():
     for s in expressions:
         res = state_to_informal_trace_format_state(s)
         assert res is not None
-
-
-def test_debug():
-    s = """/\ sequence_indexed_map = (<<"one", "two">> :> 42)
-/\ one_indexed_sequential_map = <<42, 42, 42, 42, 42>>
-/\ string_indexed_map = [two |-> 42, one |-> 42]
-/\ negative_number = -123456
-/\ record = [foo |-> 42, bar |-> 43]
-/\ tuple = <<1, 2>>
-/\ bool = FALSE
-/\ map_indexed_map = ([foo |-> 42, bar |-> 42] :> 42)
-/\ set_indexed_map = ({1, 2, 3} :> 42 @@ {4, 5, 6} :> 42)
-/\ set = {1, 2, 3}
-/\ list = <<1, "two">>
-/\ map = ( 0 :> 42 @@
-  1 :> 42 @@
-  2 :> 42 @@
-  3 :> 42 @@
-  4 :> 42 @@
-  5 :> 42 @@
-  6 :> "forty-two" @@
-  8 :> "forty-two" @@
-  13 :> "forty-two" )
-/\ json_int = 123
-/\ string_literal = "hello"
-/\ zero_indexed_sequential_map = (0 :> 42 @@ 1 :> 42 @@ 2 :> 42 @@ 3 :> 42 @@ 4 :> 42 @@ 5 :> 42)
-/\ other_bool = TRUE"""
-    tree = parser.parse_expr(s, nodes=Nodes)
-    txt = tree.to_str(width=80)
-    print(txt)
-    visitor = Visitor()
-    var_value_pairs = visitor.visit(tree)
-    var_value_map = {key: value for key, value in var_value_pairs}
-    return ITFState(var_value_map)
