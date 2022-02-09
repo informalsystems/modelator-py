@@ -1,11 +1,6 @@
-import json
 import os
 
-from modelator.util.informal_trace_format import (
-    JsonSerializer,
-    with_lists,
-    with_records,
-)
+from modelator.util.informal_trace_format import with_lists, with_records
 from modelator.util.tlc.stdout_to_informal_trace_format import (
     extract_traces,
     tlc_trace_to_informal_trace_format_trace,
@@ -79,7 +74,7 @@ def test_extract_informal_trace_format_trace_from_tlc_stress_example():
     tlc_traces = extract_traces(content)
     assert len(tlc_traces) == 1
     tlc_trace = tlc_traces[0]
-    itf_trace = tlc_trace_to_informal_trace_format_trace(tlc_trace)
+    tlc_trace_to_informal_trace_format_trace(tlc_trace)
 
 
 def test_extract_informal_trace_format_trace_from_tlc_stress_example_include_lists():
@@ -94,10 +89,6 @@ def test_extract_informal_trace_format_trace_from_tlc_stress_example_include_lis
     tlc_trace = tlc_traces[0]
     itf_trace = tlc_trace_to_informal_trace_format_trace(tlc_trace)
     itf_trace = with_lists(itf_trace)
-    obj = JsonSerializer().visit(itf_trace)
-    fn = os.path.join(get_resource_dir(), "debug.json")
-    with open(fn, "w") as fd:
-        fd.write(json.dumps(obj, indent=2))
 
 
 def test_extract_informal_trace_format_trace_from_tlc_stress_example_include_records():
@@ -112,10 +103,6 @@ def test_extract_informal_trace_format_trace_from_tlc_stress_example_include_rec
     tlc_trace = tlc_traces[0]
     itf_trace = tlc_trace_to_informal_trace_format_trace(tlc_trace)
     itf_trace = with_records(itf_trace)
-    obj = JsonSerializer().visit(itf_trace)
-    fn = os.path.join(get_resource_dir(), "debug.json")
-    with open(fn, "w") as fd:
-        fd.write(json.dumps(obj, indent=2))
 
 
 def test_extract_informal_trace_format_trace_from_tlc_stress_example_include_lists_and_records():
@@ -131,10 +118,6 @@ def test_extract_informal_trace_format_trace_from_tlc_stress_example_include_lis
     itf_trace = tlc_trace_to_informal_trace_format_trace(tlc_trace)
     itf_trace = with_records(itf_trace)
     itf_trace = with_lists(itf_trace)
-    obj = JsonSerializer().visit(itf_trace)
-    fn = os.path.join(get_resource_dir(), "debug.json")
-    with open(fn, "w") as fd:
-        fd.write(json.dumps(obj, indent=2))
 
 
 def test_extract_informal_trace_format_traces_from_tlc_simple_example():

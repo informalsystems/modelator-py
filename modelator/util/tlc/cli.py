@@ -2,7 +2,7 @@ import json as stdjson
 
 from recordclass import recordclass
 
-from ..informal_trace_format import with_lists, JsonSerializer
+from ..informal_trace_format import JsonSerializer, with_lists, with_records
 from .stdout_to_informal_trace_format import (
     extract_traces,
     tlc_trace_to_informal_trace_format_trace,
@@ -42,6 +42,10 @@ def tlc_itf(*, cmd=None, json=None):  # types: ignore
     itf_traces = [
         tlc_trace_to_informal_trace_format_trace(trace) for trace in tlc_traces
     ]
+    if cmd.lists:
+        itf_traces = [with_lists(e) for e in itf_traces]
+    if cmd.records:
+        itf_traces = [with_records(e) for e in itf_traces]
     itf_traces_objects = [JsonSerializer().visit(e) for e in itf_traces]
     return itf_traces_objects
 
