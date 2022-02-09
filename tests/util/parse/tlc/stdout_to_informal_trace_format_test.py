@@ -72,6 +72,23 @@ def test_extract_multiple_traces_from_tlc_cuttoff():
     assert all(len(result) == 3 for result in results)
 
 
+def test_extract_informal_trace_format_trace_from_tlc_stress_example():
+    fn = "TlcTraceParse.txt"
+    fn = os.path.join(get_resource_dir(), fn)
+    content = None
+    with open(fn, "r") as fd:
+        content = fd.read()
+
+    tlc_tla_traces = extract_traces(content)
+    assert len(tlc_tla_traces) == 1
+    tlc_tla_trace = tlc_tla_traces[0]
+    itf_trace = tla_trace_to_informal_trace_format_trace(tlc_tla_trace)
+    obj = itf_trace.to_obj()
+    s = json.dumps(obj, indent=4)
+
+    fn = os.path.join(get_resource_dir(), "TlcTraceParse.json")
+
+
 def test_extract_informal_trace_format_traces_from_tlc_simple_example():
 
     fn = "TlcMultipleTraceParse.txt"
@@ -84,7 +101,6 @@ def test_extract_informal_trace_format_traces_from_tlc_simple_example():
     informal_trace_format_traces = [
         tla_trace_to_informal_trace_format_trace(trace) for trace in tlc_tla_traces
     ]
-    assert not (None in informal_trace_format_traces)
 
 
 def test_extract_informal_trace_format_traces_from_tlc_real_world_example():
@@ -96,11 +112,12 @@ def test_extract_informal_trace_format_traces_from_tlc_real_world_example():
         content = fd.read()
 
     tlc_tla_traces = extract_traces(content)
-    informal_trace_format_traces = [
+    itf_traces = [
         tla_trace_to_informal_trace_format_trace(trace) for trace in tlc_tla_traces
     ]
-    trace_objects = [trace.to_obj() for trace in informal_trace_format_traces]
+
+    trace_objects = [trace.to_obj() for trace in itf_traces]
     fn = os.path.join(get_resource_dir(), "TlcMultipleTraceParse_RealWorld0.json")
     with open(fn, "w") as fd:
-        content = json.dumps(trace_objects)
+        content = json.dumps(trace_objects, indent=4)
         fd.write(content)

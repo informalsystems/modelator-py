@@ -4,8 +4,21 @@ from modelator.util.parse.informal_trace_format import (
     ITFMap,
     ITFSet,
     ITFState,
-    merge_itf_maps,
 )
+
+
+def merge_itf_maps(f, g):
+    """
+    f @@ g == [
+        x \in (DOMAIN f) \cup (DOMAIN g) |->
+        IF x \in DOMAIN f THEN f[x] ELSE g[x]
+    ]
+
+    The output of TLC should never contain functions
+    with overlapping domains so we can skip the overlap
+    check.
+    """
+    return ITFMap(f.elements.extend(g.elements))
 
 
 class Visitor(visit.NodeTransformer):

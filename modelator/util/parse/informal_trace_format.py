@@ -111,23 +111,3 @@ class ITFTrace(ITFNode):
             "vars": self.vars,
             "states": [e.to_obj() for e in self.states],
         }
-
-
-def merge_itf_maps(f, g):
-    """
-    f @@ g == [
-        x \in (DOMAIN f) \cup (DOMAIN g) |->
-        IF x \in DOMAIN f THEN f[x] ELSE g[x]
-    ]
-    """
-    f_keys = [pair[0] for pair in f.elements]
-    elements = f.elements
-    for key, value in g.elements:
-        """
-        WARNING:
-        Here we use innefficient full iteration because I did not yet
-        want to think about hashing semantics.
-        """
-        if key not in f_keys:
-            elements.append([key, value])
-    return ITFMap(elements)
