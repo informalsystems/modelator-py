@@ -5,7 +5,7 @@ from .stdout_to_informal_trace_format import (
     tlc_trace_to_informal_trace_format_trace,
 )
 
-from ..informal_trace_format import with_sequences
+from ..informal_trace_format import with_lists
 
 from recordclass import recordclass
 
@@ -13,7 +13,7 @@ from recordclass import recordclass
 
 cmd_fields = (
     "stdout",  # Captured stdout from TLC execution
-    "sequences",  # Transform 1-indexed TLA+ functions into sequences
+    "lists",  # Transform 1-indexed TLA+ functions into lists
     "records",  # Transform string indexed functions into records
 )
 
@@ -54,7 +54,7 @@ class Tlc:
     def itf(
         self,
         *,
-        sequences=False,
+        lists=False,
         records=False,
         json=False,  # Read parameters from Json?
     ):
@@ -68,7 +68,7 @@ class Tlc:
             ), "TLC's stdout string should be passed on stdin if not passing json"
             cmd = Cmd()
             cmd.stdout = self._stdin.read()
-            cmd.sequences = sequences
+            cmd.lists = lists
             cmd.records = records
             assert (
                 cmd.stdout is not None

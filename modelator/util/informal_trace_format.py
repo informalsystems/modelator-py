@@ -12,6 +12,26 @@ class ITFNode(object):
         pass
 
 
+class ITFList(ITFNode):
+    """{ "#list": [ <expr>, ..., <expr> ] }"""
+
+    def __init__(self, elements):
+        self.elements = elements
+
+    def __eq__(self, other):
+        """Overrides the default implementation"""
+        if isinstance(other, ITFSet):
+            return self.elements == other.elements
+        return False
+
+    def to_obj(self):
+        def lam(e):
+            return e.to_obj() if isinstance(e, ITFNode) else e
+
+        elements = [lam(e) for e in self.elements]
+        return {"#list": elements}
+
+
 class ITFSet(ITFNode):
     """{ "#set": [ <expr>, ..., <expr> ] }"""
 
@@ -92,11 +112,6 @@ class ITFTrace(ITFNode):
     """
 
     def __init__(self, vars, states, meta=None):
-        if meta is None:
-            meta = {
-                "source": "https://github.com/informalsystems/modelator",
-                "bug-report": "https://github.com/informalsystems/modelator/issues",
-            }
         self.meta = meta
         self.vars = vars
         self.states = states
@@ -141,12 +156,12 @@ class Visitor:
         pass
 
 
-def with_sequences(trace: ITFTrace):
+def with_lists(trace: ITFTrace):
     """
-    Create a copy of the trace where sequences take the place
+    Create a copy of the trace where lists take the place
     of 1-indexed maps.
 
-    In TLA+ sequences are precisely functions with domain
+    In TLA+ sequences (lists) are precisely functions with domain
     1..n for some n. This function transforms maps with domain
     1..n into ITF lists.
     """
