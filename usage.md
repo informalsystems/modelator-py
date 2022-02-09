@@ -26,14 +26,14 @@ poetry run cli util tlc itf --json < <JSON_OBJECT>
 ```bash
 # In TLA+ there is no distinction between some functions and sequences. This means
 # that a sequence may be represented by function with domain 1..n for some n,
-# and vice versa. It is likely convenient to handle such functions as lists. 
+# and vice versa. It is likely convenient to handle such functions as lists.
 # Default: True
 --lists
 # In TLA+ there is no distinction between some functions and records. This means
 # that a record may be represented by functions with domain all strings, and vice
-# versa. It is likely convenient to handle such functions as records. 
+# versa. It is likely convenient to handle such functions as records.
 # Default: True
---records 
+--records
 ```
 
 ### Examples
