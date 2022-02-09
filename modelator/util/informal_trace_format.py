@@ -12,8 +12,28 @@ class ITFNode(object):
         pass
 
 
+class ITFRecord(ITFNode):
+    """{ "field1": <expr>, ..., "fieldN": <expr> }"""
+
+    def __init__(self, elements):
+        self.elements = elements  # dict
+
+    def __eq__(self, other):
+        """Overrides the default implementation"""
+        if isinstance(other, ITFSet):
+            return self.elements == other.elements
+        return False
+
+    def to_obj(self):
+        def lam(e):
+            return e.to_obj() if isinstance(e, ITFNode) else e
+
+        elements = {k: lam(v) for k, v in self.elements.items()}
+        return elements
+
+
 class ITFList(ITFNode):
-    """{ "#list": [ <expr>, ..., <expr> ] }"""
+    """[ <expr>, ..., <expr> ]"""
 
     def __init__(self, elements):
         self.elements = elements
@@ -29,7 +49,7 @@ class ITFList(ITFNode):
             return e.to_obj() if isinstance(e, ITFNode) else e
 
         elements = [lam(e) for e in self.elements]
-        return {"#list": elements}
+        return elements
 
 
 class ITFSet(ITFNode):
@@ -111,9 +131,9 @@ class ITFTrace(ITFNode):
     }
     """
 
-    def __init__(self, vars, states, meta=None):
+    def __init__(self, vars_, states, meta=None):
         self.meta = meta
-        self.vars = vars
+        self.vars = vars_
         self.states = states
 
     def __eq__(self, other):
@@ -135,25 +155,38 @@ class ITFTrace(ITFNode):
 
 
 class Visitor:
-    def __init__(self):
-        pass
-
     def visit(self, node, *arg, **kw):
+        # Only visit ITFNode objects.
+        # It is sufficient to take face-value for python built-ins.
+        if not isinstance(node, ITFNode):
+            return node
         method_name = f"visit_{type(node).__name__}"
         method = getattr(self, method_name)
         return method(node, *arg, **kw)
 
+    def visit_ITFRecord(self, node, *arg, **kw):
+        elements = {k: self.visit(v) for k, v in node.elements}
+        return ITFRecord(elements)
+
+    def visit_ITFList(self, node, *arg, **kw):
+        elements = [self.visit(e) for e in node.elements]
+        return ITFList(elements)
+
     def visit_ITFSet(self, node, *arg, **kw):
-        pass
+        elements = [self.visit(e) for e in node.elements]
+        return ITFSet(elements)
 
     def visit_ITFMap(self, node, *arg, **kw):
-        pass
+        elements = [[self.visit(e) for e in p] for p in node.elements]
+        return ITFMap(elements)
 
     def visit_ITFState(self, node, *arg, **kw):
-        pass
+        var_value_map = {k: self.visit(v) for k, v in node.var_value_map.items()}
+        return ITFState(node.meta, var_value_map)
 
     def visit_ITFTrace(self, node, *arg, **kw):
-        pass
+        states = [self.visit(e) for e in node.states]
+        return ITFTrace(node.vars, states, node.meta)
 
 
 def with_lists(trace: ITFTrace):

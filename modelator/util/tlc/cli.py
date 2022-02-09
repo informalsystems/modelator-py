@@ -21,7 +21,7 @@ Cmd = recordclass("Cmd", cmd_fields, defaults=(None,) * len(cmd_fields))
 
 
 def json_to_cmd(json) -> Cmd:
-    json = {"stdout": None, "lists": None, "records": None} | json
+    json = {"stdout": None, "lists": True, "records": True} | json
     cmd = Cmd()
     cmd.stdout = json["stdout"]
     cmd.lists = json["lists"]
@@ -54,8 +54,8 @@ class Tlc:
     def itf(
         self,
         *,
-        lists=False,
-        records=False,
+        lists=True,
+        records=True,
         json=False,  # Read parameters from Json?
     ):
         result = None
