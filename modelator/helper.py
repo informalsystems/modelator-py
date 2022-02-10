@@ -1,6 +1,9 @@
 import logging
 import os
 import shutil
+import typing
+
+import pathos.multiprocessing as multiprocessing
 
 LOG = logging.getLogger(__name__)
 
@@ -27,3 +30,14 @@ def delete_dir(path):
         raise Exception(f"Cannot delete directory {path=} as it is not absolute")
     LOG.debug(f"Exec shutil.rmtree({path})")
     shutil.rmtree(path)
+
+
+def parallel_map(function, data: typing.List):
+    cores = multiprocessing.cpu_count()
+
+    # Make chunk size smaller to fill up gaps
+    # if processing time for different chunks differ
+    HEURISTIC_PARAM = 2
+    chunksize = len(data) // (cores * HEURISTIC_PARAM)
+    with multiprocessing.ProcessPool(cores) as p:
+        return p.map(function, data, chunksize=chunksize)

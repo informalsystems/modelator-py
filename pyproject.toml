@@ -10,6 +10,7 @@ fire = "^0.4.0"
 recordclass = "^0.16.2"
 infix = "1.2"
 ply = "3.10"
+pathos = "^0.2.8"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

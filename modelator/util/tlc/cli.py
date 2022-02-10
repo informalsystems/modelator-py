@@ -2,6 +2,8 @@ import json as stdjson
 
 from recordclass import recordclass
 
+from modelator.helper import parallel_map
+
 from ..informal_trace_format import JsonSerializer, with_lists, with_records
 from .stdout_to_informal_trace_format import (
     extract_traces,
@@ -39,14 +41,12 @@ def tlc_itf(*, cmd=None, json=None):  # types: ignore
 
     assert cmd.stdout is not None, "tlc_itf requires TLC's stdout as input data"
     tlc_traces = extract_traces(cmd.stdout)
-    itf_traces = [
-        tlc_trace_to_informal_trace_format_trace(trace) for trace in tlc_traces
-    ]
+    itf_traces = parallel_map(tlc_trace_to_informal_trace_format_trace, tlc_traces)
     if cmd.lists:
-        itf_traces = [with_lists(e) for e in itf_traces]
+        itf_traces = parallel_map(with_lists, itf_traces)
     if cmd.records:
-        itf_traces = [with_records(e) for e in itf_traces]
-    itf_traces_objects = [JsonSerializer().visit(e) for e in itf_traces]
+        itf_traces = parallel_map(with_records, itf_traces)
+    itf_traces_objects = parallel_map(lambda t: JsonSerializer().visit(t), itf_traces)
     return itf_traces_objects
 
 
