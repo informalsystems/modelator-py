@@ -139,7 +139,7 @@ def test_extract_informal_trace_format_traces_from_tlc_simple_example():
 
 def test_extract_informal_trace_format_traces_from_tlc_real_world_example():
 
-    fn = "TlcMultipleTraceParse_RealWorld1.txt"
+    fn = "TlcMultipleTraceParse_RealWorld0.txt"
     fn = os.path.join(get_resource_dir(), fn)
     content = None
     with open(fn, "r") as fd:
@@ -149,19 +149,4 @@ def test_extract_informal_trace_format_traces_from_tlc_real_world_example():
     cmd.stdout = content
     cmd.lists = True
     cmd.records = True
-    result = tlc_itf(cmd=cmd)
-    fn = os.path.join(get_resource_dir(), "debugz.json")
-    with open(fn, "w") as fd:
-        fd.write(json.dumps(result, indent=4))
-
-
-def test_debug():
-
-    fn = "TlcMultipleTraceParse_RealWorld1.txt"
-    fn = os.path.join(get_resource_dir(), fn)
-    content = None
-    with open(fn, "r") as fd:
-        content = fd.read()
-
-    traces = extract_traces(content)
-    assert 0 < len(traces)
+    tlc_itf(cmd=cmd)
