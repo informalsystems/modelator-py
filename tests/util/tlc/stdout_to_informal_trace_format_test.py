@@ -1,8 +1,7 @@
-import json
 import os
 
-from modelator.util.tlc.cli import tlc_itf, Cmd
 from modelator.util.informal_trace_format import with_lists, with_records
+from modelator.util.tlc.cli import Cmd, tlc_itf
 from modelator.util.tlc.stdout_to_informal_trace_format import (
     extract_traces,
     tlc_trace_to_informal_trace_format_trace,
