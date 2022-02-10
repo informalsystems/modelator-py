@@ -27,6 +27,7 @@ def extract_traces(stdout: str):
             ("states generated" in line)
             and ("distinct states found" in line)
             and ("states left on queue" in line)
+            and (not line.startswith("Progress"))
         ) or ("Model checking completed" in line)
 
     header_cnt = 0
