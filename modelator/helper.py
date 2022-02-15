@@ -39,5 +39,6 @@ def parallel_map(function, data: typing.List):
     # if processing time for different chunks differ
     HEURISTIC_PARAM = 2
     chunksize = len(data) // (cores * HEURISTIC_PARAM)
+
     with multiprocessing.ProcessPool(cores) as p:
         return p.map(function, data, chunksize=chunksize)
