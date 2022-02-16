@@ -33,7 +33,7 @@ def pprint(s):
 PARAM_population_size = 50
 PARAM_target_size = 64
 PARAM_crossover_probability = 0.75
-PARAM_iterations = 160000
+PARAM_iterations = 16000
 PARAM_info_interval = 16000
 
 
