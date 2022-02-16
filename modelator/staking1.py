@@ -28,7 +28,7 @@ def main():
 
     txt = None
     print("Reading TLC stdout")
-    with open(fn("tlc.7steps.action.outcome.out"), "r") as fd:
+    with open(fn("tlc.8steps.action.outcome.out"), "r") as fd:
         txt = fd.read()
     print("Extracting trace strings")
     traces = extract_traces(txt)
@@ -53,7 +53,7 @@ def main():
     projected = [project(t) for t in traces]
     print(f"Selecting subset")
     indexes_of_best, loss_value, random_choice_loss_value = select_subset(
-        projected, target_size=64
+        projected, target_size=32
     )
     traces = [traces[i] for i in indexes_of_best]
     print(f"Subset selected")
@@ -75,6 +75,6 @@ def main():
     traces = [with_records(t) for t in traces]
     print(f"Serializing")
     traces = [JsonSerializer().visit(t) for t in traces]
-    with open(fn("model_based_testing_traces_auto.json"), "w") as fd:
+    with open(fn("model_based_testing_traces_8_steps_auto.json"), "w") as fd:
         fd.write(json.dumps(traces, indent=2))
     print("Done.")
