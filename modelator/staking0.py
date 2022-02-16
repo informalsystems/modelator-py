@@ -83,5 +83,5 @@ def main():
     s = """"""
     for inv in invs:
         s += fun(inv)
-    with open(fn(f"stub"), "w") as fd:
+    with open(fn(f"stub.txt"), "w") as fd:
         fd.write(s)

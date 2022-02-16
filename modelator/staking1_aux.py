@@ -1,4 +1,5 @@
 import random
+import functools
 
 """
 Dirty prototype of trace selection algorithm
@@ -34,7 +35,6 @@ PARAM_population_size = 50
 PARAM_target_size = 64
 PARAM_crossover_probability = 0.75
 PARAM_iterations = 160000
-PARAM_info_interval = 16000
 
 
 def select_subset(
@@ -64,16 +64,19 @@ def select_subset(
     def valid(v):
         return len(set(v)) == len(v)
 
-    def loss(v):
-        def similarity_f(A, B):
-            intersect = A.intersection(B)
-            union = A.union(B)
-            return round(len(intersect) / len(union), 3)
+    @functools.cache
+    def similarity_f(i, j):
+        A = list_of_sets[i]
+        B = list_of_sets[j]
+        intersect = A.intersection(B)
+        union = A.union(B)
+        return round(len(intersect) / len(union), 3)
 
+    def loss(v):
         x = 0
         for i in range(len(v) - 1):
             for j in range(i + 1, len(v)):
-                x += similarity_f(list_of_sets[v[i]], list_of_sets[v[j]])
+                x += similarity_f(v[i], v[j])
         return x
 
     # Initialize population
@@ -106,9 +109,6 @@ def select_subset(
             if min(loss(sx), loss(sy)) <= min(loss(G[sxi]), loss(G[syi])):
                 G[sxi] = sx
                 G[syi] = sy
-        if k % PARAM_info_interval == 0:
-            _, best_value = best()
-            pprint(f"loss: {best_value}")
 
     indexes_of_best_sets, loss_value = best()
     return indexes_of_best_sets, loss_value, random_choice_loss
