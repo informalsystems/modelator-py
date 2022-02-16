@@ -5,7 +5,7 @@ class ITFNode(object):
     __metaclass__ = ABCMeta
 
     def __repr__(self):
-        assert False, """Not implement as uses visitor pattern
+        assert False, """Not implemented as uses visitor pattern
         and I don't want to think about circular reference right now."""
 
 
@@ -17,7 +17,7 @@ class ITFRecord(ITFNode):
 
     def __eq__(self, other):
         """Overrides the default implementation"""
-        if isinstance(other, ITFSet):
+        if isinstance(other, ITFRecord):
             return self.elements == other.elements
         return False
 
@@ -30,7 +30,7 @@ class ITFList(ITFNode):
 
     def __eq__(self, other):
         """Overrides the default implementation"""
-        if isinstance(other, ITFSet):
+        if isinstance(other, ITFList):
             return self.elements == other.elements
         return False
 
