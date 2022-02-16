@@ -1,5 +1,6 @@
 import json as stdjson
-from .itf import tlc_itf, TLCITFCmd
+
+from .itf import TLCITFCmd, tlc_itf
 
 
 class Tlc:

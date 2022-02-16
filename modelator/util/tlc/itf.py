@@ -1,5 +1,3 @@
-import json as stdjson
-
 from recordclass import recordclass
 
 from modelator.helper import parallel_map
