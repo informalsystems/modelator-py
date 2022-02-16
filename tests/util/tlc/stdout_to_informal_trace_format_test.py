@@ -1,7 +1,7 @@
 import os
 
 from modelator.util.informal_trace_format import with_lists, with_records
-from modelator.util.tlc.cli import Cmd, tlc_itf
+from modelator.util.tlc.itf import TLCITFCmd, tlc_itf
 from modelator.util.tlc.stdout_to_informal_trace_format import (
     extract_traces,
     tlc_trace_to_informal_trace_format_trace,
@@ -144,7 +144,7 @@ def test_extract_informal_trace_format_traces_from_tlc_real_world_example():
     with open(fn, "r") as fd:
         content = fd.read()
 
-    cmd = Cmd()
+    cmd = TLCITFCmd()
     cmd.stdout = content
     cmd.lists = True
     cmd.records = True
