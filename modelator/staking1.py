@@ -21,14 +21,14 @@ def fn(s):
 def main():
 
     IN_FN = "tlc.8steps.out"
-    OUT_FN = "model_based_testing_traces_8_steps_auto.json"
-    OUT_FN = "debug.json"
+    OUT_FN = "model_based_testing_traces_auto.json"
+    # OUT_FN = "debug.json"
 
     txt = None
     print("Reading TLC stdout")
     with open(fn(IN_FN), "r") as fd:
         txt = fd.read()
-    print("Extracting trace strings")
+    print("Extracting TLC traces")
     traces = extract_traces(txt)
     print(f"Processing {len(traces)} traces")
 
@@ -50,13 +50,13 @@ def main():
     projected = [project(t) for t in traces]
     print(f"Selecting subset")
     indexes_of_best, loss_value, random_choice_loss_value = select_subset(
-        projected, target_size=32
+        projected, target_size=64, iterations=240000
     )
     traces = [traces[i] for i in indexes_of_best]
     print(f"Subset selected")
-    print(f"Final loss value: {loss_value}")
-    print(f"Random loss value: {random_choice_loss_value}")
-    print(f"Ratio of random: {loss_value/random_choice_loss_value}")
+    print(f"Final loss value:         {loss_value}")
+    print(f"Random loss value:        {random_choice_loss_value}")
+    print(f"Ratio compared to random: {loss_value/random_choice_loss_value}")
 
     print(f"Translating to ITF")
     traces = [tlc_trace_to_informal_trace_format_trace(t) for t in traces]

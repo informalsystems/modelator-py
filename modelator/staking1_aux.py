@@ -33,11 +33,13 @@ def pprint(s):
 PARAM_population_size = 50
 PARAM_target_size = 64
 PARAM_crossover_probability = 0.75
-PARAM_iterations = 16000
+PARAM_iterations = 160000
 PARAM_info_interval = 16000
 
 
-def select_subset(list_of_sets, target_size=PARAM_target_size):
+def select_subset(
+    list_of_sets, *, target_size=PARAM_target_size, iterations=PARAM_iterations
+):
 
     N = len(list_of_sets)
 
@@ -92,7 +94,7 @@ def select_subset(list_of_sets, target_size=PARAM_target_size):
 
     _, random_choice_loss = best()
 
-    for k in range(PARAM_iterations):
+    for k in range(iterations):
         sxi, syi = random.sample(G_ixs, 2)
         sx = list(G[sxi])
         sy = list(G[syi])

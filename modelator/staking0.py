@@ -44,12 +44,10 @@ def main():
         "P6",
         "P7",
         "P8",
-        "P9",
-        "P10",
+        # "P9",
+        # "P10",
         # "P11",
-        # "P12",
-        # "P13",
-        # "P14",
+        # "P12"
     ]
 
     tla = read_tla()
@@ -72,9 +70,9 @@ def main():
         with open(fn(f"model_based_testing_traces_{inv}.json"), "w") as fd:
             fd.write(json.dumps(itf, indent=2))
 
-    # for inv in invs:
-    # proc(inv)
-    # print(f"Done {inv}")
+    for inv in invs:
+        proc(inv)
+        print(f"Done {inv}")
 
     def fun(inv):
         return f"""func TestTraces{inv}(t *testing.T) {{
