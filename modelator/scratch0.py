@@ -18,22 +18,7 @@ def fn(s):
     return os.path.join(root, s)
 
 
-def project_action_outcome(t):
-    s = set()
-    for i, state in enumerate(t):
-        outcome = None
-        nature = None
-        for line in state.split("\n"):
-            if "nature" in line:
-                nature = line[line.find(">") + 3 : -2]
-            if "outcome" in line:
-                outcome = line[line.find("=") + 3 : -1]
-        e = (i / 2, nature, outcome)
-        s.add(e)
-    return s
-
-
-def project_q_lens(t):
+def project(t):
     def validator(lines):
         found = None
         for i, line in enumerate(lines):
@@ -83,10 +68,8 @@ def project_q_lens(t):
 
 def main():
 
-    IN_FN = "tlc.8steps.out"
-    OUT_FN = "model_based_testing_traces_auto_queue_differential.json"
-    # OUT_FN = "model_based_testing_traces_auto_action_outcome.json"
-    # OUT_FN = "debug.json"
+    IN_FN = "longs.txt"
+    OUT_FN = "model_based_testing_traces_long_random.json"
 
     txt = None
     print("Reading TLC stdout")
@@ -97,11 +80,10 @@ def main():
     print(f"Processing {len(traces)} traces")
 
     print(f"Projecting")
-    # projected = [project_action_outcome(t) for t in traces]
-    projected = [project_q_lens(t) for t in traces]
+    projected = [project(t) for t in traces]
     print(f"Selecting subset")
     indexes_of_best, loss_value, random_choice_loss_value = select_subset(
-        projected, target_size=64, iterations=160000
+        projected, target_size=256, iterations=160000
     )
     traces = [traces[i] for i in indexes_of_best]
     print(f"Subset selected")

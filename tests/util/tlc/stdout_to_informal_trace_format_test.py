@@ -51,7 +51,7 @@ def test_extract_multiple_traces_from_tlc_simulation_mode():
         content = fd.read()
 
     tlc_traces = extract_traces(content)
-    assert len(tlc_traces) == 1
+    assert len(tlc_traces) == 51
 
 
 def test_extract_multiple_traces_from_tlc():

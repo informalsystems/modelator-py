@@ -16,9 +16,9 @@ from modelator.util.informal_trace_format import (
 
 def main():
     d = "/Users/danwt/Documents/work/cosmos-sdk-fork/x/staking/mbt"
-    fn = "long.txt"
+    fn = "longs.txt"
     fp = os.path.join(d, fn)
-    out_fn = os.path.join(d, "long.json")
+    out_fn = os.path.join(d, "longs.json")
     content = None
     with open(fp, "r") as fd:
         content = fd.read()
