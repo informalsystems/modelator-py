@@ -10,7 +10,7 @@ from modelator.util.informal_trace_format import (
     with_lists,
     with_records,
 )
-from .staking1_aux import select_subset
+from .scratch_subset_selection import select_subset
 
 
 def fn(s):

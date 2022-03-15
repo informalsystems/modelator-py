@@ -28,11 +28,15 @@ def extract_traces(stdout: str):
 
         def is_footer(line):
             return (
-                ("states generated" in line)
-                and ("distinct states found" in line)
-                and ("states left on queue" in line)
-                and (not line.startswith("Progress"))
-            ) or ("Model checking completed" in line)
+                (
+                    ("states generated" in line)
+                    and ("distinct states found" in line)
+                    and ("states left on queue" in line)
+                    and (not line.startswith("Progress"))
+                )
+                or ("Model checking completed" in line)
+                or ("The number of states generated" in line)
+            )
 
         header_cnt = 0
         header_ix = -1
