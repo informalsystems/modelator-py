@@ -25,6 +25,7 @@ isort = "^5.9.3"
 cli = "modelator.cli:cli"
 scratch0 = "modelator.scratch0:main"
 scratch1 = "modelator.scratch1:main"
+scratch2 = "modelator.scratch2:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
