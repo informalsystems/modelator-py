@@ -17,7 +17,7 @@ INVARIANT P{inv}"""
 
 DIR = "/Users/danwt/Documents/work/cosmos-sdk-fork/mbt/x/staking"
 
-invs = list(range(13, 37))
+invs = list(range(0, 9))
 
 
 def main():
@@ -44,4 +44,4 @@ def main():
         itf_cmd.stdout = stdout
         traces = tlc_itf(cmd=itf_cmd)
         with open(os.path.join(DIR, f"traces/P{inv}.json"), "w") as fd:
-            fd.write(json.dumps(traces, indent=2))
+            fd.write(json.dumps(traces))
