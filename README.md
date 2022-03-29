@@ -1,10 +1,15 @@
 # modelator-py
 
+|⚠️ The tools in this repo are unstable and may be subject to major changes ⚠️|
+|-|
+
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 _**Lightweight utilities to assist model writing and model-based testing activities using the TLA+ ecosystem.**_
 
 ## What is this project?
+
+A collection of cli utilities to reduce leg-work when developing TLA+ models, running model checkers, and doing model-based testing. The utilities are also intended to act as building blocks for future tool development.
 
 ### What can it do right now?
 
