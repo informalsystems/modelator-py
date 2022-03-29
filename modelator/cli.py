@@ -7,22 +7,33 @@ from .util.cli import Util
 
 
 class App:
-    def __init__(self, stdin):
+    def __init__(self, stdin, stdout):
         self._stdin = stdin
-        self.tlc = Tlc(stdin)
-        self.util = Util(stdin)
+        self.tlc = Tlc(stdin, stdout)
+        self.util = Util(stdin, stdout)
 
-    def example(*_ignore, foo=True, bar=None, wiz):
-        print(f"{foo=} {bar=} {wiz=}")
+    def easter(*, foo=True, bar=None, wiz):
+        """
+        This is an easter egg function designed as an example.
+
+        Arguments:
+            foo : Is it a bird, is it a plane?
+            bar : How much wood would a woodchuck chuck?
+            wiz : If Peter Piper picked a peck of pickled peppers...
+        """
+        print(f"Warning: this is just an example command: {foo=} {bar=} {wiz=}")
 
 
 def cli():
+    """
+    Used as a poetry entrypoint
+    """
     if len(sys.argv) == 1:
         raise Exception(
-            "Solely stdin input is not yet supported (arguments must be passed)"
+            "Providing only stdin input is not yet supported (at least one argument must be given)"
         )
     else:
-        app = App(sys.stdin)
+        app = App(sys.stdin, sys.stdout)
         fire.Fire(app)
 
 

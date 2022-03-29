@@ -38,11 +38,16 @@ def tlc_itf(*, cmd=None, json=None):  # types: ignore
         cmd = json_to_cmd(json)
 
     assert cmd.stdout is not None, "tlc_itf requires TLC's stdout as input data"
+
     tlc_traces = extract_traces(cmd.stdout)
+
     itf_traces = parallel_map(tlc_trace_to_informal_trace_format_trace, tlc_traces)
+
     if cmd.lists:
         itf_traces = parallel_map(with_lists, itf_traces)
     if cmd.records:
         itf_traces = parallel_map(with_records, itf_traces)
+
     itf_traces_objects = parallel_map(lambda t: JsonSerializer().visit(t), itf_traces)
+
     return itf_traces_objects

@@ -5,8 +5,9 @@ from .raw import RawCmd, TlcArgs, tlc_raw
 
 
 class Tlc:
-    def __init__(self, stdin):
+    def __init__(self, stdin, stdout):
         self._stdin = stdin
+        self._stdout = stdout
 
     def pure(self):
         assert (
@@ -16,7 +17,7 @@ class Tlc:
 
         result = tlc_pure(json=json_dict)
         to_print = stdjson.dumps(result, indent=4, sort_keys=True)
-        print(to_print)
+        print(to_print, file=self._stdout)
 
     def raw(
         self,
@@ -114,4 +115,4 @@ class Tlc:
         obj_to_print["stderr"] = stderr_pretty
 
         to_print = stdjson.dumps(obj_to_print, indent=4, sort_keys=True)
-        print(to_print)
+        print(to_print, file=self._stdout)

@@ -4,8 +4,9 @@ from .itf import TLCITFCmd, tlc_itf
 
 
 class Tlc:
-    def __init__(self, stdin):
+    def __init__(self, stdin, stdout):
         self._stdin = stdin
+        self._stdout = stdout
 
     def itf(
         self,
@@ -35,4 +36,4 @@ class Tlc:
         obj_to_print["traces"] = result
 
         to_print = stdjson.dumps(obj_to_print, indent=4, sort_keys=True)
-        print(to_print)
+        print(to_print, file=self._stdout)

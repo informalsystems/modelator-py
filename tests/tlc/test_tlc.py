@@ -58,7 +58,14 @@ def test_pure_with_json():
 
     stdin = unittest.mock.Mock()
     stdin.read = lambda: json.dumps(data)
-    app = Tlc(stdin)
+    out_str = None
+    stdout = unittest.mock.Mock()
+
+    def write_out_str(s):
+        out_str = s
+
+    stdout.write = lambda s: write_out_str(s)
+    app = Tlc(stdin, stdout)
     app.pure()
 
 
@@ -83,5 +90,7 @@ def test_raw_with_json():
 
     stdin = unittest.mock.Mock()
     stdin.read = lambda: json.dumps(data)
+    stdout = unittest.mock.Mock()
+    stdout.write = lambda s: None
     app = Tlc(stdin)
     app.raw(json=True)

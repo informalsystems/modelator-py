@@ -1,5 +1,5 @@
 {
-    "jar": "/Users/danwt/Documents/model-checkers/tla2tools.jar",
+    "jar": "/Users/danwt/Documents/work/modelator-py/mc_tlc.jar",
     "cwd": "/Users/danwt/Documents/work/mbt-python",
     "args": {
         "cleanup": false,

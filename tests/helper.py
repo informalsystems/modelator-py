@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-TLC_PATH = "/Users/danwt/Documents/model-checkers/tla2tools.jar"
+TLC_PATH = "/Users/danwt/Documents/work/modelator-py/mc_tlc.jar"
 
 
 def get_tests_dir():
