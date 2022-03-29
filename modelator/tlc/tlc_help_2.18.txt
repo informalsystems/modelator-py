@@ -1,13 +1,13 @@
 
 NAME
 
-	TLC - provides model checking and simulation of TLA+ specifications - Version 2.16 of Day Month 20??
+	TLC - provides model checking and simulation of TLA+ specifications - Version 2.18 of Day Month 20??
 
 
 SYNOPSIS
 
-	TLC [-h] [-cleanup] [-continue] [-deadlock] [-debug] [-difftrace] [-gzip] [-noGenerateSpecTE] [-nowarning] [-terse] [-tool] [-view] [-checkpoint minutes] [-config file] [-coverage minutes] [-dfid num] [-dump [dot actionlabels,colorize,snapshot] file] [-fp N] [-fpbits num] [-fpmem num] [-maxSetSize num] [-metadir path] [-recover id] [-teSpecOutDir some-dir-name] [-userFile file] [-workers num] -debugger nosuspend SPEC
-	TLC [-h] [-cleanup] [-continue] [-deadlock] [-debug] [-difftrace] [-gzip] [-noGenerateSpecTE] [-nowarning] [-terse] [-tool] [-aril num] [-checkpoint minutes] [-config file] [-coverage minutes] [-depth num] [-dump [dot actionlabels,colorize,snapshot] file] [-fp N] [-fpbits num] [-fpmem num] [-maxSetSize num] [-metadir path] [-recover id] [-seed num] [-teSpecOutDir some-dir-name] [-userFile file] [-workers num] -debugger nosuspend -simulate [file=X,num=Y] SPEC
+	TLC [-h] [-cleanup] [-continue] [-deadlock] [-debug] [-difftrace] [-gzip] [-noGenerateSpecTE] [-nowarning] [-terse] [-tool] [-view] [-checkpoint minutes] [-config file] [-coverage minutes] [-dfid num] [-dump [dot actionlabels,colorize,snapshot] file] [-dumpTrace format file] [-fp N] [-fpbits num] [-fpmem num] [-maxSetSize num] [-metadir path] [-postCondition mod!oper] [-recover id] [-teSpecOutDir some-dir-name] [-userFile file] [-workers num] -debugger nosuspend SPEC
+	TLC [-h] [-cleanup] [-continue] [-deadlock] [-debug] [-difftrace] [-gzip] [-noGenerateSpecTE] [-nowarning] [-terse] [-tool] [-aril num] [-checkpoint minutes] [-config file] [-coverage minutes] [-depth num] [-dump [dot actionlabels,colorize,snapshot] file] [-dumpTrace format file] [-fp N] [-fpbits num] [-fpmem num] [-maxSetSize num] [-metadir path] [-postCondition mod!oper] [-recover id] [-seed num] [-teSpecOutDir some-dir-name] [-userFile file] [-workers num] -debugger nosuspend -simulate [file=X,num=Y] SPEC
 
 DESCRIPTION
 
@@ -81,6 +81,16 @@ OPTIONS
 		'dot' allows further options, comma delimited, of zero
 		or more of 'actionlabels', 'colorize', 'snapshot' to be
 		specified before the '.dot'-suffixed filename
+	-dumpTrace format file
+		in case of a property violation, formats the TLA+ error trace
+		as the given format and dumps the output to the specified
+		file.  The file is relative to the same directory as the
+		main spec. At the time of writing, TLC supports the "tla"
+		and the "json" formats.  To dump to multiple formats, the
+		-dumpTrace parameter may appear multiple times.
+		The git commits 1eb815620 and 386eaa19f show that adding new
+		formats is easy.
+
 	-fp N
 		use the Nth irreducible polynomial from the list stored
 		in the class FP64
@@ -109,6 +119,9 @@ OPTIONS
 		generate this spec.
 	-nowarning
 		disable all warnings; defaults to reporting warnings
+	-postCondition mod!oper
+		evaluate the given (constant-level) operator oper in the TLA+
+		module mod at the end of model-checking.
 	-recover id
 		recover from the checkpoint with the specified id
 	-seed num
