@@ -32,6 +32,28 @@ def test_extract_trace_from_tlc():
     assert len(tlc_traces) == 1
 
 
+def test_extract_trace_from_tlc_simulation_mode():
+    fn = "TlcTraceParseSimulationMode.txt"
+    fn = os.path.join(get_resource_dir(), fn)
+    content = None
+    with open(fn, "r") as fd:
+        content = fd.read()
+
+    tlc_traces = extract_traces(content)
+    assert len(tlc_traces) == 1
+
+
+def test_extract_multiple_traces_from_tlc_simulation_mode():
+    fn = "TlcMultipleTraceParseSimulationMode.txt"
+    fn = os.path.join(get_resource_dir(), fn)
+    content = None
+    with open(fn, "r") as fd:
+        content = fd.read()
+
+    tlc_traces = extract_traces(content)
+    assert len(tlc_traces) == 51
+
+
 def test_extract_multiple_traces_from_tlc():
 
     fn = "TlcMultipleTraceParse.txt"

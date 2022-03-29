@@ -1,0 +1,5144 @@
+TLC2 Version 2.18 of Day Month 20?? (rev: f4d8c3d)
+Running Random Simulation with seed -3759134367670597323 with 8 workers on 8 cores with 10923MB heap and 64MB offheap memory [pid: 26635] (Mac OS X 11.4 x86_64, Azul Systems, Inc. 17.0.1 x86_64).
+Parsing file /Users/danwt/Documents/work/cosmos-sdk-fork/x/staking/mbt/staking.tla
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-2688471709367819720/Integers.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-2688471709367819720/Naturals.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-2688471709367819720/FiniteSets.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-2688471709367819720/Sequences.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
+Parsing file /private/var/folders/9l/fjtclx4d6txfdsj2ynqnrr5c0000gn/T/tlc-2688471709367819720/TLC.tla (jar:file:/Users/danwt/Documents/model-checkers/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
+Parsing file /Users/danwt/Documents/work/cosmos-sdk-fork/x/staking/mbt/tlcFolds.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module tlcFolds
+Semantic processing of module staking
+Starting... (2022-03-15 14:17:55)
+Computed 4 initial states...
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_tokens"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 438
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v0,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 528
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v0,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v1}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "bonded")
+/\ validatorQ = {}
+
+The number of states generated: 672
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_tokens"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 672
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 3 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 4 @@ v1 :> 1 @@ "d0" :> 0)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 3 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 4 @@ v1 :> 1 @@ "d0" :> 0)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 681
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 3 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 4 @@ v1 :> 1 @@ "d0" :> 0)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 3 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 4 @@ v1 :> 1 @@ "d0" :> 0)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 683
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 2,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 716
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 1049
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v0,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 2833
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 2878
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 2878
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 2911
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v1}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "bonded")
+/\ validatorQ = {}
+
+The number of states generated: 3071
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 3160
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 3170
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v1}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "bonded")
+/\ validatorQ = {}
+
+The number of states generated: 3183
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 2 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 3 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 2 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 3 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 3188
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v0,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 3195
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_tokens"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 3458
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v0,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 3460
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 4340
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 5064
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 5130
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 5634
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 5694
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v0,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 6871
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 7205
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 8759
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v0,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 8785
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_tokens"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 8785
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 8828
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 2 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 3 @@ v1 :> 1 @@ "d0" :> 0)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 2 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 3 @@ v1 :> 1 @@ "d0" :> 0)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 10444
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v0,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 12005
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 2,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 13704
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_tokens"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 13731
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_tokens"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v1}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "bonded")
+/\ validatorQ = {}
+
+The number of states generated: 14422
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 17698
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 2,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v0,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 18013
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 2,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 18174
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v0,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 18209
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 18215
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_tokens"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 18247
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v1,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 3 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 4 @@ v1 :> 1 @@ "d0" :> 0)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 3 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 4 @@ v1 :> 1 @@ "d0" :> 0)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 18334
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_tokens"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 18334
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 2,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 3
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 18455
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 2
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 2
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 18501
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 2)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v1}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 1)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 2 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "bonded")
+/\ validatorQ = {}
+
+The number of states generated: 20327
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 2 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 3 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 2 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 3 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 20370
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_tokens"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v0,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 20372
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v0,
+  validatorDst |-> v0,
+  amount |-> 2 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:insufficient_shares"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "undelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v0,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v0}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 3)
+/\ status = (v0 :> "bonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+The number of states generated: 20372
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 4)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 2: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 1
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 3)
+/\ blockHeight = 0
+/\ action = [ nature |-> "delegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> v1,
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 3 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 4 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 3: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 2
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "fail:redelegate_to_same_validator"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 3)
+/\ blockHeight = 0
+/\ action = [ nature |-> "beginRedelegate",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "d0",
+  validator |-> "NullStr",
+  validatorSrc |-> v1,
+  validatorDst |-> v1,
+  amount |-> 1 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 4 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+
+State 4: <Next line 483, col 5 to line 495, col 57 of module staking>
+/\ steps = 3
+/\ blockTime = 1
+/\ lastValSet = {v1}
+/\ outcome = "succeed"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 3)
+/\ blockHeight = 1
+/\ action = [ nature |-> "endBlock",
+  timeDelta |-> 1,
+  heightDelta |-> 1,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 4 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "bonded")
+/\ validatorQ = {}
+
+The number of states generated: 20510
+Simulation using seed -3759134367670597323 and aril 0
+Error: Invariant Inv is violated.
+Error: The behavior up to this point is:
+State 1: <Init line 214, col 5 to line 229, col 22 of module staking>
+/\ steps = 0
+/\ blockTime = 0
+/\ lastValSet = {}
+/\ outcome = "NullStr"
+/\ undelegationQ = {}
+/\ unbondingHeight = (v0 :> 0 @@ v1 :> 0)
+/\ delegation = (<<v0, v0>> :> 1 @@ <<v1, v1>> :> 1 @@ <<"d0", v0>> :> 0 @@ <<"d0", v1>> :> 0)
+/\ blockHeight = 0
+/\ action = [ nature |-> "init",
+  timeDelta |-> 0,
+  heightDelta |-> 0,
+  delegator |-> "NullStr",
+  validator |-> "NullStr",
+  validatorSrc |-> "NullStr",
+  validatorDst |-> "NullStr",
+  amount |-> 0 ]
+/\ unbondingTime = (v0 :> 0 @@ v1 :> 0)
+/\ jailed = (v0 :> FALSE @@ v1 :> FALSE)
+/\ redelegationQ = {}
+/\ tokens = (v0 :> 1 @@ v1 :> 1 @@ "d0" :> 1)
+/\ status = (v0 :> "unbonded" @@ v1 :> "unbonded")
+/\ validatorQ = {}
+

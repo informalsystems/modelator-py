@@ -49,8 +49,6 @@ def test_tla_state_expression_to_informal_trace_format_state():
     Test the translation of a single state.
     """
 
-    # poetry run pytest tests/util/parse/tlc/state_to_informal_trace_format_test.py -s -k 'test_tla_state_expression_to_informal_trace_format_state'
-
     fns = [
         "TlcStateExpressionExample0.txt",
         "TlcStateExpressionExample1.txt",
