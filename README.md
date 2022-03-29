@@ -25,7 +25,7 @@ Currently there is a cli implementing utilities:
 
 The model-based testing capabilities developed at Informal are currently in the [modelator](https://github.com/informalsystems/modelator) tool and are being migrated to a multi language architecture. Please expect more utilities and more tooling soon.
 
-### Commands for users
+## Usage
 
 Please see [usage](./usage.md).
 
