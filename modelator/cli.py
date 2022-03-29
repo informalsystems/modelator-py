@@ -29,7 +29,7 @@ class App:
 
 def cli():
     """
-    Used as a poetry entrypoint
+    Entrypoint for the cli
     """
     if len(sys.argv) == 1:
         raise Exception(

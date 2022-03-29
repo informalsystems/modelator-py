@@ -5,6 +5,9 @@ from modelator.util.tla.to_str import Nodes
 
 def merge_itf_maps(f, g):
     """
+
+    Computes the result of the @@ operator.
+
     f @@ g == [
         x \in (DOMAIN f) \cup (DOMAIN g) |->
         IF x \in DOMAIN f THEN f[x] ELSE g[x]
@@ -12,7 +15,7 @@ def merge_itf_maps(f, g):
 
     The output of TLC should never contain functions
     with overlapping domains so we can skip the overlap
-    check.
+    check that is present in a model checker.
     """
     assert isinstance(f, ITFMap)
     assert isinstance(g, ITFMap)
@@ -157,6 +160,12 @@ class Visitor(visit.NodeTransformer):
 
 
 def state_to_informal_trace_format_state(state_expr_str: str):
+    """
+    Converts a state expression string as found in the stdout of TLC
+    into an in memory AST representation.
+
+    Note: this is a slow operation.
+    """
     tree = parser.parse_expr(state_expr_str, nodes=Nodes)
     visitor = Visitor()
     var_value_pairs = visitor.visit(tree)

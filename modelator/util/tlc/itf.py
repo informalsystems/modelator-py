@@ -30,8 +30,12 @@ def json_to_cmd(json) -> TLCITFCmd:
 
 def tlc_itf(*, cmd=None, json=None):  # types: ignore
     """
-    Extract a list of execution traces in the Informal Trace Format
-    from the stdout of a TLC execution.
+    Extract a list of execution traces in the Informal Trace Format from the
+    stdout of a TLC execution.
+
+    Returns a list of ITFTrace objects.
+
+    Benefits from multiple cpu cores as parallelizes TLA+ raw text to AST parsing.
     """
 
     if json is not None:

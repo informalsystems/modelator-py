@@ -1,5 +1,9 @@
 from abc import ABCMeta
 
+"""
+In memory tree representing Informal Trace Format trace.
+"""
+
 
 class ITFNode(object):
     __metaclass__ = ABCMeta
@@ -193,7 +197,7 @@ class Recordifier(Visitor):
         return ITFMap(elements)
 
 
-def with_lists(trace: ITFTrace):
+def with_lists(trace: ITFTrace) -> ITFTrace:
     """
     Create a copy of the trace where lists take the place
     of 1-indexed maps.
@@ -201,12 +205,14 @@ def with_lists(trace: ITFTrace):
     In TLA+ sequences (lists) are precisely functions with domain
     1..n for some n. This function transforms maps with domain
     1..n into ITF lists.
+
+    Warning: may mangle input object.
     """
     visitor = Listifier()
     return visitor.visit(trace)
 
 
-def with_records(trace: ITFTrace):
+def with_records(trace: ITFTrace) -> ITFTrace:
     """
     Create a copy of the trace where sequences take the place
     of string-indexed maps.
@@ -214,6 +220,8 @@ def with_records(trace: ITFTrace):
     In TLA+ records are precisely functions with domain entirely
     of strings. This function transforms maps with domain of
     strings into ITF records.
+
+    Warning: may mangle input object.
     """
     visitor = Recordifier()
     return visitor.visit(trace)
