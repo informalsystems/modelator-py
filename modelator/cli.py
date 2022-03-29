@@ -12,11 +12,14 @@ class App:
         self.tlc = Tlc(stdin, stdout)
         self.util = Util(stdin, stdout)
 
-    def easter(*, foo=True, bar=None, wiz):
+    def easter(self, fizz, *, foo=True, bar=None, wiz):
         """
         This is an easter egg function designed as an example.
 
+        You can read this documentation with `<prefix> easter --help`.
+
         Arguments:
+            fizz : Crackle, pop!
             foo : Is it a bird, is it a plane?
             bar : How much wood would a woodchuck chuck?
             wiz : If Peter Piper picked a peck of pickled peppers...

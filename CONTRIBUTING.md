@@ -4,7 +4,8 @@ Thank you for your interest in contributing to modelator-py!
 
 This document gives best practices for contributing:
 
-- [Development](#development)
+- [Development](#development) - how to develop
+- [Architecture](#architecture-summary) - project architecture
 - [Proposing Changes](#proposing-changes) - process for agreeing to changes
 - [Forking](#forking) - fork the repo to make pull requests
 - [Pull Requests](#pull-requests) - what makes a good pull request
@@ -24,7 +25,7 @@ The Python version used is `3.9.9`.
 
 The project has _not_ been published or packaged yet so the tools should be run from a development environment (clone the repo, install the dependencies and run the python program directly). It should be easy because we are using [Poetry](https://github.com/python-poetry/poetry).
 
-### New workstation setup for developers, TLDR
+### Setting up a workstation
 
 1. Install `pyenv`
 2. Install `poetry`
@@ -36,7 +37,7 @@ The project has _not_ been published or packaged yet so the tools should be run 
 8. `poetry install`
 9. `code .` to open a VSCode instance with a Python 3.9.9 interpreter (assuming VSCode)
 
-### Commands for devs
+### Useful commands
 
 With Poetry installed run `poetry install`. Then
 
@@ -52,7 +53,7 @@ With Poetry installed run `poetry install`. Then
 - Run static type checker: `mypy .`
 - Sort imports `isort .`
 
-### Tips for VSCode users
+### VSCode Tips
 
 VSCode has solid support for Python development using Poetry. If VSCode does not pick up on Poetry then try navigating to this directory and executing
 
@@ -70,6 +71,14 @@ The branch [vscode-configuration-template](https://github.com/informalsystems/mb
 This project has been setup following the guidelines at [this](https://mitelman.engineering/blog/python-best-practice/automating-python-best-practices-for-a-new-project/) blog post. The page contains useful context for troubleshooting.
 
 If having difficulties installing poetry using `curl -sSL https://install.python-poetry.org | python3 -` on MacOS then try adding `eval "$(pyenv init --path)";` to your .bashrc or .zshrc file (given that pyenv is installed).
+
+## Architecture summary
+
+The project is setup as both a cli program and a collection of pure functions. The cli is an interface to use the pure functions but the pure functions can also be used directly by including modelator-py as a dependency and importing it into your python program. The launch point of the cli is in `modelator/cli::cli`. This is specified in `pyproject.toml::tool.poetry.scripts`.
+
+The cli uses the [python-fire](https://github.com/google/python-fire) library. Documentation for cli commands is inferred [1](https://github.com/google/python-fire/blob/master/fire/docstrings.py)[2](https://github.com/google/python-fire/issues/237#issuecomment-605653263) from [python docstrings](https://peps.python.org/pep-0257/).
+
+The [recordclass](https://pypi.org/project/recordclass/) library is another commonly used library. It provides a simple struct like type that is somewhat missing from the python language.
 
 ## Proposing Changes
 
