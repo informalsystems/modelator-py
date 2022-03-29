@@ -9,7 +9,7 @@ _**Lightweight utilities to assist model writing and model-based testing activit
 
 ## What is this project?
 
-A collection of cli utilities to reduce leg-work when developing TLA+ models, running model checkers, and doing model-based testing. The utilities are also intended to act as building blocks for future tool development.
+A collection of cli utilities to reduce leg-work when developing TLA+ models, running model checkers, and doing model-based testing. The utilities are also intended to act as building blocks for tool development in the TLA+ ecosystem.
 
 ### What can it do right now?
 
