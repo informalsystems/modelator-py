@@ -19,7 +19,7 @@ pathos = "^0.2.8"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
-black = {version = "^20.8b1", allow-prereleases = true}
+black = {version = "^22.3.0", allow-prereleases = true}
 pytest-cov = "^3.0.0"
 pre-commit = "^2.15.0"
 flake8 = "^4.0.1"
@@ -27,7 +27,7 @@ mypy = "^0.931"
 isort = "^5.9.3"
 
 [tool.poetry.scripts]
-cli = "modelator_py.cli:cli"
+modelator = "modelator_py.cli:cli"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

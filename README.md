@@ -30,7 +30,7 @@ The model-based testing capabilities developed at Informal are currently in the 
 
 ## Usage
 
-Please see [usage](./usage.md).
+Please see [usage](./samples/usage.md).
 
 ## Running the code in this repository
 

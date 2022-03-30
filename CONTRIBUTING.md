@@ -42,7 +42,7 @@ To publish a new release increment the version in `pyproject.toml`.
 
 With Poetry installed run `poetry install`. Then
 
-- Run the cli program: `poetry run cli <args>` (entrypoint is `modelator/cli:cli`)
+- Run the cli program: `poetry run modelator <args>` (entrypoint is `modelator/cli:cli`)
 - Tests: `poetry run pytest` or use your code editor. VSCode has built in support.
 - Tests with coverage: `poetry run pytest --cov=modelator tests/`
 - Tests with logging output to terminal: `poetry run pytest --log-cli-level=debug`

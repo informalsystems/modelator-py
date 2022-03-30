@@ -54,4 +54,13 @@ poetry run cli util tlc itf --json < HelloWorld_util_tlc_itf.json > traces.json
 
 ### Nuance
 
-The tool should be able to handle partial TLC outputs (if you hit `ctrl+c` while it was running, for example). The tool cannot handle lasso shaped traces yet (for temporal property violations).
+The tool should be able to handle partial TLC outputs (if you hit `ctrl+c` while it was running, for example). The tool cannot handle lasso shaped traces yet (for temporal property violations). The tool _can_ handle multiple traces (generated when using TLC's `continue` feature, for example).
+
+### FAQ
+
+1. You can dump various formats using TLC's `-dumpTrace` flag. Why does this exist?\
+This was written before that flag existed. This tool also supports multiple traces
+2. Is this fast?\
+Not really: it will take a while to extract traces with hundreds of thousands of states. If you're doing that you're likely doing model-based testing. For regular users, the speed is fine.
+3. Why don't you parse the `TTrace` files that TLC outputs instead of parsing stdout?\
+It probably should be done that way!
