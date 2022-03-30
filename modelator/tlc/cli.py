@@ -19,6 +19,8 @@ class Tlc:
         Writes the result to stdout in json.
 
         Requires json input data on stdin (`<command> < data.json`).
+
+        WARNING: does not support all CLI arguments in TLC 2.18
         """
         assert (
             self._stdin is not None
@@ -72,6 +74,8 @@ class Tlc:
         Run TLC directly without creating a temporary directory. This is mainly
         useful for debugging. Arguments can be provided on command line or by
         specifying the --json flag and providing json on stdin (`<command> < data.json`).
+
+        WARNING: does not support all CLI arguments in TLC 2.18
 
         Arguments:
             json : Read arguments from json instead of cli?
