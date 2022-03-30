@@ -2,7 +2,8 @@ import json
 import logging
 import os
 import unittest.mock
-import sys
+from contextlib import redirect_stdout
+from io import StringIO
 
 import pytest
 
@@ -61,25 +62,14 @@ def test_pure_with_json():
 
     stdin = unittest.mock.Mock()
     stdin.read = lambda: json.dumps(data)
-    out_obj = None
-    calls = 0
-    stdout = unittest.mock.Mock()
 
-    def write_out(s):
-        nonlocal out_obj
-        nonlocal calls
-        calls += 1
-        # LOG.debug(s)
-        # with open("debug.txt", "w") as fd:
-        # fd.write(s)
-        print("WRITEOUT", type(s), len(s), calls)
-        # out_obj = json.loads(s)
-
-    stdout.write = write_out
-    app = Tlc(stdin, stdout)
-    app.pure()
+    app = Tlc(stdin)
+    s = StringIO()
+    with redirect_stdout(s):
+        app.pure()
     # Check that TLC finishes
-    # assert "Finished in" in out_obj["stdout"]
+    json_obj = json.loads(s.getvalue())
+    assert "Finished in" in json_obj["stdout"]
 
 
 @pytest.mark.skip(
@@ -88,6 +78,8 @@ def test_pure_with_json():
 def test_raw_with_json():
     """
     Use for debugging - using the raw interface is not idempotent
+
+    This is a convenient debugging test, and you could write your own assertions.
     """
 
     data = {
@@ -103,7 +95,5 @@ def test_raw_with_json():
 
     stdin = unittest.mock.Mock()
     stdin.read = lambda: json.dumps(data)
-    stdout = unittest.mock.Mock()
-    stdout.write = lambda s: None
     app = Tlc(stdin)
     app.raw(json=True)

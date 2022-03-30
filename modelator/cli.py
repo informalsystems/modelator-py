@@ -8,11 +8,11 @@ from .apalache.cli import Apalache
 
 
 class App:
-    def __init__(self, stdin, stdout):
+    def __init__(self, stdin):
         self._stdin = stdin
-        self.tlc = Tlc(stdin, stdout)
-        self.apalache = Apalache(stdin, stdout)
-        self.util = Util(stdin, stdout)
+        self.tlc = Tlc(stdin)
+        self.apalache = Apalache(stdin)
+        self.util = Util(stdin)
 
     def easter(self, fizz, *, foo=True, bar=None, wiz):
         """
@@ -38,7 +38,7 @@ def cli():
             "Providing only stdin input is not yet supported (at least one argument must be given)"
         )
     else:
-        app = App(sys.stdin, sys.stdout)
+        app = App(sys.stdin)
         fire.Fire(app)
 
 
