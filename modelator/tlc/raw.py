@@ -89,8 +89,7 @@ def tlc_raw(*, cmd: RawCmd = None, json=None):
 
     Run TLC with side effects without creating a temporary directory.
 
-    Returns an ExecutionResult with .process and .files properties. Contains the
-    subprocess result, and the list of filesystem files (and contents).
+    Returns a subprocess call result object.
     """
     assert cmd is not None or json is not None
     assert not (cmd is not None and json is not None)
