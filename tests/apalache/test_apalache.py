@@ -8,9 +8,9 @@ from io import StringIO
 import pytest
 
 from modelator.apalache.cli import Apalache
-from modelator.apalache.raw import RawCmd, ApalacheArgs, stringify_raw_cmd
+from modelator.apalache.raw import ApalacheArgs, RawCmd, stringify_raw_cmd
 
-from ..helper import get_resource_dir, get_apalache_path
+from ..helper import get_apalache_path, get_resource_dir
 
 LOG = logging.getLogger(__name__)
 

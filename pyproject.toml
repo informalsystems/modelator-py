@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "modelator"
 version = "0.1.0"
-description = "TODO:"
+description = "Lightweight utilities to assist model writing and model-based testing activities using the TLA+ ecosystem"
 authors = ["Daniel Tisdall <daniel@informal.systems>"]
 
 [tool.poetry.dependencies]
@@ -14,7 +14,7 @@ pathos = "^0.2.8"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
-black = {version = "^21.10b0", allow-prereleases = true}
+black = {version = "^20.8b1", allow-prereleases = true}
 pytest-cov = "^3.0.0"
 pre-commit = "^2.15.0"
 flake8 = "^4.0.1"

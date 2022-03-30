@@ -1,14 +1,12 @@
-import os
 import logging
+import os
 import tempfile
-from turtle import back
 
 from recordclass import recordclass
 
+from ..helper import get_dirnames_in_dir, read_entire_dir_contents
 from .args import ApalacheArgs
 from .raw import RawCmd, apalache_raw
-
-from ..helper import get_dirnames_in_dir, get_filenames_in_dir, read_entire_dir_contents
 
 LOG = logging.getLogger(__name__)
 
