@@ -5,9 +5,8 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
-[![PyPi version](https://pypip.in/v/$REPO/badge.png)](https://crate.io/packages/$REPO/)
-[![Latest Version](https://pypip.in/version/modelator-py/badge.svg)](https://pypi.python.org/pypi/modelator-py/)
-[![Downloads](https://pypip.in/download/modelator-py/badge.svg)](https://pypi.python.org/pypi/modelator-py/)
+[![PyPI](https://img.shields.io/pypi/v/modelator-py?label=pypi%20package)](https://pypi.python.org/pypi/modelator-py/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/modelator-py)](https://pypi.python.org/pypi/modelator-py/)
 
 _**Lightweight utilities to assist model writing and model-based testing activities using the TLA+ ecosystem.**_
 
