@@ -1,4 +1,4 @@
 [flake8]
-exclude = modelator/util/tla/**,tests/util/tla/**
+exclude = modelator_py/util/tla/**,tests/util/tla/**
 max-line-length = 88
 extend-ignore = E203,E501,W605

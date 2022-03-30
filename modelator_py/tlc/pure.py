@@ -3,7 +3,7 @@ import tempfile
 
 from recordclass import recordclass
 
-from modelator.tlc.args import TlcArgs
+from modelator_py.tlc.args import TlcArgs
 
 from ..helper import read_entire_dir_contents
 from .raw import RawCmd, tlc_raw

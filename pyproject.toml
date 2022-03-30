@@ -1,8 +1,13 @@
 [tool.poetry]
-name = "modelator"
+name = "modelator_py"
 version = "0.1.0"
 description = "Lightweight utilities to assist model writing and model-based testing activities using the TLA+ ecosystem"
 authors = ["Daniel Tisdall <daniel@informal.systems>"]
+readme = "README.md"
+homepage = "https://mbt.informal.systems/"
+repository = "https://github.com/informalsystems/modelator-py/"
+documentation = "https://github.com/informalsystems/modelator-py/"
+keywords = ["utility", "tla", "tlaplus", "tlc", "apalache"]
 
 [tool.poetry.dependencies]
 python = "^3.9.7"
@@ -22,7 +27,7 @@ mypy = "^0.931"
 isort = "^5.9.3"
 
 [tool.poetry.scripts]
-cli = "modelator.cli:cli"
+cli = "modelator_py.cli:cli"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

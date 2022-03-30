@@ -1,7 +1,7 @@
 import os
 
-from modelator.util.tla import parser, to_str
-from modelator.util.tlc.state_to_informal_trace_format import (
+from modelator_py.util.tla import parser, to_str
+from modelator_py.util.tlc.state_to_informal_trace_format import (
     state_to_informal_trace_format_state,
 )
 
