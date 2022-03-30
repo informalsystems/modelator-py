@@ -1,8 +1,8 @@
 import os
 
-from modelator.util.informal_trace_format import with_lists, with_records
-from modelator.util.tlc.itf import TLCITFCmd, tlc_itf
-from modelator.util.tlc.stdout_to_informal_trace_format import (
+from modelator_py.util.informal_trace_format import with_lists, with_records
+from modelator_py.util.tlc.itf import TLCITFCmd, tlc_itf
+from modelator_py.util.tlc.stdout_to_informal_trace_format import (
     extract_traces,
     tlc_trace_to_informal_trace_format_trace,
 )

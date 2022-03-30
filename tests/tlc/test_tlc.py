@@ -7,8 +7,8 @@ from io import StringIO
 
 import pytest
 
-from modelator.tlc.cli import Tlc
-from modelator.tlc.raw import RawCmd, TlcArgs, stringify_raw_cmd
+from modelator_py.tlc.cli import Tlc
+from modelator_py.tlc.raw import RawCmd, TlcArgs, stringify_raw_cmd
 
 from ..helper import get_resource_dir, get_tlc_path
 

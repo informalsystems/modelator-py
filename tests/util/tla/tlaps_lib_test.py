@@ -4,7 +4,7 @@ This module requires an installation of TLAPS.
 """
 import os
 
-from modelator.util.tla import parser, to_str
+from modelator_py.util.tla import parser, to_str
 
 # change this variable to a path where
 # the TLAPS library is present

@@ -7,8 +7,8 @@ from io import StringIO
 
 import pytest
 
-from modelator.apalache.cli import Apalache
-from modelator.apalache.raw import ApalacheArgs, RawCmd, stringify_raw_cmd
+from modelator_py.apalache.cli import Apalache
+from modelator_py.apalache.raw import ApalacheArgs, RawCmd, stringify_raw_cmd
 
 from ..helper import get_apalache_path, get_resource_dir
 

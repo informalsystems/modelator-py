@@ -1,6 +1,6 @@
 from recordclass import recordclass
 
-from modelator.helper import parallel_map
+from modelator_py.helper import parallel_map
 
 from ..informal_trace_format import JsonSerializer, with_lists, with_records
 from .stdout_to_informal_trace_format import (

@@ -1,6 +1,6 @@
 """How to parse a TLA+ module."""
-from modelator.util.tla import parser
-from modelator.util.tla.to_str import Nodes
+from modelator_py.util.tla import parser
+from modelator_py.util.tla.to_str import Nodes
 
 TLA_FILE_PATH = "Counter.tla"
 
