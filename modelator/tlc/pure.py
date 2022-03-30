@@ -59,7 +59,7 @@ def tlc_pure(*, cmd: PureCmd = None, json=None):  # type: ignore
 
     result = None
 
-    with tempfile.TemporaryDirectory(prefix="mbt-python-tlc-temp-dir-") as dirname:
+    with tempfile.TemporaryDirectory(prefix="modelator-py-tlc-temp-dir-") as dirname:
         raw_cmd.cwd = dirname
         for filename, file_content_str in cmd.files.items():
             full_path = os.path.join(dirname, filename)

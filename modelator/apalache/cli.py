@@ -111,7 +111,7 @@ class Apalache:
         result = None
         if json:
             json_dict = stdjson.loads(self.stdin.read())
-            result = apalache_raw(json_obj=json_dict)
+            result = apalache_raw(json=json_dict)
         else:
             raw_cmd = RawCmd()
             raw_cmd.cwd = cwd
