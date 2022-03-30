@@ -2,9 +2,9 @@ import sys
 
 import fire
 
+from .apalache.cli import Apalache
 from .tlc.cli import Tlc
 from .util.cli import Util
-from .apalache.cli import Apalache
 
 
 class App:

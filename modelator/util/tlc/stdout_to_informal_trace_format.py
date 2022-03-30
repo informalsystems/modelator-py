@@ -91,7 +91,7 @@ def trace_lines_simulation_mode(stdout) -> typing.List[typing.List[str]]:
     return ret
 
 
-def split_into_states(lines: typing.List[str]) -> typing.List[str]:
+def split_into_states(lines: typing.List[str]) -> typing.List[typing.List[str]]:
     """
     Converts a TLA+/ASCII trace string expression into a list of TLA+ state
     string expressions. Requires removing non-TLA+ ascii from the trace string
@@ -117,7 +117,7 @@ def split_into_states(lines: typing.List[str]) -> typing.List[str]:
     return ret
 
 
-def extract_traces(stdout: str) -> typing.List[typing.List[str]]:
+def extract_traces(stdout: str):
     """
     Extract zero, one or more traces from the stdout of TLC.
 
@@ -131,7 +131,7 @@ def extract_traces(stdout: str) -> typing.List[typing.List[str]]:
         traces = trace_lines_simulation_mode(stdout)
     else:
         traces = trace_lines_model_checking_mode(stdout)
-    traces = [split_into_states(t) for t in traces]
+    traces = [split_into_states(t) for t in traces]  # type:ignore
     traces = [["\n".join(lines) for lines in t] for t in traces]
     return traces
 
