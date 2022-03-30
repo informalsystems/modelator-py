@@ -4,12 +4,14 @@ import fire
 
 from .tlc.cli import Tlc
 from .util.cli import Util
+from .apalache.cli import Apalache
 
 
 class App:
     def __init__(self, stdin, stdout):
         self._stdin = stdin
         self.tlc = Tlc(stdin, stdout)
+        self.apalache = Apalache(stdin, stdout)
         self.util = Util(stdin, stdout)
 
     def easter(self, fizz, *, foo=True, bar=None, wiz):

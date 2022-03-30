@@ -117,7 +117,7 @@ def split_into_states(lines: typing.List[str]) -> typing.List[str]:
     return ret
 
 
-def extract_traces(stdout: str) -> typing.list[typing.list[str]]:
+def extract_traces(stdout: str) -> typing.List[typing.List[str]]:
     """
     Extract zero, one or more traces from the stdout of TLC.
 

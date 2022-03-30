@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 TLC_PATH = "/Users/danwt/Documents/work/modelator-py/mc_tlc.jar"
+APALACHE_PATH = "/Users/danwt/Documents/work/modelator-py/mc_apa.jar"
 
 
 def get_tests_dir():
@@ -21,3 +22,7 @@ def get_resource_dir():
 
 def get_tlc_path():
     return TLC_PATH
+
+
+def get_apalache_path():
+    return APALACHE_PATH
