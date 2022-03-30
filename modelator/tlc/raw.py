@@ -102,10 +102,14 @@ def tlc_raw(*, cmd: RawCmd = None, json=None):
         cmd.cwd = os.path.expanduser(cmd.cwd)
         if not os.path.isabs(cmd.cwd):
             raise Exception("cwd must be absolute (after expanding user)")
+    if cmd.cwd is None:
+        raise Exception("cwd must be absolute (after expanding user)")
     if cmd.jar is not None:
         cmd.jar = os.path.expanduser(cmd.jar)
         if not os.path.isabs(cmd.jar):
             raise Exception("TLC jar path must be absolute (after expanding user)")
+    if cmd.jar is None:
+        raise Exception("TLC jar path must be absolute (after expanding user)")
 
     cmd_str = stringify_raw_cmd(cmd)
 

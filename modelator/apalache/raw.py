@@ -14,7 +14,7 @@ raw_cmd_fields = (
     "mem",  # Read the contents of the output directory into memory (?)
     "cleanup",  # Delete the output directory after Apalache terminates (?)
     "cwd",  # Current working directory for child shell process
-    "jar",  # Location of Apalache jar (full path with suffix like apalache-pkg-0.xx.0-full.jar)
+    "jar",  # Location of Apalache jar (full path with suffix like apalache.jar)
     "args",  # Apalache args
 )
 
@@ -74,29 +74,34 @@ ExecutionResult = recordclass(
 )
 
 
-def apalache_raw(*, cmd: RawCmd = None, json_obj=None):
+def json_to_cmd(json) -> RawCmd:
+    json_obj = {
+        "mem": None,
+        "cleanup": None,
+        "cwd": None,
+        "jar": None,
+        "args": None,
+    } | json_obj
+    cmd = RawCmd()
+    cmd.mem = json_obj["mem"]
+    cmd.cleanup = json_obj["cleanup"]
+    cmd.cwd = json_obj["cwd"]
+    cmd.jar = json_obj["jar"]
+    cmd.args = ApalacheArgs(**json_obj["args"])
+    return cmd
+
+
+def apalache_raw(*, cmd: RawCmd = None, json=None):
     """
     Execute an Apalache command using either a RawCmd object, or build the RawCmd from json
 
     Returns an ExecutionResult with .process and .files properties.
     Contains the subprocess result, and the list of filesystem files (and contents).
     """
-    assert not (cmd is not None and json_obj is not None)
+    assert not (cmd is not None and json is not None)
 
-    if json_obj is not None:
-        json_obj = {
-            "mem": None,
-            "cleanup": None,
-            "cwd": None,
-            "jar": None,
-            "args": None,
-        } | json_obj
-        cmd = RawCmd()
-        cmd.mem = json_obj["mem"]
-        cmd.cleanup = json_obj["cleanup"]
-        cmd.cwd = json_obj["cwd"]
-        cmd.jar = json_obj["jar"]
-        cmd.args = ApalacheArgs(**json_obj["args"])
+    if json is not None:
+        cmd = json_to_cmd(json)
 
     if cmd.args.out_dir is not None:
         cmd.args.out_dir = os.path.expanduser(cmd.args.out_dir)
