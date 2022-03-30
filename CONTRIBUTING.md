@@ -24,7 +24,7 @@ The Python version used is `3.9.9`.
 
 ### Packaging
 
-The project has _not_ been published or packaged yet so the tools should be run from a development environment (clone the repo, install the dependencies and run the python program directly). It should be easy because we are using [Poetry](https://github.com/python-poetry/poetry).
+To publish a new release increment the version in `pyproject.toml`.
 
 ### Setting up a workstation
 

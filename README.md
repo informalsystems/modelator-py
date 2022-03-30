@@ -3,7 +3,11 @@
 |⚠️ The tools in this repo are unstable and may be subject to major changes ⚠️|
 |-|
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![PyPi version](https://pypip.in/v/$REPO/badge.png)](https://crate.io/packages/$REPO/)
+[![Latest Version](https://pypip.in/version/modelator-py/badge.svg)](https://pypi.python.org/pypi/modelator-py/)
+[![Downloads](https://pypip.in/download/modelator-py/badge.svg)](https://pypi.python.org/pypi/modelator-py/)
 
 _**Lightweight utilities to assist model writing and model-based testing activities using the TLA+ ecosystem.**_
 
@@ -17,8 +21,8 @@ Currently there is a cli implementing utilities:
 
 - [x] Run [TLC](https://github.com/tlaplus/tlaplus) model checker without side effects (runs in temporary directory and is cleaned up)
 - [x] Run [TLC](https://github.com/tlaplus/tlaplus) model checker programmatically (reads and returns json data)
-- [x] ~Run [Apalache](https://github.com/informalsystems/apalache) model checker without side effects (runs in temporary directory and is cleaned up)~ (needs patch)
-- [x] ~Run [Apalache](https://github.com/informalsystems/apalache) model checker programmatically (reads and returns json data)~ (needs patch)
+- [x] Run [Apalache](https://github.com/informalsystems/apalache) model checker without side effects (runs in temporary directory and is cleaned up)
+- [x] Run [Apalache](https://github.com/informalsystems/apalache) model checker programmatically (reads and returns json data)
 - [x] Extract traces from TLC output in [Informal Trace Format](https://apalache.informal.systems/docs/adr/015adr-trace.html?highlight=trace%20format#the-itf-format) format (concise and machine readable counterexample representation)
 
 ### What will it do in the future?
