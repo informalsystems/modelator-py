@@ -34,10 +34,38 @@ class Apalache:
         self,
         *,
         json=None,
-        mem=False,
-        cleanup=False,
         cwd=None,
         jar=None,
+        cmd=None,
+        file=None,
+        config_file=None,
+        debug=None,
+        out_dir=None,
+        profiling=None,
+        run_dir=None,
+        smtprof=None,
+        write_intermediate=None,
+        algo=None,
+        cinit=None,
+        config=None,
+        discard_disabled=None,
+        init=None,
+        inv=None,
+        length=None,
+        max_error=None,
+        no_deadlock=None,
+        nworkers=None,
+        smt_encoding=None,
+        tuning=None,
+        tuning_options=None,
+        view=None,
+        enable_stats=None,
+        before=None,
+        action=None,
+        assertion=None,
+        next=None,
+        infer_poly=None,
+        output=None,
     ):
         """
         Run Apalache without removing side effects (for debugging).
@@ -48,12 +76,38 @@ class Apalache:
 
         Arguments:
             json : Read arguments from json instead of cli?
-            mem : TODO:
-            cleanup : TODO:
             cwd : Full path to directory to run Apalache from.
             jar : Full path to Apalache version 0.23.0 jar (other versions may work).
-            TODO:
-
+            cmd : Apalache argument, see `<apalache> --help`.
+            file : Apalache argument, see `<apalache> --help`.
+            config_file : Apalache argument, see `<apalache> --help`.
+            debug : Apalache argument, see `<apalache> --help`.
+            out_dir : Apalache argument, see `<apalache> --help`.
+            profiling : Apalache argument, see `<apalache> --help`.
+            run_dir : Apalache argument, see `<apalache> --help`.
+            smtprof : Apalache argument, see `<apalache> --help`.
+            write_intermediate : Apalache argument, see `<apalache> --help`.
+            algo : Apalache argument, see `<apalache> --help`.
+            cinit : Apalache argument, see `<apalache> --help`.
+            config : Apalache argument, see `<apalache> --help`.
+            discard_disabled : Apalache argument, see `<apalache> --help`.
+            init : Apalache argument, see `<apalache> --help`.
+            inv : Apalache argument, see `<apalache> --help`.
+            length : Apalache argument, see `<apalache> --help`.
+            max_error : Apalache argument, see `<apalache> --help`.
+            no_deadlock : Apalache argument, see `<apalache> --help`.
+            nworkers : Apalache argument, see `<apalache> --help`.
+            smt_encoding : Apalache argument, see `<apalache> --help`.
+            tuning : Apalache argument, see `<apalache> --help`.
+            tuning_options : Apalache argument, see `<apalache> --help`.
+            view : Apalache argument, see `<apalache> --help`.
+            enable_stats : Apalache argument, see `<apalache> --help`.
+            before : Apalache argument, see `<apalache> --help`.
+            action : Apalache argument, see `<apalache> --help`.
+            assertion : Apalache argument, see `<apalache> --help`.
+            next : Apalache argument, see `<apalache> --help`.
+            infer_poly : Apalache argument, see `<apalache> --help`.
+            output : Apalache argument, see `<apalache> --help`.
         """
         result = None
         if json:
@@ -61,23 +115,51 @@ class Apalache:
             result = apalache_raw(json_obj=json_dict)
         else:
             raw_cmd = RawCmd()
-            raw_cmd.mem = mem
-            raw_cmd.cleanup = cleanup
             raw_cmd.cwd = cwd
             raw_cmd.jar = jar
-            raw_cmd.args = ApalacheArgs()
+            raw_cmd.args = ApalacheArgs(
+                cmd,
+                file,
+                config_file,
+                debug,
+                out_dir,
+                profiling,
+                run_dir,
+                smtprof,
+                write_intermediate,
+                algo,
+                cinit,
+                config,
+                discard_disabled,
+                init,
+                inv,
+                length,
+                max_error,
+                no_deadlock,
+                nworkers,
+                smt_encoding,
+                tuning,
+                tuning_options,
+                view,
+                enable_stats,
+                before,
+                action,
+                assertion,
+                next,
+                infer_poly,
+                output,
+            )
 
             result = apalache_raw(cmd=raw_cmd)
 
-        stdout_pretty = result.process.stdout.decode("unicode_escape")
-        stderr_pretty = result.process.stderr.decode("unicode_escape")
+        stdout_pretty = result.stdout.decode("unicode_escape")
+        stderr_pretty = result.stderr.decode("unicode_escape")
 
         obj_to_print = {}
-        obj_to_print["shell_cmd"] = result.process.args
-        obj_to_print["return_code"] = result.process.returncode
+        obj_to_print["shell_cmd"] = result.args
+        obj_to_print["return_code"] = result.returncode
         obj_to_print["stdout"] = stdout_pretty
         obj_to_print["stderr"] = stderr_pretty
-        obj_to_print["apalache_output_files"] = result.files
 
         to_print = stdjson.dumps(obj_to_print, indent=4, sort_keys=True)
         print(to_print, file=self._stdout)
