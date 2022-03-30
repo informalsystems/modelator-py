@@ -26,6 +26,17 @@ The Python version used is `3.9.9`.
 
 To publish a new release increment the version in `pyproject.toml`.
 
+Then
+
+```bash
+poetry build;
+poetry publish; # requires credentials
+```
+
+### Usage
+
+Please see [usage](./samples/usage).
+
 ### Setting up a workstation
 
 1. Install `pyenv`
