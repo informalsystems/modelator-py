@@ -85,10 +85,11 @@ def json_to_cmd(json) -> RawCmd:
 
 def tlc_raw(*, cmd: RawCmd = None, json=None):
     """
-    Execute a Tlc command using either a RawCmd object, or build the RawCmd from json
+    Run a TLC command using either a RawCmd object, or build the RawCmd from json.
 
-    Returns an ExecutionResult with .process and .files properties.
-    Contains the subprocess result, and the list of filesystem files (and contents).
+    Run TLC with side effects without creating a temporary directory.
+
+    Returns a subprocess call result object.
     """
     assert cmd is not None or json is not None
     assert not (cmd is not None and json is not None)
@@ -100,10 +101,14 @@ def tlc_raw(*, cmd: RawCmd = None, json=None):
         cmd.cwd = os.path.expanduser(cmd.cwd)
         if not os.path.isabs(cmd.cwd):
             raise Exception("cwd must be absolute (after expanding user)")
+    if cmd.cwd is None:
+        raise Exception("cwd must be absolute (after expanding user)")
     if cmd.jar is not None:
         cmd.jar = os.path.expanduser(cmd.jar)
         if not os.path.isabs(cmd.jar):
-            raise Exception("tlc jar path must be absolute (after expanding user)")
+            raise Exception("TLC jar path must be absolute (after expanding user)")
+    if cmd.jar is None:
+        raise Exception("TLC jar path must be absolute (after expanding user)")
 
     cmd_str = stringify_raw_cmd(cmd)
 

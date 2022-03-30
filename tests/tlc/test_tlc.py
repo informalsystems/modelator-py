@@ -2,6 +2,8 @@ import json
 import logging
 import os
 import unittest.mock
+from contextlib import redirect_stdout
+from io import StringIO
 
 import pytest
 
@@ -26,7 +28,9 @@ def test_stringify_raw_cmd():
     args.file = "HelloWorld.tla"
     cmd.args = args
     cmd_str = stringify_raw_cmd(cmd)
-    LOG.debug(cmd_str)
+    assert cmd_str.endswith(
+        "tlc2.TLC -cleanup -config HelloWorld.cfg -workers auto HelloWorld.tla"
+    )
 
 
 def test_pure_with_json():
@@ -58,8 +62,14 @@ def test_pure_with_json():
 
     stdin = unittest.mock.Mock()
     stdin.read = lambda: json.dumps(data)
+
     app = Tlc(stdin)
-    app.pure()
+    s = StringIO()
+    with redirect_stdout(s):
+        app.pure()
+    # Check that TLC finishes
+    json_obj = json.loads(s.getvalue())
+    assert "Finished in" in json_obj["stdout"]
 
 
 @pytest.mark.skip(
@@ -68,6 +78,8 @@ def test_pure_with_json():
 def test_raw_with_json():
     """
     Use for debugging - using the raw interface is not idempotent
+
+    This is a convenient debugging test, and you could write your own assertions.
     """
 
     data = {

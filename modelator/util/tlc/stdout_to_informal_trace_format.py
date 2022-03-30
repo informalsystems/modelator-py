@@ -6,10 +6,12 @@ from .state_to_informal_trace_format import state_to_informal_trace_format_state
 
 
 def trace_lines_model_checking_mode(stdout) -> typing.List[typing.List[str]]:
-    """Returns list of lists. Each sublist is a list of lines
+    """
+    Returns list of lists. Each sublist is a list of lines
     that make a trace.
 
-    stdout : stdout of TLC execution run in model checking mode
+    Args:
+        stdout : stdout of TLC execution run in model checking mode
     """
     ret = []
     lines = stdout.split("\n")
@@ -55,10 +57,12 @@ def trace_lines_model_checking_mode(stdout) -> typing.List[typing.List[str]]:
 
 
 def trace_lines_simulation_mode(stdout) -> typing.List[typing.List[str]]:
-    """Returns list of lists. Each sublist is a list of lines
+    """
+    Returns list of lists. Each sublist is a list of lines
     that make a trace.
 
-    stdout : stdout of TLC execution run in simulation mode
+    Args:
+        stdout : stdout of TLC execution run in simulation mode
     """
     ret = []
     lines = stdout.split("\n")
@@ -87,9 +91,11 @@ def trace_lines_simulation_mode(stdout) -> typing.List[typing.List[str]]:
     return ret
 
 
-def split_into_states(lines) -> typing.List[str]:
+def split_into_states(lines: typing.List[str]) -> typing.List[str]:
     """
-    Returns a list of states.
+    Converts a TLA+/ASCII trace string expression into a list of TLA+ state
+    string expressions. Requires removing non-TLA+ ascii from the trace string
+    expression.
 
     A trace from TLC is a sequence of [header, content] pairs.
     The headers are not valid TLA+.
@@ -111,7 +117,7 @@ def split_into_states(lines) -> typing.List[str]:
     return ret
 
 
-def extract_traces(stdout: str):
+def extract_traces(stdout: str) -> typing.List[typing.List[str]]:
     """
     Extract zero, one or more traces from the stdout of TLC.
 

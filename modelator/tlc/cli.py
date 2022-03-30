@@ -9,6 +9,19 @@ class Tlc:
         self._stdin = stdin
 
     def pure(self):
+        """
+        Run TLC without side effects using json input data.
+
+        Runs TLC in a temporary directory, writing all necessary data into the
+        directory before calling TLC, and reading back all necessary results
+        back into memory.
+
+        Writes the result to stdout in json.
+
+        Requires json input data on stdin (`<command> < data.json`).
+
+        WARNING: does not support all CLI arguments in TLC 2.18
+        """
         assert (
             self._stdin is not None
         ), "The pure interface requires json input in stdin"
@@ -21,11 +34,9 @@ class Tlc:
     def raw(
         self,
         *,
-        # Meta args
-        json=False,  # Read parameters from Json?
-        cwd=None,  # Current working directory to execute TLC
-        jar=None,  # Path to tla2tools.jar
-        # TLC args
+        json=False,
+        cwd=None,
+        jar=None,
         aril=None,
         checkpoint=None,
         cleanup=None,
@@ -58,7 +69,48 @@ class Tlc:
         file=None,
     ):
         """
-        Execute TLC
+        Run TLC without removing side effects (for debugging).
+
+        Run TLC directly without creating a temporary directory. This is mainly
+        useful for debugging. Arguments can be provided on command line or by
+        specifying the --json flag and providing json on stdin (`<command> < data.json`).
+
+        WARNING: does not support all CLI arguments in TLC 2.18
+
+        Arguments:
+            json : Read arguments from json instead of cli?
+            cwd : Full path to directory to run TLC from.
+            jar : Full path to TLC version 2.18 jar (other versions may work).
+            aril : TLC argument, see `<tlc> --help`.
+            checkpoint : TLC argument, see `<tlc> --help`.
+            cleanup : TLC argument, see `<tlc> --help`.
+            config : TLC argument, see `<tlc> --help`.
+            cont : TLC argument, see `<tlc> --help`.
+            coverage : TLC argument, see `<tlc> --help`.
+            deadlock : TLC argument, see `<tlc> --help`.
+            debug : TLC argument, see `<tlc> --help`.
+            depth : TLC argument, see `<tlc> --help`.
+            dfid : TLC argument, see `<tlc> --help`.
+            difftrace : TLC argument, see `<tlc> --help`.
+            dump : TLC argument, see `<tlc> --help`.
+            fp : TLC argument, see `<tlc> --help`.
+            fpbits : TLC argument, see `<tlc> --help`.
+            fpmem : TLC argument, see `<tlc> --help`.
+            generate_spec_te : TLC argument, see `<tlc> --help`.
+            gzip : TLC argument, see `<tlc> --help`.
+            h : TLC argument, see `<tlc> --help`.
+            max_set_size : TLC argument, see `<tlc> --help`.
+            metadir : TLC argument, see `<tlc> --help`.
+            nowarning : TLC argument, see `<tlc> --help`.
+            recover : TLC argument, see `<tlc> --help`.
+            seed : TLC argument, see `<tlc> --help`.
+            simulate : TLC argument, see `<tlc> --help`.
+            terse : TLC argument, see `<tlc> --help`.
+            tool : TLC argument, see `<tlc> --help`.
+            userfile : TLC argument, see `<tlc> --help`.
+            view : TLC argument, see `<tlc> --help`.
+            workers : TLC argument, see `<tlc> --help`.
+            file : TLC argument, see `<tlc> --help`.
         """
         result = None
         if json:

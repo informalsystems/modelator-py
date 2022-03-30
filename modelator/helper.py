@@ -14,7 +14,18 @@ def get_filenames_in_dir(path):
     return [f for f in full if os.path.isfile(f)]
 
 
+def get_dirnames_in_dir(path):
+    bases = os.listdir(path)
+    full = [os.path.join(path, f) for f in bases]
+    return [f for f in full if os.path.isdir(f)]
+
+
 def read_entire_dir_contents(path):
+    """
+    Read contents of directory into a dictionary
+
+    Non recursive
+    """
     if not os.path.isabs(path):
         raise Exception(f"Cannot read directory {path=} as it is not absolute")
     files = get_filenames_in_dir(path)

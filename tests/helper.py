@@ -1,7 +1,8 @@
 import os
 from pathlib import Path
 
-TLC_PATH = "/Users/danwt/Documents/model-checkers/tla2tools.jar"
+TLC_PATH = "large/tlc_2_18.jar"
+APALACHE_PATH = "large/apa_0_23_0.jar"
 
 
 def get_tests_dir():
@@ -20,4 +21,8 @@ def get_resource_dir():
 
 
 def get_tlc_path():
-    return TLC_PATH
+    return os.path.join(get_project_dir(), TLC_PATH)
+
+
+def get_apalache_path():
+    return os.path.join(get_project_dir(), APALACHE_PATH)
