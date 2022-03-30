@@ -76,21 +76,20 @@ If having difficulties installing poetry using `curl -sSL https://install.python
 
 The project is setup as both a cli program and a collection of pure functions. The cli is an interface to use the pure functions but the pure functions can also be used directly by including modelator-py as a dependency and importing it into your python program. The launch point of the cli is in `modelator/cli::cli`. This is specified in `pyproject.toml::tool.poetry.scripts`.
 
-The cli uses the [python-fire](https://github.com/google/python-fire) library. Documentation for cli commands is inferred [1](https://github.com/google/python-fire/blob/master/fire/docstrings.py)[2](https://github.com/google/python-fire/issues/237#issuecomment-605653263) from [python docstrings](https://peps.python.org/pep-0257/). [Here's](https://github.com/informalsystems/modelator-py/blob/c87d0985d9b40d2d2980216eadbbf2b3ca2e8998/modelator/cli.py#L15-L26) an example.
+The cli uses the [python-fire](https://github.com/google/python-fire) library. Documentation for cli commands is inferred [[1](https://github.com/google/python-fire/blob/master/fire/docstrings.py),[2](<https://github.com/google/python-fire/issues/237#issuecomment-605653263>)] from [python docstrings](https://peps.python.org/pep-0257/). [Here's](https://github.com/informalsystems/modelator-py/blob/c87d0985d9b40d2d2980216eadbbf2b3ca2e8998/modelator/cli.py#L15-L26) an example.
 
-The [recordclass](https://pypi.org/project/recordclass/) library is another commonly used library. It provides a simple struct like type that is somewhat missing from the python language.
+The [recordclass](https://pypi.org/project/recordclass/) library is another commonly used library. It provides a simple struct type that is somewhat missing from the python language.
 
 ## Proposing Changes
 
-When contributing to the project, adhering to the following guidelines will
-dramatically increase the likelihood of changes being accepted quickly.
+When contributing to the project, following the guidelines will increase the likelihood of changes being accepted quickly.
 
 ### Create/locate an issue
 
 1. A good place to start is to search through the [existing
    issues](https://github.com/informalsystems/modelator-py/issues) for the
    problem you're encountering.
-2. If no relevant issues exist, submit one describing the _problem_ you're
+2. If no issues exist, submit one describing the _problem_ you're
    facing, as well as a _definition of done_. A definition of done, which tells
    us how to know when the issue can be closed, helps us to scope the problem
    and give it definite boundaries. Without a definition of done, issues can
