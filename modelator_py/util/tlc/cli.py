@@ -1,6 +1,6 @@
 import json as stdjson
 
-from .itf import TLCITFCmd, tlc_itf
+from .itf import TlcITFCmd, tlc_itf
 
 
 class Tlc:
@@ -35,7 +35,7 @@ class Tlc:
                 self._stdin is not None
             ), "TLC's stdout string should be passed on stdin if not passing json"
 
-            cmd = TLCITFCmd()
+            cmd = TlcITFCmd()
             cmd.stdout = self._stdin.read()
             cmd.lists = lists
             cmd.records = records
