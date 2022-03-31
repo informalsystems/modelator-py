@@ -1,1 +1,1 @@
-modelator-py==0.1.3
+modelator-py==0.1.4
