@@ -1,18 +1,17 @@
 import json as stdjson
 import os
 import sys
+from contextlib import redirect_stdout
 
-from modelator_py.apalache.args import ApalacheArgs
-from modelator_py.apalache.pure import PureCmd as ApalachePureCmd
-from modelator_py.apalache.pure import apalache_pure
-from modelator_py.apalache.raw import RawCmd as ApalacheRawCmd
-from modelator_py.apalache.raw import apalache_raw
-from modelator_py.tlc.args import TlcArgs
-from modelator_py.tlc.pure import PureCmd as TlcPureCmd
-from modelator_py.tlc.pure import tlc_pure
-from modelator_py.tlc.raw import RawCmd as TlcRawCmd
-from modelator_py.tlc.raw import tlc_raw
-from modelator_py.util.tlc.itf import TLCITFCmd, tlc_itf
+from modelator_py.apalache import (
+    ApalacheArgs,
+    ApalachePureCmd,
+    ApalacheRawCmd,
+    apalache_pure,
+    apalache_raw,
+)
+from modelator_py.tlc import TlcArgs, TlcPureCmd, TlcRawCmd, tlc_pure, tlc_raw
+from modelator_py.util.tlc.itf import TlcITFCmd, tlc_itf
 
 # mypy: ignore-errors
 
@@ -300,7 +299,7 @@ def tlc_itf_cmd_demo():
 
     # See TlcTraces.out for example TLC output
 
-    cmd = TLCITFCmd()
+    cmd = TlcITFCmd()
     cmd.stdout = read_file("TlcTraces.out")["TlcTraces.out"]
 
     result = tlc_itf(cmd=cmd)
@@ -330,3 +329,19 @@ if __name__ == "__main__":
         tlc_itf_json_demo()
     if sys.argv[1] == "tlc_itf_cmd":
         tlc_itf_cmd_demo()
+    if sys.argv[1] == "all":
+        for fun in [
+            apalache_pure_json_demo,
+            apalache_pure_cmd_demo,
+            apalache_raw_json_demo,
+            apalache_raw_cmd_demo,
+            tlc_pure_json_demo,
+            tlc_pure_cmd_demo,
+            tlc_raw_json_demo,
+            tlc_raw_cmd_demo,
+            tlc_itf_json_demo,
+            tlc_itf_cmd_demo,
+        ]:
+            with open(f"{fun.__name__}.json", "w") as fd:
+                with redirect_stdout(fd):
+                    fun()
