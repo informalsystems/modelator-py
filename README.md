@@ -12,17 +12,19 @@ _**Lightweight utilities to assist model writing and model-based testing activit
 
 ## What is this project?
 
-A collection of cli utilities to reduce leg-work when developing TLA+ models, running model checkers, and doing model-based testing. The utilities are also intended to act as building blocks for tool development in the TLA+ ecosystem.
+A collection of cli utilities and library functions to reduce leg-work when developing TLA+ models, running model checkers, and doing model-based testing. The utilities are also intended to act as building blocks for tool development in the TLA+ ecosystem.
 
 ### What can it do right now?
 
-Currently there is a cli implementing utilities:
+Currently there is a cli and library functions implementing utilities:
 
 - [x] Run [TLC](https://github.com/tlaplus/tlaplus) model checker without side effects (runs in temporary directory and is cleaned up)
 - [x] Run [TLC](https://github.com/tlaplus/tlaplus) model checker programmatically (reads and returns json data)
 - [x] Run [Apalache](https://github.com/informalsystems/apalache) model checker without side effects (runs in temporary directory and is cleaned up)
 - [x] Run [Apalache](https://github.com/informalsystems/apalache) model checker programmatically (reads and returns json data)
 - [x] Extract traces from TLC output in [Informal Trace Format](https://apalache.informal.systems/docs/adr/015adr-trace.html?highlight=trace%20format#the-itf-format) format (concise and machine readable counterexample representation)
+
+Allowing clean programmatic access to model checkers and other utility.
 
 ### What will it do in the future?
 
