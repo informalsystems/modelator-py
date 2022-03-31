@@ -57,7 +57,7 @@ modelator util tlc itf --json < <JSON_OBJECT>
 
 ```bash
 # Provide TLC's stdout data and other flags inside a json object
-modelator util tlc itf --json < tlc_itf_cli_input.json > traces.json
+modelator util tlc itf --json < cli_input_tlc_itf.json > traces.json
 # Provide TLC's stdout data on stdin and flags as cli args
 modelator util tlc itf --lists=True records=False < TlcTraces.out > traces.json
 ```
@@ -77,37 +77,147 @@ It probably should be done that way!
 
 ## Feature: run [Apalache model checker](https://github.com/informalsystems/apalache)
 
-Run the TLC model checker in a basic 'raw' mode or run it in a 'pure' mode. The pure mode encapsulates file system operations, removing side effects. The raw mode does not, but can be useful for debugging.
+Run the Apalache model checker in a basic 'raw' mode or run it in a 'pure' mode. The pure mode encapsulates file system operations, removing side effects. The raw mode does not, but can be useful for debugging.
 
-### Option
+### Option 1: Run Apalache pure with all input data piped from json
 
-### Flag explanation
+```bash
+# See cli_input_apalache_pure.json
+modelator apalache pure < <JSON_OBJECT>
+```
+
+### Option 2: Run Apalache raw with all input data piped from json
+
+```bash
+# See cli_input_apalache_raw.json
+modelator apalache raw --json < <JSON_OBJECT>
+```
+
+### Option 3: Run Apalache raw with all input data given in args
+
+```bash
+modelator apalache raw\
+ --jar=<apalache.jar>\ # absolute paths!
+ --cwd=<working_dir>\ # absolute paths!
+ --cmd=<apalache_command_name> # apalache check, typecheck ect
+ --file=<.tla file> # target
+ # other Apalache arguments ...
+```
+
+### Argument explanation
+
+`apalache pure` has no arguments but `apalache raw` takes modelator
+and Apalache [arguments](https://github.com/informalsystems/modelator-py/blob/549d1927cbfeb25c1c20eda6451b0c476f63367a/modelator_py/apalache/args.py). Only some are shown here.
+
+```bash
+# Read arguments from json piped to stdin instead of from sys.argv?
+--json
+# Full path to directory to run Apalache from.
+--cwd=
+# Full path to Apalache jar.
+--jar=
+# Apalache command: check, typecheck ect
+--cmd=
+# Apalache target tla file name
+--file=
+```
 
 ### Examples
 
+**_Please run `python3 cli_input_gen.py` to generate working example input data._**
+
+```bash
+# Provide the inputs to Apalache pure mode with a json object
+modelator apalache pure < cli_input_apalache_pure.json > apalache_pure_result.json
+# Provide the inputs to Apalache raw mode with a json object
+modelator apalache raw --json < cli_input_apalache_raw.json > apalache_raw_result.json
+# Provide the inputs to Apalache raw mode with explicit values
+modelator apalache raw\
+ --jar=<apalache.jar>\ # absolute paths!
+ --cwd=<this_directory>\ # absolute paths!
+ --cmd=check # apalache check
+ --file=Hello.tla
+ > apalache_raw_result.json
+```
+
 ### Nuance
 
-Pure mode does write to the filesystem but inside a temporary directory.
+Pure mode does write to the filesystem, but inside a temporary directory.
 
 ## Feature: run [TLC model checker](https://github.com/tlaplus/tlaplus)
 
 Run the TLC model checker in a basic 'raw' mode or run it in a 'pure' mode. The pure mode encapsulates file system operations, removing side effects. The raw mode does not, but can be useful for debugging.
 
-### Option
+### Option 1: Run TLC pure with all input data piped from json
 
-### Flag explanation
+```bash
+# See cli_input_tlc_pure.json
+modelator tlc pure < <JSON_OBJECT>
+```
+
+### Option 2: Run TLC raw with all input data piped from json
+
+```bash
+# See cli_input_tlc_raw.json
+modelator tlc raw --json < <JSON_OBJECT>
+```
+
+### Option 3: Run TLC raw with all input data given in args
+
+```bash
+modelator tlc raw\
+ --jar=<tlc.jar>\ # absolute paths!
+ --cwd=<working_dir>\ # absolute paths!
+ --file=<.tla file> # tla target
+ --config=<.cfg file> # TLC config file
+ # other TLC arguments ...
+```
+
+### Argument explanation
+
+`tlc pure` has no arguments but `tlc raw` takes modelator
+and TLC [arguments](https://github.com/informalsystems/modelator-py/blob/549d1927cbfeb25c1c20eda6451b0c476f63367a/modelator_py/apalache/args.py). Only some are shown here.
+
+```bash
+# Read arguments from json piped to stdin instead of from sys.argv?
+--json
+# Full path to directory to run TLC from.
+--cwd=
+# Full path to TLC jar.
+--jar=
+# TLC target tla file name
+--file=
+# TLC target cfg file name
+--config=
+```
 
 ### Examples
 
+**_Please run `python3 cli_input_gen.py` to generate working example input data._**
+
+```bash
+# Provide the inputs to TLC pure mode with a json object
+modelator tlc pure < cli_input_tlc_pure.json > tlc_pure_result.json
+# Provide the inputs to TLC raw mode with a json object
+modelator tlc raw --json < cli_input_tlc_raw.json > tlc_raw_result.json
+# Provide the inputs to TLC raw mode with explicit values
+modelator tlc raw\
+ --jar=<tlc.jar>\ # absolute paths!
+ --cwd=<this_directory>\ # absolute paths!
+ --file=Hello.tla
+ --config=Hello.cfg
+ > tlc_raw_result.json
+```
+
 ### Nuance
 
-Pure mode does write to the filesystem but inside a temporary directory.
+Pure mode does write to the filesystem, but inside a temporary directory.
 
 ## How to get help
 
 Please try
 
-```
+```bash
 modelator tlc --help
 modelator tlc pure --help
 modelator tlc raw --help

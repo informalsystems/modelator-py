@@ -1,0 +1,9 @@
+{
+    "jar": "/Users/danwt/Documents/work/modelator-py/large/tlc_2_18.jar",
+    "cwd": "/Users/danwt/Documents/work/modelator-py/samples",
+    "args": {
+        "workers": "auto",
+        "file": "Hello.tla",
+        "config": "Hello.cfg"
+    }
+}
