@@ -56,10 +56,10 @@ modelator util tlc itf --json < <JSON_OBJECT>
 ### Examples
 
 ```bash
+# Provide TLC's stdout data and other flags inside a json object
+modelator util tlc itf --json < tlc_itf_cli_input.json > traces.json
 # Provide TLC's stdout data on stdin and flags as cli args
-modelator util tlc itf --lists=False < TlcTraceParse.out > traces.json
-# Provide TLC's stdout data and flags inside a json object
-modelator util tlc itf --json < tests/resource/HelloWorld_util_tlc_itf.json > traces.json
+modelator util tlc itf --lists=True records=False < TlcTraces.out > traces.json
 ```
 
 ### Nuance
@@ -75,7 +75,35 @@ Not really: it will take a while to extract traces with hundreds of thousands of
 3. Why don't you parse the `TTrace` files that TLC outputs instead of parsing stdout?\
 It probably should be done that way!
 
-## Features TLC, Apalache and how to get help
+## Feature: run [Apalache model checker](https://github.com/informalsystems/apalache)
+
+Run the TLC model checker in a basic 'raw' mode or run it in a 'pure' mode. The pure mode encapsulates file system operations, removing side effects. The raw mode does not, but can be useful for debugging.
+
+### Option
+
+### Flag explanation
+
+### Examples
+
+### Nuance
+
+Pure mode does write to the filesystem but inside a temporary directory.
+
+## Feature: run [TLC model checker](https://github.com/tlaplus/tlaplus)
+
+Run the TLC model checker in a basic 'raw' mode or run it in a 'pure' mode. The pure mode encapsulates file system operations, removing side effects. The raw mode does not, but can be useful for debugging.
+
+### Option
+
+### Flag explanation
+
+### Examples
+
+### Nuance
+
+Pure mode does write to the filesystem but inside a temporary directory.
+
+## How to get help
 
 Please try
 
