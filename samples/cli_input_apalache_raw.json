@@ -1,0 +1,10 @@
+{
+    "jar": "/Users/danwt/Documents/work/modelator-py/large/apa_0_23_0.jar",
+    "cwd": "/Users/danwt/Documents/work/modelator-py/samples",
+    "args": {
+        "cmd": "check",
+        "nworkers": 4,
+        "file": "Hello.tla",
+        "config": "Hello.cfg"
+    }
+}
