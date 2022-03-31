@@ -99,8 +99,8 @@ modelator apalache raw --json < <JSON_OBJECT>
 modelator apalache raw\
  --jar=<apalache.jar>\ # absolute paths!
  --cwd=<working_dir>\ # absolute paths!
- --cmd=<apalache_command_name> # apalache check, typecheck ect
- --file=<.tla file> # target
+ --cmd=<apalache_command_name>\ # apalache check, typecheck ect
+ --file=<.tla file>\ # target
  # other Apalache arguments ...
 ```
 
@@ -135,8 +135,8 @@ modelator apalache raw --json < cli_input_apalache_raw.json > apalache_raw_resul
 modelator apalache raw\
  --jar=<apalache.jar>\ # absolute paths!
  --cwd=<this_directory>\ # absolute paths!
- --cmd=check # apalache check
- --file=Hello.tla
+ --cmd=check\ # apalache check
+ --file=Hello.tla\
  > apalache_raw_result.json
 ```
 
@@ -168,8 +168,8 @@ modelator tlc raw --json < <JSON_OBJECT>
 modelator tlc raw\
  --jar=<tlc.jar>\ # absolute paths!
  --cwd=<working_dir>\ # absolute paths!
- --file=<.tla file> # tla target
- --config=<.cfg file> # TLC config file
+ --file=<.tla file>\ # tla target
+ --config=<.cfg file>\ # TLC config file
  # other TLC arguments ...
 ```
 
@@ -204,8 +204,8 @@ modelator tlc raw --json < cli_input_tlc_raw.json > tlc_raw_result.json
 modelator tlc raw\
  --jar=<tlc.jar>\ # absolute paths!
  --cwd=<this_directory>\ # absolute paths!
- --file=Hello.tla
- --config=Hello.cfg
+ --file=Hello.tla\
+ --config=Hello.cfg\
  > tlc_raw_result.json
 ```
 
