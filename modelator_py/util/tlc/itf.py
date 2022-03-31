@@ -16,12 +16,12 @@ cmd_fields = (
     "records",  # Transform string indexed functions into records
 )
 
-TLCITFCmd = recordclass("Cmd", cmd_fields, defaults=(None,) * len(cmd_fields))
+TlcITFCmd = recordclass("Cmd", cmd_fields, defaults=(None,) * len(cmd_fields))
 
 
-def json_to_cmd(json) -> TLCITFCmd:
+def json_to_cmd(json) -> TlcITFCmd:
     json = {"stdout": None, "lists": True, "records": True} | json
-    cmd = TLCITFCmd()
+    cmd = TlcITFCmd()
     cmd.stdout = json["stdout"]
     cmd.lists = json["lists"]
     cmd.records = json["records"]

@@ -2,7 +2,9 @@
 
 **_This document is a work in progress and not all features are documented yet_**.
 
-This document focuses on usage overview and using the cli executable tool. The functionality is all also useable via library functions. Please see [foo.py](./foo.py) for library function examples.
+This document focuses on usage overview and using the cli executable tool. The functionality is all also useable via library functions. Please see [library_usage.py](./library_usage.py) for library function examples.
+
+## Getting the cli tool
 
 To install the cli tool
 
