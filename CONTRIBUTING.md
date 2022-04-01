@@ -35,7 +35,7 @@ poetry publish; # requires credentials
 
 ### Usage
 
-Please see [usage](./samples/usage).
+Please see [usage](./samples/usage.md).
 
 ### Setting up a workstation
 
