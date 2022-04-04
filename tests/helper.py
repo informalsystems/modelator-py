@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-TLC_PATH = "large/tlc_2_18.jar"
+TLC_PATH = "large/tlc_2_17.jar"
 APALACHE_PATH = "large/apa_0_23_0.jar"
 
 

@@ -5,7 +5,7 @@ def tlc_path():
     # For demo purposes, find the path to TLC in this repo, but you can use
     # a path to your own TLC jar.
     return os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "..", "large/tlc_2_18.jar")
+        os.path.join(os.path.dirname(__file__), "..", "large/tlc_2_17.jar")
     )
 
 
