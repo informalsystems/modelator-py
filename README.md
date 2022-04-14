@@ -36,11 +36,11 @@ Please see [usage](./samples/usage.md).
 
 ## Running the code in this repository
 
-Please see [contributing](./CONTRIBUTING.md)
+Please see [contributing](./CONTRIBUTING.md).
 
 ## Contributing
 
-Please see [contributing](./CONTRIBUTING.md)
+Please see [contributing](./CONTRIBUTING.md).
 
 ## License
 
