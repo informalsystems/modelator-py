@@ -105,9 +105,9 @@ def apalache_raw(*, cmd: RawCmd = None, json=None):
     if cmd.jar is not None:
         cmd.jar = os.path.expanduser(cmd.jar)
         if not os.path.isabs(cmd.jar):
-            raise Exception("TLC jar path must be absolute (after expanding user)")
+            raise Exception("Apalache jar path must be absolute (after expanding user)")
     if cmd.jar is None:
-        raise Exception("TLC jar path must be absolute (after expanding user)")
+        raise Exception("Apalache jar path must be absolute (after expanding user)")
 
     cmd_str = stringify_raw_cmd(cmd)
 
