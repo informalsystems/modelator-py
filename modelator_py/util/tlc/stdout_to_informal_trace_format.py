@@ -15,41 +15,55 @@ def trace_lines_model_checking_mode(stdout) -> typing.List[typing.List[str]]:
     """
     ret = []
     lines = stdout.split("\n")
+    header_open = False
 
     def is_header(line):
-        """Begins a trace and may also end a previous trace"""
-        HEADER = "Error: Invariant"
-        return line.startswith(HEADER)
+        """One line before the beginning of the trace."""
+        single_state_trace_header = "is violated by the initial state" in line
+        mult_state_trace_header = line == "Error: The behavior up to this point is:"
+        return single_state_trace_header or mult_state_trace_header
+
+    def is_start_of_new_trace(line):
+        """When there are multiple traces, closes the previous trace"""
+
+        # when there are multiple violations, a new trace report starts with:
+        continue_case = line.startswith("Error: Invariant")
+
+        # when the first violation was in the init state, the second one starts with:
+        init_state_continue_case = line.startswith("Finished computing initial states")
+        return continue_case or init_state_continue_case
 
     def is_footer(line):
-        return (
+        multi_state_footer = (
             ("states generated" in line)
             and ("distinct states found" in line)
             and ("states left on queue" in line)
             and (not line.startswith("Progress"))
         ) or ("Model checking completed" in line)
 
+        single_state_footer = "Finished in" in line
+
+        return single_state_footer or multi_state_footer
+
     header_cnt = 0
     header_ix = -1
     for i, line in enumerate(lines):
-        if is_header(line):
+        if is_start_of_new_trace(line):
+            header_open = True
             if 0 < header_cnt:
-                """
-                Traces are prefixed:
-                '
-                    Error: Invariant Inv is violated.
-                    Error: The behavior up to this point is:
-                    State 1: <Initial predicate>
-                '
-                so we add 2 to the catchment index.
-                """
-                trace = lines[header_ix + 2 : i]
+                trace = lines[header_ix + 1 : i]
                 ret.append(trace)
+
+        if is_header(line):
             header_cnt += 1
             header_ix = i
-        if is_footer(line):
+
+        # we need boolean header_open because the footer the conditions for the footer
+        # of a single state trace will be met also in the line after the footer of a multi-state trace
+        if header_open and is_footer(line):
+            header_open = False
             if 0 < header_cnt:
-                trace = lines[header_ix + 2 : i]  # see comment above
+                trace = lines[header_ix + 1 : i]
                 ret.append(trace)
             break
 
@@ -106,7 +120,7 @@ def split_into_states(lines: typing.List[str]) -> typing.List[typing.List[str]]:
     header_cnt = 0
     header_ix = -1
     for i, line in enumerate(lines):
-        if line.startswith(HEADER):
+        if i == 0 or line.startswith(HEADER):
             if 0 < header_cnt:
                 ret.append(lines[header_ix + 1 : i])
             header_ix = i

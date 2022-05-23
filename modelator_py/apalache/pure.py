@@ -95,16 +95,16 @@ def read_apalache_output_into_memory(full_dirname):
 
 def apalache_pure(*, cmd: PureCmd = None, json=None):  # type: ignore
     """
-    Run a TLC command using either a PureCmd object, or build the PureCmd from json.
+    Run a Apalache command using either a PureCmd object, or build the PureCmd from json.
 
-    Run TLC without side effects in a temporary directory.
+    Run Apalache without side effects in a temporary directory.
 
     Returns an ExecutionResult with .process and .files properties. Contains the
     subprocess result, and the list of filesystem files (and contents).
     """
+
     assert not (cmd is not None and json is not None)
     assert (cmd is not None) or (json is not None)
-
     if json is not None:
         cmd = json_to_cmd(json)
 

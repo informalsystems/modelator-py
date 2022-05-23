@@ -21,15 +21,32 @@ def test_extract_no_trace_from_tlc():
     assert len(tlc_traces) == 0
 
 
-def test_extract_trace_from_tlc():
-    fn = "TlcTraceParse.txt"
+def _extract_trace_from_tlc(fn):
     fn = os.path.join(get_resource_dir(), fn)
     content = None
     with open(fn, "r") as fd:
         content = fd.read()
 
     tlc_traces = extract_traces(content)
+    return tlc_traces
+
+
+def test_extract_trace_from_tlc():
+    fn = "TlcTraceParse.txt"
+    tlc_traces = _extract_trace_from_tlc(fn)
     assert len(tlc_traces) == 1
+
+
+def test_extract_trace_initState_from_tlc():
+    fn = "TlcTraceParseInitState.txt"
+    tlc_traces = _extract_trace_from_tlc(fn)
+    assert len(tlc_traces) == 1
+
+
+def test_extract_trace_initStateContinue_from_tlc():
+    fn = "TlcTraceParseInitStateContinue.txt"
+    tlc_traces = _extract_trace_from_tlc(fn)
+    assert len(tlc_traces) == 3
 
 
 def test_extract_trace_from_tlc_simulation_mode():
