@@ -25,7 +25,13 @@ def trace_lines_model_checking_mode(stdout) -> typing.List[typing.List[str]]:
 
     def is_start_of_new_trace(line):
         """When there are multiple traces, closes the previous trace"""
-        return line.startswith("Error: Invariant")
+
+        # when there are multiple violations, a new trace report starts with:
+        continue_case = line.startswith("Error: Invariant")
+
+        # when the first violation was in the init state, the second one starts with:
+        init_state_continue_case = line.startswith("Finished computing initial states")
+        return continue_case or init_state_continue_case
 
     def is_footer(line):
         multi_state_footer = (
@@ -39,14 +45,6 @@ def trace_lines_model_checking_mode(stdout) -> typing.List[typing.List[str]]:
 
         return single_state_footer or multi_state_footer
 
-    def format_single_state_trace(trace):
-        # we need this because for single-state trace errors ther will be no states
-        # enumerated in the output (but we need them in postprocessing)
-        if "State" not in trace[0]:
-            return ["State 1"] + trace
-        else:
-            return trace
-
     header_cnt = 0
     header_ix = -1
     for i, line in enumerate(lines):
@@ -54,7 +52,6 @@ def trace_lines_model_checking_mode(stdout) -> typing.List[typing.List[str]]:
             header_open = True
             if 0 < header_cnt:
                 trace = lines[header_ix + 1 : i]
-                trace = format_single_state_trace(trace)
                 ret.append(trace)
 
         if is_header(line):
@@ -67,7 +64,6 @@ def trace_lines_model_checking_mode(stdout) -> typing.List[typing.List[str]]:
             header_open = False
             if 0 < header_cnt:
                 trace = lines[header_ix + 1 : i]
-                trace = format_single_state_trace(trace)
                 ret.append(trace)
             break
 
@@ -124,7 +120,7 @@ def split_into_states(lines: typing.List[str]) -> typing.List[typing.List[str]]:
     header_cnt = 0
     header_ix = -1
     for i, line in enumerate(lines):
-        if line.startswith(HEADER):
+        if i == 0 or line.startswith(HEADER):
             if 0 < header_cnt:
                 ret.append(lines[header_ix + 1 : i])
             header_ix = i

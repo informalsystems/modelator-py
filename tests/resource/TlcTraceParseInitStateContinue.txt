@@ -1,0 +1,59 @@
+TLC2 Version 2.16 of 31 December 2020 (rev: cdddf55)
+Running breadth-first search Model-Checking with fp 7 and seed 7495137621034827281 with 8 workers on 8 cores with 7282MB heap and 64MB offheap memory (Mac OS X 12.4 x86_64, Oracle Corporation 1.8.0_333 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/ivan/Documents/codebase/modelator/python/modelator/samples/Hello.tla
+Parsing file /private/var/folders/ws/8cq6ncrs0h91f1tx4pb7tzx80000gn/T/Naturals.tla
+Parsing file /private/var/folders/ws/8cq6ncrs0h91f1tx4pb7tzx80000gn/T/FiniteSets.tla
+Parsing file /private/var/folders/ws/8cq6ncrs0h91f1tx4pb7tzx80000gn/T/Sequences.tla
+Parsing file /Users/ivan/Documents/codebase/modelator/python/modelator/samples/HelloInv.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module HelloInv
+Semantic processing of module Hello
+Semantic errors:
+
+*** Warnings: 2
+
+line 7, col 5 to line 7, col 5 of module Hello
+
+Multiple declarations or definitions for symbol x.
+This duplicates the one at line 4, col 5 to line 4, col 5 of module HelloInv.
+
+
+line 9, col 5 to line 9, col 5 of module Hello
+
+Multiple declarations or definitions for symbol y.
+This duplicates the one at line 6, col 5 to line 6, col 5 of module HelloInv.
+
+
+
+Starting... (2022-05-23 12:51:55)
+Computing initial states...
+Error: Invariant Inv2 is violated by the initial state:
+/\ x = "hello"
+/\ y = 22
+
+Finished computing initial states: 1 distinct state generated at 2022-05-23 12:52:00.
+Error: Invariant Inv2 is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ x = "hello"
+/\ y = 22
+
+State 2: <Next line 16, col 5 to line 17, col 15 of module Hello>
+/\ x = "world"
+/\ y = 20
+
+Error: Invariant Inv2 is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ x = "hello"
+/\ y = 22
+
+State 2: <Next line 16, col 5 to line 17, col 15 of module Hello>
+/\ x = "world"
+/\ y = 20
+
+State 3: <Next line 16, col 5 to line 17, col 15 of module Hello>
+/\ x = "hello"
+/\ y = 18
