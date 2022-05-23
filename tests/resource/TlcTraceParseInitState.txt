@@ -16,13 +16,13 @@ Semantic errors:
 
 line 7, col 5 to line 7, col 5 of module Hello
 
-Multiple declarations or definitions for symbol x.  
+Multiple declarations or definitions for symbol x.
 This duplicates the one at line 4, col 5 to line 4, col 5 of module HelloInv.
 
 
 line 9, col 5 to line 9, col 5 of module Hello
 
-Multiple declarations or definitions for symbol y.  
+Multiple declarations or definitions for symbol y.
 This duplicates the one at line 6, col 5 to line 6, col 5 of module HelloInv.
 
 

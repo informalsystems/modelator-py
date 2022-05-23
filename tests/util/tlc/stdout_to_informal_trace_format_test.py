@@ -31,6 +31,7 @@ def test_extract_trace_from_tlc():
     tlc_traces = extract_traces(content)
     assert len(tlc_traces) == 1
 
+
 def test_extract_trace_length1_from_tlc():
     fn = "TlcTraceParseInitState.txt"
     fn = os.path.join(get_resource_dir(), fn)

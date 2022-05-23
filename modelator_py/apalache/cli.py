@@ -24,7 +24,7 @@ class Apalache:
             self._stdin is not None
         ), "The pure interface requires json input in stdin"
         json_dict = stdjson.loads(self._stdin.read())
-        
+
         result = apalache_pure(json=json_dict)
         to_print = stdjson.dumps(result, indent=4, sort_keys=True)
         print(to_print)

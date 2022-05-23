@@ -102,18 +102,15 @@ def apalache_pure(*, cmd: PureCmd = None, json=None):  # type: ignore
     Returns an ExecutionResult with .process and .files properties. Contains the
     subprocess result, and the list of filesystem files (and contents).
     """
-    
+
     assert not (cmd is not None and json is not None)
-    assert (cmd is not None) or (json is not None)    
-    if json is not None:        
+    assert (cmd is not None) or (json is not None)
+    if json is not None:
         cmd = json_to_cmd(json)
-    
 
     raw_cmd = RawCmd()
     raw_cmd.args = cmd.args
     raw_cmd.jar = cmd.jar
-    
-    
 
     if raw_cmd.args.out_dir is not None:
         raise Exception(

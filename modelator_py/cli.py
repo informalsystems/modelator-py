@@ -2,8 +2,6 @@ import sys
 
 import fire
 
-import sys
-
 from .apalache.cli import Apalache
 from .tlc.cli import Tlc
 from .util.cli import Util
