@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "modelator_py"
-version = "0.1.7"
+version = "0.1.8"
 description = "Lightweight utilities to assist model writing and model-based testing activities using the TLA+ ecosystem"
-authors = ["Daniel Tisdall <daniel@informal.systems>"]
+authors = ["Daniel Tisdall <daniel@informal.systems>", "Ivan Gavran <ivan@informal.systems>"]
 readme = "README.md"
 homepage = "https://mbt.informal.systems/"
 repository = "https://github.com/informalsystems/modelator-py/"
