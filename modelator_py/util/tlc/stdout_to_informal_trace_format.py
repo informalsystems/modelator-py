@@ -119,8 +119,13 @@ def split_into_states(lines: typing.List[str]) -> typing.List[typing.List[str]]:
     HEADER = "State "
     header_cnt = 0
     header_ix = -1
+
+    # this is for the case when the invariant is violated in the initial state
+    # then, the counterexample is not prefixed with "State "
+    if len(lines) > 0 and not lines[0].startswith(HEADER):
+        lines = [HEADER] + lines
     for i, line in enumerate(lines):
-        if i == 0 or line.startswith(HEADER):
+        if line.startswith(HEADER):
             if 0 < header_cnt:
                 ret.append(lines[header_ix + 1 : i])
             header_ix = i
