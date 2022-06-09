@@ -1,5 +1,6 @@
 import os
 import subprocess
+import tempfile
 
 from recordclass import asdict, recordclass
 
@@ -16,13 +17,18 @@ raw_cmd_fields = (
 RawCmd = recordclass("RawCmd", raw_cmd_fields, defaults=(None,) * len(raw_cmd_fields))
 
 
-def stringify_raw_cmd(cmd: RawCmd) -> str:
+def stringify_raw_cmd(cmd: RawCmd, java_temp_dir: str = None) -> str:
     """
     Returns a string which can be passed to a shell to run TLC.
     """
 
     jar = cmd.jar
     args = cmd.args
+
+    if java_temp_dir is None:
+        tmpdir_setup = ""
+    else:
+        tmpdir_setup = " -Djava.io.tmpdir={}".format(java_temp_dir)
 
     def stringify(value):
         # Tlc will not accept capitals
@@ -32,7 +38,7 @@ def stringify_raw_cmd(cmd: RawCmd) -> str:
 
     args = TlcArgs(**{k: stringify(v) for k, v in asdict(args).items()})
 
-    cmd_str = f"""java\
+    cmd_str = f"""java{tmpdir_setup}\
  -cp {jar}\
  tlc2.TLC\
 {f" -aril {args.aril}" if args.aril is not None else ""}\
@@ -110,7 +116,10 @@ def tlc_raw(*, cmd: RawCmd = None, json=None):
     if cmd.jar is None:
         raise Exception("TLC jar path must be absolute (after expanding user)")
 
-    cmd_str = stringify_raw_cmd(cmd)
+    with tempfile.TemporaryDirectory(
+        prefix="modelator-py-tlc-java-temp-dir-"
+    ) as java_temp:
+        cmd_str = stringify_raw_cmd(cmd, java_temp_dir=java_temp)
 
-    # Semantics a bit complex here - see https://stackoverflow.com/a/15109975/8346628
-    return subprocess.run(cmd_str, shell=True, capture_output=True, cwd=cmd.cwd)
+        # Semantics a bit complex here - see https://stackoverflow.com/a/15109975/8346628
+        return subprocess.run(cmd_str, shell=True, capture_output=True, cwd=cmd.cwd)
