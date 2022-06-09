@@ -1,5 +1,6 @@
 import os
 import subprocess
+import tempfile
 
 from recordclass import asdict, recordclass
 
@@ -16,10 +17,15 @@ raw_cmd_fields = (
 RawCmd = recordclass("RawCmd", raw_cmd_fields, defaults=(None,) * len(raw_cmd_fields))
 
 
-def stringify_raw_cmd(cmd: RawCmd):
+def stringify_raw_cmd(cmd: RawCmd, java_temp_dir: str = None):
 
     jar = cmd.jar
     args = cmd.args
+
+    if java_temp_dir is None:
+        tmpdir_setup = ""
+    else:
+        tmpdir_setup = " -Djava.io.tmpdir={}".format(java_temp_dir)
 
     def stringify(value):
         # Apalache will not accept capitalized bools
@@ -29,7 +35,7 @@ def stringify_raw_cmd(cmd: RawCmd):
 
     args = ApalacheArgs(**{k: stringify(v) for k, v in asdict(args).items()})
 
-    cmd_str = f"""java\
+    cmd_str = f"""java{tmpdir_setup}\
  -jar {jar}\
 {f" --config-file={args.config_file}" if args.config_file is not None else ""}\
 {f" --debug={args.debug}" if args.debug is not None else ""}\
@@ -109,7 +115,10 @@ def apalache_raw(*, cmd: RawCmd = None, json=None):
     if cmd.jar is None:
         raise Exception("Apalache jar path must be absolute (after expanding user)")
 
-    cmd_str = stringify_raw_cmd(cmd)
+    with tempfile.TemporaryDirectory(
+        prefix="modelator-py-apalache-java-temp-dir-"
+    ) as java_temp:
+        cmd_str = stringify_raw_cmd(cmd, java_temp_dir=java_temp)
 
-    # Semantics a bit complex here - see https://stackoverflow.com/a/15109975/8346628
-    return subprocess.run(cmd_str, shell=True, capture_output=True, cwd=cmd.cwd)
+        # Semantics a bit complex here - see https://stackoverflow.com/a/15109975/8346628
+        return subprocess.run(cmd_str, shell=True, capture_output=True, cwd=cmd.cwd)
