@@ -39,7 +39,7 @@ def stringify_raw_cmd(cmd: RawCmd, java_temp_dir: str = None) -> str:
     args = TlcArgs(**{k: stringify(v) for k, v in asdict(args).items()})
 
     cmd_str = f"""java{tmpdir_setup}\
- -cp {jar}\
+ -cp "{jar}"\
  tlc2.TLC\
 {f" -aril {args.aril}" if args.aril is not None else ""}\
 {f" -checkpoint {args.checkpoint}" if args.checkpoint is not None else ""}\

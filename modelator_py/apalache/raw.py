@@ -36,7 +36,7 @@ def stringify_raw_cmd(cmd: RawCmd, java_temp_dir: str = None):
     args = ApalacheArgs(**{k: stringify(v) for k, v in asdict(args).items()})
 
     cmd_str = f"""java{tmpdir_setup}\
- -jar {jar}\
+ -jar "{jar}"\
 {f" --config-file={args.config_file}" if args.config_file is not None else ""}\
 {f" --debug={args.debug}" if args.debug is not None else ""}\
 {f" --out-dir={args.out_dir}" if args.out_dir is not None else ""}\
