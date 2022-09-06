@@ -18,6 +18,7 @@ apalache_args_fields = (
     "inv",  # the name of an invariant operator, e.g., Inv
     "length",  # maximal number of Next steps, default: 10
     "max_error",  # do not stop on first error, but produce up to a given number of counterexamples (fine tune with --view), default: 1
+    "max_run",  # do not stop after a first simulation run, but produce up to a given number of runs (unless reached --max-error), default: 100
     "no_deadlock",  # do not check for deadlocks, default: true
     "nworkers",  # the number of workers for the parallel checker (soon), default: 1
     "smt_encoding",  # the SMT encoding: oopsla19, arrays (experimental), default: oopsla19 (overrides envvar SMT_ENCODING)
@@ -31,6 +32,7 @@ apalache_args_fields = (
     "next",  # the name of a transition operator, default: Next <file> : a file containing a TLA+ specification (.tla or .json)
     "infer_poly",  # allow the type checker to infer polymorphic types, default: true
     "output",  # file to which the typechecked or parsed source is written (.tla or .json), default: None
+    "save_runs",  # save an example trace for each simulated run, default: false
 )
 
 ApalacheArgs = recordclass(
