@@ -18,7 +18,7 @@ ply = "3.10"
 pathos = "^0.2.8"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^7.1.3"
 black = {version = "^22.3.0", allow-prereleases = true}
 pytest-cov = "^3.0.0"
 pre-commit = "^2.15.0"
