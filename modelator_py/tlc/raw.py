@@ -77,11 +77,11 @@ def stringify_raw_cmd(cmd: RawCmd, java_temp_dir: str = None) -> str:
 
 
 def json_to_cmd(json) -> RawCmd:
-    json = {
+    json = {**{
         "cwd": None,
         "jar": None,
         "args": None,
-    } | json
+    }, **json}
     cmd = RawCmd()
     cmd.cwd = json["cwd"]
     cmd.jar = json["jar"]
