@@ -5,7 +5,7 @@ on:
   push:
     paths:
       - .github/workflows/python.yml
-      - modelator/**
+      - modelator_py/**
       - tests/**
       - pyproject.toml
       - poetry.lock
