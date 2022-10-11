@@ -206,6 +206,8 @@ fixities = _generate_fixities()
 #     fun vs -> check S.empty vs
 #
 # let hint = locate anyident
+
+
 def hint():
     return intf.locate(intf.anyident())
 
@@ -307,6 +309,7 @@ def record_fields(is_start):
     assert not is_start, is_start
     # def f(sw, _, r):
     #     return tla_ast.Dot(r, sw)
+
     def f():
         return (
             attempt(intf.locate(intf.punct(".") << second >> intf.anyname()))
@@ -872,6 +875,7 @@ def complex_expr(b):
         #       fun ({core = (ds, e)} as letin) ->
         #         { letin with core =  Let (ds, e) }
         #     end;
+
         def f():
             return (
                 intf.locate(

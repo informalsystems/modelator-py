@@ -49,6 +49,8 @@ builtins = (bool, str, int, float, tuple, list, dict)
 #   withloc p <$> begin
 #     fun (a, loc) -> Util.set_locus (Property.noprops a) loc
 #   end
+
+
 def locate(p):
     def apply_location(a_loc):
         a, loc = a_loc

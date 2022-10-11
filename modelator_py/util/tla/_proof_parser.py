@@ -843,6 +843,7 @@ def usebody():
     #                   facts = List.map filter_usebody_fact fs ;
     #                   defs = ds }
     #           end
+
     def apply_usebody(fs, ds):
         if ds is None:
             return dict(facts=[filter_usebody_fact(f) for f in fs], defs=list())

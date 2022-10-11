@@ -830,6 +830,7 @@ def choice(alternatives):
     # else:
     #     aps = alternatives[1:]
     #     return ap <<or_>> choice(aps)
+
     def f(pst):
         memo = save(pst)
         for ap in alternatives:
@@ -1311,6 +1312,7 @@ def resolve(item_prs):
             #                 reduce_one stack
             #             | _ -> stack
             #           in
+
             def normalize(stack):
                 if (
                     (len(stack) >= 2)
@@ -1357,6 +1359,7 @@ def resolve(item_prs):
             #                 normalize (reduce_one stack)
             #             | _ -> stack
             #           in
+
             def normalize(stack):
                 if (
                     (len(stack) >= 2)
