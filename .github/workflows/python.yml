@@ -34,6 +34,24 @@ jobs:
         run: |
           black . --check
           pylama -l pyflakes,pycodestyle,isort
+
+  compile:
+    strategy:
+      matrix:
+        os: ["ubuntu-latest"]
+        python-version: ["3.8", "3.10"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Set up python ${{ matrix.python-version }}
+        id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Compile python source code
+        run: python -m compileall modelator_py tests
+
   test:
     strategy:
       fail-fast: true
@@ -66,6 +84,4 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
-          python --version | grep ${{ matrix.python-version }}
-          poetry build
           pytest
