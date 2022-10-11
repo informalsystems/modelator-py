@@ -322,7 +322,7 @@ def debug(msg):
         s = "EOF" if not pst.source else intf.rep(pst.source[0])
         dbg_msg = f"[debug] following token is {s}"
         _error.err_add_message(dbg_msg, err)
-        err = error.err_add_message(f"[debug] {msg}", err)
+        err = _error.err_add_message(f"[debug] {msg}", err)
         _error.print_error(False, None, err)
         return exec_(succeed(None), pst)
 

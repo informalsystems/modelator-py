@@ -673,7 +673,7 @@ class Nodes(_Nodes):
             res_width, _ = _box_dimensions(res)
             if res_width > width:
                 res = _glue_prefix_box(
-                    bounds_str, "\n" + expr + "}", indent_width=INDENT_WIDTH
+                    bound_str, "\n" + expr + "}", indent_width=INDENT_WIDTH
                 )
             return res
 
