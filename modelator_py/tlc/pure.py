@@ -22,11 +22,14 @@ PureCmd = recordclass(
 
 
 def json_to_cmd(json) -> PureCmd:
-    json = {**{
-        "files": None,
-        "jar": None,
-        "args": None,
-    }, **json}
+    json = {
+        **{
+            "files": None,
+            "jar": None,
+            "args": None,
+        },
+        **json,
+    }
     cmd = PureCmd()
     cmd.jar = json["jar"]
     cmd.args = TlcArgs(**json["args"])

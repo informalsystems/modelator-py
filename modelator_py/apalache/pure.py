@@ -27,11 +27,14 @@ APALACHE_OUT_DIR_NAME = "out"
 
 
 def json_to_cmd(json) -> PureCmd:
-    json = {**{
-        "files": None,
-        "jar": None,
-        "args": None,
-    }, **json}
+    json = {
+        **{
+            "files": None,
+            "jar": None,
+            "args": None,
+        },
+        **json,
+    }
     cmd = PureCmd()
     cmd.jar = json["jar"]
     cmd.args = ApalacheArgs(**json["args"])
@@ -86,9 +89,10 @@ def read_apalache_output_into_memory(full_dirname):
             base = os.path.basename(full_filename)
             return os.path.join(INTERMEDIATE_DIR, base)
 
-        all_files = {** all_files, **{ 
-            filename(fn): content for fn, content in intermediate_files.items()
-        }}
+        all_files = {
+            **all_files,
+            **{filename(fn): content for fn, content in intermediate_files.items()},
+        }
 
     return all_files
 
