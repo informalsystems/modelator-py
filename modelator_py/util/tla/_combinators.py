@@ -13,11 +13,7 @@ import collections.abc
 import copy
 import functools
 import logging
-import os
-import pprint
-import subprocess
 import types
-import warnings
 
 from infix import shift_infix as infix
 
