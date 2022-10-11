@@ -11,95 +11,95 @@ The implementation is in the module `tla.tokens`.
 # <https://github.com/tlaplus/tlapm/blob/main/src/pars/intf.ml>
 
 
-# (** Tokens *)
-# module type Tok = sig
-#   type token
-#     (** Type of tokens *)
+# # (** Tokens *)
+# # module type Tok = sig
+# #   type token
+# #     (** Type of tokens *)
 
 
-class Token:
-    """Type of tokens."""
+# class Token:
+#     """Type of tokens."""
 
-    pass
-
-
-#   val bof : Loc.locus -> token  (* beginning of file *)
-#     (** token representing start of file *)
+#     pass
 
 
-def bof(locus):
-    """Token representing beginning of file."""
-    return token
+# #   val bof : Loc.locus -> token  (* beginning of file *)
+# #     (** token representing start of file *)
 
 
-#   val rep : token -> string
-#     (** String representation of tokens *)
+# def bof(locus):
+#     """Token representing beginning of file."""
+#     return token
 
 
-def rep(token):
-    """String representation of token."""
-    return string
+# #   val rep : token -> string
+# #     (** String representation of tokens *)
 
 
-#   val locus : token -> Loc.locus
-#     (** Origin of the token *)
+# def rep(token):
+#     """String representation of token."""
+#     return string
 
 
-def locus(token):
-    """Location of the token in text."""
-    return locus
+# #   val locus : token -> Loc.locus
+# #     (** Origin of the token *)
 
 
-#   val eq : token -> token -> bool
-#     (** Are the tokens equivalent? *)
+# def locus(token):
+#     """Location of the token in text."""
+#     return locus
 
 
-def eq(token, other_token):
-    """Whether tokens are equivalent."""
-    return boolean
+# #   val eq : token -> token -> bool
+# #     (** Are the tokens equivalent? *)
 
 
-#   val pp_print_token : Format.formatter -> token -> unit
-#     (** For use in format strings *)
+# def eq(token, other_token):
+#     """Whether tokens are equivalent."""
+#     return boolean
 
 
-def pp_print_token(formatter, token):
-    """For use in format strings."""
-    pass
+# #   val pp_print_token : Format.formatter -> token -> unit
+# #     (** For use in format strings *)
 
 
-# end
-
-# (** Precedence *)
-# module type Prec = sig
-#   type prec
-#     (** Abstract type of precedence *)
+# def pp_print_token(formatter, token):
+#     """For use in format strings."""
+#     pass
 
 
-class Prec:
-    """Abstract type of operator precedence."""
+# # end
 
-    pass
-
-
-#   val below : prec -> prec -> bool
-#     (** {!below} [p q] means that [p] is entirely below [q] *)
+# # (** Precedence *)
+# # module type Prec = sig
+# #   type prec
+# #     (** Abstract type of precedence *)
 
 
-def below(prec, other_prec):
-    """Whether `prec` is entirely below `other_prec`."""
-    return boolean
+# class Prec:
+#     """Abstract type of operator precedence."""
+
+#     pass
 
 
-#   val conflict : prec -> prec -> bool
-#     (** {!conflict} [p q] means that an unbracketed expression with
-#         two operators of precedence [p] and [q] respectively would be
-#         ambiguous. *)
+# #   val below : prec -> prec -> bool
+# #     (** {!below} [p q] means that [p] is entirely below [q] *)
 
 
-def conflict(prec, other_prec):
-    """Whether `prec` and `other_prec` have overlapping precedence ranges."""
-    return boolean
+# def below(prec, other_prec):
+#     """Whether `prec` is entirely below `other_prec`."""
+#     return boolean
 
 
-# end
+# #   val conflict : prec -> prec -> bool
+# #     (** {!conflict} [p q] means that an unbracketed expression with
+# #         two operators of precedence [p] and [q] respectively would be
+# #         ambiguous. *)
+
+
+# def conflict(prec, other_prec):
+#     """Whether `prec` and `other_prec` have overlapping precedence ranges."""
+#     return boolean
+
+
+# # end
