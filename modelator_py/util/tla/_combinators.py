@@ -1047,7 +1047,7 @@ class ListSlice(collections.abc.Sequence):
     def __getitem__(self, slc):
         if isinstance(slc, slice):
             start = slc.start
-            stop = slc.stop
+            # stop = slc.stop
             step = slc.step
             assert start >= 0, start
             assert step is None or step == 1

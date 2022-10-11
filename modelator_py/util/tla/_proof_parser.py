@@ -514,7 +514,7 @@ def preno():
         if isinstance(form, tokens.ST):
             step_name = form.kind
             step_label = form.string
-            ndots = form.i
+            # ndots = form.i
             if isinstance(step_name, tokens.StepStar):
                 return tla_ast.StepStar(step_label)
             elif isinstance(step_name, tokens.StepPlus):
