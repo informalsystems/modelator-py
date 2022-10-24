@@ -13,36 +13,22 @@ from . import _expr_parser as ep
 from . import _tla_combinators as intf
 from . import tokens
 from ._combinators import (
-    alt,
     apply,
-    apply_question,
     attempt,
     bang,
     choice,
-    choice_iter,
-    commit,
-    enabled,
-    fail,
-    first,
-    get,
-    lookahead,
     optional,
     or_,
-    question,
-    return_,
     second,
     second_commit,
     sep,
     sep1,
     shift_eq,
-    shift_plus,
-    star,
     star1,
     succeed,
     times,
     times2,
     use,
-    using,
 )
 from ._tla_combinators import kwd, punct
 from .ast import Nodes as tla_ast
@@ -528,7 +514,7 @@ def preno():
         if isinstance(form, tokens.ST):
             step_name = form.kind
             step_label = form.string
-            ndots = form.i
+            # ndots = form.i
             if isinstance(step_name, tokens.StepStar):
                 return tla_ast.StepStar(step_label)
             elif isinstance(step_name, tokens.StepPlus):
@@ -857,6 +843,7 @@ def usebody():
     #                   facts = List.map filter_usebody_fact fs ;
     #                   defs = ds }
     #           end
+
     def apply_usebody(fs, ds):
         if ds is None:
             return dict(facts=[filter_usebody_fact(f) for f in fs], defs=list())

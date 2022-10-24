@@ -9,8 +9,8 @@ def merge_itf_maps(f, g):
     Computes the result of the @@ operator.
 
     f @@ g == [
-        x \in (DOMAIN f) \cup (DOMAIN g) |->
-        IF x \in DOMAIN f THEN f[x] ELSE g[x]
+        x \\in (DOMAIN f) \\cup (DOMAIN g) |->
+        IF x \\in DOMAIN f THEN f[x] ELSE g[x]
     ]
 
     The output of TLC should never contain functions

@@ -7,7 +7,6 @@
 #
 # <https://github.com/tlaplus/tlapm/blob/main/src/optable.ml>
 #
-import pprint
 
 from .ast import Nodes as nodes
 

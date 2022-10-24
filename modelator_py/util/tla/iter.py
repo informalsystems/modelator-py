@@ -10,8 +10,6 @@
 # <https://github.com/tlaplus/tlapm/blob/main/src/module/m_t.ml>
 # <https://github.com/tlaplus/tlapm/blob/main/src/proof/p_t.ml>
 # <https://github.com/tlaplus/tlapm/blob/main/src/proof/p_parser.ml>
-import math
-import textwrap
 
 from .to_str import Nodes as _Nodes
 

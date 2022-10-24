@@ -13,11 +13,7 @@ import collections.abc
 import copy
 import functools
 import logging
-import os
-import pprint
-import subprocess
 import types
-import warnings
 
 from infix import shift_infix as infix
 
@@ -326,7 +322,7 @@ def debug(msg):
         s = "EOF" if not pst.source else intf.rep(pst.source[0])
         dbg_msg = f"[debug] following token is {s}"
         _error.err_add_message(dbg_msg, err)
-        err = error.err_add_message(f"[debug] {msg}", err)
+        err = _error.err_add_message(f"[debug] {msg}", err)
         _error.print_error(False, None, err)
         return exec_(succeed(None), pst)
 
@@ -834,6 +830,7 @@ def choice(alternatives):
     # else:
     #     aps = alternatives[1:]
     #     return ap <<or_>> choice(aps)
+
     def f(pst):
         memo = save(pst)
         for ap in alternatives:
@@ -1051,7 +1048,7 @@ class ListSlice(collections.abc.Sequence):
     def __getitem__(self, slc):
         if isinstance(slc, slice):
             start = slc.start
-            stop = slc.stop
+            # stop = slc.stop
             step = slc.step
             assert start >= 0, start
             assert step is None or step == 1
@@ -1315,6 +1312,7 @@ def resolve(item_prs):
             #                 reduce_one stack
             #             | _ -> stack
             #           in
+
             def normalize(stack):
                 if (
                     (len(stack) >= 2)
@@ -1361,6 +1359,7 @@ def resolve(item_prs):
             #                 normalize (reduce_one stack)
             #             | _ -> stack
             #           in
+
             def normalize(stack):
                 if (
                     (len(stack) >= 2)

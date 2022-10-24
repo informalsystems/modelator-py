@@ -1,5 +1,4 @@
 """Tests for the package `tla`."""
-import pprint
 
 import modelator_py.util.tla._combinators as pco
 import modelator_py.util.tla._expr_parser as ep
