@@ -65,6 +65,7 @@ class Apalache:
         next=None,
         infer_poly=None,
         output=None,
+        features=None,
     ):
         """
         Run Apalache without removing side effects (for debugging).
@@ -107,6 +108,7 @@ class Apalache:
             next : Apalache argument, see `<apalache> --help`.
             infer_poly : Apalache argument, see `<apalache> --help`.
             output : Apalache argument, see `<apalache> --help`.
+            features : Apalache argument, see `<apalache> --help`.
         """
         result = None
         if json:
@@ -147,6 +149,7 @@ class Apalache:
                 next,
                 infer_poly,
                 output,
+                features,
             )
 
             result = apalache_raw(cmd=raw_cmd)
