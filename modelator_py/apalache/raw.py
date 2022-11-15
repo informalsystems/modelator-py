@@ -68,6 +68,7 @@ def stringify_raw_cmd(cmd: RawCmd, java_temp_dir: str = None):
 {f" --next={args.next}" if args.next is not None else ""}\
 {f" --infer-poly={args.infer_poly}" if args.infer_poly is not None else ""}\
 {f" --output={args.output}" if args.output is not None else ""}\
+{f" --features={args.features}" if args.features is not None else ""}\
 {f" {args.file}" if args.file is not None else ""}\
 {f" {args.before}" if args.before is not None else ""}\
 {f" {args.action}" if args.action is not None else ""}\
