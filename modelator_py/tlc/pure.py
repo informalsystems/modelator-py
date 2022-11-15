@@ -79,8 +79,8 @@ def tlc_pure(*, cmd: PureCmd = None, json=None):  # type: ignore
             fn: content for fn, content in all_files.items() if fn not in cmd.files
         }
 
-    stdout_pretty = result.stdout.decode("unicode_escape")
-    stderr_pretty = result.stderr.decode("unicode_escape")
+    stdout_pretty = result.stdout.decode()
+    stderr_pretty = result.stderr.decode()
 
     ret["shell_cmd"] = result.args
     ret["return_code"] = result.returncode

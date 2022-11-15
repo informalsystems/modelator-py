@@ -105,8 +105,8 @@ def apalache_raw_json_demo():
 
     # That's it. Now print for demo purposes.
 
-    stdout_pretty = result.stdout.decode("unicode_escape")
-    stderr_pretty = result.stderr.decode("unicode_escape")
+    stdout_pretty = result.stdout.decode()
+    stderr_pretty = result.stderr.decode()
 
     obj_to_print = {}
     obj_to_print["shell_cmd"] = result.args
@@ -136,8 +136,8 @@ def apalache_raw_cmd_demo():
 
     # That's it. Now print for demo purposes.
 
-    stdout_pretty = result.stdout.decode("unicode_escape")
-    stderr_pretty = result.stderr.decode("unicode_escape")
+    stdout_pretty = result.stdout.decode()
+    stderr_pretty = result.stderr.decode()
 
     obj_to_print = {}
     obj_to_print["shell_cmd"] = result.args
@@ -212,8 +212,8 @@ def tlc_raw_json_demo():
 
     # That's it. Now print for demo purposes.
 
-    stdout_pretty = result.stdout.decode("unicode_escape")
-    stderr_pretty = result.stderr.decode("unicode_escape")
+    stdout_pretty = result.stdout.decode()
+    stderr_pretty = result.stderr.decode()
 
     obj_to_print = {}
     obj_to_print["shell_cmd"] = result.args
@@ -242,8 +242,8 @@ def tlc_raw_cmd_demo():
 
     # That's it. Now print for demo purposes.
 
-    stdout_pretty = result.stdout.decode("unicode_escape")
-    stderr_pretty = result.stderr.decode("unicode_escape")
+    stdout_pretty = result.stdout.decode()
+    stderr_pretty = result.stderr.decode()
 
     obj_to_print = {}
     obj_to_print["shell_cmd"] = result.args
