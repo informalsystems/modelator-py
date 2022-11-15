@@ -138,7 +138,10 @@ this flag. Do not include a value for this flag."
 
         result = apalache_raw(cmd=raw_cmd)
 
-        ret["files"] = read_apalache_output_into_memory(dirname)
+        try:
+            ret["files"] = read_apalache_output_into_memory(dirname)
+        except FileNotFoundError:
+            ret["files"] = dict()
 
         # Throw out the files that the user originally gave as input
         ret["files"] = {
