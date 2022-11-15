@@ -47,7 +47,7 @@ apalache_args_fields = (
     # file to which the typechecked or parsed source is written (.tla or .json), default: None
     "output",
     "features",  # a comma-separated list of experimental features, default: None
-    "save_runs",  # save an example trace for each simulated run, default: false
+    "output_traces",  # save an example trace for each symbolic run, default: false
 )
 
 ApalacheArgs = recordclass(
