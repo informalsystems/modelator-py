@@ -154,8 +154,8 @@ class Apalache:
 
             result = apalache_raw(cmd=raw_cmd)
 
-        stdout_pretty = result.stdout.decode("unicode_escape")
-        stderr_pretty = result.stderr.decode("unicode_escape")
+        stdout_pretty = result.stdout.decode()
+        stderr_pretty = result.stderr.decode()
 
         obj_to_print = {}
         obj_to_print["shell_cmd"] = result.args
