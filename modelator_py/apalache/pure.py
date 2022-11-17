@@ -1,8 +1,8 @@
 import logging
 import os
 import tempfile
-
-from recordclass import recordclass
+from dataclasses import dataclass
+from typing import Optional
 
 from ..helper import get_dirnames_in_dir, read_entire_dir_contents
 from .args import ApalacheArgs
@@ -12,15 +12,15 @@ LOG = logging.getLogger(__name__)
 
 # mypy: ignore-errors
 
-pure_cmd_fields = (
-    "jar",  # Location of Apalache jar (full path with suffix like apalache.jar)
-    "args",  # Apalache args
-    "files",  # Current working directory for child shell process
-)
 
-PureCmd = recordclass(
-    "PureCmd", pure_cmd_fields, defaults=(None,) * len(pure_cmd_fields)
-)
+@dataclass
+class PureCmd:
+    jar: Optional[
+        str
+    ] = None  # Location of Apalache jar (full path with suffix like apalache.jar)
+    args: Optional[ApalacheArgs] = None  # Apalache args
+    files: Optional[str] = None  # Current working directory for child shell process
+
 
 # Used to overwrite Apalache's "--out-dir" flag
 APALACHE_OUT_DIR_NAME = "out"

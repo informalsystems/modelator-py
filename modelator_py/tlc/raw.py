@@ -1,20 +1,21 @@
 import os
 import subprocess
 import tempfile
-
-from recordclass import asdict, recordclass
+from dataclasses import asdict, dataclass
+from typing import Optional
 
 from .args import TlcArgs
 
 # mypy: ignore-errors
 
-raw_cmd_fields = (
-    "cwd",  # Current working directory for child shell process
-    "jar",  # Location of TLC jar (full path with suffix like tla2tools.jar)
-    "args",  # TLC args
-)
 
-RawCmd = recordclass("RawCmd", raw_cmd_fields, defaults=(None,) * len(raw_cmd_fields))
+@dataclass
+class RawCmd:
+    cwd: Optional[str] = None  # Current working directory for child shell process
+    jar: Optional[
+        str
+    ] = None  # Location of TLC jar (full path with suffix like tla2tools.jar)
+    args: Optional[TlcArgs] = None  # TLC args
 
 
 def stringify_raw_cmd(cmd: RawCmd, java_temp_dir: str = None) -> str:
