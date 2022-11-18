@@ -1,7 +1,7 @@
 import os
 import tempfile
-
-from recordclass import recordclass
+from dataclasses import dataclass
+from typing import Optional
 
 from modelator_py.tlc.args import TlcArgs
 
@@ -10,15 +10,14 @@ from .raw import RawCmd, tlc_raw
 
 # mypy: ignore-errors
 
-pure_cmd_fields = (
-    "files",  # dict : file name -> content
-    "jar",  # Location of TLC jar (e.g. full path with suffix like tla2tools.jar)
-    "args",  # TLC args
-)
 
-PureCmd = recordclass(
-    "PureCmd", pure_cmd_fields, defaults=(None,) * len(pure_cmd_fields)
-)
+@dataclass
+class PureCmd:
+    files: Optional[str] = None  # dict : file name -> content
+    jar: Optional[
+        str
+    ] = None  # Location of TLC jar (e.g. full path with suffix like tla2tools.jar)
+    args: Optional[TlcArgs] = None  # TLC args
 
 
 def json_to_cmd(json) -> PureCmd:

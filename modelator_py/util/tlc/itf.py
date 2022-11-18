@@ -1,4 +1,5 @@
-from recordclass import recordclass
+from dataclasses import dataclass
+from typing import Optional
 
 from modelator_py.helper import parallel_map
 
@@ -10,13 +11,12 @@ from .stdout_to_informal_trace_format import (
 
 # mypy: ignore-errors
 
-cmd_fields = (
-    "stdout",  # Captured stdout from TLC execution
-    "lists",  # Transform 1-indexed TLA+ functions into lists
-    "records",  # Transform string indexed functions into records
-)
 
-TlcITFCmd = recordclass("Cmd", cmd_fields, defaults=(None,) * len(cmd_fields))
+@dataclass
+class TlcITFCmd:
+    stdout: Optional[str] = None  # Captured stdout from TLC execution
+    lists: Optional[str] = None  # Transform 1-indexed TLA+ functions into lists
+    records: Optional[str] = None  # Transform string indexed functions into records
 
 
 def json_to_cmd(json) -> TlcITFCmd:

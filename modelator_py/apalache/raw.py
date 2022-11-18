@@ -1,20 +1,21 @@
 import os
 import subprocess
 import tempfile
-
-from recordclass import asdict, recordclass
+from dataclasses import asdict, dataclass
+from typing import Optional
 
 from .args import ApalacheArgs
 
 # mypy: ignore-errors
 
-raw_cmd_fields = (
-    "cwd",  # Current working directory for child shell process
-    "jar",  # Location of Apalache jar (full path with suffix like apalache.jar)
-    "args",  # Apalache args
-)
 
-RawCmd = recordclass("RawCmd", raw_cmd_fields, defaults=(None,) * len(raw_cmd_fields))
+@dataclass
+class RawCmd:
+    cwd: Optional[str] = None  # Current working directory for child shell process
+    jar: Optional[
+        str
+    ] = None  # Location of Apalache jar (full path with suffix like apalache.jar)
+    args: Optional[ApalacheArgs] = None  # Apalache args
 
 
 def stringify_raw_cmd(cmd: RawCmd, java_temp_dir: str = None):

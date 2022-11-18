@@ -12,7 +12,6 @@ keywords = ["utility", "tla", "tlaplus", "tlc", "apalache"]
 [tool.poetry.dependencies]
 python = "^3.8"
 fire = "^0.4"
-recordclass = "^0.18"
 infix = "^1.2"
 ply = "^3.11"
 pathos = "^0.3"
